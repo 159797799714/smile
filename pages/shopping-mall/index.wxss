@@ -126,6 +126,7 @@
 
 .pintuan-icon-one{
   text-align: right;
+  margin-top: 0;
 }
 .pintuan-icon-one>image{
   height: 140rpx;

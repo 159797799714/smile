@@ -1,18 +1,26 @@
 <view class="container b-15">
-  <view class="good-img">
+  <view class="good-img {{ detail.iswin === 'yes' ? 'lucky-img' : '' }}">
     <image src="{{ detail.image[0].file_path }}"></image>
   </view>
   <view class="price">
     <view class="max-price col-f f-24">原价：￥{{ detail.goods_max_price }}</view>
-    <view class="min-price col-f0 f-48">￥0元抽奖</view>
+    <view class="min-price col-f0 f-48">￥0元抽奖
+      <text class="f-22 col-f b-red">{{ detail.total_inventory }}个名额</text>
+    </view>
   </view>
   <view class="draw col-f">
-    
-    
-    
+    <view class="my-draw-num">
+      <view class="num-title f-22 col-f line-42">我的抽奖码</view>
+      <view class="draw-num f-36 col-f03 b-f num-item f-w">{{ leave_time === '00:00:00' && detail.isremind === 'no'? draw_num: (leave_time !== '00:00:00'?  ( detail.isremind === 'yes'? '等待开奖' : draw_num) : '抽奖结束') }}</view>
+    </view>
+    <view class="lucky-draw-time">
+      <view class="lucky-title f-22 col-f line-42">开奖时间：{{ detail.luckydraw_time }}</view>
+      <!-- <view class="lucky-time col-f f-36 num-item b-f03">开奖倒计时：{{ leave_time }}</view> -->
+      <view class="lucky-time col-f f-36 num-item b-f03">{{ leave_time === '00:00:00' ? detail.win_code : leave_time }}</view>
+    </view>
     <!-- <view wx:if="{{ leave_time === '00:00:00' || detail.iswin === 'no' }}" class="draw-leave-time f-50 {{ leave_time !== '00:00:00' ? '' : 'col-6' }}">{{ leave_time === '00:00:00' ? '很遗憾未中奖~' : '开奖倒计时：' + leave_time}}</view>
     <view wx:if="{{ leave_time === '00:00:00' && detail.iswin === 'yes' }}"  class="draw-leave-time f-50 col-f0">恭喜你中奖了</view>
-    <view class="draw-time f-30 ">开奖时间：{{ detail.activity_luckydrawtime }}</view>
+    <view class="draw-time f-30 ">开奖时间：{{ detail.activity_luckydrawtime }}</view> -->
     <view class="draw-info f-22">
       <view class="span-box b-f"></view>
       <view class="word">
@@ -30,7 +38,8 @@
       <view class="word">
         等待开奖
       </view>
-    </view> -->
+    </view>
+    
   </view>
   <view wx:if="{{ detail.isremind !== 'yes' }}" class="btn f-56 col-f {{ leave_time !== '00:00:00' ? 'b-red' : 'none' }}" catchtap="goDraw">{{ leave_time !== '00:00:00'? '点击抽奖' : '抽奖结束' }}</view>
   <button wx:if="{{ detail.isremind === 'yes' }}" open-type="share"  class="btn f-56 col-f b-red" catchtap="goShare">点击分享</button>

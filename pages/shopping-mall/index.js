@@ -31,26 +31,6 @@ Page({
     // 商品全部分类
     shopClassify: [
     ],
-    
-    // // 秒杀购和限时购 
-    // activityList: [
-    //     {
-    //         originalPrice: "",      //原价
-    //         specialPrice: "",        //特价
-    //         type: "限时购",
-    //         time: '',
-    //         img1: "",
-    //         img2: ""
-    //     },
-    //     {
-    //         originalPrice: "", 
-    //         specialPrice: "",  
-    //         type: "秒杀购",
-    //         time: '',
-    //         img1: "",
-    //         img2: ""
-    //     }
-    // ],
     // 为你推荐
     recommendList: [
     ],
@@ -75,7 +55,7 @@ Page({
       imgUrl: '../../images/xianshigou-text.png',
       name: '限时购',
       time: '',
-      info: '五折起',
+      info: '',
       img: []
     }, {
       imgUrl: '../../images/zero-text.png',
@@ -154,6 +134,7 @@ Page({
       console.log("获取限时购", result.data.goods)
       if(result.data.goods) {
         _this.setData({
+          'discount[2].info': result.data.goods.goods_discount_price,
           'discount[2].img[0]': result.data.goods.image[0].file_path,
           'discount[2].img[1]': result.data.goods.image[1].file_path
         })

@@ -29,9 +29,7 @@ App({
    * 生命周期函数--监听小程序初始化
    */
   onLaunch: function(e) {
-    // 清理全部缓存
-    wx.clearStorage()
-
+    
     // 设置api地址
     this.setApiRoot();
     // 小程序主动更新

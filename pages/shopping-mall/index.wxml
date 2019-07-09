@@ -40,7 +40,7 @@
         <image src="{{ item.imgUrl }}"></image>
         <view wx:if="{{ index !== 0 && item.time }}" class="time f-22 col-f b-15">{{ item.time }}</view>
       </view>
-      <view wx:if="{{ item.info }}" class="pintuan-info f-28 col-red f-w">{{ item.info }}</view>
+      <view wx:if="{{ item.info }}" class="pintuan-info f-28 col-red f-w">{{ index === 2 ? item.info + '折起': item.info }}</view>
       <view wx:if="{{ !item.info && item.min_price }}" class="price dis-flex f-w f-28 col-red">
         ￥<text class="min_price {{ index === 3 ? 'f-60': '' }}">{{index === 3 ? '0': item.min_price  }}</text>
         <text class="max_price f-24 col-9 t-dec-line">￥{{ item.max_price }}</text>

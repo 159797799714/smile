@@ -257,7 +257,9 @@
 .col-red{
   color: #F4433D;
 }
-
+.col-f03{
+  color: #FF003C;
+}
 .col-f0{
   color: #FF0000;
 }

@@ -33,7 +33,7 @@
             </view>
           </view>
           <view class="discount">
-            <text>{{ item.discount }}折</text>
+            <text wx:if="{{ item.discount !== 0 }}">{{ item.discount }}折</text>
           </view>
           <view class="price" hover-stop-propagation="true">
             <text class="newPrice">￥{{ item.goods_min_price }}</text>

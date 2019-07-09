@@ -125,7 +125,7 @@ Page({
         console.log("根据id获取秒杀活动列表",goodsResult)
         let goodsResultList = goodsResult.data.list.data
         goodsResultList.forEach((item,index) => {
-          item.discount = (item.goods_min_price/item.goods_max_price *10).toFixed(1)
+          item.discount = item.goods_discount_price
           item.url = `../shop-seckill/goods/index?goods_id=${item.goods_id}&type=${item.goods_type}`
         })
         _this.setData({

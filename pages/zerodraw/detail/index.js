@@ -8,6 +8,7 @@ Page({
     leave_time:  '',                 // 活动剩余时间 
     selectBarIndex: 0,               // 选中的活动列表的索引值,
     param: {},                       //传过来的抽奖的参数
+    draw_num: '请点击抽奖并分享领取抽奖码'
   },
 
   /**
@@ -40,7 +41,7 @@ Page({
       })
       
       // 过滤时间将2017-10-11 换成2017年10月11日
-      res.data.detail.luckydraw_time = data.substr(5,2) + '月' + data.substr(8, 2) + '日'
+      res.data.detail.luckydraw_time = data.substr(0,4) + '年' + data.substr(5,2) + '月' + data.substr(8, 2) + '日' + data.substr(11,5)
       
       that.setData({
         detail: res.data.detail
