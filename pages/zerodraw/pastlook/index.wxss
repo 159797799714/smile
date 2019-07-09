@@ -1,0 +1,98 @@
+/* diy组件 */
+@import "../../../utils/common.wxss";
+
+page{
+  height: 100%;
+  background: #151515;
+}
+.container{
+  height: 100%;
+}
+.activity-list{
+  display: flex;
+  align-items: center;
+  height: 130rpx;
+  padding-left: 30rpx;
+}
+.activity-list .past-activity{
+  width: 102rpx;
+}
+.activity-list .activity-menu{
+  flex: 1;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+.activity-menu .activity-menu-bar{
+  flex: 1;
+  height: 100%;
+  min-width: 120rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.selected{
+  background: #F4433D;
+}
+.activity-menu .activity-menu-bar .time{
+  line-height: 48rpx;
+}
+.list-item{
+  padding: 0 30rpx 30rpx;
+  margin-bottom: 20rpx;
+}
+.good-item{
+  display: flex;
+  height: 330rpx;
+  width: 100%;
+  margin-bottom: 15rpx;
+}
+.good-item .good-img{
+  height: 330rpx;
+  width: 326rpx;
+}
+.good-img > image{
+  height: 100%;
+  width: 100%;
+}
+.good-info{
+  flex: 1;
+  padding-left: 44rpx;
+  box-sizing: border-box;
+}
+.good-info .good-name{
+  max-height: 89rpx;
+  overflow: hidden;
+  width: 280rpx;
+}
+.good-info .good-price{
+  margin: 32rpx 0 13rpx;
+  text-align: left;
+  line-height: 25rpx;
+}
+.draw-btn{
+  display: inline-block;
+  margin-left: 98rpx;
+  height: 23rpx;
+  line-height: 23rpx;
+}
+.prize{
+  padding-bottom: 35rpx;
+  border-bottom: 1rpx solid #F9F9F9;
+}
+.prize .prize-num{
+  line-height: 43rpx;
+}
+.prize .prize-time{
+  line-height: 34rpx;
+}
+.prize .prize-status{
+  height: 58rpx;
+  line-height: 58rpx;
+  width: 174rpx;
+  text-align: center;
+  background: #F4433D;
+}

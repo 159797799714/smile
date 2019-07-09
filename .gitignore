@@ -1,0 +1,7 @@
+.idea
+project.config.json
+
+*.wxss.map
+.sass-cache
+
+.DS_Store

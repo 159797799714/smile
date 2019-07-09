@@ -1,0 +1,28 @@
+<view class="container b-15">
+  <view class="header-bar">
+    <view class="name">优逸</view>
+    <view class="logo"></view>
+  </view>
+  <!-- 搜索框 -->
+  <view class="index-search-box-bg">
+    <view class="index-search-box">
+      <navigator class="index-search" hover-class="none" openType="navigate" url="../search/index">
+        <view class="index-cont-search dis-flex flex-x-center flex-y-center">
+          <image mode="widthFix" src="../../images/seach.png" />
+          <text class="col-6">{{searchName}}</text>
+        </view>
+      </navigator>
+    </view>
+  </view>
+  
+
+  <!-- DIY组件 -->
+  <diy-component scrollTopDist="{{ scrollTopDist }}" diyItems="{{ items }}"></diy-component>
+
+  <!-- 底线 -->
+  <!-- <view class="title-footer p-r">
+    <text class="f-24 col-9 cont">我是有底线的</text>
+    <view class="hr"></view>
+  </view> -->
+
+</view>

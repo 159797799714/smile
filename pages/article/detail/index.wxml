@@ -1,0 +1,153 @@
+
+<import src="../../../wxParse/wxParse.wxml"></import>
+
+  <!-- DIY组件 轮播图 -->
+  <!-- <diy-component my-class="diy-component-my" diyItems="{{ swipeList }}"></diy-component> -->
+
+<view style="height: {{scrollViewHeight}};overflow: hidden;" class="b-f">
+    <image class="article-little-image" mode="widthFix" src="{{ detail.image.file_path }}"></image>
+  <view class="container b-f p-b">
+    <view class="article-title">
+      <text class="f-32">{{ detail.article_title }}</text>
+    </view>
+    <!-- <view class="article-little dis-flex flex-x-between m-top10">
+      <view class="article-little__left">
+        <text class="article-views f-24 col-8">{{ detail.show_views }}次浏览</text>
+      </view>
+      <view class="article-little__right">
+        <text class="article-views f-24 col-8">{{ detail.view_time }}</text>
+      </view>
+    </view> -->
+    <view class="article-content m-top20">
+      <template is="wxParse" data="{{wxParseData:content.nodes}}"></template>
+    </view>
+  </view>
+
+    <navigator class="goods" hover-class="none" url="../../goods/index?goods_id={{detail.goods_id}}" wx:if="{{ detail.goods }}">
+      <view class="left">
+        <image class="goodsImg" src="{{detail.goods.image[0].file_path}}"></image>
+      </view>
+      <view class="right">
+          <text class="f-30 title twolist-hidden m-top10">{{detail.goods.goods_name}}</text>
+          <view class="price f-32 col-m m-top10">
+            ￥{{detail.goods.sku[0].goods_price}}
+          </view>
+          <view class="btn-to-goods">去选购</view>
+      </view>
+    </navigator>
+
+    <!-- <view class="like-wrap" wx:if="{{ detail }}">
+      <view class="{{ isLike ? 'like active' : 'like'}}" bindtap="like">
+        <view class="icon-like"></view>
+      </view>
+      <view style="margin-top: 10rpx;">{{ isLike ? '已点赞' : '点赞' }}</view>
+    </view> -->
+
+    <!-- 评论 -->
+    <view class="comment-wrap">
+      <view class="b-f">
+        <view class="comment-wrap-content">
+          <text class="f-32 col-3 f-w">评论</text>
+          <!-- 有评论的情况 -->
+          <view wx:if="{{haveComment && index < 2}}" wx:for="{{ detail.comments.list }}" wx:key="index" wx:for-index="index" wx:for-item="item" class="comment-wrap-content-people dis-flex flex-x-between m-top20">
+            <view class="uesr-photo">
+              <image mode="widthFix" src="{{ item.avatarUrl }}" />
+            </view>
+            <view class="dis-flex flex-dir-column flex-box">
+              <text class="f-28 col-3 f-w">{{ item.nickName }}</text>
+              <text class="f-26 col-6 m-top10">{{ item.content }}</text>
+              <text class="f-24 col-9 m-top4">{{ item.input_date }}</text>
+            </view>
+            <view class="like-number flex-self-end">
+              <text class="col-9 f-24 pr-12">{{ item.likenum }}</text>
+              <image bindtap="like" data-index="{{ index }}" data-state="commentlike" mode="widthFix" src="{{item.islike == 'yes' ? '../../../images/like-active.png' : '../../../images/like.png'}}" />
+            </view>
+          </view>
+          <!-- 没有评论的情况 -->
+          <view wx:if="{{!haveComment}}" class="no-comment">
+            <image mode="widthFix" src="../../../images/no-comment.png" />
+            <view class="f-28">
+              <text class="col-9">暂时还没有评论，</text>
+              <text bindtap="toComment" class="col-m">快去评论吧~</text>
+            </view>
+          </view>
+        </view>
+          <!-- 有评论的情况 -->
+        <text bindtap="closeAllcomment" wx:if="{{haveComment && detail.comments.num > 2}}" class="see-all-comment f-30 col-9 f-w dis-block">查看全部{{ detail.comments.num }}条评论</text>
+        <view class="article-status dis-flex">
+          <view class="article-status-see dis-flex">
+            <image mode="widthFix" src="../../../images/see.png" />
+            <text class="f-26 col-9 flex-box">{{ detail.show_views }}</text>
+            <text class="f-26 col-e">|</text>
+          </view>
+          <view class="article-status-like dis-flex">
+            <image bindtap="like"  data-state="articlelike" mode="widthFix" src="{{isLike ? '../../../images/like-active.png' : '../../../images/like.png'}}" />
+            <text class="f-26 col-9 flex-box">{{ detail.like_num }}</text>
+            <text class="f-26 col-e">|</text>
+          </view>
+          <view bindtap="toComment" class="article-status-comment dis-flex flex-x-center">
+            <image mode="widthFix" src="../../../images/comment.png" />
+            <text class="f-26 col-9">{{ detail.comments.num }}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 查看全部评论 -->
+    <scroll-view
+        scroll-y 
+        class="{{isClose ? 'all-comment b-f close-style' : 'all-comment b-f'}}"
+    >
+      <view class="all-comment-text dis-flex flex-x-between flex-y-center">
+        <text class="f-30 col-3 f-w">全部评论（{{ detail.comments.num }}）</text>
+        <image mode="widthFix" src="../../../images/close.png" bindtap="closeAllcomment" />
+      </view>
+      <view wx:for="{{ detail.comments.list }}" wx:key="index" wx:for-index="index" wx:for-item="item"  class="all-comment-content b-b">
+        <view class="comment-wrap-content-people dis-flex flex-x-between">
+          <view class="uesr-photo">
+            <image mode="widthFix" src="{{ item.avatarUrl }}" />
+          </view>
+          <view class="dis-flex flex-dir-column flex-box">
+            <text class="f-28 col-3 f-w">{{ item.nickName }}</text>
+            <text class="f-26 col-6 m-top10">{{ item.content }}</text>
+            <text class="f-24 col-9 m-top4">{{ item.input_date }}</text>
+          </view>
+          <view class="like-number flex-self-end">
+            <text class="col-9 f-24 pr-12">{{ item.likenum }}</text>
+            <image bindtap="like" data-index="{{ index }}" data-state="commentlike" mode="widthFix" src="{{item.islike =='yes' ? '../../../images/like-active.png' : '../../../images/like.png'}}" />
+          </view>
+        </view>
+        <!-- 作者回复 -->
+        <view wx:if="{{ item.replys }}" >
+          <view  class="authors-reply dis-flex flex-x-between" wx:for="{{ item.replys }}" wx:key="this" wx:for-item="replysItem" wx:for-index="replysIndex" >
+            <view class="authors-reply-line"></view>
+            <view class="authors-reply-content flex-box">
+              <text class="f-28 col-3 f-w">作者</text>
+              <text class="f-26 col-6 m-top15">{{ replysItem.reply_content }}</text>
+              <!-- <rich-text nodes="{{replysItem.reply_content}}" bindtap="tap"></rich-text> -->
+              <text class="f-24 col-9 m-top15">{{ replysItem.reply_input_date }}</text>
+            </view>
+            <view class="authors-reply-like flex-self-end">
+              <image bindtap="like" data-state="commentreplylike" data-index="{{ index }}" mode="widthFix" src="{{replysItem.isreplylike != 'no' ? '../../../images/like-active.png' : '../../../images/like.png'}}" />
+            </view>
+          </view>
+
+        </view>
+      </view>
+  
+    </scroll-view>
+
+
+
+    <!-- 发布评论 -->
+    <view class="{{isSendComment ? 'post-comment b-t flex-y-center' : 'post-comment close-style'}}">
+      <textarea value="{{ commentValue }}" adjust-position="false" bindfocus="textareaFocus" bindinput="textareaInput" bindblur="textareaBlur" focus="{{isTextareaFocus}}" fixed cursor-spacing="10" class="col-9 f-28" auto-height placeholder="添加你的评论..." />
+      <view bindtap="sendComment" class="f-30 col-m f-w">发布</view>
+    </view>
+
+    <!-- 遮罩层 -->
+    <view class="{{isTextareaFocus ? 'mask' : ''}}"></view>
+
+  <!-- 快捷导航 -->
+  <shortcut></shortcut>
+</view>

@@ -1,0 +1,35 @@
+<view class="container dis-flex flex-dir-column b-15 col-f">
+  <view class="activity-list col-f b-15">
+    <view class="past-activity f-25" catchtap="goPast">往期查看</view>
+    <view class="activity-menu">
+      <view wx:for="{{ activityList }}" wx:key="this" class="activity-menu-bar {{ item.category_id === selectBarIndex ? 'b-red': '' }}" catchtap="selectBar" data-id="{{ item.category_id }}">
+        <view class="day f-22">{{ item.activity_date }}</view>
+        <view class="time f-33">{{ item.activity_time }}</view>
+        <view class="status f-23">{{ item.status }}</view>
+      </view>
+    </view>
+  </view>
+  <view class="content">
+    <view wx:if="{{ goodsList.data.length !== 0 }}" wx:for="{{ goodsList.data }}" wx:key="this" class="good-item b-f" data-id="{{ item.goods_id }}">
+      <view class="good-img">
+        <image src="{{ item.image[0].file_path }}"></image>
+      </view>
+      <view class="good-info dis-flex flex-dir-column flex-x-center flex-y-center">
+        <view class="good-name f-22 col-13">{{ item.goods_name }}</view>
+        <view class="good-price f-25 col-13">官方价：￥{{ item.goods_max_price }}</view>
+        <form name="pushMsgFm" bindsubmit="goDraw" report-submit="true" data-good_id="{{ item.goods_id }}" data-activity_category_id="{{ selectBarIndex }}">
+          <button class="draw-btn f-30 col-f {{ item.isbuy === 'no_allow'? 'none': 'b-red' }}" form-type="submit">￥ 0 抽奖</button>
+        </form>
+      </view>
+    </view>
+    
+    <!-- 无数据 -->
+    <view wx:if="{{ goodsList.data.length === 0 }}" class="yoshop-notcont">
+      <view class="img">
+        <image mode="aspectFit" src="../../images/no_content.png"></image>
+      </view>
+      <text class="cont">亲, 没有相关内容</text>
+    </view>  
+  </view>
+  
+</view>

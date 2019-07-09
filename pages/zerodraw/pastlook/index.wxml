@@ -1,0 +1,30 @@
+<view class="container b-15">
+  <view wx:for="{{ activityList }}"  wx:key="this" class="list-item">
+    <view class="good-item b-f">
+      <view class="good-img">
+        <image src="{{ item.image[0].file_path }}"></image>
+      </view>
+      <view class="good-info dis-flex flex-dir-column flex-x-center">
+        <view class="good-name f-22 col-13">{{ item.goods.goods_name }}</view>
+        <view class="good-price f-25 col-13">官方价：￥{{ item.goods.max_price }}</view>
+        <view class="draw-btn f-23 col-f0">￥0抽奖</view>
+      </view>
+    </view>
+    <view class="prize dis-flex flex-x-between col-f">
+      <view class="prize-info f-22">
+        <view class="prize-num">中奖号码：{{ item.win_luckydraw_code }}</view>
+        <view class="prize-time">{{ item.win_luckydraw_date }}</view>
+      </view>
+      <view class="prize-status f-30">已结束</view>
+    </view>
+  </view>
+  
+  
+  <!-- 无数据 -->
+  <view wx:if="{{ false }}" class="yoshop-notcont">
+    <view class="img">
+      <image mode="aspectFit" src="../../images/no_content.png"></image>
+    </view>
+    <text class="cont">亲, 没有相关内容</text>
+  </view>
+</view>

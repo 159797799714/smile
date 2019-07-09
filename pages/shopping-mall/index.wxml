@@ -1,0 +1,91 @@
+<view class="container b-15">
+  <!-- 搜索框 -->
+  <view class="index-search-box-bg"></view>
+  <view class="index-search-box">
+    <navigator class="index-search" hover-class="none" openType="navigate" url="../search/index">
+      <view class="index-cont-search dis-flex flex-x-center flex-y-center">
+        <image mode="widthFix" src="../../images/seach.png" />
+        <text>{{searchName}}</text>
+      </view>
+    </navigator>
+  </view>
+
+   <!-- DIY组件 轮播图 -->
+  <diy-component diyItems="{{ swipeList }}"></diy-component>
+
+  <!-- 阴影 -->
+ <!-- <view class="shadow">
+    <image src="../../images/shadow.png" mode="widthFix" />
+  </view>
+ -->
+  <!-- 分类 -->
+  <view class="shop-classify dis-flex flex-x-between">
+    <view class="shop-classify-item dis-flex flex-dir-column flex-y-center flex-x-center" wx:for="{{ shopClassify }}" wx:key="this">
+      <!-- <navigator class="dis-flex flex-dir-column flex-y-center flex-x-end" wx:if="{{ index < 7 }}" hover-class="none" url="../category/list?category_id={{item.category_id}}"> -->
+      <navigator class="dis-flex flex-dir-column flex-y-center flex-x-end" wx:if="{{ index < 7 }}" hover-class="none" url="../goods-list/list?category_id={{item.category_id}}">
+        <image mode="widthFix" src="../../images/{{item.url}}" />
+        <text class="f-26">{{ item.name }}</text>
+      </navigator>
+
+      <navigator wx:if="{{index == 7}}" hover-class="none" url="../category/index">
+        <image mode="widthFix" style="width: 122rpx" src="../../images/{{item.url}}" class="more-img"/>
+      </navigator>
+    </view>
+  </view>
+
+  <!-- 拼团,秒杀，限时购，0元购等活动入口 -->
+  <view class="discount dis-flex flex-x-between">
+    <view wx:for="{{ discount }}" wx:key="this" hover-class="none" class="pintuan dis-flex flex-dir-column" catchtap="goPintuan" data-index="{{ index }}">
+      <view class="pintuan-text dis-flex">
+        <image src="{{ item.imgUrl }}"></image>
+        <view wx:if="{{ index !== 0 && item.time }}" class="time f-22 col-f b-15">{{ item.time }}</view>
+      </view>
+      <view wx:if="{{ item.info }}" class="pintuan-info f-28 col-red f-w">{{ item.info }}</view>
+      <view wx:if="{{ !item.info && item.min_price }}" class="price dis-flex f-w f-28 col-red">
+        ￥<text class="min_price {{ index === 3 ? 'f-60': '' }}">{{index === 3 ? '0': item.min_price  }}</text>
+        <text class="max_price f-24 col-9 t-dec-line">￥{{ item.max_price }}</text>
+      </view>
+      <view class="pintuan-icon {{ item.img.length === 1 ? 'pintuan-icon-one' : '' }}">
+        <image mode="aspectFit" wx:if="{{ item.img.length > 0 }}" src="{{ item.img[0] }}" />
+        <image mode="aspectFit" wx:if="{{ item.img.length > 1 }}"  src="{{ item.img[1] }}"/>
+        
+        <!-- 无相关活动 -->
+        <view wx:if="{{ index !== 0 && !item.time }}" class="nothing">
+          <image mode="aspectFit" src="../../images/no_content.png"></image>
+          <view class="nothing-info f-28">亲, 没有相关活动</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+
+  <!-- 为你推荐 -->
+  <view class="recommend-box">
+    <!-- <view class="recommend-box-line b-f9"></view> -->
+    <view class="">
+      <image class="recommend-box-image" mode="widthFix" src="../../images/recommend-icon.png" />
+    </view>
+    <view wx:if="{{ recommendList.length }}" class="recommend-box-content dis-flex flex-x-between">
+      <navigator class="recommend-box-content-item b-f" hover-class="none" url="../goods/index?goods_id={{item.goods_id}}" wx:for="{{ recommendList }}" wx:key="this">
+        <image mode="aspectFit" src="{{ item.image[0].file_path}}" />
+        <text class="recommend-box-content-item-title twolist-hidden f-26 col-13">{{ item.goods_name }}</text>
+        <view class="max-price">
+          <text class="f-26 col-9 t-dec-line m-l-10">¥{{ item.goods_max_price }}</text>
+        </view>
+        <view class="recommend-box-content-item-price dis-flex flex-y-center f-26 col-purple f-w">
+            粉丝¥<text class="f-34 col-purple f-w">{{ item.goods_min_price }}</text>
+            <!-- <text class="f-22 col-9 t-dec-line m-l-10">¥{{ item.goods_max_price }}</text> -->
+        </view>
+      </navigator>
+    </view>
+
+    <!-- 无数据 -->
+    <view wx:if="{{ !recommendList.length }}" class="yoshop-notcont">
+      <view class="img">
+        <image mode="aspectFit" src="../../images/no_content.png"></image>
+      </view>
+      <text class="cont">亲, 没有相关内容</text>
+    </view>
+  </view>
+
+</view>

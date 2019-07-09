@@ -1,0 +1,8 @@
+{
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "diy-component": "/components/diy/index"
+  },
+  "navigationBarTextStyle": "white",
+  "navigationStyle": "custom"
+}

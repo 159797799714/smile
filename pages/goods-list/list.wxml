@@ -1,0 +1,191 @@
+<view class="container">
+  <view class="list-header">
+
+    <!-- 搜索框 -->
+    <view class="index-search-box dis-flex">
+      <view class="index-search flex-box">      <!-- catchtap="triggerSearch" -->
+        <view class="index-cont-search flex-y-center dis-flex">
+          <image class="img-align-text" mode="widthFix" src="../../images/seach.png" />
+          <!-- <text>{{ option.search ? option.search  : '搜索商品' }}</text> -->
+          <input class="ipt" placeholder="搜索" confirm-type="search" value="{{ inputClearValue }}" bindblur="seachInput"/>
+          <image catchtap="deleteSearch" class="img-align-text" mode="widthFix" src="../../images/cancel.png" />
+        </view>
+      </view>
+      <view bindtap="onChangeShowState" class="list-right f-28">
+        <image wx:if="{{tabIndex === 1}}" class="img-align-text" mode="widthFix" src="../../images/ChangeShowState.png" />
+      </view>
+    </view>
+
+    <!-- 分享或者商城 -->
+    <view class="tabs">
+      <text wx:for="{{ tabList }}" wx:key="index" class="{{ index === tabIndex ? 'selectTab' : ''}}" data-index="{{ index }}" bindtap="selectTab">{{ item }}</text>
+    </view>
+
+    <!-- 分类 -->
+    <view class="filter-box b-f">
+      <!-- 综合等分类 -->
+      <view class="filter">
+        <view wx:for="{{ tabIndex === 0 ? shareTag : shopShareTag }}" wx:key="this" class="{{ index === filterIndex ? 'selectFilter' : ''}}" data-tagid="{{ item.tag_id }}" data-index="{{ index }}" bindtap="selectFilter">{{ item.tag_name }}
+          <image wx:if="{{item.tag_name === '价格' && filterIndex !== 3}}" mode="widthFix" class="price-icon" src="../../images/price-icon.png" />
+          <image wx:if="{{item.tag_name === '价格' && filterIndex === 3}}" mode="widthFix" class="price-icon" src="../../images/price-active-icon.png" />
+          <image wx:if="{{index === 4 && filterIndex !== 4}}" mode="widthFix" class="filter-icon" src="../../images/filter-icon.png" />
+          <image wx:if="{{index === 4 && filterIndex === 4}}" mode="widthFix" class="filter-icon" src="../../images/filter-active-icon.png" />
+        </view>
+      </view>
+
+      <!-- 品牌及分类 -->
+      
+      <view wx:if="{{tabIndex === 1}}" class="filter-tags b-f">
+        <view wx:for="{{ filter }}" wx:key="index" class="filter-tag" data-index="{{ index }}" catchtap="selectFilterTag">{{ item }}
+          <image wx:if="{{ filterTag_Index === index }}" src="../../images/up-icon.png" />
+          <image wx:if="{{ filterTag_Index !== index }}" src="../../images/down-icon.png" />
+        </view>
+      </view>
+      <view wx:if="{{filterTag_Index !== '' && tabIndex == 1}}" class="filter-cover">
+        <view class="cover-main b-f">
+          <!--  style="height: {{ filterTag_Index === 1 ? '324rpx': ''}}" -->
+          <view class="list">
+            <view wx:for="{{ filterCoverList.list }}" wx:if="{{ index < 9}}" data-id="{{ item.category_id }}" data-index="{{index}}" bindtap="outselTag" class="{{ item.select ? 'selectSpan' : false }}" wx:key="index">{{ item.name }}</view>
+          </view>
+          <view class="foot">
+            <view catchtap="outresetFilter" class="reset">重置</view>
+            <view catchtap="whiteClick" class="sure">完成({{ filterCoverList.sum }}物品)</view>
+          </view>
+        </view>
+        <view class="white" catchtap="whiteClick"/>
+      </view>
+    </view>
+
+    <scroll-view bindscrolltolower="bindDownLoad" scroll-y="{{filterIndex === 4 && filter_alert ? false : true}}" style="height: {{scrollHeight}}px;" class="culture">
+      <!-- 分享 -->
+      <view wx:if="{{ tabIndex === 0 }}" class="main b-f border-box">
+        <view wx:for="{{ shareList }}" wx:key="this" class="item" bindtap="goShareDetail" data-id="{{ item.article_id }}">
+          <view class="img">
+            <image src="{{ item.image.file_path }}" mode=""></image>
+          </view>
+          <view class="title twolist-hidden border-box">{{ item.subtitle }}</view>
+          <view class="info border-box">
+            <view class="user">
+              <view class="userImg">
+                <image src="{{ item.headimg.file_path }}" mode=""></image>
+              </view>
+              <view class="userName onelist-hidden">{{ item.author }}</view> 
+            </view>
+            <view class="zan">
+              <image catchtap="clickZan" data-index="{{ index }}" mode="widthFix" src="{{item.islike == 'yes' ? '/images/like-active.png' : '/images/like.png'}}" />
+              <text>{{ item.like_count }}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      
+      <!-- 商品 -->
+      <view wx:if="{{ tabIndex === 1 }}" class="b-f border-box {{ style === 0 ? 'main' : 'row' }}">
+        <navigator hover-class="none" url="../goods/index?goods_id={{item.goods_id}}" wx:for="{{ list.data }}" wx:key="index" class="good-item">
+          <view class="good-img">
+            <image mode="widthFix" src="{{item.image[0].file_path}}"></image>
+          </view>
+          <view class="good-info border-box">
+            <view class="good-name {{style === 0 ? 'onelist-hidden' : 'twolist-hidden'}}">{{ item.goods_name }}</view>
+            <view class="good-remark onelist-hidden">
+              <!-- <text wx:for="{{ item.search_keywords }}" wx:for-item="li" wx:key="index">{{ li }}</text> -->
+              <text>{{ item.selling_point }}</text>
+            </view>
+            <view class="max-price f-26 col-9 t-dec-line">
+              <text>￥</text>
+              <text>{{ (item.sku[0].line_price * 100 / 100) === 0 ? item.sku[0].goods_price: item.sku[0].line_price  }}</text>
+            </view>
+            <view class="good-price flex-y-center dis-flex flex-x-between f-w">
+              <view class="f-34">
+                <text>￥</text>
+                <text class="bigText">{{ item.sku[0].goods_price }}</text>
+              </view>
+              <!-- <image mode="widthFix" src="../../images/see-...icon.png" /> -->
+            </view>
+          </view>
+        </navigator>
+      </view>
+    </scroll-view>
+
+    <!-- 筛选 -->
+    <view wx:if="{{ filterIndex === 4 && filter_alert }}" class="big-cover">
+      <view class="white" bindtap="filterAlertFalse"></view>
+      <view class="big-cover-main b-f border-box">
+        <scroll-view scroll-y="true" class="box">
+          <view class="price">
+            <view class="title">价格区间(元)</view>
+            <view class="ipt">
+              <input type="text" data-type="min" bindblur="searchPrice" class="lower" value="{{minPrice}}" placeholder="最低价" placeholder-style="color: #999"/>
+              <input type="text" data-type="max" bindblur="searchPrice" value="{{maxPrice}}" placeholder="最高价" placeholder-style="color: #999"/>
+            </view>
+          </view>
+          <view wx:for="{{ captionList }}" wx:key="index" class="list-span">
+            <view class="title caption">
+              <text>{{ item.title }}</text>
+              <image mode="widthFix" src="../../images/down-icon.png" />
+            </view>
+            <view class="tag-span">
+              <view wx:for="{{ item.arr }}" wx:for-item="li" data-id="{{ li.category_id || li.type }}" wx:for-index="num" wx:key="num" class="tag border-box {{ li.select ? 'selectSpan' : false }}" data-index="{{index}}" data-num="{{ num }}" bindtap="selTag">{{ li.name }}</view>
+            </view>
+          </view>
+        </scroll-view>
+        <view class="foot">
+          <view bindtap="resetFilter" class="reset">重置</view>
+          <view bindtap="filterAlertFalse" class="sure">完成({{ filterCoverList.sum }}物品)</view>
+        </view>
+      </view>
+      
+    </view>
+
+    <!-- 筛选标签 -->
+    <!-- <view class="store_nav_cont dis-flex b-f b-b">
+      <view bindtap="switchSortType" data-type="all" class="flex-box t-c p-r" data-index="0 " id="list-{{sortType==='all'?true:0}}">
+        <text>综合</text>
+      </view>
+      <view bindtap="switchSortType" data-type="sales" class="flex-box t-c p-r" data-index="1" id="list-{{sortType==='sales'?true:0}}">
+        <text> 销量</text>
+      </view>
+      <view bindtap="switchSortType" data-type="price" class="dis-flex flex-x-center flex-box t-c p-r" data-index="2" id="list-{{sortType==='price'?true:0}}">
+        <text class="price__text">价格</text>
+        <view class="price__arrow dis-flex flex-dir-column flex-x-center flex-y-center">
+          <text class="iconfont icon-arrow-top {{sortPrice?'':'active'}}"></text>
+          <text class="iconfont icon-arrow-bottom {{sortPrice?'active':''}}"></text>
+        </view>
+      </view>
+    </view> -->
+
+    <!-- 商品列表 -->
+    <!-- <scroll-view bindscrolltolower="bindDownLoad" scroll-y style="height: {{scrollHeight}}px; width: 750rpx;" wx:if="{{list.data.length > 0}}">
+      <view class="new">
+        <view class="category-list {{ arrange }}">
+          <navigator class="list b-f" hover-class="none" url="../goods/index?goods_id={{item.goods_id}}" wx:for="{{list.data}}" wx:key="list">
+            <view class="left">
+              <view class="img">
+                <image class="goodsImg" mode="scaleToFill" src="{{item.image[0].file_path}}"></image>
+              </view>
+            </view>
+            <view class="right">
+              <view class="cont">
+                <text class="f-30 title twolist-hidden m-top10">{{item.goods_name}}</text>
+                <view class="price f-32 col-m m-top10">
+                  ￥{{item.sku[0].goods_price}}
+                  <text class="del f-22" wx:if="{{item.sku[0].line_price>0}}">{{item.sku[0].line_price}}</text>
+                </view>
+              </view>
+            </view>
+          </navigator>
+        </view>
+      </view>
+      <view wx:if="{{ no_more }}" class="no-more f-30">亲, 没有更多了</view>
+    </scroll-view> -->
+  </view>
+
+  <!-- 无数据 -->
+  <view wx:if="{{ !isLoading && !list.data.length }}" class="yoshop-notcont" style="margin-top:130px;">
+    <view class="img">
+      <image mode="aspectFit" src="../../images/no_content.png"></image>
+    </view>
+    <text class="cont">亲, 没有相关内容</text>
+  </view>
+
+</view>
