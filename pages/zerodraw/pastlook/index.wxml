@@ -19,11 +19,11 @@
     </view>
   </view>
   
-  
+  {{ !activityList }}
   <!-- 无数据 -->
-  <view wx:if="{{ false }}" class="yoshop-notcont">
+  <view wx:if="{{ !activityList }}" class="yoshop-notcont">
     <view class="img">
-      <image mode="aspectFit" src="../../images/no_content.png"></image>
+      <image mode="aspectFit" src="../../../images/no_content.png"></image>
     </view>
     <text class="cont">亲, 没有相关内容</text>
   </view>

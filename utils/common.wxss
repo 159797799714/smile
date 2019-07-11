@@ -233,6 +233,9 @@
 .f-20 {
   font-size: 20rpx;
 }
+.f-16 {
+  font-size: 16rpx;
+}
 
 .f-w {
   font-weight: 700;

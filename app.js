@@ -35,7 +35,7 @@ App({
     // 小程序主动更新
     this.updateManager();
     // 小程序启动场景
-    this.onStartupScene(e.query);
+    this.onStartupScene(e.query)
   },
 
   /**

@@ -131,13 +131,16 @@ Page({
   getGoodsbyone() {
     let _this = this
     App._get('flashsale/getflashsalegoodsbyone',{},function(result) {
-      console.log("获取限时购", result.data.goods)
       if(result.data.goods) {
         _this.setData({
           'discount[2].info': result.data.goods.goods_discount_price,
-          'discount[2].img[0]': result.data.goods.image[0].file_path,
-          'discount[2].img[1]': result.data.goods.image[1].file_path
+          'discount[2].img[0]': result.data.goods.image[0].file_path
         })
+        if(result.data.goods.image.length > 1) {
+          _this.setData({
+            'discount[2].img[1]': result.data.goods.image[1].file_path
+          })
+        }
         utils.countDown(result.data.goods.category.activity_endtime,function(nowTime) {
           _this.setData({
             'discount[2].time': nowTime
@@ -152,14 +155,17 @@ Page({
   getGoodsbyone2() {
     let _this = this
     App._get('seckill/getseckillgoodsbyone',{},function(result) {
-      console.log("获取秒杀购", result)
       if(result.data.goods) {
        _this.setData({
          'discount[1].min_price': result.data.goods.sku[0].goods_price,
          'discount[1].max_price': result.data.goods.sku[0].line_price,
-         'discount[1].img[0]': result.data.goods.image[0].file_path,
-         'discount[1].img[1]': result.data.goods.image[1].file_path
+         'discount[1].img[0]': result.data.goods.image[0].file_path
        })
+       if(result.data.goods.image.length > 1) {
+         _this.setData({
+           'discount[1].img[1]': result.data.goods.image[1].file_path
+         })
+       }
        utils.countDown(result.data.goods.category.activity_endtime,function(nowTime) {
          _this.setData({
            'discount[1].time': nowTime
@@ -174,19 +180,22 @@ Page({
   getZero() {
     let _this = this
     App._get('luckydraw/getluckydrawgoodsbyone',{},function(result) {
-      console.log("获取零元购", result)
       if(result.data.goods) {
-       _this.setData({
-         'discount[3].min_price': result.data.goods.sku[0].goods_price,
-         'discount[3].max_price': result.data.goods.sku[0].line_price,
-         'discount[3].img[0]': result.data.goods.image[0].file_path,
-         'discount[3].img[1]': result.data.goods.image[1].file_path
-       })
-       utils.countDown(result.data.goods.category.activity_endtime,function(nowTime) {
-         _this.setData({
-           'discount[3].time': nowTime
-         })
-       })
+        _this.setData({
+          'discount[3].min_price': result.data.goods.sku[0].goods_price,
+          'discount[3].max_price': result.data.goods.sku[0].line_price,
+          'discount[3].img[0]': result.data.goods.image[0].file_path
+        })
+        if(result.data.goods.image.length > 1) {
+          _this.setData({
+            'discount[3].img[1]': result.data.goods.image[1].file_path
+          })
+        }
+        utils.countDown(result.data.goods.category.activity_endtime,function(nowTime) {
+          _this.setData({
+            'discount[3].time': nowTime
+          })
+        })
       }
       
     })
@@ -198,7 +207,6 @@ Page({
   getAllgoodsCategory() {
     let _this = this;
     App._get('category/goodscategory',{},function(result) {
-      console.log("获取所有商品分类",result.data.list)
       _this.setData({
         shopClassify: result.data.list
         // shopClassify: this.data.shopClassify
@@ -212,7 +220,6 @@ Page({
   getRecommendgoods() {
     let _this = this;
     App._get('goods/recommendgoods',{},function(result) {
-      console.log("获取所有推荐商品列表",result)
       _this.setData({
         recommendList: result.data.list
       })

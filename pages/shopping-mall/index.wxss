@@ -100,7 +100,11 @@
   margin-top: 11rpx;
 }
 .pintuan> .price{
-  line-height: 64rpx;
+  line-height: 27rpx;
+  margin-top: 11rpx;
+}
+.price .min-price{
+  min-width: 42rpx;
 }
 .pintuan-icon{
   flex: 1;
@@ -229,7 +233,7 @@
 }
 
 .recommend-box-content-item-title {
-  height: 75rpx;
+  height: 70rpx;
   padding: 0 36rpx 0 16rpx;
 }
 

@@ -57,7 +57,7 @@ Page({
    */
   onLoad: function(e) {
     let _this = this,
-      scene = App.getSceneData(e);
+    scene = App.getSceneData(e);
     // 商品id
     _this.data.goods_id = e.goods_id ? e.goods_id : scene.gid;
     // 获取商品信息
