@@ -5,13 +5,6 @@ page{
   height: 100%;
   background: #151515;
 }
-.cover{
-  height: 300rpx;
-  width: 700rpx;
-  word-break: break-all;
-  white-space: normal;
-  overflow: hidden;
-}
 .container{
   height: 100%;
   padding: 0 30rpx;
@@ -34,6 +27,9 @@ page{
 }
 .lucky-img{
   border: 5rpx solid #FF0000;
+}
+.fail-img{
+  border: 5rpx solid #ccc;
 }
 .good-img>image{
   height: 100%;

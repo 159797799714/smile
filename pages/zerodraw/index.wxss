@@ -20,6 +20,7 @@ page{
 }
 .activity-list .past-activity{
   width: 102rpx;
+  margin-right: 10rpx;
 }
 .activity-list .activity-menu{
   flex: 1;

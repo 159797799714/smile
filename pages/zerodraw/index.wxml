@@ -22,7 +22,7 @@
         </form>
       </view>
     </view>
-    
+    <cover-view class="b-f col-13 f-30 f-w">{{ formId }}</cover-view>
     <!-- 无数据 -->
     <view wx:if="{{ goodsList.data.length === 0 }}" class="yoshop-notcont">
       <view class="img">

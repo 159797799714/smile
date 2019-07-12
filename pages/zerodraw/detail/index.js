@@ -12,7 +12,8 @@ Page({
     remarks: ['分享微信领取抽奖码', '邀请好友参加得额外抽奖码（邀请越多，抽奖码越多，中奖概率越高）', '开奖通知（短信通知）'],
     addressData: {},
     data: '',
-    id: ''
+    id: '',
+    formId: ''
   },
   /**
    * 生命周期函数--监听页面加载
@@ -26,7 +27,6 @@ Page({
     })
     
     let form = JSON.parse(options.form)
-    console.log('111', form.reuser_id === undefined)
     
     let user_id = wx.getStorageInfoSync('user_id')
     
@@ -52,9 +52,8 @@ Page({
     
   },
   onShow() {
-    this.getAddress()
+    
   },
-  
   // 获取详情
   getDetail(id) {
     let that = this
@@ -67,9 +66,6 @@ Page({
       let data = res.data.detail.luckydraw_time
       
       let luckydrawtime = res.data.detail.luckydraw_time
-      
-      // 获取收货地址
-      that.getAddress()
       
       // 成功
       if(res.code === 1) {
@@ -104,11 +100,16 @@ Page({
   },
    
   // 抽奖
-  goDraw() {
+  goDraw(e) {
+    console.log(e.detail.formId)
+    this.setData({
+      formId: e.detail.formId
+    })
     let that = this
     let url = 'luckydraw/remind'
     let param = this.data.param
     param.good_id = param.goods_id
+    param.formId = e.detail.formId
     App._post_form(url, param,function(result){
       if(result.code === 1) {
         wx.showToast({
