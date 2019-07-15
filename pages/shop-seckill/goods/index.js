@@ -131,7 +131,7 @@ Page({
     let url = ""
     if(this.data.goodsType == 1) {
       url = 'seckill/detail'
-    }else{
+    } else{
       url = 'flashsale/detail'
     }
     App._get(url, {

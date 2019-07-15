@@ -46,9 +46,19 @@ Page({
 
   // 去商品详情
   toGoodDetail(e) {
-    wx.navigateTo({
-      url: e.currentTarget.dataset.url,
-    })
+    let url = e.currentTarget.dataset.url
+    if(url) {
+      wx.navigateTo({
+        url: e.currentTarget.dataset.url,
+      })  
+    } else {
+      wx.showToast({
+        title: '活动已结束',
+        icon: 'none',
+        duration: 2000
+      })
+    }
+    
   },
 
   // 提醒我
