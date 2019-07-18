@@ -40,6 +40,8 @@ Page({
     wx.setNavigationBarTitle({
       title: option.origin
     })
+  },
+  onShow() {
     this.getSeckillCategory()
   },
   
@@ -69,13 +71,13 @@ Page({
     let isremind = e.currentTarget.dataset.isremind
     let index = e.currentTarget.dataset.index
     let url = ''
-    if(_this.title == "限时购") {
+    if (_this.title == "限时购") {
       if(isremind == "no") {
         url = "flashsale/remind"
       }else {
         url = "flashsale/cancelremind"
       }
-    }else{
+    } else {
       if(isremind == "no") {
         url = "seckill/remind"
       }else {

@@ -1,24 +1,26 @@
 <view class="container b-15">
-  <view class="good-img {{ detail.iswin === 'yes' ? 'lucky-img' : '' }}">
+  <view class="good-img p-r {{ detail.iswin === 'yes' ? 'lucky-img' : '' }}">
     <image src="{{ detail.image[0].file_path }}"></image>
     <view wx:if="{{ detail.iswin === 'yes' }}" class="win-word f-60 col-f f-w b-red">恭喜你中奖了!</view>
-    <view wx:if="{{ detail.iswin === 'no' && detail.win_code }}" class="win-word f-60 col-13 f-w b-f9 fail-img">很遗憾未中奖！!</view>
+    <view wx:if="{{ detail.iswin === 'no' && detail.win_code }}" class="bg-fali p-a">
+      <view class="win-word f-60 col-13 f-w b-f9 fail-img">很遗憾未中奖！!</view>  
+    </view>
   </view>
   <view class="price">
-    <view class="max-price col-f f-24">原价：￥{{ detail.goods_max_price }}</view>
+    <view class="max-price col-f f-24">原价：￥{{ detail.luckydraw_original_price }}</view>
     <view class="min-price col-f0 f-48">￥0元抽奖
-      <text class="f-22 col-f b-red">{{ detail.total_inventory }}个名额</text>
+      <text class="f-22 col-f b-red">{{ detail.luckydraw_num }}个名额</text>
     </view>
   </view>
   <view class="draw col-f">
     <view class="my-draw-num">
       <view class="num-title f-22 col-f line-42">我的抽奖码</view>
-      <view class="draw-num f-36 col-f03 b-f num-item {{ detail.luckydraw_code[0] === detail.win_code ? 'b-f03 col-f': '' }}">{{ leave_time === '00:00:00' && detail.isremind === 'no'? draw_num: (leave_time !== '00:00:00'?  ( detail.isremind === 'yes'? detail.luckydraw_code[0] : draw_num) : detail.luckydraw_code[0]) }}</view>
+      <view class="draw-num f-36 col-f03 b-f num-item {{ detail.luckydraw_code[0] === detail.win_code ? 'b-f03 col-f': '' }}">{{ leave_time === '00:00:00' && detail.isremind === 'no'? '抽奖结束': (leave_time !== '00:00:00'?  ( detail.isremind === 'yes'? detail.luckydraw_code[0] : draw_num) : detail.luckydraw_code[0]) }}</view>
       <view wx:if="{{ detail.luckydraw_code.length > 1 && index !== 0 }}"  wx:for="{{ detail.luckydraw_code }}" wx:key="{{ index }}" class="draw-num f-36 col-f03 b-f num-item num-item-second {{ item === detail.win_code ? 'b-f03 col-f': '' }}">{{ item }}</view>
     </view>
     <view class="lucky-draw-time">
       <view class="lucky-title f-22 col-f line-42">开奖时间：{{ detail.luckydraw_time }}</view>
-      <view wx:if="{{ detail.win_code || leave_time !== '00:00:00' }}" class="lucky-time col-f f-36 num-item b-f03">{{ leave_time === '00:00:00' ? detail.win_code : '开奖倒计时：' + leave_time }}</view>
+      <view wx:if="{{ detail.win_code || leave_time !== '00:00:00' }}" class="lucky-time col-f f-36 num-item b-f03">{{ leave_time === '00:00:00' ? '中奖码：' + detail.win_code : '开奖倒计时：' + leave_time }}</view>
     </view>
     
     <view wx:for="{{ remarks }}" wx:key="this" class="draw-info f-22">

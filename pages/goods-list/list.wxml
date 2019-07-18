@@ -37,15 +37,14 @@
       
       <view wx:if="{{tabIndex === 1}}" class="filter-tags b-f">
         <view wx:for="{{ filter }}" wx:key="index" class="filter-tag" data-index="{{ index }}" catchtap="selectFilterTag">{{ item }}
-          <image wx:if="{{ filterTag_Index === index }}" src="../../images/up-icon.png" />
-          <image wx:if="{{ filterTag_Index !== index }}" src="../../images/down-icon.png" />
+          <image class="{{ filterTag_Index === index? '': 'rotate-180' }}" src="../../images/up-icon.png" />
         </view>
       </view>
-      <view wx:if="{{filterTag_Index !== '' && tabIndex == 1}}" class="filter-cover">
+      <view wx:if="{{filterTag_Index !== '' && tabIndex === 1 }}" class="filter-cover">
         <view class="cover-main b-f">
           <!--  style="height: {{ filterTag_Index === 1 ? '324rpx': ''}}" -->
           <view class="list">
-            <view wx:for="{{ filterCoverList.list }}" wx:if="{{ index < 9}}" data-id="{{ item.category_id }}" data-index="{{index}}" bindtap="outselTag" class="{{ item.select ? 'selectSpan' : false }}" wx:key="index">{{ item.name }}</view>
+            <view wx:for="{{ filterCoverList.list }}" data-id="{{ item.category_id }}" data-index="{{index}}" bindtap="outselTag" class="{{ item.select ? 'selectSpan' : false }}" wx:key="index">{{ item.name }}</view>
           </view>
           <view class="foot">
             <view catchtap="outresetFilter" class="reset">重置</view>
@@ -119,12 +118,12 @@
               <input type="text" data-type="max" bindblur="searchPrice" value="{{maxPrice}}" placeholder="最高价" placeholder-style="color: #999"/>
             </view>
           </view>
-          <view wx:for="{{ captionList }}" wx:key="index" class="list-span">
-            <view class="title caption">
+          <view wx:for="{{ captionList }}" wx:key="this" class="list-span">
+            <view class="title caption" catchtap="openTitle" data-index="{{ index }}">
               <text>{{ item.title }}</text>
-              <image mode="widthFix" src="../../images/down-icon.png" />
+              <image class="img {{ item.open ? 'rotate-180': ''}}" mode="widthFix" src="../../images/down-icon.png"/>
             </view>
-            <view class="tag-span">
+            <view class="tag-span {{ item.open ? '': 'hide'}}">
               <view wx:for="{{ item.arr }}" wx:for-item="li" data-id="{{ li.category_id || li.type }}" wx:for-index="num" wx:key="num" class="tag border-box {{ li.select ? 'selectSpan' : false }}" data-index="{{index}}" data-num="{{ num }}" bindtap="selTag">{{ li.name }}</view>
             </view>
           </view>
@@ -134,7 +133,6 @@
           <view bindtap="filterAlertFalse" class="sure">完成({{ filterCoverList.sum }}物品)</view>
         </view>
       </view>
-      
     </view>
 
     <!-- 筛选标签 -->

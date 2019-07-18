@@ -69,9 +69,12 @@ Component({
      * 跳转到指定页面
      */
     navigationTo: function(e) {
-      console.log('点击了跳转', e.currentTarget.dataset.goodsId)
+      console.log('点击了跳转', e.currentTarget.dataset)
       if(e.currentTarget.dataset.goodsId) {
         App.navigationTo("pages/goods/index?goods_id=" + e.currentTarget.dataset.goodsId);
+      }
+      if(e.currentTarget.dataset.articleId) {
+        App.navigationTo("pages/article/detail/index?article_id=" + e.currentTarget.dataset.articleId);
       }
     },
 

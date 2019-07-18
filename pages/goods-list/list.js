@@ -62,7 +62,7 @@ Page({
         name: "",
         select: false
       }],
-      sum: 4999,
+      sum: '',
       selectIndexArr: ['默认'],
     },
     filter_alert: true,             // 筛选遮罩层显示
@@ -124,7 +124,8 @@ Page({
 
     // 设置商品列表高度
     _this.setListHeight();
-
+     
+     console.log('option.category_id', option.category_id)
     // 记录option
     _this.setData({
       option,
@@ -244,13 +245,23 @@ Page({
   getBrandsList(type,callback) {
     let _this = this
     let url = ''
-    if(type == "品牌") {
-      url = 'brands/getbrands'
-    }else {
-      url = "category/goodscategory"
+    let param = {}
+    // 从商城点击分类进来，携带参数id
+    if(_this.data.categoryId) {
+      param = {
+        category_id: _this.data.categoryId
+      }
+      if(type === '品牌') {
+        url = 'brands/getbrandsbycategoryid'
+      } else {
+        url = 'category/goodscategorybysecond'
+      }
+      // 从搜索进来
+    } else {
+      url = type === '品牌'? 'brands/getbrands': 'category/goodscategory'
     }
-    App._get(url,{},function(result) {
-      console.log("获取品牌分类",result)
+    App._get(url, param, function(result) {
+      console.log("获取品牌分类",result.data.list)
       typeof callback === 'function' && callback(result.data.list);
     })
   },
@@ -267,8 +278,6 @@ Page({
       console.log("...",e,_this.data.filterTag_Index)
       if(_this.data.filterTag_Index === 0) {
         _this.data.brandId = id
-      }else {
-        _this.data.categoryId = id
       }
       this.data.filterCoverList.selectIndexArr = ['默认']
       this.data.filterCoverList.selectIndexArr.push(name)
@@ -291,6 +300,7 @@ Page({
         this.data.flag = true     
       }
       this.data.filterCoverList.list = arr
+      console.log('arr', arr)
       _this.setData({
         filterCoverList : _this.data.filterCoverList
       })
@@ -301,8 +311,6 @@ Page({
     if (charIndex !== -1) {
       if(_this.data.filterTag_Index === 0) {
         _this.data.brandId = ""
-      }else {
-        _this.data.categoryId = ""
       }
       this.data.filterCoverList.selectIndexArr.splice(charIndex, 1)
       this.data.filterCoverList.list[index].select = false
@@ -313,11 +321,20 @@ Page({
       return
     }
   },
-
+  // 筛选分类收起和展开
+  openTitle(e) {
+    let index = e.currentTarget.dataset.index
+    console.log(index, this.data.captionList[index].open)
+    let open = 'captionList['+index+'].open'
+    this.setData({
+      [open]: !this.data.captionList[index].open
+    })
+    console.log(this.data.captionList)
+  },
+  
   // 筛选侧边弹窗选择
   selTag(e) {
     let _this = this
-
     let index = e.currentTarget.dataset.index
     let num = e.currentTarget.dataset.num
     let id = e.currentTarget.dataset.id
@@ -357,9 +374,7 @@ Page({
         this.data.flag = true        
       }
       this.data.captionList[index].arr = arr
-      // console.log("111",num,this.data.captionList[index])
       this.data.captionList[index].selectIndexArr.push(name)
-      // this.data.captionList[index].arr[num].select = true
       _this.setData({
         captionList : _this.data.captionList
       })
@@ -386,7 +401,7 @@ Page({
       _this.setData({
         captionList : _this.data.captionList
       })
-
+      
       _this.searchGoods()
 
       return
@@ -397,7 +412,6 @@ Page({
   outresetFilter() {
     let _this = this
     _this.data.brandId = ""
-    _this.data.categoryId = ""
     this.data.filterCoverList.selectIndexArr = ['默认']
     let arr = [];
     let obj = this.data.filterCoverList.list
@@ -421,7 +435,6 @@ Page({
   resetFilter() {
     let _this = this
     _this.data.brandId = ""
-    _this.data.categoryId = ""
     _this.data.promotionsType = ""
 
     this.data.captionList.map((item, index) => {
@@ -435,6 +448,7 @@ Page({
         arritem.select = false
       })
       item.arr = arr
+      item.open = false
     })
     this.setData({
       captionList: this.data.captionList
@@ -551,10 +565,13 @@ Page({
               })
             })
           })
+          _this.data.captionList.forEach((item, index) => {
+            item.open = false
+          })
           
         })
       }
-    }else {
+    } else {
       let id = e.currentTarget.dataset.tagid
       this.getArticleList(id)
     }

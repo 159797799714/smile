@@ -15,6 +15,13 @@ page{
   height: 460rpx;
   width: 100%;
 }
+.bg-fali{
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+}
 .win-word{
   display: inline-block;
   position: absolute;
@@ -28,9 +35,7 @@ page{
 .lucky-img{
   border: 5rpx solid #FF0000;
 }
-.fail-img{
-  border: 5rpx solid #ccc;
-}
+
 .good-img>image{
   height: 100%;
   width: 100%;

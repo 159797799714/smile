@@ -90,7 +90,7 @@ Page({
   // 拼团，秒杀，限时，0元
   goPintuan(e) {
     let index = e.currentTarget.dataset.index
-    if(!this.data.discount[index].time && index !== 0) {
+    if(!this.data.discount[index].time && index !== 0 && index !== 3) {
       wx.showToast({
         title: '暂无相关活动',
         icon: 'none',

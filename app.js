@@ -29,7 +29,6 @@ App({
    * 生命周期函数--监听小程序初始化
    */
   onLaunch: function(e) {
-    
     // 设置api地址
     this.setApiRoot();
     // 小程序主动更新
@@ -42,6 +41,11 @@ App({
    * 小程序启动场景
    */
   onStartupScene: function(query) {
+    let that = this
+    let token = wx.getStorageSync('token');
+    if(!token) {
+      that.doLogin()
+    }
     
     // 获取场景值
     let scene = this.getSceneData(query);
@@ -98,6 +102,7 @@ App({
   doLogin: function() {
     // 保存当前页面
     let pages = getCurrentPages();
+    console.log('dologin函数')
     if (pages.length) {
       let currentPage = pages[pages.length - 1];
       "pages/login/login" != currentPage.route &&

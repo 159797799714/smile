@@ -161,6 +161,7 @@ page {
   width: 14rpx;
   height: 6rpx;
   vertical-align: middle;
+  transition: 500ms;
 }
 .filter-cover{
   display: flex;
@@ -182,12 +183,14 @@ page {
 .filter-cover .cover-main .list{
   flex: 1;
   /* min-height: 70rpx; */
-  height: 324rpx;
+  min-height: 128rpx;
+  max-height: 430rpx;
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
   padding: 0 30rpx;
   box-sizing: border-box;
+  overflow: auto;
 }
 .filter-cover .cover-main .list>view{
   height: 88rpx;
@@ -474,13 +477,20 @@ page {
 }
 .big-cover .big-cover-main .caption image {
   width: 21rpx;
+  height: 10rpx;
+  transition: 800ms;
+}
+.rotate-180{
+  transform: rotate(180deg);
 }
 .big-cover .big-cover-main .tag-span{
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  min-height: 10rpx;
   font-size: 26rpx;
+}
+.hide{
+  display: none!important;
 }
 .big-cover .big-cover-main .tag-span .tag{
   width: 216rpx;

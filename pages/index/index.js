@@ -8,55 +8,63 @@ Page({
     // 页面参数
     options: {},
     // 页面元素
-    items: [
-        {
-            data: [{
-                imgUrl:"https://market.pd-unixe.com/uploads/201906111745582db721897.png"
-            },{
-                imgUrl:"https://market.pd-unixe.com/uploads/2019061117455884a819697.jpg"
-            },{
-              imgUrl:"https://market.pd-unixe.com/uploads/20190611174558d5c576479.png"
-            },{
-              imgUrl:"https://market.pd-unixe.com/uploads/201906111745539eac11543.png"
-            }],
-            name:"图片轮播",
-            params: {
-                interval:"2800"
-            },
-            type: 'banner'
+    items: [{
+        data: [{
+          imgUrl: "https://market.pd-unixe.com/uploads/201906111745582db721897.png",
+          article_id: 10001
+        }, {
+          imgUrl: "https://market.pd-unixe.com/uploads/2019061117455884a819697.jpg"
+        }, {
+          imgUrl: "https://market.pd-unixe.com/uploads/20190611174558d5c576479.png"
+        }, {
+          imgUrl: "https://market.pd-unixe.com/uploads/201906111745539eac11543.png"
+        }],
+        name: "图片轮播",
+        params: {
+          interval: "2800"
         },
-        {
-            data:[],
-            name:"文章组",
-            type: 'article'
-        }
+        type: 'banner'
+      },
+      {
+        data: [],
+        name: "文章组",
+        type: 'article'
+      }
     ],
     scrollTop: 0,
-    scrollTopDist: ''
+    scrollTopDist: '',
+    time: 0 // 进入次数
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    // 当前页面参数
-    this.setData({
-      options
-    });
-    // 加载页面数据
     let _this = this;
-    _this.getcategoryList()
-    // this.getPageData(function(){
-    //     _this.getcategoryList()
-    // });
-    
+    if (options) {
+      // 当前页面参数
+      this.setData({
+        options
+      });
+    }
   },
+
+  onShow: function() {
+    let _this = this
+    let token = wx.getStorageSync('token')
+    if (!token) {
+      App.doLogin()
+    }
+    // 加载页面数据
+    _this.getcategoryList()
+  },
+
   onPageScroll: function(options) {
     // Do something when page scroll
     // this.data.items[1].scrollTopDist = options.scrollTop
     // let data = this.data
     this.setData({
-        scrollTopDist: options.scrollTop
+      scrollTopDist: options.scrollTop
     })
   },
 
@@ -78,24 +86,24 @@ Page({
     // });
   },
 
-    /**
-    * 获取分类
-    */
+  /**
+   * 获取分类
+   */
   getcategoryList: function() {
     let _this = this;
-    App._get('article/categorylist',{
-        page_id: _this.data.options.page_id
-      }, function(result) {
-        _this.data.items[1].tabList = result.data.categoryList
-        // let data = _this.data
-        App._get('article/articlesbycategoryid',{
-            category_id: result.data.categoryList[0].category_id
-          }, function(resultItem) {
-            _this.data.items[1].data = resultItem.data.list
-            let data = _this.data
-            _this.setData(data)
-        });
-        // _this.setData(data)
+    App._get('article/categorylist', {
+      page_id: _this.data.options.page_id
+    }, function(result) {
+      _this.data.items[1].tabList = result.data.categoryList
+      // let data = _this.data
+      App._get('article/articlesbycategoryid', {
+        category_id: result.data.categoryList[0].category_id
+      }, function(resultItem) {
+        _this.data.items[1].data = resultItem.data.list
+        let data = _this.data
+        _this.setData(data)
+      });
+      // _this.setData(data)
     });
   },
 
