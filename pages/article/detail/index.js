@@ -57,6 +57,7 @@ Page({
     App._get('article/detailing', {
       article_id
     }, function(result) {
+      // console.log(result.data.detail.article_content)
       let detail = result.data.detail;
       // 富文本转码
       if (detail.article_content.length > 0) {
@@ -75,7 +76,6 @@ Page({
 
     //   修改banner
       _this.data.swipeList[0].data = result.data.detail.banners
-      console.log("swipeList",_this.data.swipeList)
       _this.setData({
         swipeList: _this.data.swipeList
       })
@@ -87,13 +87,28 @@ Page({
       }
     });
   },
+  // 富文本a标签
+  wxParseTagATap: function(e){
+    var href = e.currentTarget.dataset.src;
+    console.log(href)
+    //我们可以在这里进行一些路由处理
+    // if(href.indexOf(index) > 0){
+    // 	//跳转的方法根据项目需求的不同自己替换，也可以加参数，
+    //   wx.redirectTo({
+    //      url: '../index/index'+参数
+    //   })
+    // }
+    
+    wx.navigateTo({
+      url: '../../goods/index?goods_id=' + href.slice(28)
+    })
+  },
 
   /**
    * 发布评论
    */
   sendComment() {
     let _this = this;
-    console.log("11",_this.data,_this.data.commentValue)
     App._get('article/addcomments', {
       'article_id': _this.data.detail.article_id,
       'comment': _this.data.commentValue
@@ -103,12 +118,11 @@ Page({
                 commentValue: "",
                 isSendComment: false
             })
+            _this.getArticleDetail(_this.data.article_id)
         });
-
     });
   },
   like(e) {
-      console.log("...",e,this.data.detail.comments.list[e.currentTarget.dataset.index])
     let commentsListContent = this.data.detail.comments.list[e.currentTarget.dataset.index]
     wx.showLoading({
       title: '',

@@ -5,7 +5,8 @@ Page({
 
   data: {
     detail: [],                      // 活动列表
-    leave_time:  '',                 // 活动剩余时间 
+    endtime: '',                        // 抽奖剩余时间
+    leave_time:  '',                 // 活动开奖剩余时间 
     selectBarIndex: 0,               // 选中的活动列表的索引值,
     param: {},                       //传过来的抽奖的参数
     draw_num: '请点击抽奖领取抽奖码',  // 还未抽奖时我的抽奖码显示的文字
@@ -52,7 +53,8 @@ Page({
     
   },
   onShow() {
-    
+    // 获取收货地址
+    this.getAddress()
   },
   // 获取详情
   getDetail(id) {
@@ -66,12 +68,18 @@ Page({
       let data = res.data.detail.luckydraw_time
       
       let luckydrawtime = res.data.detail.luckydraw_time
+      let endtime = res.data.detail.activity_endtime
       
       // 成功
       if(res.code === 1) {
         utils.countDown(luckydrawtime,function(nowTime) {
           that.setData({
             leave_time: nowTime
+          })
+        })
+        utils.countDown(endtime,function(nowTime) {
+          that.setData({
+            endtime: nowTime
           })
         })
         // 过滤时间将2017-10-11 换成2017年10月11日
@@ -183,6 +191,8 @@ Page({
       console.log('获取收货地址', res.data.default_id)
       if(res.code === 1) {
         console.log(res.data.list)
+        if(res.data.list.length > 0) {
+          console.log('进来了111')
           res.data.list.map((item, index) => {
             if(item.address_id === res.data.default_id) {
               console.log(item)
@@ -191,6 +201,13 @@ Page({
               })
             }
           })  
+        } else {
+          console.log('进来了222')
+
+          that.setData({
+            addressData: ''
+          })
+        }
       } else {
         wx.showToast({
           title: '收货地址',

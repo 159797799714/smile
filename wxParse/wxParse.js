@@ -5,6 +5,7 @@ function e(e) {
 }
 
 function t(e) {
+  console.log(e)
     var t = this, a = e.target.dataset.src, i = e.target.dataset.from;
     void 0 !== i && i.length > 0 && wx.previewImage({
         current: a,
@@ -29,6 +30,7 @@ function i(e, t, a, i) {
 }
 
 function r(e, t, a, i) {
+  
     var r = 0, d = 0, n = 0, s = 0, o = {};
     return wx.getSystemInfo({
         success: function(g) {

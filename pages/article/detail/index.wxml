@@ -21,16 +21,17 @@
     <view class="article-content m-top20">
       <template is="wxParse" data="{{wxParseData:content.nodes}}"></template>
     </view>
+    
   </view>
 
-    <navigator class="goods" hover-class="none" url="../../goods/index?goods_id={{detail.goods_id}}" wx:if="{{ detail.goods }}">
+    <navigator wx:for="{{ detail.article_goods_info }}" wx:key="this" class="goods" hover-class="none" url="../../goods/index?goods_id={{ item.goods_id }}" wx:if="{{ detail.goods }}">
       <view class="left">
-        <image class="goodsImg" src="{{detail.goods.image[0].file_path}}"></image>
+        <image class="goodsImg" src="{{item.image[0].file_path}}"></image>
       </view>
       <view class="right">
-          <text class="f-30 title twolist-hidden m-top10">{{detail.goods.goods_name}}</text>
+          <text class="f-30 title twolist-hidden m-top10">{{item.goods_name}}</text>
           <view class="price f-32 col-m m-top10">
-            ￥{{detail.goods.sku[0].goods_price}}
+            ￥{{item.sku[0].goods_price}}
           </view>
           <view class="btn-to-goods">去选购</view>
       </view>

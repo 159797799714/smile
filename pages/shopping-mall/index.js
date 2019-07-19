@@ -71,6 +71,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    // 商城首页轮播图
+    this.getSwiperList()
     // 加载页面数据
     this.getPageData();
   },
@@ -85,6 +87,46 @@ Page({
     _this.getGoodsbyone()
     _this.getGoodsbyone2()
     _this.getZero()
+  },
+  
+  getSwiperList() {
+    let that = this
+    App._get('goods/gethomebanners', {}, function(res) {
+      if(res.data.list) {
+        console.log(res.data.list)
+        let arr = []
+        res.data.list.map((item, index) => {
+          let banner = 'swipeList[0].data'
+          let obj = {}
+          let goods = item.activity_link.indexOf('goods_id=')
+          let article = item.activity_link.indexOf('article_id=')
+          if(item.image.file_path) {
+            obj.imgUrl = item.image.file_path
+            if(goods !== -1) {
+              obj.goods_id = item.activity_link.slice(9)
+              arr.push(obj)
+              that.setData({
+                'swipeList[0].data': arr
+              }) 
+              return
+            }
+            if(article !== -1) {
+              obj.article_id = item.activity_link.slice(11)
+              arr.push(obj)
+              that.setData({
+                'swipeList[0].data': arr
+              }) 
+              return
+            } else {
+              arr.push(obj)
+              that.setData({
+                'swipeList[0].data': arr
+              }) 
+            }
+          }
+        })
+      }
+    })
   },
   
   // 拼团，秒杀，限时，0元

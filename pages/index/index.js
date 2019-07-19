@@ -9,16 +9,7 @@ Page({
     options: {},
     // 页面元素
     items: [{
-        data: [{
-          imgUrl: "https://market.pd-unixe.com/uploads/201906111745582db721897.png",
-          article_id: 10001
-        }, {
-          imgUrl: "https://market.pd-unixe.com/uploads/2019061117455884a819697.jpg"
-        }, {
-          imgUrl: "https://market.pd-unixe.com/uploads/20190611174558d5c576479.png"
-        }, {
-          imgUrl: "https://market.pd-unixe.com/uploads/201906111745539eac11543.png"
-        }],
+        data: [],
         name: "图片轮播",
         params: {
           interval: "2800"
@@ -43,20 +34,18 @@ Page({
     let _this = this;
     if (options) {
       // 当前页面参数
-      this.setData({
+      _this.setData({
         options
       });
     }
+    // 加载录播图数据
+    _this.getBannerList()
   },
 
   onShow: function() {
-    let _this = this
-    let token = wx.getStorageSync('token')
-    if (!token) {
-      App.doLogin()
-    }
     // 加载页面数据
-    _this.getcategoryList()
+    this.getcategoryList()
+    
   },
 
   onPageScroll: function(options) {
@@ -105,6 +94,68 @@ Page({
       });
       // _this.setData(data)
     });
+  },
+  
+  // 获取首页轮播图
+  getBannerList() {
+    let that = this
+    App._get('article/gethomebanners', {}, function(res) {
+      let arr = []
+      res.data.list.map((item, index) => {
+        let banner = 'items[0].data'
+        let obj = {}
+        let goods = item.activity_link.indexOf('goods_id=')
+        let article = item.activity_link.indexOf('article_id=')
+        if(item.image.file_path) {
+          obj.imgUrl = item.image.file_path
+          if(goods !== -1) {
+            obj.goods_id = item.activity_link.slice(9)
+            arr.push(obj)
+            that.setData({
+              'items[0].data': arr
+            }) 
+            return
+          }
+          if(article !== -1) {
+            obj.article_id = item.activity_link.slice(11)
+            arr.push(obj)
+            that.setData({
+              'items[0].data': arr
+            }) 
+            return
+          } else {
+            arr.push(obj)
+            that.setData({
+              'items[0].data': arr
+            }) 
+          }
+        }
+        
+        // if(goods !== -1) {
+        //   console.log(item.activity_link,'首页轮播图', 'goods_id为',item.activity_link.slice(9))
+        //   arr.push({
+        //     imgUrl: item.image.file_path,
+        //     goods_id: item.activity_link.slice(9)
+        //   })
+        //   that.setData({
+        //     'items[0].data': arr
+        //   }) 
+        //   return
+        // }
+        // if(article !== -1) {
+        //   console.log(item.activity_link,'首页轮播图',  'article_id为', item.activity_link.slice(11))
+        //    arr.push({
+        //     imgUrl: item.image.file_path,
+        //     article_id: item.activity_link.slice(11)
+        //   })
+        //   that.setData({
+        //     'items[0].data': arr
+        //   })
+        //   return
+        // }
+        
+      })
+    })
   },
 
   /**
