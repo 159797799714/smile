@@ -22,7 +22,7 @@
   <view class="shop-classify dis-flex flex-x-between">
     <view class="shop-classify-item dis-flex flex-dir-column flex-y-center flex-x-center" wx:for="{{ shopClassify }}" wx:key="this">
       <!-- <navigator class="dis-flex flex-dir-column flex-y-center flex-x-end" wx:if="{{ index < 7 }}" hover-class="none" url="../category/list?category_id={{item.category_id}}"> -->
-      <navigator class="dis-flex flex-dir-column flex-y-center flex-x-end" wx:if="{{ index < 7 }}" hover-class="none" url="../goods-list/list?category_id={{item.category_id}}">
+      <navigator class="dis-flex flex-dir-column flex-y-center flex-x-end" wx:if="{{ index < 7 }}" hover-class="none" url="../goods-list/list?category_id={{item.category_id}}&name={{item.name}}">
         <image mode="widthFix" src="../../images/{{item.url}}" />
         <text class="f-26">{{ item.name }}</text>
       </navigator>

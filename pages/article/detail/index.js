@@ -54,6 +54,9 @@ Page({
    */
   getArticleDetail(article_id) {
     let _this = this;
+    wx.showLoading({
+      title: '加载中'
+    })
     App._get('article/detailing', {
       article_id
     }, function(result) {
@@ -85,12 +88,14 @@ Page({
             haveComment: true
         })
       }
+      setTimeout(function () {
+        wx.hideLoading()
+      }, 500)
     });
   },
   // 富文本a标签
   wxParseTagATap: function(e){
-    var href = e.currentTarget.dataset.src;
-    console.log(href)
+    var href = e.currentTarget.dataset.src
     //我们可以在这里进行一些路由处理
     // if(href.indexOf(index) > 0){
     // 	//跳转的方法根据项目需求的不同自己替换，也可以加参数，
@@ -98,10 +103,18 @@ Page({
     //      url: '../index/index'+参数
     //   })
     // }
+    let https = href.slice(0, 5)
+    console.log(https, href)
+    if(https === 'https') {
+      wx.navigateTo({
+        url: '../../goods/index?goods_id='+href.slice(28)
+      })  
+    } else {
+      wx.navigateTo({
+        url: '../../goods/index?goods_id='+href.slice(27)
+      })  
+    }
     
-    wx.navigateTo({
-      url: '../../goods/index?goods_id=' + href.slice(28)
-    })
   },
 
   /**

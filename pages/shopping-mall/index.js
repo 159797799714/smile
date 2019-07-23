@@ -76,7 +76,12 @@ Page({
     // 加载页面数据
     this.getPageData();
   },
-
+  onShow() {
+    // 秒杀，限时购，零元购
+    this.getGoodsbyone()
+    this.getGoodsbyone2()
+    this.getZero()
+  },
   /**
    * 加载页面数据
    */
@@ -84,9 +89,6 @@ Page({
     let _this = this;
     _this.getAllgoodsCategory()
     _this.getRecommendgoods()
-    _this.getGoodsbyone()
-    _this.getGoodsbyone2()
-    _this.getZero()
   },
   
   getSwiperList() {

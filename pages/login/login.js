@@ -46,7 +46,7 @@ Page({
           wx.setStorageSync('token', result.data.token);
           wx.setStorageSync('user_id', result.data.user_id);
           // 跳转回原页面
-          _this.navigateBack();
+          wx.navigateBack();
         }, false, function() {
           wx.hideLoading();
         });
@@ -63,6 +63,6 @@ Page({
     // wx.redirectTo({
     //   url: '/' + currentPage.route + '?' + util.urlEncode(currentPage.options)
     // });
-  },
+  }
 
 })

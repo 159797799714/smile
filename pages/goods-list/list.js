@@ -7,6 +7,7 @@ Page({
     inputClearValue: '',
 
     flag: false,
+    name: '',
 
     brandId: '',
     categoryId: '',
@@ -125,13 +126,14 @@ Page({
     // 设置商品列表高度
     _this.setListHeight();
      
-     console.log('option.category_id', option.category_id)
+     console.log('option', option)
     // 记录option
     _this.setData({
       option,
       categoryId : option.category_id ? option.category_id : '',
       inputClearValue: option.search ? option.search : '',
       tabIndex: option.search || option.category_id ? 1 : 0,
+      name: option.name
     }, function() {
       // 获取商品列表
       // _this.searchGoods();
@@ -278,6 +280,8 @@ Page({
       console.log("...",e,_this.data.filterTag_Index)
       if(_this.data.filterTag_Index === 0) {
         _this.data.brandId = id
+      } else {
+        _this.data.categoryId = id
       }
       this.data.filterCoverList.selectIndexArr = ['默认']
       this.data.filterCoverList.selectIndexArr.push(name)
@@ -311,6 +315,8 @@ Page({
     if (charIndex !== -1) {
       if(_this.data.filterTag_Index === 0) {
         _this.data.brandId = ""
+      } else {
+        _this.data.categoryId = ''
       }
       this.data.filterCoverList.selectIndexArr.splice(charIndex, 1)
       this.data.filterCoverList.list[index].select = false

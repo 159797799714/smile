@@ -74,7 +74,7 @@ App({
    */
   onShow: function(options) {
     // 获取小程序基础信息
-    this.getWxappBase();
+    // this.getWxappBase();
   },
 
   /**
@@ -87,14 +87,14 @@ App({
   /**
    * 获取小程序基础信息
    */
-  getWxappBase: function(callback) {
-    let App = this;
-    App._get('wxapp/base', {}, function(result) {
-      // 记录小程序基础信息
-      wx.setStorageSync('wxapp', result.data.wxapp);
-      callback && callback(result.data.wxapp);
-    });
-  },
+  // getWxappBase: function(callback) {
+  //   let App = this;
+  //   App._get('wxapp/base', {}, function(result) {
+  //     // 记录小程序基础信息
+  //     wx.setStorageSync('wxapp', result.data.wxapp);
+  //     callback && callback(result.data.wxapp);
+  //   });
+  // },
 
   /**
    * 执行用户登录
@@ -102,11 +102,11 @@ App({
   doLogin: function() {
     // 保存当前页面
     let pages = getCurrentPages();
-    console.log('dologin函数')
+    console.log('dologin函数', pages.length)
     if (pages.length) {
       let currentPage = pages[pages.length - 1];
-      "pages/login/login" != currentPage.route &&
-        wx.setStorageSync("currentPage", currentPage);
+      // "pages/login/login" != currentPage.route &&
+      //   wx.setStorageSync("currentPage", currentPage);
     }
     // 跳转授权页面
     wx.navigateTo({
@@ -160,6 +160,9 @@ App({
    */
   _get: function(url, data, success, fail, complete, check_login) {
     wx.showNavigationBarLoading();
+    // wx.showLoading({
+    //   title: '加载中',
+    // })
     let App = this;
     // 构造请求参数
     data = data || {};
@@ -203,6 +206,9 @@ App({
         },
         complete: function(res) {
           wx.hideNavigationBarLoading();
+          // setTimeout(function () {
+          //   wx.hideLoading()
+          // }, 500)
           complete && complete(res);
         },
       });
@@ -216,7 +222,9 @@ App({
    */
   _post_form: function(url, data, success, fail, complete, isShowNavBarLoading) {
     let App = this;
-
+    // wx.showLoading({
+    //   title: '加载中',
+    // })
     isShowNavBarLoading || true;
     data.wxapp_id = App.siteInfo.uniacid;
     data.token = wx.getStorageSync('token');
@@ -258,7 +266,9 @@ App({
       },
       complete: function(res) {
         wx.hideNavigationBarLoading();
-        // wx.hideLoading();
+        // setTimeout(function () {
+        //   wx.hideLoading()
+        // }, 500)
         complete && complete(res);
       }
     });

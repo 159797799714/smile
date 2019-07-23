@@ -7,7 +7,6 @@ Component({
 
   data: {
     // 选项卡标示
-    dataType: '10003',
     tabFixed: false,
   },
  
@@ -21,6 +20,7 @@ Component({
     params: Object,
     dataList: Object,
     tabList: Object,
+    dataType: Number,
     scrollTopDist: {
         type: String,
         observer: function(newVal, oldVal) {
@@ -36,7 +36,8 @@ Component({
                 tabFixed: false
               })
           }
-        }
+        },
+        
     }
   },
 

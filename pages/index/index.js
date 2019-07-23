@@ -19,12 +19,13 @@ Page({
       {
         data: [],
         name: "文章组",
-        type: 'article'
+        type: 'article',
+        dataType: '',
+        tabList: []
       }
     ],
     scrollTop: 0,
-    scrollTopDist: '',
-    time: 0 // 进入次数
+    scrollTopDist: ''
   },
 
   /**
@@ -39,15 +40,10 @@ Page({
       });
     }
     // 加载录播图数据
-    _this.getBannerList()
-  },
-
-  onShow: function() {
+    this.getBannerList()
     // 加载页面数据
     this.getcategoryList()
-    
   },
-
   onPageScroll: function(options) {
     // Do something when page scroll
     // this.data.items[1].scrollTopDist = options.scrollTop
@@ -84,9 +80,10 @@ Page({
       page_id: _this.data.options.page_id
     }, function(result) {
       _this.data.items[1].tabList = result.data.categoryList
+      _this.data.items[1].dataType = result.data.categoryList[0].category_id
       // let data = _this.data
       App._get('article/articlesbycategoryid', {
-        category_id: result.data.categoryList[0].category_id
+        category_id: _this.data.items[1].dataType
       }, function(resultItem) {
         _this.data.items[1].data = resultItem.data.list
         let data = _this.data
@@ -130,29 +127,6 @@ Page({
             }) 
           }
         }
-        
-        // if(goods !== -1) {
-        //   console.log(item.activity_link,'首页轮播图', 'goods_id为',item.activity_link.slice(9))
-        //   arr.push({
-        //     imgUrl: item.image.file_path,
-        //     goods_id: item.activity_link.slice(9)
-        //   })
-        //   that.setData({
-        //     'items[0].data': arr
-        //   }) 
-        //   return
-        // }
-        // if(article !== -1) {
-        //   console.log(item.activity_link,'首页轮播图',  'article_id为', item.activity_link.slice(11))
-        //    arr.push({
-        //     imgUrl: item.image.file_path,
-        //     article_id: item.activity_link.slice(11)
-        //   })
-        //   that.setData({
-        //     'items[0].data': arr
-        //   })
-        //   return
-        // }
         
       })
     })

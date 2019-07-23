@@ -21,38 +21,32 @@ Page({
    */
   onLoad: function(options) {
     let that = this
-    
-    let opt = options.form
+    let opt = options
+    console.log(options)
     that.setData({
       data: opt
     })
-    
-    let form = JSON.parse(options.form)
-    
-    let user_id = wx.getStorageInfoSync('user_id')
-    
-    that.setData({
-      param: form
-    })
-    if(form.reuser_id !== undefined) {
-      // 分享人和被分享人一致
-      if(user_id === form.reuser_id) {
-        wx.showToast({
-          title: '不能点击自己的分享链接',
-          icon: 'none',
-          mask: true,
-          duration: 1500,
-        })
-      } else {
-        // 分享回调接口
-        that.shareRes(form.goods_id, form.reuser_id)
+    if(options.form) {
+      let form = JSON.parse(options.form)
+      let user_id = wx.getStorageInfoSync('user_id')
+      that.setData({
+        param: form
+      })
+      if(form.reuser_id !== undefined) {
+        // 分享人和被分享人一致
+        if(user_id === form.reuser_id) {
+          return
+        } else {
+          // 分享回调接口
+          that.shareRes(form.goods_id, form.reuser_id)
+        }
       }
     }
-    // 加载页面数据
-    that.getDetail(form.goods_id)
     
   },
   onShow() {
+    // 加载页面数据
+    this.getDetail(this.data.data.goods_id)
     // 获取收货地址
     this.getAddress()
   },
@@ -63,7 +57,6 @@ Page({
     App._post_form(url, {
       goods_id: id
     }, function(res) {
-      console.log('商品列表', res)
       
       let data = res.data.detail.luckydraw_time
       
@@ -84,7 +77,6 @@ Page({
         })
         // 过滤时间将2017-10-11 换成2017年10月11日
         res.data.detail.luckydraw_time = data.substr(0,4) + '年' + data.substr(5,2) + '月' + data.substr(8, 2) + '日' + data.substr(11,5)
-        
         that.setData({
           detail: res.data.detail
         })
@@ -103,7 +95,6 @@ Page({
           duration: 1500,
         })
       }
-      
     })
   },
    

@@ -3,6 +3,7 @@
   "usingComponents": {
     "diy-component": "/components/diy/index"
   },
-  "navigationBarTextStyle": "white",
+  "backgroundTextStyle": "dark",
+  "navigationBarTextStyle": "black",
   "navigationStyle": "custom"
 }
