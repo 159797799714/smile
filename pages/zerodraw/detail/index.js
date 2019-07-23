@@ -21,24 +21,29 @@ Page({
    */
   onLoad: function(options) {
     let that = this
-    let opt = options
-    console.log(options)
+    let opt = JSON.parse(options.form)
+    console.log(opt, opt.reuser_id !== undefined)
+    wx.showLoading({
+      title: '加载中'
+    })
     that.setData({
       data: opt
     })
     if(options.form) {
-      let form = JSON.parse(options.form)
       let user_id = wx.getStorageInfoSync('user_id')
       that.setData({
-        param: form
+        param: opt
       })
-      if(form.reuser_id !== undefined) {
+      setTimeout(function() {
+        wx.hideLoading()
+      }, 1000)
+      if(opt.reuser_id !== undefined) {
         // 分享人和被分享人一致
-        if(user_id === form.reuser_id) {
+        if(user_id === opt.reuser_id) {
           return
         } else {
           // 分享回调接口
-          that.shareRes(form.goods_id, form.reuser_id)
+          that.shareRes(opt.goods_id, opt.reuser_id)
         }
       }
     }

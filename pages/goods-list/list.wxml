@@ -95,8 +95,8 @@
               <text>{{ (item.sku[0].line_price * 100 / 100) === 0 ? item.sku[0].goods_price: item.sku[0].line_price  }}</text>
             </view>
             <view class="good-price flex-y-center dis-flex flex-x-between f-w">
-              <view class="f-34">
-                <text>￥</text>
+              <view class="f-34 col-purple">
+                <text class="f-30">粉丝价￥</text>
                 <text class="bigText">{{ item.sku[0].goods_price }}</text>
               </view>
               <!-- <image mode="widthFix" src="../../images/see-...icon.png" /> -->
