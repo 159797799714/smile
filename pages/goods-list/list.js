@@ -66,7 +66,7 @@ Page({
       sum: '',
       selectIndexArr: ['默认'],
     },
-    filter_alert: true,             // 筛选遮罩层显示
+    filter_alert: false,             // 筛选遮罩层显示
     shareList: [
       {
         imgUrl: '',

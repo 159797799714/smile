@@ -36,11 +36,11 @@
       <!-- 品牌及分类 -->
       
       <view wx:if="{{tabIndex === 1}}" class="filter-tags b-f">
-        <view wx:for="{{ filter }}" wx:key="index" wx:if="{{ !(name === '衍生品' && index === 1) }}" class="filter-tag" data-index="{{ index }}" catchtap="selectFilterTag">{{ item }}
+        <view wx:for="{{ filter }}" wx:key="index" class="filter-tag" data-index="{{ index }}" catchtap="selectFilterTag">{{ item }}
           <image class="{{ filterTag_Index === index? '': 'rotate-180' }}" src="../../images/up-icon.png" />
         </view>
       </view>
-      <view wx:if="{{filterTag_Index !== '' && tabIndex === 1 }}" class="filter-cover" capture-catch:touchmove="preventdefault">
+      <view wx:if="{{filterTag_Index !== '' && tabIndex === 1 && !filter_alert }}" class="filter-cover" capture-catch:touchmove="preventdefault">
         <view class="cover-main b-f">
           <!--  style="height: {{ filterTag_Index === 1 ? '324rpx': ''}}" -->
           <view class="list">
@@ -97,7 +97,7 @@
             <view class="good-price flex-y-center dis-flex flex-x-between f-w">
               <view class="f-34 col-purple">
                 <text class="f-30">粉丝价￥</text>
-                <text class="bigText">{{ item.sku[0].goods_price }}</text>
+                <text class="bigText">{{ item.sku[0].goods_price * 100 % 100 === 0 ? item.sku[0].goods_price * 100 / 100 : item.sku[0].goods_price }}</text>
               </view>
               <!-- <image mode="widthFix" src="../../images/see-...icon.png" /> -->
             </view>

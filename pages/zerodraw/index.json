@@ -1,4 +1,5 @@
 {
+  "enablePullDownRefresh": true,
   "navigationBarTitleText": "免费抽奖",
   "navigationBarBackgroundColor": "#131313",
   "navigationBarTextStyle": "white",

@@ -20,7 +20,7 @@
         <view class="main_goods_left">
           <image src="{{item.image[0].file_path}}"></image>
           <view class="main_goods_left-people">
-            <image src="../../../images/pintuan-people-bg.png" />
+            <!-- <image src="../../../images/pintuan-people-bg.png" /> -->
             <text class="col-f f-22">{{ item.people }}人团</text>
           </view>
         </view>

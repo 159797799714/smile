@@ -166,6 +166,8 @@ Page({
     let _this = this
     this.getPageData(function() {
       wx.stopPullDownRefresh();
+      // 加载录播图数据
+      _this.getBannerList()
       _this.getcategoryList()
     });
   }

@@ -4,6 +4,6 @@
     "diy-component": "/components/diy/index"
   },
   "backgroundTextStyle": "dark",
-  "navigationBarTextStyle": "black",
+  "navigationBarTextStyle": "white",
   "navigationStyle": "custom"
 }

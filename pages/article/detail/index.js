@@ -188,7 +188,6 @@ Page({
         _this.setData({
           detail: _this.data.detail
         })
-        console.log("aaa",_this.data.detail.comments.list[e.currentTarget.dataset.index])
         break;
         case "commentreplylike":
         commentsListContent.replys[0].isreplylike = commentsListContent.replys[0].isreplylike == "yes" ? 'no' : "yes"

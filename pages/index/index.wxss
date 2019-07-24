@@ -2,7 +2,7 @@
 @import "../../components/diy/index.wxss";
 
 page {
-  background: #fff !important;
+  background: #131313 !important;
   padding-top: 50px;
 }
 

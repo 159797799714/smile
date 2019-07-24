@@ -73,10 +73,27 @@ Page({
   onLoad: function(options) {
     // 商城首页轮播图
     this.getSwiperList()
+    
+    // 秒杀，限时购，零元购
+    this.getGoodsbyone()
+    this.getGoodsbyone2()
+    this.getZero()
+    
     // 加载页面数据
     this.getPageData();
   },
   onShow() {
+    
+  },
+  
+  /**
+   * 下拉刷新
+   */
+  onPullDownRefresh: function() {
+    // 商城首页轮播图
+    this.getSwiperList()
+    // 加载页面数据
+    this.getPageData();
     // 秒杀，限时购，零元购
     this.getGoodsbyone()
     this.getGoodsbyone2()

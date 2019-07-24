@@ -25,6 +25,13 @@ Page({
     this.getActivityList()
   },
   
+  /**
+   * 下拉刷新
+   */
+  onPullDownRefresh: function() {
+     // 加载0元抽奖活动分类
+    this.getActivityList()
+  },
   // 0元抽奖活动分类
   getActivityList() {
     let that = this

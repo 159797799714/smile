@@ -242,19 +242,26 @@ Page({
     let _this = this,
       submitType = e.currentTarget.dataset.type;
     if (submitType === 'buyNow') {
-      // 立即购买
-      wx.navigateTo({
-        url: '../flow/checkout?' + util.urlEncode({
-          order_type: 'buyNow',
-          goods_id: _this.data.goods_id,
-          goods_num: _this.data.goods_num,
-          goods_sku_id: _this.data.goods_sku_id,
-        }),
-        success() {
-          // 关闭弹窗
-          _this.onToggleTrade();
-        }
-      });
+      
+      let param = {
+        goods_id: _this.data.goods_id,
+        goods_num: _this.data.goods_num,
+        goods_sku_id: _this.data.goods_sku_id,
+      }
+      App._get('order/buyNowinventory', param, function(res) {
+        wx.navigateTo({
+          url: '../flow/checkout?' + util.urlEncode({
+            order_type: 'buyNow',
+            goods_id: _this.data.goods_id,
+            goods_num: _this.data.goods_num,
+            goods_sku_id: _this.data.goods_sku_id,
+          }),
+          success() {
+            // 关闭弹窗
+            _this.onToggleTrade();
+          }
+        });
+      })
     } else if (submitType === 'addCart') {
       // 加入购物车
       App._post_form('cart/add', {

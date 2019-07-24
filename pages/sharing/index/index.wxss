@@ -39,15 +39,15 @@
   position: absolute;
   top: 8rpx;
   left: -12rpx;
-}
-.main_goods_left .main_goods_left-people image {
-  width: 79rpx;
   height: 40rpx;
 }
 .main_goods_left .main_goods_left-people text {
   position: absolute;
-  top: 10rpx;
-  left: 8rpx;
+  line-height: 40rpx;
+  white-space: nowrap;
+  padding: 0 20rpx 0 10rpx;
+  border-radius: 0 20rpx 20rpx 0;
+  background: rgb(244, 160, 61);
 }
 
 .main_goods_right {
