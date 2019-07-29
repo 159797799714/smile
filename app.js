@@ -41,11 +41,6 @@ App({
    * 小程序启动场景
    */
   onStartupScene: function(query) {
-    let that = this
-    let token = wx.getStorageSync('token');
-    if(!token) {
-      that.doLogin()
-    }
     
     // 获取场景值
     let scene = this.getSceneData(query);
@@ -74,7 +69,7 @@ App({
    */
   onShow: function(options) {
     // 获取小程序基础信息
-    // this.getWxappBase();
+    this.getWxappBase();
   },
 
   /**
@@ -87,14 +82,14 @@ App({
   /**
    * 获取小程序基础信息
    */
-  // getWxappBase: function(callback) {
-  //   let App = this;
-  //   App._get('wxapp/base', {}, function(result) {
-  //     // 记录小程序基础信息
-  //     wx.setStorageSync('wxapp', result.data.wxapp);
-  //     callback && callback(result.data.wxapp);
-  //   });
-  // },
+  getWxappBase: function(callback) {
+    let App = this;
+    App._get('wxapp/base', {}, function(result) {
+      // 记录小程序基础信息
+      wx.setStorageSync('wxapp', result.data.wxapp);
+      callback && callback(result.data.wxapp);
+    });
+  },
 
   /**
    * 执行用户登录
@@ -105,8 +100,8 @@ App({
     console.log('dologin函数', pages.length)
     if (pages.length) {
       let currentPage = pages[pages.length - 1];
-      // "pages/login/login" != currentPage.route &&
-      //   wx.setStorageSync("currentPage", currentPage);
+      "pages/login/login" != currentPage.route &&
+        wx.setStorageSync("currentPage", currentPage);
     }
     // 跳转授权页面
     wx.navigateTo({

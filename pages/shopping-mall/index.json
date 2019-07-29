@@ -1,6 +1,6 @@
 {
   "enablePullDownRefresh": true,
-  "backgroundTextStyle": "dark",
+  "backgroundTextStyle": "light",
   "backgroundColor": "#131313",
   "navigationBarTitleText": "商城",
   "navigationBarBackgroundColor": "#131313",

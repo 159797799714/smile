@@ -166,6 +166,10 @@
   -ms-flex-align: center;
   align-items: center;
 }
+
+.f-100{
+  font-size: 100rpx;
+}
 .f-60 {
     font-size: 60rpx;
 }

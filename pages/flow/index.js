@@ -29,6 +29,7 @@ Page({
     // 获取购物车列表
     this.getCartList();
     
+    wx.stopPullDownRefresh()
   },
 
   /**

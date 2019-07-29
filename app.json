@@ -43,7 +43,6 @@
     "pages/sharing/order/refund/index",
     "pages/sharing/order/refund/apply/apply",
     "pages/sharing/order/refund/detail/detail",
-    "pages/article/index",
     "pages/article/detail/index",
     "pages/_select/extract_point/index",
     "pages/shop/detail/index",

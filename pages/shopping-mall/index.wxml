@@ -11,7 +11,7 @@
   </view>
 
    <!-- DIY组件 轮播图 -->
-  <diy-component diyItems="{{ swipeList }}"></diy-component>
+  <diy-component diyItems="{{ swiperList }}"></diy-component>
 
   <!-- 阴影 -->
  <!-- <view class="shadow">

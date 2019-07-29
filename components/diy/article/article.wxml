@@ -8,7 +8,7 @@
     </view>
   </view>
 
-  <view class="article-item  show-type__20" wx:for="{{ dataList }}" wx:key="this" catchtap="onTargetDetail" data-id="{{ item.article_id }}">
+  <view wx:if="{{ dataList.length > 0 }}" class="article-item  show-type__20" wx:for="{{ dataList }}" wx:key="this" catchtap="onTargetDetail" data-id="{{ item.article_id }}">
     <!-- 小图模式 -->
     <!-- <block wx:if="{{ item.show_type == 10 }}">
       <view class="article-item__left flex-box">
@@ -44,11 +44,18 @@
             <view>{{ item.show_views }}</view>
           </view>
           <view class="article-likes">
-            <view catchtap="like" data-index="{{ index }}" class="{{ item.islike === 'yes' ? 'article-is-like icon-article-like' : 'icon-article-like'}}"></view>
+             <!-- catchtap="like"  点赞事件--> 
+            <view data-index="{{ index }}" class="{{ item.islike === 'yes' ? 'icon-article-like' : 'icon-article-like'}}"></view>
             <view>{{ item.like_count }}</view>
           </view>
         </view>
       </view>
     </block>
+  </view>
+  <view wx:if="{{ dataList.length < 1 }}">
+    <view class="yoshop-notcont col-f dis-flex flex-dir-column flex-y-center">
+      <text class="iconfont icon-wushuju f-100"></text>
+      <text class="cont f-30">亲，暂无相关文章哦</text>
+    </view>
   </view>
 </view>

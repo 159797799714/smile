@@ -76,6 +76,13 @@ Component({
       if(e.currentTarget.dataset.articleId) {
         App.navigationTo("pages/article/detail/index?article_id=" + e.currentTarget.dataset.articleId);
       }
+      if (e.currentTarget.dataset.luckydrawId){
+        let param = {
+          goods_id: e.currentTarget.dataset.luckydrawId,
+          activity_category_id: ''
+        }
+        App.navigationTo("pages/zerodraw/detail/index?form=" + JSON.stringify(param));
+      }
     },
 
   }

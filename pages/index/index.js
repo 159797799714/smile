@@ -39,6 +39,8 @@ Page({
         options
       });
     }
+  },
+  onShow() {
     // 加载录播图数据
     this.getBannerList()
     // 加载页面数据
@@ -103,6 +105,7 @@ Page({
         let obj = {}
         let goods = item.activity_link.indexOf('goods_id=')
         let article = item.activity_link.indexOf('article_id=')
+        let luckdraw = item.activity_link.indexOf('luckydraw_id=')
         if(item.image.file_path) {
           obj.imgUrl = item.image.file_path
           if(goods !== -1) {
@@ -120,7 +123,16 @@ Page({
               'items[0].data': arr
             }) 
             return
-          } else {
+          } 
+          if(luckdraw !== -1) {
+            obj.luckydraw_id = item.activity_link.slice(13)
+            arr.push(obj)
+            that.setData({
+              'items[0].data': arr
+            }) 
+            return
+          }
+          else {
             arr.push(obj)
             that.setData({
               'items[0].data': arr

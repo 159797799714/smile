@@ -178,3 +178,6 @@
     left: 10rpx;
     background: #EE3333;
   }
+  .yoshop-notcont{
+    margin-top: 100rpx;
+  }
