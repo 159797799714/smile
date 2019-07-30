@@ -57,7 +57,8 @@ Page({
     ],
     filterIndex: 0,             // 默认选中综合
     filter: ['品牌', '分类'],
-    filterTag_Index: '',            //默认选中品牌
+    filterTag_Index: '',           //默认选中品牌
+    filterList: [{}, {}],          // 品牌和分类总的数据     
     filterCoverList: {
       list: [{
         name: "",
@@ -67,24 +68,8 @@ Page({
       selectIndexArr: ['默认'],
     },
     filter_alert: false,             // 筛选遮罩层显示
-    shareList: [
-      {
-        imgUrl: '',
-        title: '丛林音乐节，万人狂欢！！2019门票疯狂开售',
-        authorImg: '',
-        authorName: '奶油田官方',
-        zan_status: true,
-        zan_num: 300
-      }
-    ],
-    goodList: [
-      {
-        imgUrl: '',
-        name: 'Huawei/华为FreeLaceHuawei/华为FreeLace',
-        remark: ['入耳式', '蓝牙:4.2版本', '立体声'],
-        price: 499
-      }, 
-    ], 
+    shareList: [],
+    goodList: [], 
     captionList: [
       {
         title: '品牌',
@@ -149,6 +134,18 @@ Page({
       
       // _this.getBrandsList()
     });
+    
+    // 获取外层品牌列表
+    let arr = []
+    _this.getBrandsList("品牌",function(res){
+      arr.push(res)
+    })
+    _this.getBrandsList("分类",function(res){
+      arr.push(res)
+      _this.setData({
+        filterList: arr
+      })
+    })
 
   },
 
@@ -267,9 +264,35 @@ Page({
       typeof callback === 'function' && callback(result.data.list);
     })
   },
-
+    //直接点击外面的分类品牌
+  selectFilterTag(e) {
+    console.log('直接点击了外面的')
+    let index = e.currentTarget.dataset.index
+    let id = e.currentTarget.dataset.id
+    let _this = this
+    if(index === this.data.filterTag_Index && this.data.filterTag_Index !== '') {
+      this.setData({
+        filterTag_Index: ''
+      })
+      return
+    }
+    if (index !== this.data.filterTag_Index || this.data.filterTag_Index === '') {
+      this.setData({
+        filterTag_Index: index
+      })
+      
+      let list = _this.data.filterList[index]
+      // console.log(list)
+      console.log(_this.data.filterList, list)
+      
+      _this.setData({
+        'filterCoverList.list': list
+      })
+    }
+  },
   // 外层筛选
   outselTag(e) {
+    console.log('外层筛选')
     let _this = this
     let index = e.currentTarget.dataset.index
     let name = this.data.filterCoverList.list[index].name
@@ -277,11 +300,14 @@ Page({
     let charIndex = this.data.filterCoverList.selectIndexArr.indexOf(name)
 
     if(charIndex === -1) {
-      console.log("...",e,_this.data.filterTag_Index)
       if(_this.data.filterTag_Index === 0) {
-        _this.data.brandId = id
+        _this.setData({
+          brandId: id
+        })
       } else {
-        _this.data.categoryId = id
+        _this.setData({
+          categoryId: id
+        })
       }
       this.data.filterCoverList.selectIndexArr = ['默认']
       this.data.filterCoverList.selectIndexArr.push(name)
@@ -291,7 +317,7 @@ Page({
           arr.push(obj[i])
       }
       arr.map((item,index1)=>{
-        if(this.data.filterTag_Index == "" && !this.data.flag) {
+        if(this.data.filterTag_Index == "") {
           index1 += 1
         }
         if(index1 == index) {
@@ -300,9 +326,6 @@ Page({
           item.select = false
         }
       })
-      if(this.data.filterTag_Index == "" && !this.data.flag) {
-        this.data.flag = true     
-      }
       this.data.filterCoverList.list = arr
       console.log('arr', arr)
       _this.setData({
@@ -314,9 +337,13 @@ Page({
 
     if (charIndex !== -1) {
       if(_this.data.filterTag_Index === 0) {
-        _this.data.brandId = ""
+        _this.setData({
+          brandId: ''
+        })
       } else {
-        _this.data.categoryId = ''
+       _this.setData({
+         categoryId: ''
+       })
       }
       this.data.filterCoverList.selectIndexArr.splice(charIndex, 1)
       this.data.filterCoverList.list[index].select = false
@@ -335,7 +362,6 @@ Page({
     this.setData({
       [open]: !this.data.captionList[index].open
     })
-    console.log(this.data.captionList)
   },
   
   // 筛选侧边弹窗选择
@@ -367,7 +393,7 @@ Page({
           arr.push(obj[i])
       }
       arr.map((item,index1)=>{
-        if(index == 0 && !this.data.flag) {
+        if(index == 0) {
           index1 += 1
         }
         if(index1 == num) {
@@ -376,9 +402,6 @@ Page({
           item.select = false
         }
       })
-      if(index == 0) {
-        this.data.flag = true        
-      }
       this.data.captionList[index].arr = arr
       this.data.captionList[index].selectIndexArr.push(name)
       _this.setData({
@@ -417,8 +440,12 @@ Page({
   // 外层重置
   outresetFilter() {
     let _this = this
-    _this.data.brandId = ""
+    _this.setData({
+      brandId: '',
+      categoryId: ''
+    })
     this.data.filterCoverList.selectIndexArr = ['默认']
+
     let arr = [];
     let obj = this.data.filterCoverList.list
     for (let i in obj) {
@@ -559,22 +586,17 @@ Page({
           //   item.select = false
           // });
           _this.setData({
+            'captionList[0].arr': _this.data.filterList[0],
+            'captionList[1].arr': _this.data.filterList[1],
             'captionList[2].arr': result.data.promotions
           })
-          _this.getBrandsList("品牌",function(list){
-            _this.setData({
-              'captionList[0].arr': list
-            })
-            _this.getBrandsList("分类",function(list){
-              _this.setData({
-                'captionList[1].arr': list
-              })
-            })
-          })
-          _this.data.captionList.forEach((item, index) => {
+          let list = _this.data.captionList
+          list.forEach((item, index) => {
             item.open = false
           })
-          
+          _this.setData({
+            captionList: list
+          })
         })
       }
     } else {
@@ -586,50 +608,15 @@ Page({
     })
   },
 
-  //直接点击外面的分类品牌
-  selectFilterTag(e) {
-    let index = e.currentTarget.dataset.index
-    let id = e.currentTarget.dataset.id
-    let _this = this
-    if(index === this.data.filterTag_Index && this.data.filterTag_Index !== '') {
-      this.setData({
-        filterTag_Index: '',
-        flag: false
-      })
-      return
-    }
-    if (index !== this.data.filterTag_Index || this.data.filterTag_Index === '') {
-      this.setData({
-        filterTag_Index: index,
-        flag: false
-      })
-      if(index == 0) {
-        this.getBrandsList("品牌",function(list){
-          _this.setData({
-            'filterCoverList.list': list
-          })
-        })
-      }else {
-        this.getBrandsList("分类",function(list){
-          _this.setData({
-            'filterCoverList.list': list
-          })
-        })
-      }
-    }
-  },
-
   whiteClick() {
     this.setData({
-      filterTag_Index: '',
-      flag: false
+      filterTag_Index: ''
     })
   },
 
   filterAlertFalse() {
     this.setData({
-      filter_alert: false,
-      flag: false,
+      filter_alert: false
     })
   },
 

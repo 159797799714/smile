@@ -54,7 +54,13 @@ Page({
       scrollTopDist: options.scrollTop
     })
   },
-
+  
+  
+  // goLoading() {
+  //   wx.navigateTo({
+  //     url: '../loading/index'
+  //   })
+  // },
   /**
    * 加载页面数据
    */

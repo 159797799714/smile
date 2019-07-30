@@ -40,11 +40,11 @@
           <image class="{{ filterTag_Index === index? '': 'rotate-180' }}" src="../../images/up-icon.png" />
         </view>
       </view>
-      <view wx:if="{{filterTag_Index !== '' && tabIndex === 1 && !filter_alert }}" class="filter-cover" capture-catch:touchmove="preventdefault">
+      <view wx:if="{{ filterTag_Index !== '' && tabIndex === 1 && !filter_alert }}" class="filter-cover" capture-catch:touchmove="preventdefault">
         <view class="cover-main b-f">
           <!--  style="height: {{ filterTag_Index === 1 ? '324rpx': ''}}" -->
           <view class="list">
-            <view wx:for="{{ filterCoverList.list }}" data-id="{{ item.category_id }}" data-index="{{index}}" catchtap="outselTag" class="{{ item.select ? 'selectSpan' : false }}" wx:key="index">{{ item.name }}</view>
+            <view wx:for="{{ filterCoverList.list }}" data-id="{{ item.category_id }}" data-index="{{index}}" catchtap="outselTag" class="{{ item.category_id === brandId || item.category_id === categoryId ? 'selectSpan' : false }}" wx:key="index">{{ item.name }}</view>
           </view>
           <view class="foot">
             <view catchtap="outresetFilter" class="reset">重置</view>
@@ -124,7 +124,7 @@
               <image class="img {{ item.open ? 'rotate-180': ''}}" mode="widthFix" src="../../images/down-icon.png"/>
             </view>
             <view class="tag-span {{ item.open ? '': 'hide'}}">
-              <view wx:for="{{ item.arr }}" wx:for-item="li" data-id="{{ li.category_id || li.type }}" wx:for-index="num" wx:key="num" class="tag border-box {{ li.select ? 'selectSpan' : false }}" data-index="{{index}}" data-num="{{ num }}" catchtap="selTag">{{ li.name }}</view>
+              <view wx:for="{{ item.arr }}" wx:for-item="li" data-id="{{ li.category_id || li.type }}" wx:for-index="num" wx:key="num" class="tag border-box {{ li.category_id === brandId || li.category_id === categoryId ? 'selectSpan' : false }}" data-index="{{index}}" data-num="{{ num }}" catchtap="selTag">{{ li.name }}</view>
             </view>
           </view>
         </scroll-view>

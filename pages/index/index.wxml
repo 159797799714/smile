@@ -1,7 +1,7 @@
 <view class="container b-15">
   <view class="header-bar">
     <view class="name">优逸</view>
-    <view class="logo"></view>
+    <view class="logo" catchtap="goLoading"></view>
   </view>
   <!-- 搜索框 -->
   <view class="index-search-box-bg">

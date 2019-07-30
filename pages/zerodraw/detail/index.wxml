@@ -5,8 +5,11 @@
     <view wx:if="{{ detail.iswin === 'no' && detail.win_code && leave_time === '00:00:00' }}" class="bg-fali p-a">
       <view class="win-word f-60 col-13 f-w b-f9 fail-img">很遗憾未中奖！!</view>  
     </view>
-    <view wx:if="{{ endtime === '00:00:00' && leave_time !== '00:00:00' }}" class="bg-fali p-a">
+    <view wx:if="{{ endtime === '00:00:00' && leave_time === '00:00:00' }}" class="bg-fali p-a">
       <view class="win-word f-60 col-13 f-w b-f9 fail-img">抽奖已结束！!</view>  
+    </view>
+    <view wx:if="{{ endtime === '00:00:00' && leave_time !== '00:00:00' }}" class="bg-fali p-a">
+      <view class="win-word f-60 col-13 f-w b-f9 fail-img">抽奖已过期！!</view>  
     </view>
   </view>
   <view class="price">
@@ -57,7 +60,7 @@
     <button wx:if="{{ detail.isremind === 'no' && !detail.win_code && endtime !== '00:00:00' }}" class="btn f-56 col-f {{ endtime !== '00:00:00' ? 'b-red' : 'none' }}" form-type="submit">{{ endtime !== '00:00:00'? '点击抽奖' : '抽奖结束' }}</button>
   </form>
   
-  <button wx:if="{{ detail.isremind === 'yes' && endtime !== '00:00:00' }}" open-type="share"  class="btn f-56 col-f b-red">点击分享领取更多抽奖码</button>
+  <button wx:if="{{ detail.isremind === 'yes' && detail.iswin !== 'yes' && endtime !== '00:00:00' }}" open-type="share"  class="btn f-56 col-f b-red">点击分享领取更多抽奖码</button>
   <button wx:if="{{ detail.iswin === 'yes' }}"  class="btn f-56 col-f b-red changeAddress"  catchtap="goSelectAddress" data-type="{{ addressData ? 'index': 'create' }}">编辑收货地址</button>
   
   <!-- 无数据 -->

@@ -67,17 +67,16 @@ Page({
       
       let luckydrawtime = res.data.detail.luckydraw_time
       let endtime = res.data.detail.activity_endtime
-      
       // 成功
       if(res.code === 1) {
-        utils.countDown(luckydrawtime,function(nowTime) {
+        utils.countDown(luckydrawtime,function(luckytime) {
           that.setData({
-            leave_time: nowTime
+            leave_time: luckytime
           })
         })
-        utils.countDown(endtime,function(nowTime) {
+        utils.countDown(endtime,function(nowtime) {
           that.setData({
-            endtime: nowTime
+            endtime: nowtime
           })
         })
         // 过滤时间将2017-10-11 换成2017年10月11日
