@@ -33,6 +33,7 @@ Page({
             }
         }
     ],
+    canrReceive: true
   },
 
   /**
@@ -41,11 +42,8 @@ Page({
   onLoad(options) {
     // 获取文章详情
     this.getArticleDetail(options.article_id);
-    this.data.article_id = options.article_id;
-    wx.getSystemInfo({
-      success(res) {
-        console.log(res)
-      }
+    this.setData({
+      article_id: options.article_id
     })
   },
 

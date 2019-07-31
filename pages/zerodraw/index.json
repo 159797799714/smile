@@ -2,7 +2,9 @@
   "enablePullDownRefresh": true,
   "navigationBarTitleText": "免费抽奖",
   "navigationBarBackgroundColor": "#131313",
+  "backgroundColor": "#131313",
   "navigationBarTextStyle": "white",
+  "backgroundTextStyle": "light",
   "usingComponents": {
     "diy-component": "/components/diy/index"
   }

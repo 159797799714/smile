@@ -83,10 +83,15 @@ module.exports = {
         {
           clearInterval(countDownName);
         }
-      }, 1000
-    )
+      }, 1000)
   },
-
+  DecideReceive(time) {
+    let format = time.replace(/-/g, '/')
+    let countDown = Date.parse(new Date(format))
+    var leftTime = (new Date() - (countDown)); //计算剩余的毫秒数 
+    console.log(leftTime)
+    return (leftTime > 3500000)
+  }
   
 };
 

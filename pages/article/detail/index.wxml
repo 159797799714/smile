@@ -4,7 +4,7 @@
   <!-- DIY组件 轮播图 -->
   <!-- <diy-component my-class="diy-component-my" diyItems="{{ swipeList }}"></diy-component> -->
 
-<view style="height: {{scrollViewHeight}};overflow: hidden;" class="b-f">
+<view wx:if="{{ detail }}" style="height: {{scrollViewHeight}};overflow: hidden;" class="b-f">
     <image class="article-little-image" mode="widthFix" src="{{ detail.image.file_path }}"></image>
   <view class="container b-f p-b">
     <view class="article-title">

@@ -31,6 +31,7 @@ Page({
   onPullDownRefresh: function() {
      // 加载0元抽奖活动分类
     this.getActivityList()
+    wx.stopPullDownRefresh()
   },
   // 0元抽奖活动分类
   getActivityList() {

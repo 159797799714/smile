@@ -14,7 +14,17 @@ Page({
     addressData: {},
     data: '',
     id: '',
-    formId: ''
+    formId: '',
+    time: 0,
+    isOverTime: false,                  // 超过72小时且没收货地址时为true
+    canReceive: false,                  // 是否已经超过72小时
+  },
+  
+  /*下拉刷新*/
+  onPullDownRefresh: function() {
+    wx.stopPullDownRefresh()
+    // 加载页面数据
+    this.getDetail(this.data.data.goods_id)
   },
   /**
    * 生命周期函数--监听页面加载
@@ -22,10 +32,6 @@ Page({
   onLoad: function(options) {
     let that = this
     let opt = JSON.parse(options.form)
-    console.log(opt, opt.reuser_id !== undefined)
-    wx.showLoading({
-      title: '加载中'
-    })
     that.setData({
       data: opt
     })
@@ -34,9 +40,6 @@ Page({
       that.setData({
         param: opt
       })
-      setTimeout(function() {
-        wx.hideLoading()
-      }, 1000)
       if(opt.reuser_id !== undefined) {
         // 分享人和被分享人一致
         if(user_id === opt.reuser_id) {
@@ -58,6 +61,9 @@ Page({
   // 获取详情
   getDetail(id) {
     let that = this
+    wx.showLoading({
+      title: '加载中'
+    })
     let url = 'luckydraw/detail'
     App._post_form(url, {
       goods_id: id
@@ -69,7 +75,27 @@ Page({
       let endtime = res.data.detail.activity_endtime
       // 成功
       if(res.code === 1) {
+        
         utils.countDown(luckydrawtime,function(luckytime) {
+          if(luckytime === '00:00:00') {
+            let format = luckydrawtime.replace(/-/g, '/')
+            let countDown = Date.parse(new Date(format))
+            let time = that.data.time + 1
+            // 判断刚进来是否开
+            if(countDown < new Date()) {
+              that.setData({
+                time: time
+              })
+            }
+            if(that.data.time > 1 ) {
+              that.setData({
+                leave_time: '00:00:00'
+              })
+              return
+              that.getDetail(that.data.data.goods_id)
+            }
+            
+          }
           that.setData({
             leave_time: luckytime
           })
@@ -86,11 +112,26 @@ Page({
         })
         if(res.data.detail.iswin === 'yes') {
           that.setData({
-            remarks: ['分享微信获取更多中奖信息', '请于开奖后7天内填写收货地址及信息']
-          })
+            remarks: ['分享微信获取更多中奖信息', '请于开奖后3天内填写收货地址及信息,否则视为自动放弃奖励！']
+          }) 
           // 获取收货地址
           that.getAddress()
+          // 判断是否超过中奖后领奖72小时
+          let canReceive = utils.DecideReceive(luckydrawtime)
+          console.log('是否超过71小时', canReceive)
+          that.setData({
+            canReceive: canReceive
+          })
+          // 判断有没有地址
+          if(!that.data.addressData) {
+            that.setData({
+              isOverTime: canReceive
+            })
+          }
         }
+        setTimeout(function() {
+          wx.hideLoading()
+        }, 500)
       } else {
         wx.showToast({
           title: '商品详情加载失败',
@@ -173,9 +214,11 @@ Page({
   // 去选择地址或者添加地址
   goSelectAddress(e) {
     console.log(e.currentTarget.dataset.type)
-    wx.navigateTo({
-      url: '../../address/' + e.currentTarget.dataset.type
-    })
+    if(!this.data.canReceive) {
+      wx.navigateTo({
+        url: '../../address/' + e.currentTarget.dataset.type
+      })  
+    }
   },
   
   // 获取收货地址
@@ -187,7 +230,6 @@ Page({
       if(res.code === 1) {
         console.log(res.data.list)
         if(res.data.list.length > 0) {
-          console.log('进来了111')
           res.data.list.map((item, index) => {
             if(item.address_id === res.data.default_id) {
               console.log(item)

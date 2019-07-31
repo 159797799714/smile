@@ -1,16 +1,20 @@
-<view class="container b-15">
-  <view class="good-img p-r {{ detail.iswin === 'yes' ? 'lucky-img' : '' }}">
+<view  wx:if="{{ endtime }}" class="container b-15">
+  <view class="good-img p-r {{ detail.iswin === 'yes' && !isOverTime ? 'lucky-img' : '' }}">
     <image src="{{ detail.image[0].file_path }}"></image>
-    <view wx:if="{{ detail.iswin === 'yes' }}" class="win-word f-60 col-f f-w b-red">恭喜你中奖了!</view>
-    <view wx:if="{{ detail.iswin === 'no' && detail.win_code && leave_time === '00:00:00' }}" class="bg-fali p-a">
-      <view class="win-word f-60 col-13 f-w b-f9 fail-img">很遗憾未中奖！!</view>  
+    <view wx:if="{{ detail.iswin === 'yes' && !isOverTime }}" class="win-word f-60 col-f f-w b-red">恭喜你中奖了!</view>
+    <view wx:if="{{ detail.iswin === 'yes' && isOverTime }}" class="bg-fali p-a">
+      <view class="win-word f-60 col-13 f-w b-f9 fail-img">很遗憾!领奖时间已过！</view>  
     </view>
-    <view wx:if="{{ endtime === '00:00:00' && leave_time === '00:00:00' }}" class="bg-fali p-a">
-      <view class="win-word f-60 col-13 f-w b-f9 fail-img">抽奖已结束！!</view>  
+    <view wx:if="{{ detail.iswin === 'no' && detail.win_code && leave_time === '00:00:00' }}" class="bg-fali p-a">
+      <view class="win-word f-60 col-13 f-w b-f9 fail-img">很遗憾未中奖！</view>  
+    </view>
+    <view wx:if="{{ !detail.win_code && endtime === '00:00:00' && leave_time === '00:00:00' }}" class="bg-fali p-a">
+      <view class="win-word f-60 col-13 f-w b-f9 fail-img">活动已结束！</view>  
     </view>
     <view wx:if="{{ endtime === '00:00:00' && leave_time !== '00:00:00' }}" class="bg-fali p-a">
-      <view class="win-word f-60 col-13 f-w b-f9 fail-img">抽奖已过期！!</view>  
+      <view class="win-word f-60 col-13 f-w b-f9 fail-img">活动已结束等待开奖！</view>  
     </view>
+   
   </view>
   <view class="price">
     <view class="max-price col-f f-24">原价：￥{{ detail.luckydraw_original_price }}</view>
@@ -49,9 +53,12 @@
       </view>
       <text wx:if="{{ addressData }}" class="iconfont icon-xiangyoujiantou f-28 col-13 f-w"></text>
       <!-- 已获奖，没有地址 -->
-      <view wx:if="{{ !addressData }}" class="address-null col-13 f-30">暂无收货地址，点击添加~</view>
+      <view wx:if="{{ !addressData && !isOverTime }}" class="address-null col-13 f-30">暂无收货地址，点击添加~</view>
+      <!-- 已获奖，超过72小时未领取 -->
+      <view wx:if="{{ isOverTime }}" class="address-null col-13 f-30">由于您未能在3天之内填写收货地址,此奖品已视为自动放弃~</view>
     </view>
-    <view wx:if="{{ detail.iswin === 'yes' }}" class="address-remarks col-f f-16">请核对寄件信息，确保无误</view>
+    <view wx:if="{{ detail.iswin === 'yes' && !isOverTime && !canReceive }}" class="address-remarks col-f f-16">请核对寄件信息，确保无误</view>
+    <view wx:if="{{ addressData && canReceive }}" class="address-remarks col-f f-16">奖品将按照以上地址寄出，请注意查收</view>
   
   </view>
   <!-- <view wx:if="{{ detail.isremind !== 'yes' }}" class="btn f-56 col-f {{ leave_time !== '00:00:00' ? 'b-red' : 'none' }}" catchtap="goDraw">{{ leave_time !== '00:00:00'? '点击抽奖' : '抽奖结束' }}</view> -->
@@ -61,7 +68,7 @@
   </form>
   
   <button wx:if="{{ detail.isremind === 'yes' && detail.iswin !== 'yes' && endtime !== '00:00:00' }}" open-type="share"  class="btn f-56 col-f b-red">点击分享领取更多抽奖码</button>
-  <button wx:if="{{ detail.iswin === 'yes' }}"  class="btn f-56 col-f b-red changeAddress"  catchtap="goSelectAddress" data-type="{{ addressData ? 'index': 'create' }}">编辑收货地址</button>
+  <button wx:if="{{ detail.iswin === 'yes' && !canReceive }}"  class="btn f-56 col-f b-red changeAddress"  catchtap="goSelectAddress" data-type="{{ addressData ? 'index': 'create' }}">编辑收货地址</button>
   
   <!-- 无数据 -->
   <view wx:if="{{ !detail }}" class="yoshop-notcont">
