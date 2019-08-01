@@ -35,7 +35,7 @@
 
       <!-- 品牌及分类 -->
       
-      <view wx:if="{{tabIndex === 1}}" class="filter-tags b-f">
+      <view wx:if="{{tabIndex === 1 && filterList.length > 1}}" class="filter-tags b-f">
         <view wx:for="{{ filter }}" wx:key="index" class="filter-tag" data-index="{{ index }}" catchtap="selectFilterTag">{{ item }}
           <image class="{{ filterTag_Index === index? '': 'rotate-180' }}" src="../../images/up-icon.png" />
         </view>
@@ -123,8 +123,8 @@
               <text>{{ item.title }}</text>
               <image class="img {{ item.open ? 'rotate-180': ''}}" mode="widthFix" src="../../images/down-icon.png"/>
             </view>
-            <view class="tag-span {{ item.open ? '': 'hide'}}">
-              <view wx:for="{{ item.arr }}" wx:for-item="li" data-id="{{ li.category_id || li.type }}" wx:for-index="num" wx:key="num" class="tag border-box {{ li.category_id === brandId || li.category_id === categoryId ? 'selectSpan' : false }}" data-index="{{index}}" data-num="{{ num }}" catchtap="selTag">{{ li.name }}</view>
+            <view class="tag-span {{ item.open ? '': 'hide'}} ">
+              <view wx:for="{{ item.arr }}" wx:for-item="li" data-id="{{ li.category_id || li.type }}" wx:for-index="num" wx:key="num" class="tag border-box {{ li.category_id === brandId || li.category_id === categoryId || li.type === promotionsType ? 'selectSpan' : false }}" data-index="{{index}}" data-num="{{ num }}" catchtap="selTag">{{ li.name }}</view>
             </view>
           </view>
         </scroll-view>

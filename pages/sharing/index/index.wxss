@@ -155,9 +155,6 @@
   height: 100%;
 }
 
-.cs-box {
-    padding: 0 232rpx;
-}
 
 .cs-bg {
   background-color: #fff;
@@ -170,11 +167,20 @@
 }
 
 .cs {
+  flex: 1;
   display: inline-block;
   text-align: center;
   height: 84rpx;
   line-height: 84rpx;
+  min-width: 140rpx;
   box-sizing: border-box;
+}
+.cs-box{
+  margin: 0 50rpx;
+  width: calc(100% - 100rpx);
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: auto;
 }
 
 .cs text {
@@ -196,4 +202,17 @@
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.myorder{
+  position: fixed;
+  bottom: 100rpx;
+  right: 20rpx;
+  height: 60rpx;
+  width: 200rpx;
+  font-weight: 600;
+  text-align: center;
+  line-height: 60rpx;
+  border-radius: 30rpx;
+  background: rgba(0, 0, 0, 0.5);
 }

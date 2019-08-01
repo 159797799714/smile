@@ -60,7 +60,13 @@ Page({
     // 第二步：更新当前的商品列表
     _this.getGoodsList();
   },
-
+  
+  
+  goOrder() {
+    wx.navigateTo({
+      url: '../order/index'
+    })
+  },
   /**
    * Api：获取商品列表
    */
@@ -120,7 +126,13 @@ Page({
     // 加载下一页列表
     this.getGoodsList(true, ++this.data.page);
   },
-
+  
+  showNull() {
+    wx.showToast({
+      title: '抱歉！该商品已售完！',
+      icon: 'none'
+    })
+  },
   /**
    * 设置商品列表高度
    */

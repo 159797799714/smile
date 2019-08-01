@@ -1,21 +1,21 @@
 <!-- 商品分类tab -->
 <view class="header">
-  <scroll-view scroll-x scroll-left class="cs-box">
-    <view style="margin-right: 158rpx" class="cs {{ category_id ==  0 ? 'active' : '' }}" catchtap="onSwitchTab" data-id="0">
+  <view  class="cs-box">
+    <view class="cs {{ category_id ==  0 ? 'active' : '' }}" catchtap="onSwitchTab" data-id="0">
       <text>全部</text>
     </view>
     <!-- 商品分类列表 -->
     <view class="cs {{  item.category_id == category_id ? 'active' : '' }}" catchtap="onSwitchTab" wx:for="{{ categoryList }}" wx:key="this" data-id="{{ item.category_id }}">
       <text>{{ item.name }}</text>
     </view>
-  </scroll-view>
+  </view>
 </view>
 <view class="cs-bg"></view>
 <!-- 拼团商品列表 -->
-<view class="cont">
+<view wx:if="{{ goodsList }}" class="cont">
   <scroll-view bindscrolltolower="bindDownLoad" scroll-y style="height: {{scrollHeight}}px;">
     <view class="main">
-      <view class="main_goods" wx:for="{{ goodsList.data }}" wx:key="this" catchtap="onTargetGoods" data-id="{{ item.goods_id }}">
+      <view class="main_goods" wx:for="{{ goodsList.data }}" wx:key="this">
         <!-- 商品图片 -->
         <view class="main_goods_left">
           <image src="{{item.image[0].file_path}}"></image>
@@ -45,7 +45,8 @@
               <text class="price_y cl-9">¥{{ item.sku[0].line_price }}</text>
             </view>
           </view>
-          <button class="settlement">去拼团</button>
+          <button wx:if="{{ item.surplus_inventory > 0 }}" class="settlement" catchtap="onTargetGoods" data-id="{{ item.goods_id }}">去拼团</button>
+          <button wx:if="{{ item.surplus_inventory === 0 }}" class="settlement none col-f" catchtap="showNull">已售罄</button>
         </view>
       </view>
       <view wx:if="{{ no_more }}" class="no-more f-30">亲, 没有更多了</view>
@@ -58,4 +59,8 @@
       </view>
     </view>
   </scroll-view>
+  <view catchtap="goOrder" class="myorder col-f f-30">
+    <text>拼团订单</text>
+    <text class="iconfont icon-cate"></text>
+  </view>
 </view>

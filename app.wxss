@@ -24,7 +24,10 @@ page {
   padding-left: 10rpx;
   color: #999;
 }
-
+/
+.none{
+  background: #999999!important;
+}
 /* 没有更多 */
 
 .no-more {

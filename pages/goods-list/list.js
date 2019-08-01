@@ -58,7 +58,7 @@ Page({
     filterIndex: 0,             // 默认选中综合
     filter: ['品牌', '分类'],
     filterTag_Index: '',           //默认选中品牌
-    filterList: [{}, {}],          // 品牌和分类总的数据     
+    filterList: [],          // 品牌和分类总的数据     
     filterCoverList: {
       list: [{
         name: "",
@@ -73,6 +73,7 @@ Page({
     captionList: [
       {
         title: '品牌',
+        open: false,
         selectIndexArr: ['默认'],               //循环时加上
         arr: [
           {
@@ -82,6 +83,7 @@ Page({
         ]
       }, {
         title: '分类',
+        open: false,
         selectIndexArr: ['默认'],
         arr: [
           {
@@ -91,6 +93,7 @@ Page({
         ]
       }, {
         title: '促销',
+        open: false,
         selectIndexArr: ['默认'],
         arr: [
           {
@@ -130,22 +133,25 @@ Page({
           scrollHeight: _this.data.scrollHeight - 50,
         })
         _this.searchGoods()
+        // 获取外层品牌列表
+        let arr = []
+        _this.getBrandsList("品牌",function(res){
+          arr.push(res)
+          _this.getBrandsList("分类",function(res){
+            arr.push(res)
+            _this.setData({
+              filterList: arr
+            })
+            console.log(_this.data.filterList)
+          })  
+        })
+        
       }
       
       // _this.getBrandsList()
     });
     
-    // 获取外层品牌列表
-    let arr = []
-    _this.getBrandsList("品牌",function(res){
-      arr.push(res)
-    })
-    _this.getBrandsList("分类",function(res){
-      arr.push(res)
-      _this.setData({
-        filterList: arr
-      })
-    })
+    
 
   },
 
@@ -298,15 +304,18 @@ Page({
     let name = this.data.filterCoverList.list[index].name
     let id = e.currentTarget.dataset.id
     let charIndex = this.data.filterCoverList.selectIndexArr.indexOf(name)
+    let open = 'captionList['+_this.data.filterTag_Index+'].open'
 
     if(charIndex === -1) {
       if(_this.data.filterTag_Index === 0) {
         _this.setData({
-          brandId: id
+          brandId: id,
+          [open]: true
         })
       } else {
         _this.setData({
-          categoryId: id
+          categoryId: id,
+          [open]: true
         })
       }
       this.data.filterCoverList.selectIndexArr = ['默认']
@@ -334,15 +343,17 @@ Page({
       _this.searchGoods()
       return
     }
-
+    
     if (charIndex !== -1) {
       if(_this.data.filterTag_Index === 0) {
         _this.setData({
-          brandId: ''
+          brandId: '',
+          [open]: false
         })
       } else {
        _this.setData({
-         categoryId: ''
+          categoryId: '',
+          [open]: false
        })
       }
       this.data.filterCoverList.selectIndexArr.splice(charIndex, 1)
@@ -366,75 +377,118 @@ Page({
   
   // 筛选侧边弹窗选择
   selTag(e) {
+    
     let _this = this
     let index = e.currentTarget.dataset.index
     let num = e.currentTarget.dataset.num
     let id = e.currentTarget.dataset.id
     let name = this.data.captionList[index].arr[num].name
     let charIndex = this.data.captionList[index].selectIndexArr.indexOf(name)
-
-    if(charIndex === -1) {
-      switch (index) {
-        case 0:
-          _this.data.brandId = id
-          break;
-        case 1:
-          _this.data.categoryId = id
-          break;
-        case 2:
-          _this.data.promotionsType = id
-        default:
-          break;
-      }
-      this.data.captionList[index].selectIndexArr = ['默认']
-      let arr = [];
-      let obj = this.data.captionList[index].arr
-      for (let i in obj) {
-          arr.push(obj[i])
-      }
-      arr.map((item,index1)=>{
-        if(index == 0) {
-          index1 += 1
+    
+    // console.log(id, index)
+    switch (index) {
+      case 0:
+        if(_this.data.brandId) {
+          _this.setData({
+            brandId: ''
+          })
+        } else {
+          _this.setData({
+            brandId: id
+          })
         }
-        if(index1 == num) {
-          item.select = true
-        }else {
-          item.select = false
+        break;
+      case 1:
+        if(_this.data.categoryId) {
+          _this.setData({
+            categoryId: ''
+          })
+        } else {
+          _this.setData({
+            categoryId: id
+          })
         }
-      })
-      this.data.captionList[index].arr = arr
-      this.data.captionList[index].selectIndexArr.push(name)
-      _this.setData({
-        captionList : _this.data.captionList
-      })
-
-      _this.searchGoods()
-
-      return
+        break;
+      case 2:
+        if(_this.data.promotionsType) {
+          _this.setData({
+            promotionsType: ''
+          })
+        } else {
+          _this.setData({
+            promotionsType: id
+          })
+        }
+      default:
+        break;
     }
-    if (charIndex !== -1) {
-      switch (index) {
-        case 0:
-          _this.data.brandId = ""
-          break;
-        case 1:
-          _this.data.categoryId = ""
-          break;
-        case 2:
-          _this.data.promotionsType = ""
-        default:
-          break;
-      }
-      this.data.captionList[index].selectIndexArr.splice(charIndex, 1)
-      this.data.captionList[index].arr[num].select = false
-      _this.setData({
-        captionList : _this.data.captionList
-      })
-      
-      _this.searchGoods()
+    
+    // console.log(_this.data.brandId, _this.data.categoryId, _this.data.promotionsType)
+    _this.searchGoods()
 
-      return
-    }
+// 之前的点击筛选
+//     if(charIndex === -1) {
+//       switch (index) {
+//         case 0:
+//           _this.data.brandId = id
+//           break;
+//         case 1:
+//           _this.data.categoryId = id
+//           break;
+//         case 2:
+//           _this.data.promotionsType = id
+//         default:
+//           break;
+//       }
+//       this.data.captionList[index].selectIndexArr = ['默认']
+//       let arr = [];
+//       let obj = this.data.captionList[index].arr
+//       for (let i in obj) {
+//           arr.push(obj[i])
+//       }
+//       arr.map((item,index1)=>{
+//         if(index == 0) {
+//           index1 += 1
+//         }
+//         if(index1 == num) {
+//           item.select = true
+//         }else {
+//           item.select = false
+//         }
+//       })
+//       this.data.captionList[index].arr = arr
+//       this.data.captionList[index].selectIndexArr.push(name)
+//       _this.setData({
+//         captionList : _this.data.captionList
+//       })
+// 
+//       _this.searchGoods()
+// 
+//       return
+//     }
+//     if (charIndex !== -1) {
+//       switch (index) {
+//         case 0:
+//           _this.data.brandId = ""
+//           break;
+//         case 1:
+//           _this.data.categoryId = ""
+//           break;
+//         case 2:
+//           _this.data.promotionsType = ""
+//         default:
+//           break;
+//       }
+//       this.data.captionList[index].selectIndexArr.splice(charIndex, 1)
+//       this.data.captionList[index].arr[num].select = false
+//       _this.setData({
+//         captionList : _this.data.captionList
+//       })
+//       
+//       _this.searchGoods()
+// 
+//       return
+//     }
   },
 
   // 外层重置
@@ -444,7 +498,6 @@ Page({
       brandId: '',
       categoryId: ''
     })
-    this.data.filterCoverList.selectIndexArr = ['默认']
 
     let arr = [];
     let obj = this.data.filterCoverList.list
@@ -456,8 +509,14 @@ Page({
       item.select = false
     })
     this.data.filterCoverList.list = arr
+    
+    let captionList = _this.data.captionList
+    captionList.map((item, index) => {
+      item.open = false
+    })
     this.setData({
-      filterCoverList: this.data.filterCoverList
+      filterCoverList: this.data.filterCoverList,
+      captionList: captionList
     })
 
     _this.searchGoods()
@@ -467,24 +526,17 @@ Page({
   // 重置筛选
   resetFilter() {
     let _this = this
-    _this.data.brandId = ""
-    _this.data.promotionsType = ""
-
-    this.data.captionList.map((item, index) => {
-      item.selectIndexArr = ['默认']
-      let arr = [];
-      let obj = item.arr
-      for (let i in obj) {
-          arr.push(obj[i])
-      }
-      arr.map((arritem,arrindex)=>{
-        arritem.select = false
-      })
-      item.arr = arr
+    _this.setData({
+      brandId: '',
+      categoryId: '',
+      promotionsType: ''
+    })
+    let captionList = _this.data.captionList
+    captionList.map((item, index) => {
       item.open = false
     })
     this.setData({
-      captionList: this.data.captionList
+      captionList: captionList
     })
 
     _this.searchGoods()
@@ -585,18 +637,19 @@ Page({
           // result.data.promotions.forEach((item,index) => {
           //   item.select = false
           // });
+          
           _this.setData({
             'captionList[0].arr': _this.data.filterList[0],
             'captionList[1].arr': _this.data.filterList[1],
             'captionList[2].arr': result.data.promotions
           })
-          let list = _this.data.captionList
-          list.forEach((item, index) => {
-            item.open = false
-          })
-          _this.setData({
-            captionList: list
-          })
+          // let list = _this.data.captionList
+          // list.forEach((item, index) => {
+          //   item.open = false
+          // })
+          // _this.setData({
+          //   captionList: list
+          // })
         })
       }
     } else {

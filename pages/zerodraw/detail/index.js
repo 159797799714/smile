@@ -75,30 +75,32 @@ Page({
       let endtime = res.data.detail.activity_endtime
       // 成功
       if(res.code === 1) {
-        
         utils.countDown(luckydrawtime,function(luckytime) {
           if(luckytime === '00:00:00') {
             let format = luckydrawtime.replace(/-/g, '/')
             let countDown = Date.parse(new Date(format))
             let time = that.data.time + 1
             // 判断刚进来是否开
-            if(countDown < new Date()) {
+            
+            if(countDown <= new Date()) {
+              console.log('刚进来')
               that.setData({
                 time: time
               })
             }
-            if(that.data.time > 1 ) {
+            if(that.data.time > 0) {
+              console.log('>0')
               that.setData({
                 leave_time: '00:00:00'
               })
-              return
               that.getDetail(that.data.data.goods_id)
-            }
-            
+            } 
+          } else {
+            that.setData({
+              leave_time: luckytime
+            })  
           }
-          that.setData({
-            leave_time: luckytime
-          })
+          
         })
         utils.countDown(endtime,function(nowtime) {
           that.setData({
