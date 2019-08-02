@@ -13,7 +13,7 @@
 <view class="cs-bg"></view>
 <!-- 拼团商品列表 -->
 <view wx:if="{{ goodsList }}" class="cont">
-  <scroll-view bindscrolltolower="bindDownLoad" scroll-y style="height: {{scrollHeight}}px;">
+  <scroll-view bindscrolltolower="bindDownLoad" scroll-y style="height: {{scrollHeight}}px;" bindscroll="onScroll">
     <view class="main">
       <view class="main_goods" wx:for="{{ goodsList.data }}" wx:key="this">
         <!-- 商品图片 -->
@@ -59,7 +59,7 @@
       </view>
     </view>
   </scroll-view>
-  <view catchtap="goOrder" class="myorder col-f f-30">
+  <view catchtap="goOrder" class="myorder col-f f-30" style="right: {{ isScroll ? -200: 20 }}rpx">
     <text>拼团订单</text>
     <text class="iconfont icon-cate"></text>
   </view>

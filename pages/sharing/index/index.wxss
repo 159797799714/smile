@@ -208,11 +208,15 @@
   position: fixed;
   bottom: 100rpx;
   right: 20rpx;
-  height: 60rpx;
+  height: 50rpx;
   width: 200rpx;
-  font-weight: 600;
   text-align: center;
-  line-height: 60rpx;
+  line-height: 50rpx;
   border-radius: 30rpx;
-  background: rgba(0, 0, 0, 0.5);
+  transition: 1s;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.myorder>.iconfont{
+  margin-left: 10rpx;
 }

@@ -11,6 +11,7 @@ Page({
     goodsList: [],
     // 当前的分类id (0则代表首页)
     category_id: 0,
+    isScroll: false,
     scrollHeight: null,
     option: {}, // 当前页面参数
     list: {}, // 商品列表数据
@@ -28,7 +29,20 @@ Page({
     _this.setListHeight();
     this.getIndexData();
   },
-
+  
+  onScroll(e){
+    let that = this
+    that.setData({
+      isScroll: true
+    })
+    let timer= setTimeout(function() {
+      that.setData({
+        isScroll: false
+      })
+    }, 1500)  
+    
+    
+  },
   /**
    * Api：获取拼团列表
    */
