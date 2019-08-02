@@ -1,5 +1,5 @@
 <view class="container dis-flex flex-dir-column b-15 col-f">
-  <view class="activity-list col-f b-15">
+  <view wx:if="{{ activityList.length > 0 }}" class="activity-list col-f b-15">
     <view class="past-activity f-25" catchtap="goPast">往期查看</view>
     <view class="activity-menu">
       <view wx:for="{{ activityList }}" wx:key="this" class="activity-menu-bar {{ item.category_id === selectBarIndex ? 'b-red': '' }}" catchtap="selectBar" data-id="{{ item.category_id }}" data-status="{{ item.status }}" data-endtime="{{ item.activity_endtime }}">

@@ -45,12 +45,14 @@ Page({
       //     leave_time: nowTime
       //   })
       // })
-      that.setData({
-        activityList: result.data.list,
-        selectBarIndex: result.data.list[0].category_id,
-        status: result.data.list[0].status
-      })
-      that.getGoodsById(result.data.list[0].category_id)
+      if(result.data.list.length > 0) {
+        that.setData({
+          activityList: result.data.list,
+          selectBarIndex: result.data.list[0].category_id,
+          status: result.data.list[0].status
+        })
+        that.getGoodsById(result.data.list[0].category_id)  
+      }
     })
   },
   

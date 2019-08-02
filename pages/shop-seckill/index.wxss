@@ -187,6 +187,11 @@ page {
   color: #666666;
 }
 
+.none{
+  border-color: #999999;
+}
+
+
 .bg_primary{
   background: #007aff;
 }
