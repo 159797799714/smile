@@ -73,7 +73,7 @@
           <text class="f-26 col-9 t-dec-line m-l-10">¥{{ item.goods_max_price }}</text>
         </view>
         <view class="recommend-box-content-item-price dis-flex flex-y-center f-26 col-purple f-w">
-            粉丝¥<text class="f-34 col-purple f-w">{{ item.goods_min_price }}</text>
+            粉丝价¥<text class="f-34 col-purple f-w">{{ item.goods_min_price }}</text>
             <!-- <text class="f-22 col-9 t-dec-line m-l-10">¥{{ item.goods_max_price }}</text> -->
         </view>
       </navigator>

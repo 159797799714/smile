@@ -79,20 +79,17 @@ Page({
           
           if(luckytime === '00:00:00') {
             console.log('luckytime === 00:00:00', that.data.time)
-            let format = luckydrawtime.replace(/-/g, '/')
-            let countDown = Date.parse(new Date(format))
             that.setData({
               leave_time: luckytime
             })
-            if(countDown > new Date()) {
-              if(that.data.time > 0) {
-                that.getDetail(that.data.data.goods_id)
-                that.setData({
-                  time: 0
-                })  
-                console.log('执行到了这里', that.data.time)
-              }  
+            if(that.data.time > 0) {
+              that.getDetail(that.data.data.goods_id)
+              that.setData({
+                time: 0
+              })  
+              console.log('执行到了这里', that.data.time)
             }
+            return
           } else {
             let time = that.data.time + 1
             // 每次进来次数加1
@@ -172,13 +169,16 @@ Page({
     })
   },
   
+  shareAction() {
+    App.showError('分享失败，每个用户最多只能拥有5个抽奖码！')
+    return
+  },
   // 分享
   onShareAppMessage(options) {
     let that = this
     let reuser_id = wx.getStorageSync('user_id')
     
     let info = JSON.stringify({...that.data.param, reuser_id: reuser_id})
-    console.log(info)
     return {
       title: '快来和我一起参与抽奖吧~',
       path: '/pages/zerodraw/detail/index?form=' + info,
