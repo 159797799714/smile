@@ -48,7 +48,7 @@ module.exports = {
   /**
    * 倒计时
    */
-  countDown:function(time,callback) {
+  countDown: function(time,callback) {
     if(time === "") {
       return
     }

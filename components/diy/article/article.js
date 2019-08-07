@@ -25,16 +25,23 @@ Component({
         type: String,
         observer: function(newVal, oldVal) {
           // 属性值变化时执行
-        //   console.log("11",newVal, oldVal,wx.getSystemInfoSync().windowWidth)
-          let height = wx.getSystemInfoSync().windowWidth/375 * 228
+          let height = wx.getSystemInfoSync().windowWidth/375 * 228 + 100
+          
           if(newVal > height) {
+            if(newVal < oldVal) {
               this.setData({
                 tabFixed: true
               })
-          }else {
-            this.setData({
+            } else {
+              this.setData({
                 tabFixed: false
               })
+            }
+            
+          }else {
+            this.setData({
+              tabFixed: false
+            })
           }
         },
         

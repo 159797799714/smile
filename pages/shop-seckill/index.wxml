@@ -8,13 +8,17 @@
       </view>
     </view>
     <scroll-view scroll-y="true" class="main">
-      <swiper wx:if="{{ banners.length > 0 }}" class="swiper" style="margin-bottom: {{ !openingTime ? '30rpx' : '' }}" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color="{{indicatorActiveColor}}">
+      <!-- <swiper wx:if="{{ banners.length > 0 }}" class="swiper" style="margin-bottom: {{ !openingTime ? '30rpx' : '' }}" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color="{{indicatorActiveColor}}">
         <swiper-item wx:for="{{ banners }}" wx:key="this">
           <view class="swiper-item bg_primary">
               <image src="{{ item.file_path }}" mode="widthFix" />
           </view>
         </swiper-item>
-      </swiper> 
+      </swiper> -->
+      
+       <!-- DIY组件 轮播图 -->
+      <diy-component diyItems="{{ swiperList }}"></diy-component>
+      
       <view class="leave-time" wx:if="{{ openingTime }}">{{ title === '秒杀'?'秒杀': '抢购' }}，距离下场开始时间 <text>{{ openingTime }}</text></view>
       <!--  catchtap="toGoodDetail" -->
       <view catchtap="toGoodDetail" data-url="{{ item.surplus_inventory < 1 ? '' : item.url }}" wx:for="{{ goodList }}" wx:key="index" class="item b-f">

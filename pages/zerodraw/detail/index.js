@@ -86,8 +86,7 @@ Page({
               that.getDetail(that.data.data.goods_id)
               that.setData({
                 time: 0
-              })  
-              console.log('执行到了这里', that.data.time)
+              })
             }
             return
           } else {

@@ -96,6 +96,10 @@
   padding: 0 10rpx;
 }
 .pintuan-info{
+  width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   line-height: 27rpx;
   margin-top: 11rpx;
 }
@@ -109,13 +113,13 @@
 .pintuan-icon{
   flex: 1;
   padding-right: 30rpx;
-  margin-top: 10rpx;
+  margin: 5rpx 0;
   box-sizing: border-box;
   overflow: hidden;
 }
-.pintuan-icon image {
-  height: 123rpx;
-  width: 123rpx;
+.pintuan-icon>image {
+  height: 100%;
+  max-width: 100%;
   margin-right: 10rpx;
 }
 .pintuan-icon .nothing{

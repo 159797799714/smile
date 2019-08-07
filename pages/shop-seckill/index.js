@@ -10,7 +10,15 @@ Page({
     interval: 2000,
     duration: 500,
     indicatorActiveColor: '#ffffff',   // 以上轮播图信息
-    banners: [],
+    // banners: [],
+    // 轮播图
+    swiperList: [{
+      type: "banner",
+      data: [],
+      params: {
+        interval: 2800
+      }
+    }],
     timeList: [
       { 
         category_id: 1,
@@ -143,7 +151,7 @@ Page({
         _this.setData({
           goodList: goodsResultList,
           openingTime: goodsResult.data.list.header_info.next_activity_starttime,
-          banners: goodsResult.data.list.banners
+          'swiperList[0].data': goodsResult.data.list.banners
         })
         utils.countDown(_this.data.openingTime,function(nowTime) {
           _this.setData({

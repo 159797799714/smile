@@ -60,7 +60,7 @@
       <view wx:if="{{ tabIndex === 0 }}" class="main b-f border-box">
         <view wx:for="{{ shareList }}" wx:key="this" class="item" catchtap="goShareDetail" data-id="{{ item.article_id }}">
           <view class="img">
-            <image src="{{ item.image.file_path }}" mode=""></image>
+            <image src="{{ item.image.file_path }}" mode="aspectFill"></image>
           </view>
           <view class="title twolist-hidden border-box">{{ item.subtitle }}</view>
           <view class="info border-box">

@@ -35,6 +35,9 @@ Component({
    * 组件的方法列表
    * 更新属性和数据的方法与更新页面数据的方法类似
    */
+  onShow() {
+    console.log(this.data.dataList)
+  },
   methods: {
 
     /**

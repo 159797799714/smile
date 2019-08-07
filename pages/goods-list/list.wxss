@@ -383,7 +383,7 @@ page {
   overflow: hidden;
 }
 .row .good-item .good-info .good-price{
-  line-height: 54rpx;
+  line-height: 40rpx;
 }
 .good-item .good-info .good-price image {
   width: 26rpx;

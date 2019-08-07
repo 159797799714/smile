@@ -1,5 +1,8 @@
 {
   "navigationBarBackgroundColor": "#131313",
   "navigationBarTextStyle": "white",
-  "navigationBarTitleText": "秒杀"
+  "navigationBarTitleText": "秒杀",
+  "usingComponents": {
+    "diy-component": "/components/diy/index"
+  }
 }

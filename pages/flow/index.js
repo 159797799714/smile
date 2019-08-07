@@ -22,8 +22,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-  // 获取购物车列表
-      this.getCartList();
+  //   // 获取购物车列表
+  //   this.getCartList();
+  },
+  onShow() {
+    // 获取购物车列表
+    this.getCartList();
   },
   onPullDownRefresh: function() {
     // 获取购物车列表
@@ -255,7 +259,7 @@ Page({
    */
   goShopping: function() {
     wx.switchTab({
-      url: '../index/index',
+      url: '../shopping-mall/index',
     });
   },
 

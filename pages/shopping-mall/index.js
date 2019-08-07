@@ -34,28 +34,33 @@ Page({
     discount: [{
       imgUrl: '../../images/pintuan-text.png',
       name: '拼团购',
-      info: '拼得越多，越优惠',
-      img: ['../../images/pintuan-icon.png']
+      info: '',
+      time: '',
+      min_price: '',
+      max_price: '',
+      img: ''
     }, {
       imgUrl: '../../images/miaoshagou-text.png',
       name: '秒杀购',
       time: '',
       min_price: '',
       max_price: '',
-      img: []
+      img: ''
     }, {
       imgUrl: '../../images/xianshigou-text.png',
       name: '限时购',
       time: '',
+      min_price: '',
+      max_price: '',
       info: '',
-      img: []
+      img: ''
     }, {
       imgUrl: '../../images/zero-text.png',
       name: '0元购',
       time: '',
       min_price: '',
       max_price: '',
-      img: []
+      img: ''
     }]
   },
 
@@ -198,14 +203,11 @@ Page({
     App._get('flashsale/getflashsalegoodsbyone', {}, function(result) {
       if (result.data.goods) {
         _this.setData({
-          'discount[2].info': result.data.goods.goods_discount_price,
-          'discount[2].img[0]': result.data.goods.image[0].file_path
+          'discount[2].info': result.data.goods.homepage_activity_subtitle ? result.data.goods.homepage_activity_subtitle : '',
+          'discount[2].img': result.data.goods.headimg ? result.data.goods.headimg.file_path: '',
+          'discount[2].min_price': result.data.goods.sku ? result.data.goods.sku[0].goods_price: '',
+          'discount[2].max_price': result.data.goods.sku ? result.data.goods.sku[0].line_price: ''
         })
-        if (result.data.goods.image.length > 1) {
-          _this.setData({
-            'discount[2].img[1]': result.data.goods.image[1].file_path
-          })
-        }
         utils.countDown(result.data.goods.category.activity_endtime, function(nowTime) {
           _this.setData({
             'discount[2].time': nowTime
@@ -221,23 +223,26 @@ Page({
     let _this = this
     App._get('seckill/getseckillgoodsbyone', {}, function(result) {
       if (result.data.goods) {
+        console.log(result.data.sharing_goods.image_url)
         _this.setData({
-          'discount[1].min_price': result.data.goods.sku[0].goods_price,
-          'discount[1].max_price': result.data.goods.sku[0].line_price,
-          'discount[1].img[0]': result.data.goods.image[0].file_path
+          'discount[1].min_price': result.data.goods.sku ? result.data.goods.sku[0].goods_price: '',
+          'discount[1].max_price': result.data.goods.sku ? result.data.goods.sku[0].line_price: '',
+          'discount[1].img': result.data.goods.headimg ? result.data.goods.headimg.file_path: '',
+          'discount[1].info': result.data.goods.homepage_activity_subtitle ? result.data.goods.homepage_activity_subtitle : '',
+          'discount[0].img': result.data.sharing_goods.image_url,
+          'discount[0].info': result.data.sharing_goods.sharing_home_subtitle
         })
-        if (result.data.goods.image.length > 1) {
-          _this.setData({
-            'discount[1].img[1]': result.data.goods.image[1].file_path
-          })
-        }
         utils.countDown(result.data.goods.category.activity_endtime, function(nowTime) {
           _this.setData({
             'discount[1].time': nowTime
           })
         })
+        utils.countDown(result.data.sharing_goods.sharing_homa_activity_time, function(Time) {
+          _this.setData({
+            'discount[0].time': Time
+          })
+        })
       }
-
     })
   },
 
@@ -247,15 +252,11 @@ Page({
     App._get('luckydraw/getluckydrawgoodsbyone', {}, function(result) {
       if (result.data.goods) {
         _this.setData({
-          'discount[3].min_price': result.data.goods.sku[0].goods_price,
-          'discount[3].max_price': result.data.goods.sku[0].line_price,
-          'discount[3].img[0]': result.data.goods.image[0].file_path
+          'discount[3].min_price': result.data.goods.sku ? result.data.goods.sku[0].goods_price: '',
+          'discount[3].max_price': result.data.goods.sku ? result.data.goods.sku[0].line_price: '',
+          'discount[3].info': result.data.goods.homepage_activity_subtitle ? result.data.goods.homepage_activity_subtitle : '',
+          'discount[3].img': result.data.goods.headimg ? result.data.goods.headimg.file_path: ''
         })
-        if (result.data.goods.image.length > 1) {
-          _this.setData({
-            'discount[3].img[1]': result.data.goods.image[1].file_path
-          })
-        }
         utils.countDown(result.data.goods.category.activity_endtime, function(nowTime) {
           _this.setData({
             'discount[3].time': nowTime
