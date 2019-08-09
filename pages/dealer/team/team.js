@@ -88,7 +88,6 @@ Page({
    * 下拉到底加载数据
    */
   triggerDownLoad: function() {
-    // console.log(this.data.list);
     // 已经是最后一页
     if (this.data.page >= this.data.list.last_page) {
       this.setData({

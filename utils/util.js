@@ -48,43 +48,49 @@ module.exports = {
   /**
    * 倒计时
    */
-  countDown: function(time,callback) {
-    if(time === "") {
+  countDown: function(time, callback) {
+    if (time === "") {
       return
     }
-    function checkTime (i) { //将0-9的数字前面加上0，例1变为01 
-      if (i < 10)  {
-       i = "0" + i;
+
+    function checkTime(i) { //将0-9的数字前面加上0，例1变为01 
+      if (i < 10) {
+        i = "0" + i;
       }
       return i;
-     }
-    let countDownName = setInterval(function () {
-        let format = time.replace(/-/g, '/')
-        let countDown = Date.parse(new Date(format))
-        if(countDown < new Date()) {
-          clearInterval(countDownName);
-          callback("00:00:00")
-          return
-        }
-        var leftTime = (countDown) - (new Date()); //计算剩余的毫秒数 
-        var days = parseInt(leftTime / 1000 / 60 / 60 / 24, 10); //计算剩余的天数 
-        var hours = parseInt(leftTime / 1000 / 60 / 60 % 24, 10); //计算剩余的小时 
-        var minutes = parseInt(leftTime / 1000 / 60 % 60, 10);//计算剩余的分钟 
-        var seconds = parseInt(leftTime / 1000 % 60, 10);//计算剩余的秒数 
-        // days = checkTime(days);
-        if(days == 0) {
-          hours = checkTime(hours);
-        }
-        minutes = checkTime(minutes);
-        seconds = checkTime(seconds);
-        let nowTime = (days*24 == 0 ? '' : (days*24))  + hours + ":" + minutes + ":" + seconds
-        callback(nowTime)
-        if (hours == '00' && minutes == '00' && seconds=='00')
-        {
-          clearInterval(countDownName);
-        }
-      }, 1000)
+    }
+    let countDownName = setInterval(function() {
+      let format = time.replace(/-/g, '/')
+      let countDown = Date.parse(new Date(format))
+      if (countDown < new Date()) {
+        clearInterval(countDownName);
+        callback("00:00:00")
+        return
+      }
+      var leftTime = (countDown) - (new Date()); //计算剩余的毫秒数 
+      var days = parseInt(leftTime / 1000 / 60 / 60 / 24, 10); //计算剩余的天数 
+      var hours = parseInt(leftTime / 1000 / 60 / 60 % 24, 10); //计算剩余的小时 
+      var minutes = parseInt(leftTime / 1000 / 60 % 60, 10); //计算剩余的分钟 
+      var seconds = parseInt(leftTime / 1000 % 60, 10); //计算剩余的秒数 
+      // days = checkTime(days);
+      if (days == 0) {
+        hours = checkTime(hours);
+      }
+      minutes = checkTime(minutes);
+      seconds = checkTime(seconds);
+      let nowTime = (days * 24 == 0 ? '' : (days * 24)) + hours + ":" + minutes + ":" + seconds
+      callback(nowTime)
+      if (hours == '00' && minutes == '00' && seconds == '00') {
+        clearInterval(countDownName);
+      }
+    }, 1000)
+
   },
+  
+  delInterval() {
+    clearInterval(countDownName);
+  },
+  
   DecideReceive(time) {
     let format = time.replace(/-/g, '/')
     let countDown = Date.parse(new Date(format))
@@ -92,6 +98,5 @@ module.exports = {
     console.log(leftTime)
     return (leftTime > 259200000)
   }
-  
-};
 
+};

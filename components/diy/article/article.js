@@ -47,6 +47,10 @@ Component({
         
     }
   },
+  
+  onUnload() {
+    console.log('onUnload')
+  },
 
   /**
    * 组件的方法列表
@@ -62,6 +66,7 @@ Component({
       wx.showLoading({
         title: '加载中',
       })
+      this.triggerEvent('parentEvent', e.currentTarget.dataset.current)
       _this.setData({
         // list: {},
         dataType: e.currentTarget.dataset.current
@@ -111,15 +116,15 @@ Component({
      * 获取文章列表
      */
     getArticleListById() {
-        let _this = this;
-        App._get('article/articlesbycategoryid',{
-            category_id: _this.data.dataType
-          }, function(result) {
-            wx.hideLoading()
-            _this.data.dataList = result.data.list
-            let data = _this.data
-            _this.setData(data)
-        });
+      let _this = this;
+      App._get('article/articlesbycategoryid',{
+          category_id: _this.data.dataType
+        }, function(result) {
+          wx.hideLoading()
+          _this.data.dataList = result.data.list
+          let data = _this.data
+          _this.setData(data)
+      });
     },
  
     /**
@@ -133,7 +138,6 @@ Component({
   },
 
   contentStart(content) {
-    console.log(content);
     return 'a';
   },
 

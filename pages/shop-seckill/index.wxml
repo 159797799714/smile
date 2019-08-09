@@ -17,7 +17,7 @@
       </swiper> -->
       
        <!-- DIY组件 轮播图 -->
-      <diy-component diyItems="{{ swiperList }}"></diy-component>
+      <diy-component wx:if="{{ swiperList[0].data.length > 0 }}" diyItems="{{ swiperList }}"></diy-component>
       
       <view class="leave-time" wx:if="{{ openingTime }}">{{ title === '秒杀'?'秒杀': '抢购' }}，距离下场开始时间 <text>{{ openingTime }}</text></view>
       <!--  catchtap="toGoodDetail" -->

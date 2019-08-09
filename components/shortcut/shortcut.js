@@ -50,7 +50,6 @@ Component({
      */
     _onTargetPage(e) {
       let urls = App.getTabBarLinks();
-      console.log("aaa",urls)
       // 记录formid
       App.saveFormId(e.detail.formId);
       wx.switchTab({

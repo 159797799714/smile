@@ -197,11 +197,13 @@ Page({
       inputClearValue: '',
       filterIndex: 0
     })
-    if(_this.data.tabIndex === 0) {
-      _this.getArticleList()
-    }else {
-      _this.searchGoods()
-    }
+    
+    // 删除搜索框重新请求数据
+    // if(_this.data.tabIndex === 0) {
+    //   _this.getArticleList()
+    // }else {
+    //   _this.searchGoods()
+    // }
   },
 
   // 搜索最低价和最高价

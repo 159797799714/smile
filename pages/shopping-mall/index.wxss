@@ -28,6 +28,10 @@
   margin-left: 22rpx;
 }
 
+.banner{
+  height: 400rpx;
+  width: 100%;
+}
 /* 阴影 */
 .shadow {
   width: 702rpx;
@@ -74,7 +78,6 @@
 .pintuan {
   width: 340rpx;
   height: 240rpx;
-  background: rgba(249, 250, 252, 1);
   margin-bottom: 10rpx;
   padding: 15rpx 0 0 26rpx;
   box-sizing: border-box;
@@ -102,6 +105,8 @@
   white-space: nowrap;
   line-height: 27rpx;
   margin-top: 11rpx;
+  font-weight: bold;
+  letter-spacing: 2rpx;
 }
 .pintuan> .price{
   line-height: 27rpx;

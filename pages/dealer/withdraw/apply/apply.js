@@ -77,7 +77,6 @@ Page({
       data: JSON.stringify(values)
     }, function(result) {
       // 提交成功
-      // console.log(result);
       App.showError(result.msg, function() {
         wx.navigateTo({
           url: '../list/list',

@@ -154,7 +154,9 @@
 .img-align-text {
     vertical-align: middle;
 }
-
+.sale-name{
+  min-width: 120rpx;
+}
 .tb-lr-center {
   display: -webkit-box;
   display: -ms-flexbox;

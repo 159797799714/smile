@@ -209,11 +209,9 @@ Page({
         remark: _this.data.remark
       }, function(result) {
         // success
-        console.log('success');
         callback(result);
       }, function(result) {
         // fail
-        console.log('fail');
       }, function() {
         // complete
         console.log('complete');
@@ -233,14 +231,11 @@ Page({
         remark: _this.data.remark
       }, function(result) {
         // success
-        console.log('success');
         callback(result);
       }, function(result) {
         // fail
-        console.log('fail');
       }, function() {
         // complete
-        console.log('complete');
         wx.hideLoading();
         // 解除按钮禁用
         _this.data.disabled = false;

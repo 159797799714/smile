@@ -85,14 +85,10 @@
             <image mode="widthFix" src="{{item.image[0].file_path}}"></image>
           </view>
           <view class="good-info border-box">
-            <view class="good-name {{style === 0 ? 'onelist-hidden' : 'twolist-hidden'}}">{{ item.goods_name }}</view>
+            <view class="good-name onelist-hidden">{{ item.goods_name }}</view>
             <view class="good-remark onelist-hidden">
               <!-- <text wx:for="{{ item.search_keywords }}" wx:for-item="li" wx:key="index">{{ li }}</text> -->
               <text>{{ item.selling_point }}</text>
-            </view>
-            <view class="max-price f-26 col-9 t-dec-line">
-              <text>￥</text>
-              <text>{{ (item.sku[0].line_price * 100 / 100) === 0 ? item.sku[0].goods_price: item.sku[0].line_price  }}</text>
             </view>
             <view class="good-price flex-y-center dis-flex flex-x-between f-w">
               <view class="f-34 col-purple">
@@ -100,6 +96,10 @@
                 <text class="bigText">{{ item.sku[0].goods_price * 100 % 100 === 0 ? item.sku[0].goods_price * 100 / 100 : item.sku[0].goods_price }}</text>
               </view>
               <!-- <image mode="widthFix" src="../../images/see-...icon.png" /> -->
+            </view>
+            <view class="max-price f-26 col-9 t-dec-line">
+              <text>￥</text>
+              <text>{{ (item.sku[0].line_price * 100 / 100) === 0 ? item.sku[0].goods_price: item.sku[0].line_price  }}</text>
             </view>
           </view>
         </navigator>
@@ -110,7 +110,7 @@
     <view wx:if="{{ filterIndex === 4 && filter_alert }}" class="big-cover">
       <view class="white" catchtap="filterAlertFalse"></view>
       <view class="big-cover-main b-f border-box">
-        <scroll-view scroll-y="true" class="box">
+        <view class="box">
           <view class="price">
             <view class="title">价格区间(元)</view>
             <view class="ipt">
@@ -127,7 +127,7 @@
               <view wx:for="{{ item.arr }}" wx:for-item="li" data-id="{{ li.category_id || li.type }}" wx:for-index="num" wx:key="num" class="tag border-box {{ li.category_id === brandId || li.category_id === categoryId || li.type === promotionsType ? 'selectSpan' : false }}" data-index="{{index}}" data-num="{{ num }}" catchtap="selTag">{{ li.name }}</view>
             </view>
           </view>
-        </scroll-view>
+        </view>
         <view class="foot">
           <view catchtap="resetFilter" class="reset">重置</view>
           <view catchtap="filterAlertFalse" class="sure">完成({{ filterCoverList.sum }}物品)</view>

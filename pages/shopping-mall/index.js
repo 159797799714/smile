@@ -84,6 +84,10 @@ Page({
       this.getSwiperList()
     }
   },
+  onHide() {
+    console.log('onUnload')
+  },
+  
 
   /**
    * 下拉刷新
@@ -222,7 +226,7 @@ Page({
   getGoodsbyone2() {
     let _this = this
     App._get('seckill/getseckillgoodsbyone', {}, function(result) {
-      if (result.data.goods) {
+      if (result.data) {
         console.log(result.data.sharing_goods.image_url)
         _this.setData({
           'discount[1].min_price': result.data.goods.sku ? result.data.goods.sku[0].goods_price: '',
@@ -230,18 +234,28 @@ Page({
           'discount[1].img': result.data.goods.headimg ? result.data.goods.headimg.file_path: '',
           'discount[1].info': result.data.goods.homepage_activity_subtitle ? result.data.goods.homepage_activity_subtitle : '',
           'discount[0].img': result.data.sharing_goods.image_url,
-          'discount[0].info': result.data.sharing_goods.sharing_home_subtitle
+          'discount[0].info': result.data.sharing_goods.sharing_home_subtitle,
+          'discount[0].min_price': result.data.sharing_goods ? result.data.sharing_goods.sharing_home_goods_price: '',
+          'discount[0].max_price': result.data.sharing_goods ? result.data.sharing_goods.sharing_home_line_price: '',
         })
-        utils.countDown(result.data.goods.category.activity_endtime, function(nowTime) {
-          _this.setData({
-            'discount[1].time': nowTime
-          })
-        })
-        utils.countDown(result.data.sharing_goods.sharing_homa_activity_time, function(Time) {
-          _this.setData({
-            'discount[0].time': Time
-          })
-        })
+        
+        // 秒杀购有时间
+        if(result.data.goods) {
+          utils.countDown(result.data.goods.category.activity_endtime, function(nowTime) {
+            _this.setData({
+              'discount[1].time': nowTime
+            })
+          })  
+        }
+        // 拼团购有时间就
+        if(result.data.sharing_goods) {
+          utils.countDown(result.data.sharing_goods.sharing_homa_activity_time, function(Time) {
+            _this.setData({
+              'discount[0].time': Time
+            })
+          })  
+        }
+        
       }
     })
   },

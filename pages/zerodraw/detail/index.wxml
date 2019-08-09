@@ -1,6 +1,6 @@
 <view  wx:if="{{ endtime }}" class="container b-15">
   <view class="good-img p-r {{ detail.iswin === 'yes' && !isOverTime ? 'lucky-img' : '' }}">
-    <image src="{{ detail.image[0].file_path }}"></image>
+    <image src="{{ detail.image[0].file_path }}" mode="aspectFill"></image>
     <view wx:if="{{ detail.iswin === 'yes' && !isOverTime }}" class="win-word f-60 col-f f-w b-red">恭喜你中奖了!</view>
     <view wx:if="{{ detail.iswin === 'yes' && isOverTime }}" class="bg-fali p-a">
       <view class="win-word f-60 col-13 f-w b-f9 fail-img">领奖时间已过！</view>  

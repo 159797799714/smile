@@ -39,8 +39,6 @@ Page({
         options
       });
     }
-  },
-  onShow() {
     // 加载录播图数据
     this.getBannerList()
     // 加载页面数据
@@ -54,8 +52,15 @@ Page({
       scrollTopDist: options.scrollTop
     })
   },
-  
-  
+    onindexParentEvent(event) {
+      // 自定义组件触发事件时提供的detail对象，用来获取子组件传递来的数据
+      let id = event.detail;
+      console.log('从孙子组件diy下的article传回来的id', id)
+      this.setData({
+        'items[1].dataType': id
+      })
+    },
+
   // goLoading() {
   //   wx.navigateTo({
   //     url: '../loading/index'
@@ -87,11 +92,17 @@ Page({
     App._get('article/categorylist', {
       page_id: _this.data.options.page_id
     }, function(result) {
-      _this.data.items[1].tabList = result.data.categoryList
-      _this.data.items[1].dataType = result.data.categoryList[0].category_id
+      let dataType = _this.data.items[1].dataType
+      if(!dataType) {
+        _this.setData({
+          'items[1].tabList': result.data.categoryList,
+          'items[1].dataType': result.data.categoryList[0].category_id
+        })  
+      }
       // let data = _this.data
       App._get('article/articlesbycategoryid', {
-        category_id: _this.data.items[1].dataType
+
+        category_id: dataType
       }, function(resultItem) {
         _this.data.items[1].data = resultItem.data.list
         let data = _this.data
@@ -100,7 +111,7 @@ Page({
       // _this.setData(data)
     });
   },
-  
+
   // 获取首页轮播图
   getBannerList() {
     let that = this
@@ -112,40 +123,39 @@ Page({
         let goods = item.activity_link.indexOf('goods_id=')
         let article = item.activity_link.indexOf('article_id=')
         let luckdraw = item.activity_link.indexOf('luckydraw_id=')
-        if(item.image.file_path) {
+        if (item.image.file_path) {
           obj.imgUrl = item.image.file_path
-          if(goods !== -1) {
+          if (goods !== -1) {
             obj.goods_id = item.activity_link.slice(9)
             arr.push(obj)
             that.setData({
               'items[0].data': arr
-            }) 
+            })
             return
           }
-          if(article !== -1) {
+          if (article !== -1) {
             obj.article_id = item.activity_link.slice(11)
             arr.push(obj)
             that.setData({
               'items[0].data': arr
-            }) 
+            })
             return
-          } 
-          if(luckdraw !== -1) {
+          }
+          if (luckdraw !== -1) {
             obj.luckydraw_id = item.activity_link.slice(13)
             arr.push(obj)
             that.setData({
               'items[0].data': arr
-            }) 
+            })
             return
-          }
-          else {
+          } else {
             arr.push(obj)
             that.setData({
               'items[0].data': arr
-            }) 
+            })
           }
         }
-        
+
       })
     })
   },
@@ -185,8 +195,8 @@ Page({
     this.getPageData(function() {
       wx.stopPullDownRefresh();
       // 加载录播图数据
-      _this.getBannerList()
-      _this.getcategoryList()
+      _this.getBannerList();
+      _this.getcategoryList();
     });
   }
 

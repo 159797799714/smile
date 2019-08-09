@@ -79,15 +79,16 @@ Page({
           
           if(luckytime === '00:00:00') {
             console.log('luckytime === 00:00:00', that.data.time)
-            that.setData({
-              leave_time: luckytime
-            })
+            
             if(that.data.time > 0) {
               that.getDetail(that.data.data.goods_id)
               that.setData({
                 time: 0
               })
             }
+            that.setData({
+              leave_time: luckytime
+            })
             return
           } else {
             let time = that.data.time + 1

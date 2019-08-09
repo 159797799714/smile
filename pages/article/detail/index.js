@@ -58,7 +58,6 @@ Page({
     App._get('article/detailing', {
       article_id
     }, function(result) {
-      // console.log(result.data.detail.article_content)
       let detail = result.data.detail;
       // 富文本转码
       if (detail.article_content.length > 0) {
@@ -93,6 +92,7 @@ Page({
   },
   // 富文本a标签
   wxParseTagATap: function(e){
+    console.log('22222')
     var href = e.currentTarget.dataset.src
     //我们可以在这里进行一些路由处理
     // if(href.indexOf(index) > 0){
@@ -102,7 +102,6 @@ Page({
     //   })
     // }
     let https = href.slice(0, 5)
-    console.log(https, href)
     if(https === 'https') {
       wx.navigateTo({
         url: '../../goods/index?goods_id='+href.slice(28)
@@ -134,7 +133,7 @@ Page({
     });
   },
   like(e) {
-    let commentsListContent = this.data.detail.comments.list[e.currentTarget.dataset.index]
+    let commentsListContent = this.data.detail.comments_show[e.currentTarget.dataset.index]
     wx.showLoading({
       title: '',
     });

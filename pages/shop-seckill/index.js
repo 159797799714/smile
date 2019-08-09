@@ -148,16 +148,62 @@ Page({
           item.discount = item.goods_discount_price
           item.url = `../shop-seckill/goods/index?goods_id=${item.goods_id}&type=${item.goods_type}`
         })
+        
+        
+        console.log(goodsResult.data.list.banners)
+        let arr = []
+        goodsResult.data.list.banners.map((item, index) => {
+          let banner = 'swiperList[0].data'
+          let obj = {}
+          let goods = item.activity_link.indexOf('goods_id=')
+          let article = item.activity_link.indexOf('article_id=')
+          let luckdraw = item.activity_link.indexOf('luckydraw_id=')
+          
+          if (item.file_path) {
+            obj.imgUrl = item.file_path
+            if (goods !== -1) {
+              obj.goods_id = item.activity_link.slice(9)
+              arr.push(obj)
+              _this.setData({
+                'swiperList[0].data': arr
+              })
+              return
+            }
+            if (article !== -1) {
+              obj.article_id = item.activity_link.slice(11)
+              arr.push(obj)
+              _this.setData({
+                'swiperList[0].data': arr
+              })
+              return
+            } if(luckdraw !== -1) {
+              obj.luckydraw_id = item.activity_link.slice(13)
+              arr.push(obj)
+              _this.setData({
+                'swiperList[0].data': arr
+              }) 
+              return
+            } else {
+              arr.push(obj)
+              _this.setData({
+                'swiperList[0].data': arr
+              })
+            }
+          }
+        })
+        console.log(_this.data.swiperList)
+        
+        
+        
+        
         _this.setData({
           goodList: goodsResultList,
-          openingTime: goodsResult.data.list.header_info.next_activity_starttime,
-          'swiperList[0].data': goodsResult.data.list.banners
+          openingTime: goodsResult.data.list.header_info.next_activity_starttime
         })
         utils.countDown(_this.data.openingTime,function(nowTime) {
           _this.setData({
             openingTime: nowTime
           })
-        
         })
       })
     })

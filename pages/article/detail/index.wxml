@@ -48,9 +48,9 @@
     <view class="comment-wrap">
       <view class="b-f">
         <view class="comment-wrap-content">
-          <text class="f-32 col-3 f-w">评论</text>
+          <text class="f-32 col-3 f-w">评论({{ detail.comments.num }})</text>
           <!-- 有评论的情况 -->
-          <view wx:if="{{haveComment && index < 2}}" wx:for="{{ detail.comments.list }}" wx:key="index" wx:for-index="index" wx:for-item="item" class="comment-wrap-content-people dis-flex flex-x-between m-top20">
+          <view wx:for="{{ detail.comments_show }}" wx:key="index" wx:for-index="index" wx:for-item="item" wx:if="{{haveComment && index < 10}}" class="comment-wrap-content-people dis-flex flex-x-between m-top20">
             <view class="uesr-photo">
               <image mode="widthFix" src="{{ item.avatarUrl }}" />
             </view>
@@ -74,7 +74,7 @@
           </view>
         </view>
           <!-- 有评论的情况 -->
-        <text bindtap="closeAllcomment" wx:if="{{haveComment && detail.comments.num > 2}}" class="see-all-comment f-30 col-9 f-w dis-block">查看全部{{ detail.comments.num }}条评论</text>
+        <text bindtap="closeAllcomment" wx:if="{{haveComment && detail.comments.num > 10}}" class="see-all-comment f-30 col-9 f-w dis-block">查看全部{{ detail.comments.num }}条评论</text>
         <view class="article-status dis-flex">
           <view class="article-status-see dis-flex">
             <image mode="widthFix" src="../../../images/see.png" />

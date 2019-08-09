@@ -42,6 +42,19 @@
         <text class="flex-box num">销量：{{detail.goods_sales}}</text>
       </view>
     </view>
+    <!-- 促销信息 -->
+    <view wx:if="{{detail.promotion_info}}" class="btn-normal">
+      <view class="sku-selector cont-box b-f m-top20 dis-flex flex-y-center">
+          <view class="f-28">
+            <text class="col-9">促销信息：</text>
+            <text class="col-13">{{detail.promotion_info}} </text>
+          </view>
+          <view class="flex-box f-26 col-9 t-r">
+            <!-- <text class="iconfont icon-xiangyoujiantou"></text> -->
+          </view>
+        </view>
+      
+    </view>
     <!-- 选择商品规格 -->
     <form wx:if="{{ specData }}" bindsubmit="onToggleTrade" report-submit>
       <button class="btn-normal" formType="submit">
@@ -130,7 +143,8 @@
       <view class="goods-comment-box b-f" wx:for="{{ detail.comment_data }}" wx:key="this">
         <view class="cont-box goods-comment-box b-t b-f b-b">
           <view class="dis-flex">
-            <view class="user">
+            <view class="user dis-flex flex-y-center">
+              <image class="user_avatar" mode="aspectFill" src="{{ item.user.avatarUrl }}"></image>
               <text class="user_name f-26">{{ item.user.nickName }}</text>
             </view>
             <view class="com_xing">
@@ -147,6 +161,12 @@
           </view>
           <view class="goods-comment-cont m-top20">
             <text class="f-26 twolist-hidden">{{ item.content }}</text>
+          </view>
+          <!-- 评价图片 -->
+          <view class="comment-images row" wx:if="{{ item.image.length > 0 }}">
+            <view class="image-preview" wx:for="{{ item.image }}" wx:for-item="image" wx:for-index="imgIndex" wx:key="this">
+              <image data-comment-index="{{ index }}" data-img-index="{{ imgIndex }}" catchtap="previewImages" mode="aspectFill" src="{{ image.file_path }}"></image>
+            </view>
           </view>
           <view class="f-22 col-9 m-top10">{{ item.create_time }}</view>
         </view>

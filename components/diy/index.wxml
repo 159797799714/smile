@@ -22,7 +22,7 @@
 
   <!-- 文章组 -->
   <block wx:if="{{item.type === 'article'}}">
-    <diy-article scrollTopDist="{{ scrollTopDist }}" itemIndex="{{ itemIndex }}" tabList="{{ item.tabList }}" params="{{ item.params }}" dataList="{{ item.data }}"></diy-article>
+    <diy-article scrollTopDist="{{ scrollTopDist }}" itemIndex="{{ itemIndex }}" tabList="{{ item.tabList }}" params="{{ item.params }}" dataList="{{ item.data }}" bind:parentEvent='onParentEvent'></diy-article>
     <!-- <diy-article itemIndex="{{ itemIndex }}" tabList="{{ item.tabList }}" params="{{ item.params }}" dataList="{{ item.data }}"></diy-article> -->
   </block>
 

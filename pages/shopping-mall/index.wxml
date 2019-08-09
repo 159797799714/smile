@@ -11,7 +11,10 @@
   </view>
 
    <!-- DIY组件 轮播图 -->
-  <diy-component diyItems="{{ swiperList }}"></diy-component>
+  <view class="banner">
+    <diy-component diyItems="{{ swiperList }}"></diy-component>
+  </view>
+  
 
   <!-- 阴影 -->
  <!-- <view class="shadow">
@@ -35,14 +38,14 @@
 
   <!-- 拼团,秒杀，限时购，0元购等活动入口 -->
   <view class="discount dis-flex flex-x-between">
-    <view wx:for="{{ discount }}" wx:key="this" hover-class="none" class="pintuan dis-flex flex-dir-column" catchtap="goPintuan" data-index="{{ index }}">
+    <view wx:for="{{ discount }}" wx:key="this" hover-class="none" class="pintuan dis-flex flex-dir-column b-f" catchtap="goPintuan" data-index="{{ index }}">
       <view class="pintuan-text dis-flex">
         <image src="{{ item.imgUrl }}"></image>
         <view wx:if="{{ item.time }}" class="time f-22 col-f b-15">{{ item.time }}</view>
       </view>
       <view wx:if="{{ item.info && item.min_price ? true : item.info || !item.min_price }}" class="pintuan-info f-28 col-red">{{ item.info }}</view>
       <view wx:if="{{ !item.info && item.min_price }}" class="price dis-flex f-28 col-red">
-        ￥<text class="min-price ">{{ index === 3 ? '0': item.min_price  }}</text>
+        ￥<text class="min-price f-w">{{ index === 3 ? '0': item.min_price  }}</text>
         <text class="max-price f-24 col-9 t-dec-line">￥{{ item.max_price }}</text>
       </view>
       <view class="pintuan-icon">

@@ -171,7 +171,6 @@ Page({
       goods.total_num++;
       // 商品总价格
       goods.total_price = _this.mathadd(goods.total_price, goods.goods_price);
-      // console.log(goods.total_price);
       // 更新商品信息
       _this.setData({
         ['goods_list[' + index + ']']: goods
@@ -209,7 +208,6 @@ Page({
         if (goods.total_num > 0) {
           // 商品总价格
           goods.total_price = _this.mathsub(goods.total_price, goods.goods_price);
-          // console.log(goods.total_price);
           // 更新商品信息
           _this.setData({
             ['goods_list[' + index + ']']: goods

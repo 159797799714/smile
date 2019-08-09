@@ -15,9 +15,12 @@
     </view>
   </view>
   
-
+  
+  <view class="banner">
+    <diy-component scrollTopDist="{{ scrollTopDist }}" diyItems="{{ items }}" bind:indexParentEvent="onindexParentEvent"></diy-component>  
+  </view>
   <!-- DIY组件 -->
-  <diy-component scrollTopDist="{{ scrollTopDist }}" diyItems="{{ items }}"></diy-component>
+  
 
   <!-- 底线 -->
   <!-- <view class="title-footer p-r">

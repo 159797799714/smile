@@ -183,8 +183,8 @@ page {
 .filter-cover .cover-main .list{
   flex: 1;
   /* min-height: 70rpx; */
+  max-height: 90%;
   min-height: 128rpx;
-  max-height: 430rpx;
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
@@ -310,7 +310,7 @@ page {
 .main .good-item{
   display: flex;
   flex-direction: column;
-  height: 550rpx;
+  height: 530rpx;
   width: 330rpx;
   margin-top: 20rpx;
   border: 1px solid #eee;
@@ -340,7 +340,7 @@ page {
 }
 .main .good-item .good-info .good-remark{
   font-size: 20rpx;
-  line-height: 20px;
+  line-height: 15px;
   color: #666;
 }
 .main .good-item .good-info .good-remark>text{
@@ -354,7 +354,8 @@ page {
   justify-content: space-between;
   font-size: 26rpx;
   font-weight: 600;
-  line-height: 54rpx;
+  line-height: 36rpx;
+  margin-top: 27rpx;
 }
 .main .good-item .good-info .good-price .bigText{
   font-size: 36;
@@ -378,12 +379,12 @@ page {
 }
 .row .good-item .good-info{
   flex: 1;
-   
-  
   overflow: hidden;
+  padding-top: 30rpx;
 }
 .row .good-item .good-info .good-price{
   line-height: 40rpx;
+  margin-top: 10rpx;
 }
 .good-item .good-info .good-price image {
   width: 26rpx;
@@ -392,20 +393,19 @@ page {
   font-size: 34rpx;
 }
 .row .good-item .good-info .good-name{
-  height: 78rpx;
+  height: 42rpx;
   line-height: 42rpx;
   margin-top: 14rpx;
   font-size: 28rpx;
 }
 .row .good-item .good-info .good-remark{
   font-size: 20rpx;
-  line-height: 59rpx;
+  line-height: 27rpx;
   color: #666;
 }
 .row .good-item .good-info .good-remark>text{
   margin-right: 29rpx;
 }
-
 /* 筛选 */
 .big-cover{
   flex-direction: row;
@@ -424,14 +424,18 @@ page {
 }
 .big-cover .big-cover-main{
   width: 524rpx;
+  height: 100%;
   display: flex;
   flex-direction: column;
   padding: 0 30rpx;
-  overflow:hidden;white-space:nowrap;
+  overflow: auto;
+  white-space:nowrap;
+  position: relative;
 }
 .big-cover .big-cover-main .box{
   flex: 1;
-  overflow: hidden;
+  max-height: calc(100% - 98rpx);
+  overflow: auto;
   height: 1118rpx;
 }
 .big-cover .big-cover-main .title{
@@ -505,8 +509,10 @@ page {
   background: #eee;
 }
 .big-cover .big-cover-main .foot{
-  width: calc(100% + 60rpx);
-  margin-left: -30rpx;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
 }
 
 

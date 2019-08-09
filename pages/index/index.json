@@ -1,5 +1,4 @@
 {
-  "enablePullDownRefresh": true,
   "usingComponents": {
     "diy-component": "/components/diy/index"
   },
