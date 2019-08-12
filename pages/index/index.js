@@ -44,6 +44,16 @@ Page({
     // 加载页面数据
     this.getcategoryList()
   },
+  onShow() {
+    if(this.data.items[0].data.length < 1 || this.data.items[0].data) {
+      // 加载录播图数据
+      this.getBannerList()
+    }
+    if(this.data.items[1].tabList.length < 1 || this.data.items[1].data.length < 1) {
+      // 加载页面数据
+      this.getcategoryList()
+    }
+  },
   onPageScroll: function(options) {
     // Do something when page scroll
     // this.data.items[1].scrollTopDist = options.scrollTop
@@ -52,20 +62,21 @@ Page({
       scrollTopDist: options.scrollTop
     })
   },
-    onindexParentEvent(event) {
-      // 自定义组件触发事件时提供的detail对象，用来获取子组件传递来的数据
-      let id = event.detail;
-      console.log('从孙子组件diy下的article传回来的id', id)
-      this.setData({
-        'items[1].dataType': id
-      })
-    },
-
-  // goLoading() {
-  //   wx.navigateTo({
-  //     url: '../loading/index'
-  //   })
-  // },
+  onindexParentEvent(event) {
+    // 自定义组件触发事件时提供的detail对象，用来获取子组件传递来的数据
+    let id = event.detail;
+    console.log('从孙子组件diy下的article传回来的id', id)
+    this.setData({
+      'items[1].dataType': id
+    })
+  },
+    
+  // 分销弹窗
+  goDialog() {
+    wx.navigateTo({
+      url: '../dealer-dialog/index'
+    })
+  },
   /**
    * 加载页面数据
    */

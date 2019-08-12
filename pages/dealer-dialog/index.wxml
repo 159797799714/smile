@@ -1,0 +1,21 @@
+<view class="container b-15 p-r">
+  <image src="http://47.244.175.39/dealer/bg.png" class="bg" mode="scaleToFill"></image>
+  <view class="main p-a dis-flex flex-x-center flex-dir-column border-box">
+    <view class="title dis-flex flex-x-center">
+      <image src="http://47.244.175.39/dealer/title.png" mode="widthFix" style="width: {{ height / 812 * 60 + '%' }}"></image>
+    </view>
+    <view class="sub-title dis-flex flex-x-center">
+      <image src="http://47.244.175.39/dealer/sub_title.png" mode="widthFix" style="width: {{ height / 812 * 60 + '%' }}"></image>
+    </view>
+    <view class="info">
+    </view>
+    <view class="bottom">
+      <view class="btn dis-flex flex-x-center">
+        <image src="http://47.244.175.39/dealer/btn.png" mode="aspectFit" style="width: {{ height / 812 * 200 + 'rpx' }}"></image>
+      </view>
+      <view class="small-btn dis-flex flex-x-center">
+        <image src="http://47.244.175.39/dealer/small_btn.png" mode="aspectFit"  style="width: {{ height / 812 * 100 + 'rpx' }}"></image>
+      </view>
+    </view>
+  </view>
+</view>

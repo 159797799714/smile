@@ -254,6 +254,7 @@
 
 .max-price {
   line-height: 24rpx;
+  margin-top: 10rpx;
 }
 
 .max-price>text {

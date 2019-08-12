@@ -24,6 +24,7 @@
     "pages/address/create",
     "pages/address/detail",
     "pages/login/login",
+    "pages/dealer-dialog/index",
     "pages/dealer/index/index",
     "pages/dealer/apply/apply",
     "pages/dealer/order/order",
