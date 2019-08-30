@@ -1,4 +1,4 @@
-<view class="container b-15">
+<view class="container b-15" style="padding-top: {{ statusHeight + 'px' }}">
   <!-- 搜索框 -->
   <view class="index-search-box-bg"></view>
   <view class="index-search-box">
@@ -37,7 +37,7 @@
   </view>
 
   <!-- 拼团,秒杀，限时购，0元购等活动入口 -->
-  <view class="discount dis-flex flex-x-between">
+  <view class="discount dis-flex flex-x-between linear-border">
     <view wx:for="{{ discount }}" wx:key="this" hover-class="none" class="pintuan dis-flex flex-dir-column b-f" catchtap="goPintuan" data-index="{{ index }}">
       <view class="pintuan-text dis-flex">
         <image src="{{ item.imgUrl }}"></image>
@@ -68,15 +68,16 @@
       <image class="recommend-box-image" mode="widthFix" src="../../images/recommend-icon.png" />
     </view>
     <view wx:if="{{ recommendList.length }}" class="recommend-box-content dis-flex flex-x-between">
-      <navigator class="recommend-box-content-item b-f" hover-class="none" url="../goods/index?goods_id={{item.goods_id}}" wx:for="{{ recommendList }}" wx:key="this">
+      <navigator class="recommend-box-content-item b-15" hover-class="none" url="../goods/index?goods_id={{item.goods_id}}" wx:for="{{ recommendList }}" wx:key="this">
         <image mode="aspectFit" src="{{ item.image[0].file_path}}" />
-        <text class="recommend-box-content-item-title twolist-hidden f-26 col-13">{{ item.goods_name }}</text>
+        <text class="recommend-box-content-item-title twolist-hidden f-26 col-cc">{{ item.goods_name }}</text>
+        <view class="recommend-box-content-item-price dis-flex flex-y-center f-26 col-purple">
+            粉丝价¥<text class="f-34 col-purple">{{ item.goods_min_price }}</text>
+            <!-- <text class="f-22 col-9 t-dec-line m-l-10">¥{{ item.goods_max_price }}</text> -->
+        </view>
         <view class="max-price">
           <text class="f-26 col-9 t-dec-line m-l-10">¥{{ item.goods_max_price }}</text>
-        </view>
-        <view class="recommend-box-content-item-price dis-flex flex-y-center f-26 col-purple f-w">
-            粉丝价¥<text class="f-34 col-purple f-w">{{ item.goods_min_price }}</text>
-            <!-- <text class="f-22 col-9 t-dec-line m-l-10">¥{{ item.goods_max_price }}</text> -->
+          <text class="f-16 col-9 m-l-10">积分：100</text>
         </view>
       </navigator>
     </view>

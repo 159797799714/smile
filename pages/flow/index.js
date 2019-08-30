@@ -152,37 +152,57 @@ Page({
    * 递增指定的商品数量
    */
   addCount: function(e) {
-    let _this = this,
-      index = e.currentTarget.dataset.index,
-      goodsSkuId = e.currentTarget.dataset.skuId,
-      goods = _this.data.goods_list[index];
-    // order_total_price = _this.data.order_total_price;
-    // 后端同步更新
-    wx.showLoading({
-      title: '加载中',
-      mask: true
-    });
-    App._post_form('cart/add', {
-      goods_id: goods.goods_id,
-      goods_num: 1,
-      goods_sku_id: goodsSkuId
-    }, function() {
-      // 商品数量
-      goods.total_num++;
-      // 商品总价格
-      goods.total_price = _this.mathadd(goods.total_price, goods.goods_price);
-      // 更新商品信息
-      _this.setData({
-        ['goods_list[' + index + ']']: goods
-      }, function() {
-        // 更新购物车总价格
-        _this.updateTotalPrice();
+    let type= e.currentTarget.dataset.type
+    if(type === 0) {
+      let _this = this,
+        index = e.currentTarget.dataset.index,
+        goodsSkuId = e.currentTarget.dataset.skuId,
+        goods = _this.data.goods_list[index];
+      // order_total_price = _this.data.order_total_price;  
+      // 后端同步更新
+      wx.showLoading({
+        title: '加载中',
+        mask: true
       });
-    }, null, function() {
-      wx.hideLoading();
-    });
+      App._post_form('cart/add', {
+        goods_id: goods.goods_id,
+        goods_num: 1,
+        goods_sku_id: goodsSkuId
+      }, function() {
+        // 商品数量
+        goods.total_num++;
+        // 商品总价格
+        goods.total_price = _this.mathadd(goods.total_price, goods.goods_price);
+        // 更新商品信息
+        _this.setData({
+          ['goods_list[' + index + ']']: goods
+        }, function() {
+          // 更新购物车总价格
+          _this.updateTotalPrice();
+        });
+      }, null, function() {
+        wx.hideLoading();
+      });
+    } else {
+      wx.showToast({
+        title: '抢购或者秒杀商品限购一件',
+        icon: 'none'
+      })
+    } 
   },
-
+  goDetail(e) {
+    let goods_id= e.currentTarget.dataset.goodsId
+    let type= e.currentTarget.dataset.type
+    if(type === 0) {
+      wx.navigateTo({
+        url: '../goods/index?goods_id=' + goods_id
+      })
+    } else{
+      wx.navigateTo({
+        url: '../shop-seckill/goods/index?goods_id='  + goods_id + '&type=' + type
+      })
+    }
+  },
   /**
    * 递减指定的商品数量
    */
@@ -194,6 +214,7 @@ Page({
     // order_total_price = _this.data.order_total_price;
 
     if (goods.total_num > 1) {
+      
       // 后端同步更新
       wx.showLoading({
         title: '加载中',

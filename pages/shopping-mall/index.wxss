@@ -70,16 +70,19 @@
 
 .discount {
   flex-wrap: wrap;
-  padding: 0 30rpx;
-  margin-bottom: 30rpx;
+  width: 700rpx;
+  height: 486rpx;
+  margin: 0 auto 44rpx;
+  padding: 4rpx;
+  overflow: hidden;
 }
 
 /* 拼团 */
 .pintuan {
-  width: 340rpx;
+  width: calc(50% - 5rpx);
   height: 240rpx;
-  margin-bottom: 10rpx;
   padding: 15rpx 0 0 26rpx;
+  margin-bottom: 8rpx;
   box-sizing: border-box;
 }
 
@@ -230,8 +233,6 @@
 
 .recommend-box-content-item {
   width: 330rpx;
-  height: 524rpx;
-  border: 1px solid rgba(238, 238, 238, 1);
   margin-bottom: 20rpx;
 }
 
@@ -254,7 +255,6 @@
 
 .max-price {
   line-height: 24rpx;
-  margin-top: 10rpx;
 }
 
 .max-price>text {
@@ -265,4 +265,8 @@
 .recommend-box-content-item-price>image {
   width: 26rpx;
   margin-top: 12rpx;
+}
+.linear-border-2{
+  border: 4rpx transparent solid;
+  border-image: linear-gradient(to right,#00BFFF, #9933FF, #ff33cc) 1 10; 
 }

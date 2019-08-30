@@ -70,13 +70,7 @@ Page({
       'items[1].dataType': id
     })
   },
-    
-  // 分销弹窗
-  goDialog() {
-    wx.navigateTo({
-      url: '../dealer-dialog/index'
-    })
-  },
+ 
   /**
    * 加载页面数据
    */

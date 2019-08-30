@@ -165,7 +165,7 @@
           <!-- 评价图片 -->
           <view class="comment-images row" wx:if="{{ item.image.length > 0 }}">
             <view class="image-preview" wx:for="{{ item.image }}" wx:for-item="image" wx:for-index="imgIndex" wx:key="this">
-              <image data-comment-index="{{ index }}" data-img-index="{{ imgIndex }}" catchtap="previewImages" mode="aspectFill" src="{{ image.file_path }}"></image>
+              <image data-comment-index="{{ index }}" data-img-index="{{ imgIndex }}" mode="aspectFill" src="{{ image.file_path }}"></image>
             </view>
           </view>
           <view class="f-22 col-9 m-top10">{{ item.create_time }}</view>

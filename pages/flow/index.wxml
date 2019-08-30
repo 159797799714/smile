@@ -15,21 +15,21 @@
           </view>
           <view class="dish-item-wrp dis-flex flex-box">
             <!-- 商品图片 -->
-            <navigator hover-class="none" url="../goods/index?goods_id={{item.goods_id}}">
-              <view class="dish-item-pic">
+            <!-- <navigator hover-class="none" url="../goods/index?goods_id={{item.goods_id}}"> -->
+              <view class="dish-item-pic" catchtap="goDetail" data-goods-id="{{ item.goods_id }}" data-type="{{ item.goods_type }}">
                 <image mode="aspectFill" class="image" src="{{item.image[0].file_path}}"></image>
               </view>
-            </navigator>
+            <!-- </navigator> -->
             <!-- 商品信息 -->
             <view class="dish-item-info flex-box">
-              <navigator hover-class="none" url="../goods/index?goods_id={{item.goods_id}}">
-                <view class="goods-name">
+              <!-- <navigator hover-class="none" url="../goods/index?goods_id={{item.goods_id}}"> -->
+                <view class="goods-name" catchtap="goDetail" data-goods-id="{{ item.goods_id }}" data-type="{{ item.goods_type }}">
                   <text class="twolist-hidden f-30 col-3">{{item.goods_name}}</text>
                 </view>
-                <view class="goods-attr dis-flex">
+                <view class="goods-attr dis-flex" catchtap="goDetail" data-goods-id="{{ item.goods_id }}" data-type="{{ item.goods_type }}">
                   <text class="col-7 f-24">{{item.goods_sku.goods_attr}}</text>
                 </view>
-              </navigator>
+              <!-- </navigator> -->
               <view class="dis-flex flex-x-between m-top20">
                 <!-- 商品价格 -->
                 <view class="wx-goods_price dis-flex flex-y-center">
@@ -37,9 +37,9 @@
                 </view>
                 <!-- 数量选择器 -->
                 <view class="selectNumber">
-                  <button bindtap="minusCount" class="default {{item.total_num>1?'':' default-active'}}" data-index="{{index}}" data-sku-id="{{item.goods_sku_id}}" type="default">-</button>
+                  <button bindtap="minusCount" class="default {{item.total_num > 1 ?'':'default-active'}}" data-index="{{index}}" data-sku-id="{{item.goods_sku_id}}" data-type="{{ item.goods_type }}" type="default">-</button>
                   <input bindinput="import" disabled="{{true}}" type="number" value="{{item.total_num}}"></input>
-                  <button bindtap="addCount" class="default" data-index="{{index}}" data-sku-id="{{item.goods_sku_id}}" type="default">+</button>
+                  <button bindtap="addCount" class="default {{item.total_num > 1 || item.goods_type === 0?'':'default-active'}}" data-index="{{index}}" data-sku-id="{{item.goods_sku_id}}" data-type="{{ item.goods_type }}" type="default">+</button>
                 </view>
               </view>
               <!-- 删除按钮 -->

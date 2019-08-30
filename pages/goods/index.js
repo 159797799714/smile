@@ -280,7 +280,7 @@ Page({
    */
   previewImages: function(e) {
     let index = e.currentTarget.dataset.index,
-      imageUrls = [];
+    imageUrls = [];
     this.data.detail.image.forEach(function(item) {
       imageUrls.push(item.file_path);
     });

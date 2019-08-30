@@ -1,20 +1,24 @@
 <view class="container b-15 p-r">
-  <image src="http://47.244.175.39/dealer/bg.png" class="bg" mode="scaleToFill"></image>
-  <view class="main p-a dis-flex flex-x-center flex-dir-column border-box">
+  <image src="{{ new_user_share.background }}" class="bg" mode="scaleToFill"></image>
+  <view class="main p-a dis-flex flex-x-center flex-dir-column border-box" style="padding: {{ height / 812 * 120 + 'rpx' }} 0rpx;">
     <view class="title dis-flex flex-x-center">
-      <image src="http://47.244.175.39/dealer/title.png" mode="widthFix" style="width: {{ height / 812 * 60 + '%' }}"></image>
+      <image src="{{ new_user_share.title }}" mode="widthFix" style="width: {{ height / 812 * 70 + '%' }}"></image>
     </view>
     <view class="sub-title dis-flex flex-x-center">
-      <image src="http://47.244.175.39/dealer/sub_title.png" mode="widthFix" style="width: {{ height / 812 * 60 + '%' }}"></image>
+      <image src="{{ new_user_share.subtitle }}" mode="widthFix" style="width: {{ height / 812 * 70 + '%' }}"></image>
     </view>
-    <view class="info">
+    <view class="info border-box">
+      <view class="word col-f f-26 f-w" wx:for="{{ info }}" wx:for-item="item" wx:key="index">
+        <view class="info-title"> {{ index + 1 + '.' }}{{ item.title }}</view>
+        <view class="info-content">{{ item.content }}</view>
+      </view>
     </view>
     <view class="bottom">
       <view class="btn dis-flex flex-x-center">
-        <image src="http://47.244.175.39/dealer/btn.png" mode="aspectFit" style="width: {{ height / 812 * 200 + 'rpx' }}"></image>
+        <image src="{{ new_user_share.experience }}" mode="aspectFit" style="width: {{ height / 812 * 200 + 'rpx' }}" catchtap="godealer"></image>
       </view>
       <view class="small-btn dis-flex flex-x-center">
-        <image src="http://47.244.175.39/dealer/small_btn.png" mode="aspectFit"  style="width: {{ height / 812 * 100 + 'rpx' }}"></image>
+        <image src="{{ new_user_share.noexperience }}" mode="aspectFit" style="width: {{ height / 812 * 100 + 'rpx' }}" catchtap="goBack"></image>
       </view>
     </view>
   </view>

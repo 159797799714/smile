@@ -24,7 +24,10 @@ App({
   // api地址
   api_root: '',
   siteInfo: require('siteinfo.js'),
-
+  
+  // 调用登录的次数
+  count: 0,
+  
   /**
    * 生命周期函数--监听小程序初始化
    */
@@ -96,17 +99,25 @@ App({
    */
   doLogin: function() {
     // 保存当前页面
+    this.count = this.count + 1
+    console.log(this.count)
     let pages = getCurrentPages();
     console.log('dologin函数', pages.length)
-    if (pages.length) {
-      let currentPage = pages[pages.length - 1];
-      "pages/login/login" != currentPage.route &&
-        wx.setStorageSync("currentPage", currentPage);
+    // if (pages.length) {
+    //   let currentPage = pages[pages.length - 1];
+    //   "pages/login/login" != currentPage.route &&
+    //     wx.setStorageSync("currentPage", currentPage);
+    // }
+    if(this.count < 2) {
+      console.log('进来了', this.count)
+      // 跳转授权页面
+      wx.navigateTo({
+        url: "/pages/login/login"
+      });  
     }
-    // 跳转授权页面
-    wx.navigateTo({
-      url: "/pages/login/login"
-    });
+    setTimeout(function() {
+      this.count = 0
+    }, 1000)
   },
 
   /**
@@ -149,7 +160,16 @@ App({
       }
     });
   },
-
+  
+  getSystemInfo: function(obj) {
+    wx.getSystemInfo({
+      success: function (res) {
+        // 屏幕宽度、高度
+        console.log('设备信息', res.statusBarHeight)
+        obj.cb(res.statusBarHeight) 
+      }
+   })
+  },
   /**
    * get请求
    */

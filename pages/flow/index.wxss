@@ -93,8 +93,9 @@
 }
 
 .dish-item-pic {
-  width: 100%;
-  margin-left: 12rpx;
+  width: 180rpx;
+  height: 180rpx;
+  margin: 0 12rpx ;
 }
 
 .dish-item-pic image {

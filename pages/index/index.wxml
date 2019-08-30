@@ -1,5 +1,5 @@
 <view class="container b-15">
-  <view class="header-bar" catchtap="goDialog">
+  <view class="header-bar">
     <view class="name">优逸</view>
     <view class="logo"></view>
   </view>

@@ -43,7 +43,7 @@
             <text class="newPrice">￥{{ item.goods_min_price }}</text>
             <text class="oldPrice">￥{{ item.goods_max_price }}</text>
             <text wx:if="{{ nowState !== '已结束' && item.isbuy === 'allow'}}" class="buy b-f my-button {{item.surplus_inventory < 1 ? 'none col-f' : ''}}">{{ item.surplus_inventory < 1 ? '已售完':'立即秒杀' }}</text>
-            <text wx:if="{{ nowState === '已结束' || item.isbuy === 'no_allow'}}" class="buy b-f my-button none col-f">秒杀结束</text>
+            <text wx:if="{{ nowState === '已结束' || item.isbuy === 'no_allow' && nowState !== '即将开始' }}" class="buy b-f my-button none col-f">秒杀结束</text>
             <form name="pushMsgFm" bindsubmit="remindMe" wx:if="{{ nowState === '即将开始'}}"  data-index="{{ index }}" data-goodid="{{ item.goods_id }}" data-activityCategoryId="{{ item.activity_category_id }}" data-isremind="{{ item.isremind }}"  report-submit="true" >
               <!-- <text>{{ item.isremind == 'no' ? '提醒我' : '取消提醒'}} ></text> -->
               <button class="buy b-f my-button" form-type="submit">

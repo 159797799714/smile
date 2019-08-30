@@ -2,8 +2,8 @@
   "enablePullDownRefresh": true,
   "backgroundTextStyle": "light",
   "backgroundColor": "#131313",
-  "navigationBarTitleText": "商城",
   "navigationBarBackgroundColor": "#131313",
+  "navigationStyle": "custom",
   "navigationBarTextStyle": "white",
   "usingComponents": {
     "diy-component": "/components/diy/index"

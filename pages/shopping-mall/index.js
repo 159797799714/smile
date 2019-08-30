@@ -6,15 +6,7 @@ Page({
   data: {
     // 搜索框样式
     searchName: "大家都在搜“森海塞尔”",
-
-    // {
-    //     imgUrl:"https://market.pd-unixe.com/uploads/2019061117455884a819697.jpg"
-    // },{
-    //   imgUrl:"https://market.pd-unixe.com/uploads/20190611174558d5c576479.png"
-    // },{
-    //   imgUrl:"https://market.pd-unixe.com/uploads/201906111745539eac11543.png"
-    // }
-
+    statusHeight: 20,
     // 轮播图
     swiperList: [{
       type: "banner",
@@ -68,15 +60,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    let that = this
 
     // 秒杀，限时购，零元购
-    this.getGoodsbyone()
-    this.getGoodsbyone2()
-    this.getZero()
+    that.getGoodsbyone()
+    that.getGoodsbyone2()
+    that.getZero()
 
     // 加载页面数据
-    this.getPageData();
+    that.getPageData();
+    App.getSystemInfo({
+      cb: (height) => {
+        that.setData({
+          statusHeight: height
+        })
+      }
+    })
   },
   onShow() {
     if (this.data.swiperList[0].data.length < 1) {
