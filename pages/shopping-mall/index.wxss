@@ -70,7 +70,7 @@
 
 .discount {
   flex-wrap: wrap;
-  width: 700rpx;
+  width: 690rpx;
   height: 486rpx;
   margin: 0 auto 44rpx;
   padding: 4rpx;
@@ -96,10 +96,12 @@
   margin-right: 14rpx;
 }
 .pintuan-text .time {
-  line-height: 30rpx;
   height: 30rpx;
   border-radius: 14rpx;
   padding: 0 10rpx;
+  margin-left: 20rpx;
+  line-height: 30rpx;
+  letter-spacing: 1px;
 }
 .pintuan-info{
   width: 90%;
@@ -108,7 +110,6 @@
   white-space: nowrap;
   line-height: 27rpx;
   margin-top: 11rpx;
-  font-weight: bold;
   letter-spacing: 2rpx;
 }
 .pintuan> .price{
@@ -221,9 +222,14 @@
 }
 
 .recommend-box-image {
-  margin: 0 auto;
-  /* padding-top: 40rpx; */
   display: block;
+  margin: 0 auto;
+  width: calc(100% - 60rpx);
+  /* padding-top: 40rpx; */
+  padding: 0 30rpx;
+}
+.recommend-box-image> image {
+  width: 100%;
 }
 
 .recommend-box-content {

@@ -1,19 +1,27 @@
-page {
-  background-color: #f5f5f5;
+
+page{
+  background: #151515;
+}
+.container{
+  max-height: 100%;
+  width: 100%;
+  overflow: auto;
 }
 
 .tabs{
   height: 130rpx;
   width: 100%;
+  border-top: 6rpx transparent solid;
+  border-image: linear-gradient(to right,#00BFFF, #9933FF, #ff33cc) 1 10;
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: nowrap; 
   overflow: auto;
   z-index: 2;
 }
 .tabs .tab-item{
-  height: 130rpx;
-  /* width: 150rpx; */
   flex: 1;
+  height: 130rpx;
+  min-width: 150rpx;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -31,12 +39,11 @@ page {
     line-height: 23rpx;
   }
 .tabs .selected {
-  background: #F4433D;
   color: #fff;
 }
 .main{
-  flex: 1;
-  overflow: hidden;
+  max-height: calc(100% - 260rpx);
+  overflow: auto;
   padding: 30rpx 0;
   box-sizing: border-box;
 }
@@ -62,14 +69,14 @@ page {
 }
 .item{
   display: flex;
-  padding: 10rpx;
-  margin: 0 30rpx 30rpx;
+  padding: 20rpx;
+  margin: 30rpx;
 }
 .item .goodImg{
   position: relative;
   height: 260rpx;
   width: 260rpx;
-  margin-right: 11rpx;
+  margin-right: 33rpx;
   background: #ccc;
 }
 .item .goodImg >image{
@@ -103,14 +110,13 @@ page {
   flex: 1;
 }
 .item .goodInfo .goodName{
-  height: 75rpx;
-  font-size: 30rpx;
+  height: 80rpx;
   line-height: 40rpx;
   white-space: wrap;
 }
 .item .goodInfo .leaver{
   position: relative;
-  margin: 30rpx 0;
+  margin-bottom: 15rpx;
   height: 30rpx;
   font-size: 22rpx;
   line-height: 30rpx;
@@ -149,46 +155,30 @@ page {
   display: flex;
   align-items: flex-end;
 }
-.item .price .newPrice{
+.item  .newPrice{
   margin-right: 14rpx;
-  font-size: 28rpx;
-  line-height: 36rpx;
-  color: #FF3C3E;
-  font-weight: 600;
+  line-height: 60rpx;
 }
-.item .price .oldPrice{
+.item .oldPrice{
   font-size: 22rpx;
-  line-height: 36rpx;
-  color: #666666;
-}
-.item .price .oldPrice::before{
-  content: '———';
-  text-align: center;
-  color: #ADADAD;
-  height: 2rpx;
-  position: absolute;
-  margin: auto;
+  line-height: 60rpx;
+  text-decoration: line-through;
 }
 .item .price .buy{
   display: inline-block;
   position: absolute;
   top: 4rpx;
   right: 0;
-  height: 48rpx;
+  height: 32rpx;
   width: 140rpx;
-  border: 1px solid #FF3C3E;
+  border: 1px solid #FF33CC;
   color: #FF3C3E;
   font-size: 24rpx;
-  line-height: 48rpx;
+  line-height: 32rpx;
   padding: 0;
 }
 .item .price .none{
-  border-color: #666666;
-  color: #666666;
-}
-
-.none{
-  border-color: #999999;
+  border-color: #FF33CC;
 }
 
 

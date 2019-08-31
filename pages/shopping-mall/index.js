@@ -24,12 +24,12 @@ Page({
     items: {},
     // 限时购，秒杀购以及零元购等整个数据
     discount: [{
-      imgUrl: '../../images/pintuan-text.png',
-      name: '拼团购',
-      info: '',
+      imgUrl: '../../images/xianshigou-text.png',
+      name: '限时购',
       time: '',
       min_price: '',
       max_price: '',
+      info: '',
       img: ''
     }, {
       imgUrl: '../../images/miaoshagou-text.png',
@@ -39,12 +39,12 @@ Page({
       max_price: '',
       img: ''
     }, {
-      imgUrl: '../../images/xianshigou-text.png',
-      name: '限时购',
+      imgUrl: '../../images/pintuan-text.png',
+      name: '拼团购',
+      info: '',
       time: '',
       min_price: '',
       max_price: '',
-      info: '',
       img: ''
     }, {
       imgUrl: '../../images/zero-text.png',
@@ -162,36 +162,38 @@ Page({
 
   // 拼团，秒杀，限时，0元
   goPintuan(e) {
+    let that= this
     let index = e.currentTarget.dataset.index
-    if (!this.data.discount[index].time && index !== 0 && index !== 3) {
-      wx.showToast({
-        title: '暂无相关活动',
-        icon: 'none',
-        mask: true,
-        duration: 1500,
-        success: function() {
-          return
-        }
-      })
-      return
-    }
-    switch (index) {
-      case 0:
-        wx.navigateTo({
-          url: '../sharing/index/index'
-        })
-        break
-      case 1:
-        wx.navigateTo({
-          url: `../shop-seckill/index?origin=秒杀购`
-        })
-        break
-      case 2:
+    let name = e.currentTarget.dataset.name
+    // if (!that.data.discount[index].time && index < 2) {
+    //   wx.showToast({
+    //     title: '暂无相关活动',
+    //     icon: 'none',
+    //     mask: true,
+    //     duration: 1500,
+    //     success: function() {
+    //       return
+    //     }
+    //   })
+    //   return
+    // }
+    switch (name) {
+      case '限时购':
         wx.navigateTo({
           url: `../shop-seckill/index?origin=限时购`
         })
         break
-      case 3:
+      case '秒杀购':
+        wx.navigateTo({
+          url: `../shop-seckill/index?origin=秒杀购`
+        })
+        break
+      case '拼团购':
+        wx.navigateTo({
+          url: '../sharing/index/index'
+        })
+        break
+      case '0元购':
         wx.navigateTo({
           url: '../zerodraw/index'
         })
@@ -206,14 +208,14 @@ Page({
     App._get('flashsale/getflashsalegoodsbyone', {}, function(result) {
       if (result.data.goods) {
         _this.setData({
-          'discount[2].info': result.data.goods.homepage_activity_subtitle ? result.data.goods.homepage_activity_subtitle : '',
-          'discount[2].img': result.data.goods.headimg ? result.data.goods.headimg.file_path: '',
-          'discount[2].min_price': result.data.goods.sku ? result.data.goods.sku[0].goods_price: '',
-          'discount[2].max_price': result.data.goods.sku ? result.data.goods.sku[0].line_price: ''
+          'discount[0].info': result.data.goods.homepage_activity_subtitle ? result.data.goods.homepage_activity_subtitle : '',
+          'discount[0].img': result.data.goods.headimg ? result.data.goods.headimg.file_path: '',
+          'discount[0].min_price': result.data.goods.sku ? result.data.goods.sku[0].goods_price: '',
+          'discount[0].max_price': result.data.goods.sku ? result.data.goods.sku[0].line_price: ''
         })
         utils.countDown(result.data.goods.category.activity_endtime, function(nowTime) {
           _this.setData({
-            'discount[2].time': nowTime
+            'discount[0].time': nowTime
           })
         })
       }
@@ -232,10 +234,10 @@ Page({
           'discount[1].max_price': result.data.goods.sku ? result.data.goods.sku[0].line_price: '',
           'discount[1].img': result.data.goods.headimg ? result.data.goods.headimg.file_path: '',
           'discount[1].info': result.data.goods.homepage_activity_subtitle ? result.data.goods.homepage_activity_subtitle : '',
-          'discount[0].img': result.data.sharing_goods.image_url,
-          'discount[0].info': result.data.sharing_goods.sharing_home_subtitle,
-          'discount[0].min_price': result.data.sharing_goods ? result.data.sharing_goods.sharing_home_goods_price: '',
-          'discount[0].max_price': result.data.sharing_goods ? result.data.sharing_goods.sharing_home_line_price: '',
+          'discount[2].img': result.data.sharing_goods.image_url,
+          'discount[2].info': result.data.sharing_goods.sharing_home_subtitle,
+          'discount[2].min_price': result.data.sharing_goods ? result.data.sharing_goods.sharing_home_goods_price: '',
+          'discount[2].max_price': result.data.sharing_goods ? result.data.sharing_goods.sharing_home_line_price: '',
         })
         
         // 秒杀购有时间
@@ -247,14 +249,14 @@ Page({
           })  
         }
         // 拼团购有时间就
-        if(result.data.sharing_goods) {
-          utils.countDown(result.data.sharing_goods.sharing_homa_activity_time, function(Time) {
-            _this.setData({
-              'discount[0].time': Time
-            })
-          })  
-        }
-        
+        // if(result.data.sharing_goods) {
+        //   utils.countDown(result.data.sharing_goods.sharing_homa_activity_time, function(Time) {
+        //     _this.setData({
+        //       'discount[2].time': Time
+        //     })
+        //   })  
+        // }
+        // 
       }
     })
   },

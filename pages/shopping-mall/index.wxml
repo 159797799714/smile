@@ -38,15 +38,15 @@
 
   <!-- 拼团,秒杀，限时购，0元购等活动入口 -->
   <view class="discount dis-flex flex-x-between linear-border">
-    <view wx:for="{{ discount }}" wx:key="this" hover-class="none" class="pintuan dis-flex flex-dir-column b-f" catchtap="goPintuan" data-index="{{ index }}">
+    <view wx:for="{{ discount }}" wx:key="this" wx:for-index="index" hover-class="none" class="pintuan dis-flex flex-dir-column b-15" catchtap="goPintuan" data-name="{{ item.name }}" data-index="{{ index }}">
       <view class="pintuan-text dis-flex">
         <image src="{{ item.imgUrl }}"></image>
-        <view wx:if="{{ item.time }}" class="time f-22 col-f b-15">{{ item.time }}</view>
+        <view wx:if="{{ item.time && index !== 2 }}" class="time f-22 col-f b-93f">{{ item.time }}</view>
       </view>
-      <view wx:if="{{ item.info && item.min_price ? true : item.info || !item.min_price }}" class="pintuan-info f-28 col-red">{{ item.info }}</view>
-      <view wx:if="{{ !item.info && item.min_price }}" class="price dis-flex f-28 col-red">
-        ￥<text class="min-price f-w">{{ index === 3 ? '0': item.min_price  }}</text>
-        <text class="max-price f-24 col-9 t-dec-line">￥{{ item.max_price }}</text>
+      <view wx:if="{{ item.info && item.min_price ? true : item.info || !item.min_price }}" class="pintuan-info f-28 col-f3c">{{ item.info }}</view>
+      <view wx:if="{{ !item.info && item.min_price }}" class="price dis-flex f-28 col-f3c">
+        ￥<text class="min-price">{{ index === 3 ? '0': item.min_price  }}</text>
+        <text class="max-price m-l-10 f-24 col-9 t-dec-line">￥{{ item.max_price }}</text>
       </view>
       <view class="pintuan-icon">
         <image mode="aspectFit" wx:if="{{ item.img }}" mode="aspectFit" src="{{ item.img }}" />
@@ -54,7 +54,7 @@
         <!-- 无相关活动 -->
         <view wx:if="{{ !item.time }}" class="nothing">
           <image mode="aspectFit" src="../../images/no_content.png"></image>
-          <view class="nothing-info f-28">亲, 没有相关活动</view>
+          <view class="nothing-info f-28 col-9">亲, 没有相关活动</view>
         </view>
       </view>
     </view>
@@ -72,11 +72,11 @@
         <image mode="aspectFit" src="{{ item.image[0].file_path}}" />
         <text class="recommend-box-content-item-title twolist-hidden f-26 col-cc">{{ item.goods_name }}</text>
         <view class="recommend-box-content-item-price dis-flex flex-y-center f-26 col-purple">
-            粉丝价¥<text class="f-34 col-purple">{{ item.goods_min_price }}</text>
+            粉丝价¥<text class="f-34 col-purple">{{ item.goods_min_price * 100 / 100 }}</text>
             <!-- <text class="f-22 col-9 t-dec-line m-l-10">¥{{ item.goods_max_price }}</text> -->
         </view>
         <view class="max-price">
-          <text class="f-26 col-9 t-dec-line m-l-10">¥{{ item.goods_max_price }}</text>
+          <text class="f-26 col-9 t-dec-line m-l-10">¥{{ item.goods_max_price * 100 / 100 }}</text>
           <text class="f-16 col-9 m-l-10">积分：100</text>
         </view>
       </navigator>

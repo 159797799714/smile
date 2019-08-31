@@ -1,58 +1,64 @@
-<view class="container">
-  <view class="dis-flex flex-dir-column">
-    <view class="tabs">
-      <view wx:for="{{ timeList }}" wx:key="index" class="tab-item {{ selectIndex === item.category_id ? 'selected' : ''}}" catchtap="selectTime" data-index="{{ index }}" data-categoryid="{{ item.category_id }}">
-        <text class="day f-24">{{ item.activity_date }}</text>
-        <text class="hour f-36">{{ item.activity_time }}</text>
-        <text class="status f-24">{{ item.status }}</text>
-      </view>
+<view class="container dis-flex flex-dir-column b-15">
+  <view class="tabs">
+    <view wx:for="{{ timeList }}" wx:key="index" class="tab-item {{ selectIndex === item.category_id ? 'selected' : ''}}"
+      catchtap="selectTime" data-index="{{ index }}" data-categoryid="{{ item.category_id }}">
+      <text class="day f-24">{{ item.activity_date }}</text>
+      <text class="hour f-36">{{ item.activity_time }}</text>
+      <text class="status f-24">{{ item.status }}</text>
     </view>
-    <scroll-view scroll-y="true" class="main">
-      <!-- <swiper wx:if="{{ banners.length > 0 }}" class="swiper" style="margin-bottom: {{ !openingTime ? '30rpx' : '' }}" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color="{{indicatorActiveColor}}">
+  </view>
+  <scroll-view scroll-y="true" class="main">
+    <!-- <swiper wx:if="{{ banners.length > 0 }}" class="swiper" style="margin-bottom: {{ !openingTime ? '30rpx' : '' }}" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color="{{indicatorActiveColor}}">
         <swiper-item wx:for="{{ banners }}" wx:key="this">
           <view class="swiper-item bg_primary">
               <image src="{{ item.file_path }}" mode="widthFix" />
           </view>
         </swiper-item>
       </swiper> -->
-      
-       <!-- DIY组件 轮播图 -->
-      <diy-component wx:if="{{ swiperList[0].data.length > 0 }}" diyItems="{{ swiperList }}"></diy-component>
-      
-      <view class="leave-time" wx:if="{{ openingTime }}">{{ title === '秒杀'?'秒杀': '抢购' }}，距离下场开始时间 <text>{{ openingTime }}</text></view>
-      <!--  catchtap="toGoodDetail" -->
-      <view catchtap="toGoodDetail" data-url="{{ item.surplus_inventory < 1 ? '' : item.url }}" wx:for="{{ goodList }}" wx:key="index" class="item b-f">
-        <view class="goodImg">
-          <view wx:if="{{ item.surplus_inventory < 1 }}" class="imgCover">
-            <text>售完</text>
-           </view>
-          <image src="{{ item.image[0].file_path }}" mode=""></image>
+
+    <!-- DIY组件 轮播图 -->
+    <diy-component wx:if="{{ swiperList[0].data.length > 0 }}" diyItems="{{ swiperList }}"></diy-component>
+
+    <view class="leave-time" wx:if="{{ openingTime }}">{{ title === '秒杀'?'秒杀': '抢购' }}，距离下场开始时间 <text>{{ openingTime }}</text></view>
+    <!--  catchtap="toGoodDetail" -->
+    <view catchtap="toGoodDetail" data-url="{{ item.surplus_inventory < 1 ? '' : item.url }}" wx:for="{{ goodList }}"
+      wx:key="index" class="item b-15">
+      <view class="goodImg">
+        <view wx:if="{{ item.surplus_inventory < 1 }}" class="imgCover">
+          <text>售完</text>
         </view>
-        <view class="goodInfo">
-          <view class="goodName twolist-hidden">{{ item.goods_name }}</view>
-          <view class="leaver">
-            <text class="text">仅剩余{{ item.surplus_inventory }}件</text>
-            <view class="peogress-box">
-              <progress percent="{{item.surplus_inventory/item.total_inventory * 100}}" activeColor="#FF3C3E" stroke-width="15" backgroundColor="#FCD1D1" class="progress"/>
-            </view>
+        <image src="{{ item.image[0].file_path }}" mode=""></image>
+      </view>
+      <view class="goodInfo">
+        <view class="goodName twolist-hidden f-28 col-9">{{ item.goods_name }}</view>
+        <view class="f-20 col-f3c">历史新低</view>
+        <view class="dis-flex">
+          <view class="newPrice f-24 col-f3c">￥<text class="f-36">{{ item.goods_min_price }}</text></view>
+          <text class="oldPrice col-6">￥{{ item.goods_max_price }}</text>
+        </view>
+        <view class="leaver">
+          <text class="text">仅剩余{{ item.surplus_inventory }}件</text>
+          <view class="peogress-box">
+            <progress percent="{{item.surplus_inventory/item.total_inventory * 100}}" activeColor="#FF33CC"
+              stroke-width="15" backgroundColor="#666666" class="progress" />
           </view>
-          <view class="discount">
-            <text wx:if="{{ item.discount !== 0 || item.discount }}">{{ item.discount }}折</text>
-          </view>
-          <view class="price" hover-stop-propagation="true">
-            <text class="newPrice">￥{{ item.goods_min_price }}</text>
-            <text class="oldPrice">￥{{ item.goods_max_price }}</text>
-            <text wx:if="{{ nowState !== '已结束' && item.isbuy === 'allow'}}" class="buy b-f my-button {{item.surplus_inventory < 1 ? 'none col-f' : ''}}">{{ item.surplus_inventory < 1 ? '已售完':'立即秒杀' }}</text>
-            <text wx:if="{{ nowState === '已结束' || item.isbuy === 'no_allow' && nowState !== '即将开始' }}" class="buy b-f my-button none col-f">秒杀结束</text>
-            <form name="pushMsgFm" bindsubmit="remindMe" wx:if="{{ nowState === '即将开始'}}"  data-index="{{ index }}" data-goodid="{{ item.goods_id }}" data-activityCategoryId="{{ item.activity_category_id }}" data-isremind="{{ item.isremind }}"  report-submit="true" >
-              <!-- <text>{{ item.isremind == 'no' ? '提醒我' : '取消提醒'}} ></text> -->
-              <button class="buy b-f my-button" form-type="submit">
-                {{ item.isremind == 'no' ? '提醒我' : '取消提醒'}} >
-              </button>
-            </form>
-          </view>
+        </view>
+        <!-- <view class="discount">
+            <text class="col-f3c">{{ item.discount }}折</text>
+          </view> -->
+        <view class="price" hover-stop-propagation="true">
+          <text wx:if="{{ nowState !== '已结束' && item.isbuy === 'allow'}}" class="buy my-button col-f">{{ item.surplus_inventory < 1 ? '已售完':'立即秒杀' }}</text>
+          <text wx:if="{{ nowState === '已结束' || item.isbuy === 'no_allow' && nowState !== '即将开始' }}" class="buy my-button col-f">秒杀结束</text>
+          <form name="pushMsgFm" bindsubmit="remindMe" wx:if="{{ nowState === '即将开始'}}" data-index="{{ index }}"
+            data-goodid="{{ item.goods_id }}" data-activityCategoryId="{{ item.activity_category_id }}" data-isremind="{{ item.isremind }}"
+            report-submit="true">
+            <!-- <text>{{ item.isremind == 'no' ? '提醒我' : '取消提醒'}} ></text> -->
+            <button class="buy my-button col-f" form-type="submit">
+              {{ item.isremind == 'no' ? '提醒我' : '取消提醒'}} >
+            </button>
+          </form>
         </view>
       </view>
-    </scroll-view>
-  </view>
+    </view>
+  </scroll-view>
 </view>

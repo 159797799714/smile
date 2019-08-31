@@ -59,7 +59,15 @@
 .b-93f{
   background: #9933FF!important;
 }
-
+.b-purple{
+  background: #FF00FF!important;
+}
+.b-63f{
+  background: #6633ff!important;
+}
+.b-36f{
+  background: #3366FF!important;
+}
 .tf-180 {
   -moz-transform: rotate(-180deg);
   -ms-transform: rotate(-180deg);
@@ -345,6 +353,9 @@
 .col-f3f{
   color: #ff33ff!important;
 }
+.col-f3c{
+  color: #ff33cc!important;
+}
 .col-36f{
   color: #3366FF!important;
 }
@@ -492,7 +503,7 @@
 
 .selectSpan{
   position: relative;
-  background: #FEF0F0 !important;
+  color: #3333ff;
 }
 .selectSpan:before{
   content: '+';
@@ -505,7 +516,7 @@
   width: 42rpx;
   text-align: left;
   line-height: 40rpx;
-  background: #F2401A;
+  background: #3333ff;
   transform: rotate(45deg);
   z-index: 5;
 }
