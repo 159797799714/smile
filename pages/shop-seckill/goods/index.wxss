@@ -1,14 +1,19 @@
 /* wxParse.wxss */
 @import "/wxParse/wxParse.wxss";
 
+page{
+  background: #333;
+}
 .slide-image {
   background: #fff;
 }
-
 .banner-box {
   height: 750rpx;
 }
-
+.skill-title{
+  height: 62rpx;
+  width: 60rpx;
+}
 .user-orderJtou {
   color: #999;
   font-size: 26rpx;
@@ -21,7 +26,6 @@
 .seckill-state {
   width: 750rpx;
   height: 130rpx;
-  background-color: #F4433D;
   margin: 0 auto;
   border-radius:4rpx 4rpx 0rpx 0rpx;
   color: #fff;
@@ -67,10 +71,10 @@
 
 .footer-fixed .goods-fixed-icon {
   width: 150rpx;
-  background: #fff;
   margin: 0 auto;
   padding: 0 6rpx;
-  border-left: 1rpx solid #eee;
+  background: #131313;
+  border-left: 1rpx dashed #666;
   height: 92rpx;
   position: relative;
 }
@@ -134,7 +138,6 @@
 .goods-title {
   overflow: hidden;
   padding: 0 0rpx 0 0;
-  color: #333;
 }
 
 /* 商品价格 */
@@ -267,14 +270,12 @@
 
 .footer-fixed .order-number {
   width: 50%;
-  background-color: #131313;
   color: #fff;
   text-align: center;
   line-height: 92rpx;
 }
 
 .footer-fixed .order-number button {
-  background: none;
   padding: 0;
   font-size: 34rpx;
   color: #fff;
@@ -409,7 +410,15 @@
 .sku-selector {
   padding: 30rpx 20rpx;
 }
-
+.span{
+  margin-right: 10rpx;
+  padding: 5rpx 14rpx;
+  border-radius: 15rpx;
+  letter-spacing: 1rpx;
+}
+.span-info{
+  max-width: 300rpx;
+}
 /* 确认购买弹窗 */
 
 .popup__trade {
@@ -435,6 +444,7 @@
 
 .popup__trade .footer-fixed {
   position: absolute;
+  background: #131313!important;
 }
 
 .popup__trade .trade-main .goods-info {
@@ -475,9 +485,6 @@
 
 /* 商品卖点 */
 
-.goods-selling-point {
-  color: #f20c59;
-}
 
 .order-bt {
   background-color: #F4A03D;

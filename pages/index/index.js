@@ -45,11 +45,11 @@ Page({
     this.getcategoryList()
   },
   onShow() {
-    if(this.data.items[0].data.length < 1 || this.data.items[0].data) {
+    if(this.data.items[0].data.length < 1 ) {
       // 加载录播图数据
       this.getBannerList()
     }
-    if(this.data.items[1].tabList.length < 1 || this.data.items[1].data.length < 1) {
+    if(this.data.items[1].tabList.length < 1 ) {
       // 加载页面数据
       this.getcategoryList()
     }
@@ -60,14 +60,6 @@ Page({
     // let data = this.data
     this.setData({
       scrollTopDist: options.scrollTop
-    })
-  },
-  onindexParentEvent(event) {
-    // 自定义组件触发事件时提供的detail对象，用来获取子组件传递来的数据
-    let id = event.detail;
-    console.log('从孙子组件diy下的article传回来的id', id)
-    this.setData({
-      'items[1].dataType': id
     })
   },
  
@@ -98,22 +90,23 @@ Page({
       page_id: _this.data.options.page_id
     }, function(result) {
       let dataType = _this.data.items[1].dataType
+      
+      console.log('dataType', dataType)
       if(!dataType) {
         _this.setData({
           'items[1].tabList': result.data.categoryList,
           'items[1].dataType': result.data.categoryList[0].category_id
         })  
       }
+      console.log('dataType后', dataType)
       // let data = _this.data
       App._get('article/articlesbycategoryid', {
-
         category_id: dataType
       }, function(resultItem) {
         _this.data.items[1].data = resultItem.data.list
         let data = _this.data
         _this.setData(data)
       });
-      // _this.setData(data)
     });
   },
 

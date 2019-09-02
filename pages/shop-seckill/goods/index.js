@@ -139,6 +139,7 @@ Page({
     }, function(result) {
       // 初始化商品详情数据
       let data = _this.initGoodsDetailData(result.data);
+      console.log(data)
       _this.setData(data);
     });
   },

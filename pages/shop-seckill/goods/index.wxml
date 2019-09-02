@@ -13,11 +13,14 @@
       </view>
     </view>
     <!-- 秒杀状态 -->
-    <view class="seckill-state {{ activityStart ? '' : 'activity-start-false'}} dis-flex flex-y-center flex-x-between">
+    <view class="seckill-state {{ activityStart ? '' : 'activity-start-false'}} dis-flex flex-y-center flex-x-between linear-border">
       <view class="seckill-state-price dis-flex flex-y-center flex-x-between">
-        <view >
-          <text class="f-56 f-w">￥{{ goods_price }}</text>
-          <text class="f-26 m-l-20 m-top20 t-dec-line">¥{{ line_price }}</text>
+        <view class="dis-flex flex-y-center">
+          <text class="skill-title f-26 col-f f-w">限时秒杀</text>
+          <view >
+            <text class="f-56 f-w">￥{{ goods_price }}</text>
+            <text class="f-26 m-l-20 m-top20 t-dec-line">¥{{ line_price }}</text>
+          </view>  
         </view>
         <text class="seckill-state-line"></text>
       </view>
@@ -29,20 +32,20 @@
         <view class="seckill-state-progress">
           <text wx:if="{{ activityStart }}" class="f-22">已抢{{percent}}%</text>
           <text wx:if="{{ !activityStart }}" class="f-22">未开始</text>
-          <progress percent="{{percent}}" border-radius="15rpx" activeColor="#F4A03D" stroke-width="15" backgroundColor="{{ activityStart ? '#FEF8F0' : 'rgba(255,255,255,.3)' }}" class="progress"/>
+          <progress percent="{{percent}}" border-radius="15rpx" activeColor="#FEF8F0" stroke-width="15" backgroundColor="rgba(255,255,255,0.3)" class="progress"/>
         </view>
       </view>
     </view>
-    <view class="cont-box b-f">
+    <view class="cont-box b-13">
       <view class="dis-flex flex-y-center">
         <view class="left flex-box dis-flex flex-dir-column">
           <!-- 商品名称 -->
-          <view class="goods-title ">
-            <text class="title f-30 twolist-hidden">{{detail.goods_name}}</text>
+          <view class="goods-title">
+            <text class="title f-30 twolist-hidden col-9">{{detail.goods_name}}</text>
           </view>
           <!-- 商品卖点 -->
           <view class="goods-selling-point">
-            <text class="f-24">{{ detail.selling_point }}</text>
+            <text class="f-24 col-f3c">{{ detail.selling_point }}</text>
           </view>
           <!-- <view class="money-box">
             <text class="col-m f-26">￥</text>
@@ -59,32 +62,33 @@
           </form>
         </view>
       </view>
-      <view class="goods-sales-box f-28 dis-flex col-8">
+      <!-- <view class="goods-sales-box f-28 dis-flex col-8">
         <text class="flex-box num">销量：{{detail.goods_sales}}</text>
-      </view>
+      </view> -->
     </view>
-
     <!-- 促销信息 -->
-    <view wx:if="{{detail.promotion_info}}" class="btn-normal">
-      <view class="sku-selector cont-box b-f m-top20 dis-flex flex-y-center">
-          <view class="f-28">
-            <text class="col-9">促销信息：</text>
-            <text class="col-13">{{detail.promotion_info}} </text>
-          </view>
-          <view class="flex-box f-26 col-9 t-r">
-            <text class="iconfont icon-xiangyoujiantou"></text>
-          </view>
+    <view wx:if="{{detail.goods_promotions_list.length > 0}}" class="btn-normal">
+      <view class="sku-selector cont-box b-13 m-top20 dis-flex flex-y-center">
+        <view class="f-28">
+          <text class="col-9">促销信息：</text>
         </view>
-      
+        <view class="flex-box dis-flex m-l-20 flex-y-center">
+          <text class="span b-63f f-20 col-f">{{ detail.goods_promotions_list[0].title }}</text>
+          <text class="span-info f-26 col-6 onelist-hidden">{{ detail.goods_promotions_list[0].describe }}</text>
+        </view>
+        <view class="f-26 col-9 t-r">
+          <text class="iconfont icon-xiangyoujiantou"></text>
+        </view>
+      </view>
     </view>
 
     <!-- 选择商品规格 -->
     <form wx:if="{{ specData }}" bindsubmit="onToggleTrade" report-submit>
       <button class="btn-normal" formType="submit">
-        <view class="sku-selector cont-box b-f m-top20 dis-flex flex-y-center">
+        <view class="sku-selector cont-box b-13 m-top20 dis-flex flex-y-center">
           <view class="flex-box f-28">
             <text class="col-9">选择：</text>
-            <text class="col-13" wx:for="{{ specData.spec_attr }}" wx:key="this">{{ item.group_name }} </text>
+            <text class="col-9" wx:for="{{ specData.spec_attr }}" wx:key="this">{{ item.group_name }} </text>
           </view>
           <view class="flex-box f-26 col-9 t-r">
             <text class="iconfont icon-xiangyoujiantou"></text>
@@ -146,25 +150,54 @@
         <!-- 底部操作栏 -->
         <view class="footer-fixed f-30">
           <block wx:if="{{stock_num > 0}}">
-            <view class="order-number" bindtap="submit" data-type="addCart">加入购物车</view>
-            <view class="order-bt" style="background-color:#F4433D" bindtap="submit" data-type="buyNow"> 立即购买</view>
+            <view class="order-number b-63f" bindtap="submit" data-type="addCart">加入购物车</view>
+            <view class="order-bt b-purple" bindtap="submit" data-type="buyNow" style="background-color:#F4433D"> 立即购买</view>
           </block>
           <view class="default-btn" wx:else>暂无现货</view>
         </view>
       </view>
     </zan-popup>
+    
+    <!-- 服务说明 -->
+    <view wx:if="{{ detail.goods_services_list.length > 0 }}" class="btn-normal">
+      <view class="sku-selector cont-box b-13 m-top20 dis-flex flex-x-between flex-y-center">
+        <view class="f-28">
+          <text class="col-9">服务说明：</text>
+        </view>
+        <view class="flex-box dis-flex m-l-20 flex-y-center">
+          <text class="span b-63f f-20 col-f">{{ detail.goods_services_list[0].title }}</text>
+          <text class="span-info f-26 col-6 onelist-hidden">{{ detail.goods_services_list[0].describe }}</text>
+        </view>
+        <view class="m-l-10 f-26 col-9 t-r">
+          <text class="iconfont icon-xiangyoujiantou"></text>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 没有评价时 -->
+    <view wx:if="{{ detail.comment_data.length === 0 }}" class="btn-normal">
+      <view class="sku-selector cont-box b-13 m-top20 dis-flex flex-x-between flex-y-center">
+        <view class="f-28">
+          <text class="col-9">暂无评价与问答</text>
+        </view>
+        <view class="flex-box f-26 col-9 t-r">
+          <text class="iconfont icon-xiangyoujiantou"></text>
+        </view>
+      </view>
+    </view>
+    
 
     <!-- 商品评价 -->
-    <view class="goods-comment" wx:if="{{ detail.comment_data.length }}">
-      <view class="cont-box b-f goods-property-box m-top20">
+    <view class="goods-comment" wx:if="{{ detail.comment_data.length > 0 }}">
+      <view class="cont-box b-13 goods-property-box m-top20">
         <text class="col-3 f-30">评价 ({{ detail.comment_data_count }}条)</text>
         <text bindtap="navigateToComment" class="comment-num">查看更多</text>
         <view class="goods-property-jianTou">
           <text class="iconfont icon-xiangyoujiantou user-orderJtou" style="margin-top:0;"></text>
         </view>
       </view>
-      <view class="goods-comment-box b-f" wx:for="{{ detail.comment_data }}" wx:key="this">
-        <view class="cont-box goods-comment-box b-t b-f b-b">
+      <view class="goods-comment-box b-13" wx:for="{{ detail.comment_data }}" wx:key="this">
+        <view class="cont-box goods-comment-box b-t b-13 b-b">
           <view class="dis-flex">
             <view class="user">
               <text class="user_name f-26">{{ item.user.nickName }}</text>
@@ -191,12 +224,12 @@
 
     <!-- 商品描述 -->
     <view class="p-bottom">
-      <view class="top-nav m-top20 b-f b-b">
+      <view class="top-nav m-top20 b-13 b-b">
         <view class="top-nav-bar">商品描述</view>
       </view>
       <view class="order" hidden="{{hiddenOrder}}">
         <view wx:if="{{detail.content!=''}}">
-          <view class="b-f goods-detail-box">
+          <view class="b-13 goods-detail-box">
             <!-- <view class="goods-cont-li"> -->
             <template is="wxParse" data="{{wxParseData:content.nodes}}"></template>
             <!-- </view> -->
@@ -228,8 +261,8 @@
           <text class="">{{cart_total_num}}</text>
         </view>
       </view>
-      <view class="order-number" catchtap="onToggleTrade">加入购物车</view>
-      <view wx:if="{{ activityStart }}" style="background-color: #F4433D" class="order-bt" catchtap="onToggleTrade">立即购买</view>
+      <view class="order-number b-63f" catchtap="onToggleTrade">加入购物车</view>
+      <view wx:if="{{ activityStart }}" class="order-bt b-purple" catchtap="onToggleTrade">立即购买</view>
       <form class="order-bt" name="pushMsgFm" bindsubmit="remindMe" wx:if="{{ !activityStart }}" report-submit="true" >
         <button form-type="submit" class="f-30 col-f">
           {{ isremind == "no" ? '立即提醒' : '取消提醒'}}

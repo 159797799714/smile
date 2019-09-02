@@ -62,6 +62,9 @@
 .b-purple{
   background: #FF00FF!important;
 }
+.b-f3c{
+  background: #ff33cc!important;
+}
 .b-63f{
   background: #6633ff!important;
 }
@@ -223,6 +226,9 @@
 }
 .f-42{
   font-size: 42rpx;
+}
+.f-40{
+  font-size: 40rpx;
 }
 .f-36 {
     font-size: 36rpx;

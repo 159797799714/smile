@@ -112,25 +112,25 @@
       <view class="big-cover-main b-15 border-box">
         <view class="box">
           <view class="price">
-            <view class="title">价格区间(元)</view>
+            <view class="title col-9">价格区间(元)</view>
             <view class="ipt">
-              <input type="text" data-type="min" bindblur="searchPrice" class="lower" value="{{minPrice}}" placeholder="最低价" placeholder-style="color: #999"/>
-              <input type="text" data-type="max" bindblur="searchPrice" value="{{maxPrice}}" placeholder="最高价" placeholder-style="color: #999"/>
+              <input type="text" data-type="min" bindblur="searchPrice" class="lower b-33" value="{{minPrice}}" placeholder="最低价" placeholder-style="color: #999"/>
+              <input type="text" data-type="max" bindblur="searchPrice" class="b-33" value="{{maxPrice}}" placeholder="最高价" placeholder-style="color: #999"/>
             </view>
           </view>
           <view wx:for="{{ captionList }}" wx:key="this" class="list-span">
-            <view class="title caption" catchtap="openTitle" data-index="{{ index }}">
+            <view class="title caption col-9" catchtap="openTitle" data-index="{{ index }}">
               <text>{{ item.title }}</text>
               <image class="img {{ item.open ? 'rotate-180': ''}}" mode="widthFix" src="../../images/down-icon.png"/>
             </view>
-            <view class="tag-span {{ item.open ? '': 'hide'}} ">
-              <view wx:for="{{ item.arr }}" wx:for-item="li" data-id="{{ li.category_id || li.type }}" wx:for-index="num" wx:key="num" class="tag border-box {{ li.category_id === brandId || li.category_id === categoryId || li.type === promotionsType ? 'selectSpan' : false }}" data-index="{{index}}" data-num="{{ num }}" catchtap="selTag">{{ li.name }}</view>
+            <view class="tag-span col-9 {{ item.open ? '': 'hide'}} ">
+              <view wx:for="{{ item.arr }}" wx:for-item="li" data-id="{{ li.category_id || li.type }}" wx:for-index="num" wx:key="num" class="tag border-box b-33 {{ li.category_id === brandId || li.category_id === categoryId || li.type === promotionsType ? 'selectSpan' : false }}" data-index="{{index}}" data-num="{{ num }}" catchtap="selTag">{{ li.name }}</view>
             </view>
           </view>
         </view>
         <view class="foot">
-          <view catchtap="resetFilter" class="reset">重置</view>
-          <view catchtap="filterAlertFalse" class="sure">完成({{ filterCoverList.sum }}物品)</view>
+          <view catchtap="resetFilter" class="reset col-13">重置</view>
+          <view catchtap="filterAlertFalse" class="sure b-33 col-9">完成({{ filterCoverList.sum }}物品)</view>
         </view>
       </view>
     </view>

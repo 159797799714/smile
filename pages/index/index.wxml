@@ -17,7 +17,7 @@
   
   
   <view class="banner">
-    <diy-component scrollTopDist="{{ scrollTopDist }}" diyItems="{{ items }}" bind:indexParentEvent="onindexParentEvent"></diy-component>  
+    <diy-component scrollTopDist="{{ scrollTopDist }}" diyItems="{{ items }}"></diy-component>  
   </view>
   <!-- DIY组件 -->
   

@@ -26,12 +26,12 @@
     <view class="shop-classify-item dis-flex flex-dir-column flex-y-center flex-x-center" wx:for="{{ shopClassify }}" wx:key="this">
       <!-- <navigator class="dis-flex flex-dir-column flex-y-center flex-x-end" wx:if="{{ index < 7 }}" hover-class="none" url="../category/list?category_id={{item.category_id}}"> -->
       <navigator class="dis-flex flex-dir-column flex-y-center flex-x-end" wx:if="{{ index < 7 }}" hover-class="none" url="../goods-list/list?category_id={{item.category_id}}&name={{item.name}}">
-        <image mode="widthFix" src="../../images/{{item.url}}" />
+        <image mode="widthFix" src="{{item.icon}}" />
         <text class="f-26">{{ item.name }}</text>
       </navigator>
 
       <navigator wx:if="{{index == 7}}" hover-class="none" url="../category/index">
-        <image mode="widthFix" style="width: 122rpx" src="../../images/{{item.url}}" class="more-img"/>
+        <image mode="widthFix" style="width: 122rpx" src="{{item.icon}}" class="more-img"/>
       </navigator>
     </view>
   </view>

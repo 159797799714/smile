@@ -17,6 +17,8 @@
 
 .checked{
   position: relative;
+  font-size: 40rpx;
+  color: #fff;
 }
 .checked:after{
   content: '';

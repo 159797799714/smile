@@ -1,19 +1,22 @@
+page{
+  background: #131313;
+}
 .cont {
   margin: 0;
   padding: 0;
   line-height: 1;
-  background-color: #fff;
-  margin-top: 98rpx;
-
 }
 
 .main {
   box-sizing: border-box;
   padding: 0 20rpx;
 }
+.banner{
+  margin-bottom: 79rpx;
+}
 
 .main_goods {
-  margin: 30rpx auto;
+  margin: 0 auto 60rpx;
   /* padding: 20rpx; */
   display: flex;
   height: 220rpx;
@@ -47,7 +50,7 @@
   white-space: nowrap;
   padding: 0 20rpx 0 10rpx;
   border-radius: 0 20rpx 20rpx 0;
-  background: rgb(244, 160, 61);
+  background: #ff33cc;
 }
 
 .main_goods_right {
@@ -58,17 +61,14 @@
 
 .main_goods_title {
   display: block;
-  margin-top: 20rpx;
   width: 100%;
-  font-size: 30rpx;
-  line-height: 1.3;
-  color: #131313;
+  line-height: 46rpx;
 }
-
-.main_goods_desc {
-  position: absolute;
-  left: 0rpx;
-  top: 90rpx;
+.sell-point{
+  margin-bottom: 26rpx;
+  height: 20rpx;
+  line-height: 20rpx;
+  
 }
 .main_goods_desc image {
   width: 40rpx;
@@ -108,44 +108,31 @@
 
 .desc_footer {
   margin-top: 15rpx;
-  font-size: 26rpx;
 }
 
-.desc_footer .price_x {
+.price_x {
   margin-right: 25rpx;
-  color: #131313;
-  font-size: 32rpx;
-  font-weight: 600;
 }
 
-.desc_footer .price_y {
-  text-decoration: line-through;
-}
 
 .settlement {
-  position: absolute;
-  right: 0rpx;
-  bottom: 28rpx;
   line-height: 50rpx;
   text-align: center;
   font-size: 24rpx;
   padding: 0 25rpx;
   border-radius: 25rpx;
-  color: #fff;
-  background: #F4433D;
   border: none;
 }
 
 .header {
   display: flex;
-  position: fixed;
-  top: 0;
   width: 100%;
-  height: 128rpx;
+  height: 124rpx;
   color: #ADADAD;
   font-size: 32rpx;
   background: #131313;
-  border-bottom: 1rpx solid #e4e4e4;
+  border-top: 6rpx transparent solid;
+  border-image: linear-gradient(to right,#00BFFF, #9933FF, #ff33cc) 1 10;
   z-index: 100;
   overflow: hidden;
   white-space: nowrap;
@@ -153,17 +140,6 @@
 
 .header scroll-view {
   height: 100%;
-}
-
-
-.cs-bg {
-  background-color: #fff;
-  height: 30rpx;
-  width: 100%;
-  border-radius:30rpx 30rpx 0px 0px;
-  position: fixed;
-  z-index: 101;
-  top: 100rpx;
 }
 
 .cs {
@@ -198,7 +174,7 @@
   width:34rpx;
   height:4rpx;
   position: absolute;
-  background:rgba(244,67,61,1);
+  background: #ff33cc;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);

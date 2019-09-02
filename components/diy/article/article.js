@@ -62,11 +62,9 @@ Component({
      */
     swichNav(e) {
       let _this = this;
-      console.log("...",e)
       wx.showLoading({
         title: '加载中',
       })
-      this.triggerEvent('parentEvent', e.currentTarget.dataset.current)
       _this.setData({
         // list: {},
         dataType: e.currentTarget.dataset.current

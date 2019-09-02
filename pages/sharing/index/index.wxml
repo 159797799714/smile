@@ -10,10 +10,16 @@
     </view>
   </view>
 </view>
-<view class="cs-bg"></view>
+
+<!-- <view class="cs-bg"></view> -->
 <!-- 拼团商品列表 -->
-<view wx:if="{{ goodsList }}" class="cont">
-  <scroll-view bindscrolltolower="bindDownLoad" scroll-y style="height: {{scrollHeight}}px;" bindscroll="onScroll">
+<view wx:if="{{ goodsList }}" class="cont b-13">
+  <scroll-view bindscrolltolower="bindDownLoad" scroll-y bindscroll="onScroll">
+    <!-- 轮播图 -->
+    <view class="banner b-13">
+      <diy-component wx:if="{{ swiperList[0].data.length > 0 }}" diyItems="{{ swiperList }}"></diy-component>
+    </view>
+    <!-- 商品 -->
     <view class="main">
       <view class="main_goods" wx:for="{{ goodsList.data }}" wx:key="this">
         <!-- 商品图片 -->
@@ -24,13 +30,14 @@
             <text class="col-f f-22">{{ item.people }}人团</text>
           </view>
         </view>
-        <view class="main_goods_right">
+        <view class="main_goods_right dis-flex flex-dir-column flex-x-between">
           <!-- 商品标题 -->
-          <view class="twolist-hidden">
-            <text class="main_goods_title">{{item.goods_name}}</text>
+          <view>
+            <text class="main_goods_title f-28 col-9 onelist-hidden">{{item.goods_name}}</text>
+            <view class="sell-point f-20 col-f3c">{{ item.selling_point }}</view>
           </view>
           <!-- 商品信息 -->
-          <view class="main_goods_desc">
+          <view class="main_goods_desc dis-flex flex-x-between flex-y-center">
             <!-- <view class="">
               <text class="desc_introduction onelist-hidden">{{item.selling_point}}</text>
             </view> -->
@@ -40,13 +47,16 @@
               <text class="iconfont icon-pintuan_huaban"></text>
               <text class="people">{{ item.people }}人团</text>
             </text> -->
-            <view class="desc_footer">
-              <text class="price_x">¥{{ item.sku[0].sharing_price }}</text>
-              <text class="price_y cl-9">¥{{ item.sku[0].line_price }}</text>
-            </view>
+            
           </view>
-          <button wx:if="{{ item.surplus_inventory > 0 }}" class="settlement" catchtap="onTargetGoods" data-id="{{ item.goods_id }}">去拼团</button>
-          <button wx:if="{{ item.surplus_inventory === 0 }}" class="settlement none col-f" catchtap="showNull">已售罄</button>
+          <view class="dis-flex flex-x-between">
+            <view class="desc_footer f-32 col-f3c">
+              ¥<text class="price_x f-40 f-w">{{ item.sku[0].sharing_price }}</text>
+              <text class="price_y f-26 cl-9 t-dec-line">¥{{ item.sku[0].line_price }}</text>
+            </view>
+            <view wx:if="{{ item.surplus_inventory > 0 }}" class="settlement b-f3c col-f" catchtap="onTargetGoods" data-id="{{ item.goods_id }}">去拼团</view>
+            <view wx:if="{{ item.surplus_inventory === 0 }}" class="settlement none col-f" catchtap="showNull">已售罄</view>
+          </view>
         </view>
       </view>
       <view wx:if="{{ no_more }}" class="no-more f-30">亲, 没有更多了</view>

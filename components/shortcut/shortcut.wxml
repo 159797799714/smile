@@ -30,7 +30,7 @@
 
   <!-- 显示隐藏开关 -->
   <form bindsubmit="_onToggleShow" report-submit="true">
-    <button formType="submit" class="nav-item nav-item__switch btn-normal {{ isShow ? 'shortcut_click_show' : '' }}">
+    <button formType="submit" class="nav-item nav-item__switch btn-normal b-33 {{ isShow ? 'shortcut_click_show' : '' }}">
       <text class='iconfont icon-daohang'></text>
     </button>
   </form>

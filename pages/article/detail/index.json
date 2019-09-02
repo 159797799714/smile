@@ -1,5 +1,7 @@
 {
   "navigationBarTitleText": "资讯详情",
+  "navigationBarBackgroundColor": "#131313",
+  "navigationBarTextStyle": "white",
   "usingComponents": {
     "shortcut": "/components/shortcut/shortcut",
     "diy-component": "/components/diy/index"

@@ -13,11 +13,21 @@ Page({
     category_id: 0,
     isScroll: false,
     scrollHeight: null,
-    option: {}, // 当前页面参数
-    list: {}, // 商品列表数据
-    no_more: false, // 没有更多数据
-    isLoading: true, // 是否正在加载中
-    page: 1, // 当前页码
+    option: {},                // 当前页面参数
+    list: {},                  // 商品列表数据
+    no_more: false,            // 没有更多数据
+    isLoading: true,           // 是否正在加载中
+    page: 1,                   // 当前页码
+    swiperList: [{
+      type: "banner",
+      data: [{
+        file_path: 'https://market.pd-unixe.com/uploads/20190611174558d5c576479.png'
+      }
+      ],
+      params: {
+        interval: 2800
+      }
+    }],                        // 轮播图数据
   },
 
   /**
@@ -26,7 +36,6 @@ Page({
   onLoad: function(options) {
     let _this = this;
     // Api：获取拼团首页
-    _this.setListHeight();
     this.getIndexData();
   },
   
@@ -146,20 +155,5 @@ Page({
       title: '抱歉！该商品已售完！',
       icon: 'none'
     })
-  },
-  /**
-   * 设置商品列表高度
-   */
-  setListHeight: function() {
-    let systemInfo = wx.getSystemInfoSync(),
-      rpx = systemInfo.windowWidth / 750, // 计算rpx
-      tapHeight = Math.floor(rpx * 98), // tap高度
-      scrollHeight = systemInfo.windowHeight - tapHeight; // swiper高度
-    console.log(
-      systemInfo.windowHeight
-    );
-    this.setData({
-      scrollHeight
-    });
   },
 })

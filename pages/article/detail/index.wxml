@@ -24,16 +24,16 @@
     
   </view>
 
-    <navigator wx:for="{{ detail.article_goods_info }}" wx:key="this" class="goods" hover-class="none" url="../../goods/index?goods_id={{ item.goods_id }}" wx:if="{{ detail.goods }}">
+    <navigator wx:for="{{ detail.article_goods_info }}" wx:key="this" class="goods b-13" hover-class="none" url="../../goods/index?goods_id={{ item.goods_id }}" wx:if="{{ detail.goods }}">
       <view class="left">
         <image class="goodsImg" src="{{item.image[0].file_path}}"></image>
       </view>
       <view class="right">
-          <text class="f-30 title twolist-hidden m-top10">{{item.goods_name}}</text>
-          <view class="price f-32 col-m m-top10">
+          <text class="f-30 title twolist-hidden m-top10 col-9">{{item.goods_name}}</text>
+          <view class="price f-32 col-f3c m-top10">
             ￥{{item.sku[0].goods_price}}
           </view>
-          <view class="btn-to-goods">去选购</view>
+          <view class="btn-to-goods b-66 col-f3c">去选购</view>
       </view>
     </navigator>
 
@@ -45,8 +45,8 @@
     </view> -->
 
     <!-- 评论 -->
-    <view class="comment-wrap">
-      <view class="b-f">
+    <view class="comment-wrap b-33">
+      <view class="b-13">
         <view class="comment-wrap-content">
           <text class="f-32 col-3 f-w">评论({{ detail.comments.num }})</text>
           <!-- 有评论的情况 -->
@@ -55,9 +55,9 @@
               <image mode="widthFix" src="{{ item.avatarUrl }}" />
             </view>
             <view class="dis-flex flex-dir-column flex-box">
-              <text class="f-28 col-3 f-w">{{ item.nickName }}</text>
+              <text class="f-28 col-9 f-w">{{ item.nickName }}</text>
               <text class="f-26 col-6 m-top10">{{ item.content }}</text>
-              <text class="f-24 col-9 m-top4">{{ item.input_date }}</text>
+              <text class="f-24 col-3 m-top4">{{ item.input_date }}</text>
             </view>
             <view class="like-number flex-self-end">
               <text class="col-9 f-24 pr-12">{{ item.likenum }}</text>

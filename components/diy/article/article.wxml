@@ -1,7 +1,7 @@
 <!-- 文章组 -->
 <view class="diy-article b-15">
   <!-- 选项卡 -->
-  <view id="tab-switch" class="{{tabFixed ? 'swiper-tab-fixed' : ''}} swiper-tab b-15 f-30 col-f f-w dis-flex box-align-center flex-y-center flex-x-between">
+  <view id="tab-switch" class="{{tabFixed ? 'swiper-tab-fixed' : ''}} swiper-tab b-15 f-32 col-cc f-w dis-flex box-align-center flex-y-center flex-x-between">
     <view wx:for="{{ tabList }}"  wx:key="this" class="swiper-tab-item {{ (!dataType && index == 0) || dataType == item.category_id ? 'checked' : ''}}" data-current="{{item.category_id}}" bindtap="swichNav">
       <text>{{item.name}}</text>
     </view>

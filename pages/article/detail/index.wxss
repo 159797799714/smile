@@ -25,8 +25,7 @@ page {
     height: 290rpx;
     width: 100%;
     padding: 20rpx;
-    border-top: 1px solid #ededed;
-    border-bottom: 1px solid #ededed;
+    border-bottom: 1px solid #ccc;
     box-sizing: border-box;
 }
 
@@ -53,8 +52,6 @@ page {
   position: absolute;
   right: 20rpx;
   bottom: 10rpx;
-  background-color: #FF5C00;
-  color: #fff;
 }
 
 .goodsImg {
