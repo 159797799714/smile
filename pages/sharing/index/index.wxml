@@ -41,7 +41,11 @@
             <!-- <view class="">
               <text class="desc_introduction onelist-hidden">{{item.selling_point}}</text>
             </view> -->
-            <image class="img-align-text pintuan-more-icon" src="/images/pintuan-more-icon.png" />
+            <view class="img-align-text pintuan-more-icon">
+              <image wx:for="{{ item.sharing_img }}" wx:for-item="imgSrc" wx:key="this" src="{{ imgSrc }}" class="f-l-12 user-img"></image>
+              <image class="f-l-12" src="/images/pintuan-more-icon.png" />  
+            </view>
+            
             <text class="col-6 f-20">已有{{ item.goods_sales }}人拼团</text>
             <!-- <text class="desc_situation">
               <text class="iconfont icon-pintuan_huaban"></text>

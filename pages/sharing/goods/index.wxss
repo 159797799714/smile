@@ -1,6 +1,9 @@
 /* wxParse.wxss */
 @import "/wxParse/wxParse.wxss";
 
+page{
+  background: #333333;
+}
 .slide-image {
   background: #fff;
 }
@@ -17,15 +20,68 @@
   top: 50%;
   margin-top: -9rpx;
 }
+/* 拼团状态 */
+.seckill-state {
+  width: 750rpx;
+  height: 130rpx;
+  margin: 0 auto;
+  border-radius:4rpx 4rpx 0rpx 0rpx;
+  color: #fff;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+}
+.seckill-state.activity-start-false {
+  background-color: #F4A03D;
+}
+.icon-img{
+  height: 50rpx;
+  width: 50rpx;
+}
+.line-54{
+  line-height: 54rpx;
+}
+.seckill-state-price {
+  height: 100%;
+  width: 450rpx;
+}
+.seckill-state-time {
+  margin-bottom: 11rpx;
+}
+.seckill-state-time image {
+  width: 20rpx;
+  margin-right: 10rpx;
+}
+.seckill-state-line {
+  width:2rpx;
+  height:62rpx;
+  background:rgba(255,255,255,1);
+  opacity:0.2;
+  display: inline-block;
+}
+.seckill-state-progress {
+  width: 220rpx;
+  position: relative;
+}
+.seckill-state-progress text {
+  position: absolute;
+  color: #F4433D;
+  top: 0;
+  left: 67rpx;
+}
+.activity-start-false .seckill-state-progress text {
+  color: #fff;
+}
+.skill-title{
+  height: 62rpx;
+  width: 60rpx;
+}
 
 /* 底部操作栏 */
 
 .footer-fixed .goods-fixed-icon {
   width: 100rpx;
-  background: #fff;
   margin: 0 auto;
   padding: 0 6rpx;
-  border-left: 1rpx solid #eee;
   height: 92rpx;
   position: relative;
 }
@@ -47,7 +103,6 @@
 
 .footer-fixed .goods-fixed-icon text {
   color: #7a7e83;
-  font-size: 48rpx;
 }
 
 .footer-fixed .goods-fixed-icon .icon-shoucang {
@@ -73,11 +128,16 @@
 }
 
 /* 商品标题 */
-
+.leftbox{
+  height: 140rpx;
+}
 .goods-title {
   overflow: hidden;
-  padding: 0 0rpx 0 0;
-  color: #333;
+}
+.goods-title>text{
+  padding: 0 9rpx;
+  background: #ff00ff;
+  border-radius: 22rpx;
 }
 
 /* 商品价格 */
@@ -224,6 +284,7 @@
 }
 
 .top-nav-bar {
+  margin-top: 6rpx;
   padding: 24rpx;
   font-size: 28rpx;
   color: #333;
@@ -237,13 +298,11 @@
 
 .goods__share button.share-btn {
   line-height: normal;
-  padding: 0 0 0 10rpx;
   background: none;
   border-radius: 0;
   box-shadow: none;
   font-size: 8pt;
   border: none;
-  color: #888;
 }
 
 .goods__share button.share-btn::after {
@@ -426,13 +485,13 @@
 }
 
 .goods-name {
+  height: 160rpx;
   padding: 26rpx 20rpx;
 }
 
 /* 商品卖点 */
-
-.goods-name .goods-selling-point {
-  color: #f20c59;
+.collect{
+  margin-right: 20rpx;
 }
 
 .goods-attention {
@@ -480,11 +539,16 @@
 }
 
 .rule-nav .i-number {
-  width: 60rpx;
-  height: 60rpx;
+  width: 80rpx;
+  height: 80rpx;
+  padding:19rpx;
+  box-sizing: border-box;
   border-radius: 50%;
   margin-bottom: 15rpx;
-  border: 1rpx dashed #c0c0c0;
+}
+.true-img{
+  width: 28rpx;
+  height: 28rpx;
 }
 
 /* 进行中的团购 */
@@ -522,14 +586,11 @@
 }
 
 .corwd_time {
-  display: flex;
-  align-items: center;
-  width: 60%;
+  
 }
 
 .corwd_time_text {
-  width: 60%;
-  text-align: center;
+  
 }
 
 .corwd_time_title {
@@ -546,18 +607,7 @@
   font-size: 23rpx;
 }
 
-.corwd_time button {
-  padding: 0rpx 28rpx;
-  line-height: 55rpx;
-  text-align: center;
-  font-size: 26rpx;
-  border-radius: 40rpx;
-  color: #fff;
-  background: linear-gradient(to right, #fa1e8c 0, #fc1e56 100%);
-  border: none;
-}
-
-.corwd_time button:after {
-  content: none;
-  border: none;
+.corwd-btn{
+  padding: 14rpx 39rpx;
+  border-radius: 24rpx;
 }

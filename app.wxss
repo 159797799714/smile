@@ -29,7 +29,7 @@ page {
 }
 /
 .none{
-  background: #999999!important;
+  background: #666!important;
 }
 /* 没有更多 */
 
@@ -237,10 +237,10 @@ page {
   bottom: 0px;
   left: 0px;
   right: 0px;
-  height: 92rpx;
+  height: 98rpx;
   z-index: 11;
   box-shadow: 1px 5px 15px rgba(50, 50, 50, 0.3);
-  background: #fff;
+  background: #131313;
 }
 
 .order-bt {

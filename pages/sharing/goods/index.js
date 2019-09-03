@@ -13,7 +13,7 @@ Page({
    */
   data: {
 
-    indicatorDots: true, // 是否显示面板指示点
+    indicatorDots: false, // 是否显示面板指示点
     autoplay: true, // 是否自动切换
     interval: 3000, // 自动切换时间间隔
     duration: 800, // 滑动动画时长
@@ -235,10 +235,10 @@ Page({
    * 增加商品数量
    */
   up: function(e) {
-    App.saveFormId(e.detail.formId);
-    this.setData({
-      goods_num: ++this.data.goods_num
-    })
+    // App.saveFormId(e.detail.formId);
+    // this.setData({
+    //   goods_num: ++this.data.goods_num
+    // })
   },
 
   /**

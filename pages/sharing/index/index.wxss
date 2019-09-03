@@ -1,10 +1,14 @@
 page{
+  display: flex;
+  flex-direction: column;
   background: #131313;
 }
 .cont {
+  flex: 1;
   margin: 0;
   padding: 0;
   line-height: 1;
+  overflow: auto;
 }
 
 .main {
@@ -75,10 +79,20 @@ page{
   height: 40rpx;
 }
 .pintuan-more-icon {
+  position: relative;
   margin-right: 20rpx;
   margin-top:12rpx;
 }
-
+.user-img{
+  height: 40rpx;
+  width: 40rpx;
+  border: 1px solid #ccc;
+  border-radius: 100%;
+}
+.f-l-12{
+  float: left;
+  margin-left: -12rpx;
+}
 .main_goods_desc text {
   display: inline-block;
 }
@@ -190,7 +204,7 @@ page{
   line-height: 50rpx;
   border-radius: 30rpx;
   transition: 1s;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(255, 255, 255, 0.4);
 }
 
 .myorder>.iconfont{

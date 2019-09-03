@@ -40,24 +40,24 @@
       <view class="dis-flex flex-y-center">
         <view class="left flex-box dis-flex flex-dir-column">
           <!-- 商品名称 -->
-          <view class="goods-title">
+          <view class="goods-title twolist-hidden">
             <text class="title f-30 twolist-hidden col-9">{{detail.goods_name}}</text>
           </view>
           <!-- 商品卖点 -->
           <view class="goods-selling-point">
             <text class="f-24 col-f3c">{{ detail.selling_point }}</text>
           </view>
-          <!-- <view class="money-box">
-            <text class="col-m f-26">￥</text>
-            <text class="price col-m">{{goods_price}}</text>
-            <text class="del" wx:if="{{line_price>0}}">￥{{line_price}}</text>
-          </view> -->
         </view>
-        <view class="right goods__share">
+        <view class="right goods__share dis-flex">
+          <view class="collect dis-flex flex-dir-column">
+            <!-- <image src="../../../images/goods/collect.png"></image> -->
+            <image src="../../../images/goods/collected.png" class="icon-img"></image>
+            <view class="line-54 f-20 col-f3c">收藏</view>
+          </view>
           <form bindsubmit="openActionsheet" report-submit="true">
             <button formType="submit" class="share-btn dis-flex flex-dir-column">
-              <text class="share__icon iconfont icon-fenxiang"></text>
-              <text class="f-24">分享</text>
+              <image src="../../../images/goods/share.png" class="icon-img"></image>
+              <text class="line-54 f-20 col-f3c">分享</text>
             </button>
           </form>
         </view>

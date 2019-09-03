@@ -2,8 +2,32 @@
 <view class="container p-bottom" wx:if="{{ detail.active_id }}">
 
   <!-- 商品信息 -->
-  <view class="header dis-flex">
-    <view class="header_lf" catchtap="onTargetGoods">
+  <view class="header dis-flex b-13">
+    <view class="good-img">
+      <image src="{{ goods.image[0].file_path }}" mode="widthFix"></image>
+    </view>
+    <view class="good-info flex-box border-box dis-flex flex-dir-column flex-x-between">
+      <view>
+        <view class="dis-flex flex-x-between">
+          <view class="f-30 flex-box col-9 onelist-hidden">{{ goods.goods_name }}</view>
+          <text class="prize b-f3c f-20 col-13">拼</text>
+        </view>
+        <view class="f-22 col-6">黑色 官方标配</view>
+        <view class="f-22 col-6">数量 x1</view>  
+      </view>
+      <view class="f-32 col-f3c">
+        ￥<text class="m-price f-40 col-f3c">{{ goods.sku[0].sharing_price }}</text>
+        <text class="m-l-10 f-26 col-9 t-dec-line">￥{{ goods.sku[0].line_price }}</text>
+      </view>
+      <view class="status">
+        <view class="pingtuan-status">
+          <text>待成团</text>
+        </view>
+      </view>
+      
+    </view>
+    
+    <!-- <view class="header_lf" catchtap="onTargetGoods">
       <image src="{{ goods.image[0].file_path }}"></image>
     </view>
     <view class="header_rt">
@@ -19,24 +43,24 @@
         <text class="tag-item">{{ detail.people }}人团</text>
         <text class="tag-item" wx:if="{{ goods.sku[0].line_price > 0 }}">拼团省{{ goods.sku[0].diff_price }}</text>
       </view>
-    </view>
+    </view> -->
   </view>
 
   <!-- 拼团成员 -->
-  <view class="main">
+  <view class="main b-13">
 
     <!-- 拼团状态 (成功、失败) -->
-    <view wx:if="{{ detail.status.value == 30 }}" class="main_status main_status__fail">
+    <!-- <view wx:if="{{ detail.status.value == 30 }}" class="main_status main_status__fail">
       <text class="status-icon iconfont icon-shibai"></text>
       <text>超过有效时间，拼团失败</text>
     </view>
     <view wx:if="{{ detail.status.value == 20 }}" class="main_status main_status__success">
       <text class="status-icon iconfont icon-success"></text>
       <text>拼团已成功</text>
-    </view>
+    </view> -->
 
     <!-- 参团用户 -->
-    <view class="main_user">
+    <view class="main_user dis-flex flex-x-center">
       <view wx:for="{{ detail.users }}" wx:key="this" class="user-item">
         <image src="{{ item.user.avatarUrl }}"></image>
         <view wx:if="{{ item.is_creator == 1 }}" class="user-role">
@@ -45,23 +69,45 @@
       </view>
       <!-- 虚位以待 -->
       <view wx:for="{{ detail.surplus_people }}" wx:key="this" class="user-item user-item__wait dis-flex flex-x-center flex-y-center">
-        <text class="iconfont icon-wenhao"></text>
+        <text class="iconfont icon-wenhao col-f"></text>
       </view>
     </view>
-
+    
+    <view class="main-status dis-flex flex-x-between flex-y-center">
+      
+      <!-- 拼团还未结束 -->
+      <view class="line b-blue"></view>
+      <view wx:if="{{ detail.status.value === 10 }}" class="f-30 col-9" wx:for="{{countDownList}}" wx:key="countDownList">剩余
+        <text class="tui-conutdown-box b-33">{{item.hou}}</text> :
+        <text class="tui-conutdown-box b-33">{{item.min}}</text> :
+        <text class="tui-conutdown-box b-33">{{item.sec}}</text> 结束
+      </view>
+      
+      <!-- 拼团失败 -->
+      <view wx:if="{{ detail.status.value === 30 }}" class="f-30 col-9">拼团时间已到</view>
+      
+      <!-- 拼团成功 -->
+      <view wx:if="{{ detail.status.value === 20 }}" class="f-30 col-f3c">拼团已成功</view>
+      
+      <view class="line b-purple"></view>
+    </view> 
+    <view wx:if="{{ detail.status.value === 30 }}" class="t-c f-26 col-f3c">拼团成功，点击查看详情</view>
+    <view wx:if="{{ detail.status.value !== 30 }}" class="t-c f-26 col-f3c">{{
+      detail.status.value === 10 ? '在邀请' + detail.surplus_people + '个名额拼团' : '拼团失败，系统将自动退款'
+      }}
+    </view>
     <!-- 拼单状态：拼团中 -->
-    <view wx:if="{{ detail.status.value == 10 }}" class="main_status main_tiem">
+    <!-- <view wx:if="{{ detail.status.value == 10 }}" class="main_status main_tiem">
       <text>还差 </text>
       <text class="main_timer_color">{{ detail.surplus_people }}</text>
       <text> 个名额，</text>
       <view class="tui-countdown-content" wx:for="{{countDownList}}" wx:key="countDownList">
-        <!-- <text class="tui-conutdown-box">{{item.day}}</text>: -->
         <text class="tui-conutdown-box">{{item.hou}}</text> :
         <text class="tui-conutdown-box">{{item.min}}</text> :
         <text class="tui-conutdown-box tui-countdown-bg">{{item.sec}}</text>
       </view>
       <text> 后结束</text>
-    </view>
+    </view> -->
 
     <!-- 操作按钮 -->
     <block wx:if="{{ detail.status.value == 10 }}">
@@ -72,14 +118,14 @@
   </view>
 
   <!-- 拼团须知 -->
-  <view class="notice" catchtap="onToggleRules">
-    <text class="f-30">拼团须知</text>
+  <view class="notice b-13" catchtap="onToggleRules">
+    <text class="f-30 col-9">拼团须知</text>
     <text class="t-brief">{{ setting.basic.rule_brief }}</text>
     <text class="icon-arrow"></text>
   </view>
 
   <!-- 更多拼团 -->
-  <view class="content" wx:if="{{ goodsList.data.length }}">
+  <view class="content b-13" wx:if="{{ goodsList.data.length }}">
     <view class="content_top" catchtap="onTargetIndex">
       <text class="f-30">更多拼团</text>
       <text class="icon-arrow"></text>

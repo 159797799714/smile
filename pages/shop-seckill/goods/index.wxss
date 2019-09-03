@@ -21,6 +21,10 @@ page{
   top: 50%;
   margin-top: -9rpx;
 }
+.icon-img{
+  height: 50rpx;
+  width: 50rpx;
+}
 
 /* 秒杀状态 */
 .seckill-state {
@@ -34,6 +38,9 @@ page{
 }
 .seckill-state.activity-start-false {
   background-color: #F4A03D;
+}
+.line-54{
+  line-height: 54rpx;
 }
 .seckill-state-price {
   height: 100%;
@@ -136,6 +143,7 @@ page{
 /* 商品标题 */
 
 .goods-title {
+  width: 90%;
   overflow: hidden;
   padding: 0 0rpx 0 0;
 }
@@ -346,14 +354,15 @@ page{
 /* 商品分享 */
 
 .goods__share button.share-btn {
-  line-height: normal;
-  padding: 0 0 0 10rpx;
+  padding-top: 2rpx;
+  height: 100%;
   background: none;
   border-radius: 0;
   box-shadow: none;
-  font-size: 8pt;
   border: none;
-  color: #888;
+}
+.collect{
+  margin-right: 20rpx;
 }
 
 .goods__share button.share-btn::after {

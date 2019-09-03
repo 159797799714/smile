@@ -39,7 +39,7 @@
         <view class="leaver">
           <text class="text">仅剩余{{ item.surplus_inventory }}件</text>
           <view class="peogress-box">
-            <progress percent="{{item.surplus_inventory/item.total_inventory * 100}}" activeColor="#FF33CC"
+            <progress percent="{{item.surplus_inventory/item.total_inventory * 100}}" activeColor="#9933ff"
               stroke-width="15" backgroundColor="#666666" class="progress" />
           </view>
         </view>

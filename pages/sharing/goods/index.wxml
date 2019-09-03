@@ -13,10 +13,33 @@
       </view>
     </view>
 
+    <view class="seckill-state {{ activityStart ? '' : 'activity-start-false'}} dis-flex flex-y-center flex-x-between linear-border">
+      <view class="seckill-state-price dis-flex flex-y-center flex-x-between">
+        <view class="dis-flex flex-y-center">
+          <text class="skill-title f-26 col-f f-w">拼团价格</text>
+          <view >
+            <text class="f-56 f-w">￥{{ sharing_price }}</text>
+            <text class="f-26 m-l-20 m-top20 t-dec-line">¥{{ line_price }}</text>
+          </view>  
+        </view>
+        <text class="seckill-state-line"></text>
+      </view>
+      <view>
+        <view class="seckill-state-time t-c">
+          <text class="f-22">{{ detail.goods_sales }}人已参团</text>
+        </view>
+        <view class="seckill-state-progress t-c">
+          <text class="f-22">拼团中</text>
+          <!-- <text wx:if="{{ !activityStart }}" class="f-22">未拼团</text> -->
+          <progress percent="{{percent}}" border-radius="15rpx" activeColor="#FEF8F0" stroke-width="15" backgroundColor="rgba(255,255,255,0.3)" class="progress"/>
+        </view>
+      </view>
+    </view>
+    
     <!-- 团购提醒 -->
-    <view class="goods-attention dis-flex flex-y-center">
+    <!-- <view class="goods-attention dis-flex flex-y-center"> -->
       <!-- 商品价格 -->
-      <view class="goods-price">
+      <!-- <view class="goods-price">
         <text class="price-currency f-26">￥</text>
         <text class="price-text">{{ sharing_price }}</text>
       </view>
@@ -31,11 +54,40 @@
             <text></text>{{ detail.goods_sales }}人已参团</view>
         </view>
       </view>
-    </view>
+    </view> -->
 
-    <view class="goods-name b-f">
+    <view class="goods-name b-13 border-box">
+      <view class="dis-flex flex-x-between flex-y-center">
+        <view class="leftbox flex-box">
+          <!-- 商品名称 -->
+          <view class="goods-title twolist-hidden f-24 col-9">
+            <text class="f-24 col-f">{{ detail.people }}人成团</text>
+            {{detail.goods_name}}
+          </view>
+          <!-- 商品卖点 -->
+          <view class="goods-selling-point">
+            <text class="f-24 col-f3c">{{ detail.selling_point }}</text>
+          </view>
+        </view>
+        <view class="right goods__share dis-flex">
+          <view class="collect dis-flex flex-dir-column">
+            <!-- <image src="../../../images/goods/collect.png"></image> -->
+            <image src="../../../images/goods/collected.png" class="icon-img"></image>
+            <view class="line-54 f-20 col-f3c">收藏</view>
+          </view>
+          <form bindsubmit="openActionsheet" report-submit="true">
+            <button formType="submit" class="share-btn dis-flex flex-dir-column">
+              <image src="../../../images/goods/share.png" class="icon-img"></image>
+              <text class="line-54 f-20 col-f3c">分享</text>
+            </button>
+          </form>
+        </view>
+      </view>
+      
+      
+      
       <!-- 商品名称 -->
-      <view class="dis-flex flex-y-center">
+      <!-- <view class="dis-flex flex-y-center">
         <view class="flex-box dis-flex flex-dir-column">
           <view class="goods-title">
             <view class="title f-30 twolist-hidden">
@@ -43,9 +95,9 @@
               <text>{{ detail.goods_name }}</text>
             </view>
           </view>
-        </view>
+        </view> -->
         <!-- 分享按钮 -->
-        <view class="goods__share">
+        <!-- <view class="goods__share">
           <form bindsubmit="openActionsheet" report-submit="true">
             <button formType="submit" class="btn-normal dis-flex flex-dir-column">
               <text class="share__icon iconfont icon-fenxiang"></text>
@@ -53,19 +105,89 @@
             </button>
           </form>
         </view>
-      </view>
+      </view> -->
       <!-- 商品卖点 -->
-      <view class="goods-selling-point">
+      <!-- <view class="goods-selling-point">
         <text class="f-24">{{ detail.selling_point }}</text>
+      </view> -->
+    </view>
+    
+    <!-- 进行中的团购 -->
+    <view class="top-nav-bar b-13" wx:if="{{ activeList.length }}">
+      <view class="top-nav dis-flex flex-x-between col-9">
+        <text>进行中的拼团</text>
+        <!-- <text class="col-9">更多团购 <text class="iconfont icon-xiangyoujiantou"></text> </text> -->
       </view>
+      <!-- 进行中的团购-内容部分 -->
+      <view class="corwd col-9" wx:for="{{ activeList }}" wx:key="this" catchtap="onTargetActive" data-id="{{ item.active_id }}">
+        <view class="corwd_people">
+          <!-- 进行中的团购-头像 -->
+          <view class="">
+            <image src="{{ item.user.avatarUrl }}" class="corwd_people_images"></image>
+          </view>
+          <!-- 进行中的团购-名称 -->
+          <text class="onelist-hidden">{{ item.user.nickName }}的团</text>
+        </view>
+        <view class="corwd_time dis-flex flex-y-center">
+          <view class="corwd_time_text">
+            <!-- 进行中的团购-开团人数 -->
+            <text class="corwd_time_title onelist-hidden">还差<text>{{ item.people - item.actual_people }}</text>人成团</text>
+            <!-- 进行中的团购-倒计时 -->
+            <text class="corwd_time_number col-9 onelist-hidden">剩余{{ countDownList[index].day }}天{{ countDownList[index].hou }}:{{ countDownList[index].min }}:{{ countDownList[index].sec }}</text>
+          </view>
+          <!-- 进行中的团购-按钮 -->
+          <view class="corwd-btn m-l-20 b-f3c f-20 col-f">去参团</view>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 拼团玩法 -->
+    <view class="rule-nav top-nav-bar m-top20 b-13">
+      <form bindsubmit="onToggleRules" report-submit="true">
+        <button formType="submit" class="btn-normal">
+          <view class="top-nav dis-flex flex-x-between">
+            <text class="col-9">拼团玩法</text>
+            <view class="flex-box f-26 col-9 t-r">
+              <text class="f-28 col-9">查看规则</text>
+              <text class="iconfont icon-xiangyoujiantou"></text>
+            </view>
+          </view>
+          <!-- 拼团步骤 -->
+          <view class="rule-simple dis-flex flex-x-around flex-y-center">
+            <view class="simple-item dis-flex flex-dir-column flex-y-center">
+              <view class="i-number dis-flex flex-x-center flex-y-center b-93f">
+                <text class="f-20 col-f">选择商品</text>
+              </view>
+            </view>
+            <image src="../../../images/goods/true.png" class="true-img"></image>
+            <view class="simple-item dis-flex flex-dir-column flex-y-center">
+              <view class="i-number dis-flex flex-x-center flex-y-center b-93f">
+                <text class="f-20 col-f">开团参团</text>
+              </view>
+            </view>
+            <image src="../../../images/goods/true.png" class="true-img"></image>
+            <view class="simple-item dis-flex flex-dir-column flex-y-center">
+              <view class="i-number dis-flex flex-x-center flex-y-center b-93f">
+                <text class="f-20 col-f">邀请好友</text>
+              </view>
+            </view>
+            <image src="../../../images/goods/true.png" class="true-img"></image>
+            <view class="simple-item dis-flex flex-dir-column flex-y-center">
+              <view class="i-number dis-flex flex-x-center flex-y-center b-93f">
+                <text class="f-20 col-f">人满成团</text>
+              </view>
+            </view>
+          </view>
+        </button>
+      </form>
     </view>
 
     <!-- 选择商品规格 -->
     <form wx:if="{{ specData }}" bindsubmit="onToggleTrade" report-submit>
       <button class="btn-normal" formType="submit">
-        <view class="sku-selector cont-box b-f m-top20 dis-flex flex-y-center">
-          <view class="flex-box f-28">
-            <text class="col-9">选择：</text>
+        <view class="sku-selector cont-box b-13 m-top20 dis-flex flex-y-center">
+          <view class="flex-box f-28 col-9">
+            <text class="col-9">请选择：</text>
             <text wx:for="{{ specData.spec_attr }}" wx:key="this">{{ item.group_name }} </text>
           </view>
           <view class="flex-box f-26 col-9 t-r">
@@ -76,8 +198,8 @@
     </form>
 
     <!-- 商品评价 -->
-    <view class="goods-comment" wx:if="{{ detail.comment_data.length }}">
-      <view class="cont-box b-f goods-property-box m-top20">
+    <view class="goods-comment bg-13" wx:if="{{ detail.comment_data.length }}">
+      <view class="cont-box b-13 goods-property-box m-top20">
         <text class="col-3 f-30">评价 ({{ detail.comment_data_count }}条)</text>
         <form bindsubmit="navigateToComment" report-submit="true" class="comment-num">
           <button formType="submit" class="btn-normal">
@@ -88,8 +210,8 @@
           <text class="iconfont icon-xiangyoujiantou user-orderJtou" style="margin-top:0;"></text>
         </view>
       </view>
-      <view class="goods-comment-box b-f" wx:for="{{ detail.comment_data }}" wx:key="this">
-        <view class="cont-box goods-comment-box b-t b-f b-b">
+      <view class="goods-comment-box b-13" wx:for="{{ detail.comment_data }}" wx:key="this">
+        <view class="cont-box goods-comment-box b-t b-13 b-b">
           <view class="dis-flex">
             <view class="user">
               <text class="user_name f-26">{{ item.user.nickName }}</text>
@@ -113,83 +235,16 @@
         </view>
       </view>
     </view>
-
-    <!-- 进行中的团购 -->
-    <view class="top-nav-bar m-top20 b-f" wx:if="{{ activeList.length }}">
-      <view class="top-nav dis-flex flex-x-between">
-        <text>进行中的团购</text>
-        <!-- <text class="col-9">更多团购 <text class="iconfont icon-xiangyoujiantou"></text> </text> -->
-      </view>
-      <!-- 进行中的团购-内容部分 -->
-      <view class="corwd" wx:for="{{ activeList }}" wx:key="this" catchtap="onTargetActive" data-id="{{ item.active_id }}">
-        <view class="corwd_people">
-          <!-- 进行中的团购-头像 -->
-          <view class="">
-            <image src="{{ item.user.avatarUrl }}" class="corwd_people_images"></image>
-          </view>
-          <!-- 进行中的团购-名称 -->
-          <text class="onelist-hidden">{{ item.user.nickName }}的团</text>
-        </view>
-        <view class="corwd_time">
-          <view class="corwd_time_text">
-            <!-- 进行中的团购-开团人数 -->
-            <text class="corwd_time_title onelist-hidden">还差<text>{{ item.people - item.actual_people }}</text>人成团</text>
-            <!-- 进行中的团购-倒计时 -->
-            <text class="corwd_time_number col-9 onelist-hidden">剩余{{ countDownList[index].day }}天{{ countDownList[index].hou }}:{{ countDownList[index].min }}:{{ countDownList[index].sec }}</text>
-          </view>
-          <!-- 进行中的团购-按钮 -->
-          <button>去参团</button>
-        </view>
-      </view>
-    </view>
-
-    <!-- 拼团玩法 -->
-    <view class="rule-nav top-nav-bar m-top20 b-f">
-      <form bindsubmit="onToggleRules" report-submit="true">
-        <button formType="submit" class="btn-normal">
-          <view class="top-nav dis-flex flex-x-between">
-            <text>拼团玩法</text>
-            <text class="f-25 col-9">查看规则</text>
-          </view>
-          <!-- 拼团步骤 -->
-          <view class="rule-simple dis-flex flex-x-around">
-            <view class="simple-item dis-flex flex-dir-column flex-y-center">
-              <view class="i-number dis-flex flex-x-center flex-y-center">
-                <text class="f-30">1</text>
-              </view>
-              <view class="i-text f-28">选择商品</view>
-            </view>
-            <view class="simple-item dis-flex flex-dir-column flex-y-center">
-              <view class="i-number dis-flex flex-x-center flex-y-center">
-                <text class="f-30">2</text>
-              </view>
-              <view class="i-text f-28">开团/参团</view>
-            </view>
-            <view class="simple-item dis-flex flex-dir-column flex-y-center">
-              <view class="i-number dis-flex flex-x-center flex-y-center">
-                <text class="f-30">3</text>
-              </view>
-              <view class="i-text f-28">邀请好友</view>
-            </view>
-            <view class="simple-item dis-flex flex-dir-column flex-y-center">
-              <view class="i-number dis-flex flex-x-center flex-y-center">
-                <text class="f-30">4</text>
-              </view>
-              <view class="i-text f-28">人满成团</view>
-            </view>
-          </view>
-        </button>
-      </form>
-    </view>
+    
 
     <!-- 商品描述 -->
     <view class="p-bottom">
-      <view class="top-nav m-top20 b-f b-b">
-        <view class="top-nav-bar">商品描述</view>
+      <view class="top-nav m-top20 b-13 b-b">
+        <view class="top-nav-bar col-9">商品描述</view>
       </view>
       <view class="order" hidden="{{hiddenOrder}}">
         <view wx:if="{{detail.content!=''}}">
-          <view class="b-f goods-detail-box">
+          <view class="b-13 goods-detail-box">
             <!-- <view class="goods-cont-li"> -->
             <template is="wxParse" data="{{wxParseData:content.nodes}}"></template>
             <!-- </view> -->
@@ -209,19 +264,21 @@
       <!-- 返回主页 -->
       <form bindsubmit="onNavigationHome" report-submit="true">
         <button formType="submit" class="btn-normal">
-          <view class="goods-fixed-icon dis-flex flex-x-center flex-y-center">
-            <text class="iconfont icon-zhuye"></text>
+          <view class="goods-fixed-icon dis-flex flex-dir-column flex-x-center flex-y-center">
+            <text class="iconfont icon-zhuye f-48"></text>
+            <text class="f-20">主页</text>
           </view>
         </button>
       </form>
       <!-- 在线客服 -->
-      <view class="goods-fixed-icon dis-flex flex-x-center flex-y-center">
+      <view class="goods-fixed-icon dis-flex flex-dir-column flex-x-center flex-y-center">
         <button open-type="contact" sessionFrom="weapp" size="27" style="opacity: 0;position:absolute;top:0px;left:0px;display:block;width:100%;height:100%;" type="default-light"></button>
-        <text class="iconfont icon-kefu"></text>
+        <text class="iconfont icon-kefu f-48"></text>
+        <text class="f-20">客服</text>
       </view>
       <!-- 购买按钮 -->
       <view class="fixed-buttons flex-box dis-flex">
-        <view wx:if="{{ detail.is_alone == 0 }}" class="order-number flex-box dis-flex flex-dir-column flex-x-center">
+        <view wx:if="{{ detail.is_alone == 0 }}" class="order-number flex-box dis-flex flex-dir-column flex-x-center b-63f">
           <form bindsubmit="onTriggerOrder" report-submit="true" data-type="10">
             <button formType="submit" class="btn-normal">
               <view class="f-26">￥{{ goods_price }}</view>
@@ -229,7 +286,7 @@
             </button>
           </form>
         </view>
-        <view class="order-bt flex-box dis-flex flex-dir-column flex-x-center">
+        <view class="order-bt flex-box dis-flex flex-dir-column flex-x-center b-93f">
           <form bindsubmit="onTriggerOrder" report-submit="true" data-type="20">
             <button formType="submit" class="btn-normal col-f">
               <view class="f-26">￥{{ sharing_price }}</view>
@@ -300,11 +357,11 @@
         </view>
         <view class="selectNumber">
           <form bindsubmit="down" report-submit="true">
-            <button formType="submit" class="default  {{goods_num>1?'':' default-active'}}" type="default">-</button>
+            <button formType="submit" class="default {{goods_num>1?'':' default-active'}}" type="default">-</button>
           </form>
           <input bindinput="import" type="number" value="{{goods_num}}" disabled></input>
           <form bindsubmit="up" report-submit="true">
-            <button formType="submit" class="default" type="default">+</button>
+            <button formType="submit" class="default default-active" type="default">+</button>
           </form>
         </view>
       </view>

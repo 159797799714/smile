@@ -1,5 +1,7 @@
 {
   "navigationBarTitleText": "拼单详情",
+  "navigationBarBackgroundColor": "#131313",
+  "navigationBarTextStyle": "white",
   "usingComponents": {
     "zan-dialog": "/components/dialog/index",
     "zan-popup": "/components/popup/index"
