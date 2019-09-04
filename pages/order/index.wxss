@@ -1,13 +1,19 @@
+page{
+  background: #333;
+}
+view{
+  padding: 0;
+  margin: 0;
+}
+.padding-l-r-30{
+  padding: 0 30rpx;
+}
+
 .header {
   width: 100%;
-  height: 88rpx;
-  border-bottom: 1rpx solid #e4e4e4;
+  height: 100rpx;
   display: flex;
-  background: #fff;
-  line-height: 88rpx;
-  position: fixed;
-  top: 0;
-  z-index: 100;
+  line-height: 100rpx;
 }
 
 .header view {
@@ -18,36 +24,43 @@
 
 .header view text {
   display: block;
-  color: #767676;
 }
 
 .header view.active {
-  color: #16171C;
+  position: relative;
+  font-size: 34rpx;
+  color: #fff;
 }
 
-.header view.active text {
-  border-bottom: 2px solid #16171C;
-  color: #16171C;
+.header view.active:after {
+  content: '';
+  position: absolute;
+  bottom: 16rpx;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 34rpx;
+  height: 4rpx;
+  background: #ff00ff;
 }
 
-.order-box {
-  padding: 0 15px;
+
+/* 订单 */
+.wrapper{
+  margin-top: 1rpx;
+}
+.order-item {
+  padding: 20rpx 50rpx 40rpx;
 }
 
 .order-header {
-  /* border-bottom: 1rpx solid #e4e4e4; */
-  padding-top: 10rpx;
+  line-height: 96rpx;
 }
 
 .order-header .title {
-  font-size: 30rpx;
-  color: #333;
 }
 
 .order-header .cont {
-  /* display: block; */
-  font-size: 30rpx;
-  color: #FF585F;
 }
 
 .order-cont {
@@ -65,16 +78,24 @@
 }
 
 .order-shop-left, .order-shop-left image {
-  width: 160rpx;
-  height: 160rpx;
+  width: 180rpx;
+  height: 180rpx;
   /* border: 1rpx solid #e4e4e4; */
-  margin-right: 15rpx;
+  margin-right: 30rpx;
   display: inline-block;
   background: #fff;
 }
-.order-shop-right {
-    color: #333;
-    font-size: 26rpx;
+.order-shop-right .goods_name{
+  max-width: 270rpx;
+  line-height: 40rpx;
+}
+.order-shop-right .goods_attr {
+  height: 25rpx;
+}
+.goods_attr>text{
+  float: left;
+  padding: 5rpx 9rpx;
+  border-radius: 13rpx;
 }
 
 .order-shop .num {
@@ -103,12 +124,6 @@
 
 .order-btn .order-right .btn-group {
   justify-content: flex-end;
-}
-
-.order-list-box .left {
-  flex: 4;
-  overflow: hidden;
-  position: relative;
 }
 
 .order-list-box .right {
@@ -144,9 +159,7 @@
 }
 
 .order-img_list {
-  background: #fff;
-  border-top: 1rpx solid #f1f1f1;
-  border-bottom: 1rpx solid #f1f1f1;
+  
 }
 
 .order-right-name {

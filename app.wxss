@@ -245,7 +245,7 @@ page {
 
 .order-bt {
   width: 50%;
-  background-color: #F4433D;
+  /* background-color: #F4433D; */
   color: #fff;
   text-align: center;
   line-height: 92rpx;

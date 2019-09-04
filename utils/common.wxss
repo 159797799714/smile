@@ -427,6 +427,9 @@
 .m-top20 {
   margin-top: 25rpx!important;
 }
+.m-b-20{
+  margin-bottom: 20rpx;
+}
 
 .m-l-10 {
   margin-left: 10rpx!important;
@@ -543,7 +546,7 @@
 .none{
   background: #666666;
 }
-.status{
+.states{
   position: absolute;
   right: 30rpx;
   bottom: 0;
@@ -565,11 +568,14 @@
   top: -3rpx;
   height: 146rpx;
   width: 146rpx;
+  box-sizing: border-box;
+  /* padding: 30rpx 25rpx 0; */
+  /* padding: 50rpx 5rpx 0; */
   border-radius: 100%;
   background: #131313;
   transform: rotate(-45deg);
   font-size: 40rpx;
   font-weight: bold;
   color: #ff33cc;
-  line-height: 130rpx;
+  line-height: 40rpx;
 }

@@ -1,6 +1,6 @@
 
 page{
-  background: #3333;
+  background: #131313;
 }
 .container{
   max-height: 100%;

@@ -9,6 +9,22 @@ Page({
    * 页面的初始数据
    */
   data: {
+    headTabList: [{
+      name: '全部',
+      type: 'all'
+    }, {
+      name: '待付款',
+      type: 'payment'
+    }, {
+      name: '待发货',
+      type: 'delivery'
+    }, {
+      name: '待收货',
+      type: 'received'
+    }, {
+      name: '待评价',
+      type: 'comment'
+    }],
     dataType: 'all', // 列表类型
     list: [], // 订单列表
     scrollHeight: null, // 列表容器高度

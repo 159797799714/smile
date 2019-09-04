@@ -31,7 +31,7 @@
       </view>
       <view class="goodInfo">
         <view class="goodName twolist-hidden f-28 col-9">{{ item.goods_name }}</view>
-        <view class="f-20 col-f3c">历史新低</view>
+        <view class="f-20 col-f3c">{{ tiem.selling_point }}</view>
         <view class="dis-flex">
           <view class="newPrice f-24 col-f3c">￥<text class="f-36">{{ item.goods_min_price }}</text></view>
           <text class="oldPrice col-6">￥{{ item.goods_max_price }}</text>

@@ -65,7 +65,7 @@ page{
 
 .main_goods_title {
   display: block;
-  width: 100%;
+  max-width: 430rpx;
   line-height: 46rpx;
 }
 .sell-point{
@@ -73,6 +73,9 @@ page{
   height: 20rpx;
   line-height: 20rpx;
   
+}
+.main_goods_desc{
+  padding-left: 12rpx;
 }
 .main_goods_desc image {
   width: 40rpx;

@@ -13,8 +13,8 @@
 
 <!-- <view class="cs-bg"></view> -->
 <!-- 拼团商品列表 -->
-<view wx:if="{{ goodsList }}" class="cont b-13">
-  <scroll-view bindscrolltolower="bindDownLoad" scroll-y bindscroll="onScroll">
+<scroll-view bindscrolltolower="bindDownLoad" scroll-y bindscroll="onScroll" wx:if="{{ goodsList }}" class="cont b-13">
+  <view>
     <!-- 轮播图 -->
     <view class="banner b-13">
       <diy-component wx:if="{{ swiperList[0].data.length > 0 }}" diyItems="{{ swiperList }}"></diy-component>
@@ -59,7 +59,7 @@
               <text class="price_y f-26 cl-9 t-dec-line">¥{{ item.sku[0].line_price }}</text>
             </view>
             <view wx:if="{{ item.surplus_inventory > 0 }}" class="settlement b-f3c col-f" catchtap="onTargetGoods" data-id="{{ item.goods_id }}">去拼团</view>
-            <view wx:if="{{ item.surplus_inventory === 0 }}" class="settlement none col-f" catchtap="showNull">已售罄</view>
+            <view wx:if="{{ item.surplus_inventory === 0 }}" class="settlement none col-f" catchtap="showNull">已抢完</view>
           </view>
         </view>
       </view>
@@ -72,9 +72,9 @@
         </view>
       </view>
     </view>
-  </scroll-view>
+  </view>
   <view catchtap="goOrder" class="myorder col-f f-30" style="right: {{ isScroll ? -200: 20 }}rpx">
     <text>拼团订单</text>
     <text class="iconfont icon-cate"></text>
   </view>
-</view>
+</scroll-view>

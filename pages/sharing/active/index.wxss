@@ -36,7 +36,11 @@ view {
   width: 100%;
 }
 .good-info{
+  max-width: 450rpx;
   padding-bottom: 30rpx;
+}
+.good-name{
+  max-width: 90%;
 }
 .prize{
   display: block;
@@ -50,16 +54,15 @@ view {
 
 .main {
   margin: auto;
-  margin-top: 30rpx;
-  padding: 50rpx 20rpx;
-  width: 95%;
+  padding: 80rpx 30rpx 50rpx ;
+  width: 100%;
   border-radius: 10rpx;
   box-sizing: border-box;
 }
 
 .main .main_user {
   display: flex;
-  margin: 0 auto 30rpx;
+  margin: 0 auto 20rpx;
   width: 600rpx;
   flex-wrap: wrap;
 }
@@ -79,7 +82,7 @@ view {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  border: 1rpx solid #f3f3f3;
+  border: 1rpx solid #666;
 }
 
 .main .main_user .user-item .user-role {
@@ -103,7 +106,7 @@ view {
 
 .main .main_user .user-item.user-item__wait {
   border-radius: 50%;
-  background: #f8f8f8;
+  background: #BFBFBF;
   border: 1rpx dashed #dbdbdb;
 }
 
@@ -157,24 +160,61 @@ view {
 
 .content {
   margin: auto;
-  margin-top: 30rpx;
-  width: 95%;
+  margin-top: 20rpx;
+  width: 100%;
   border-radius: 10rpx;
   box-sizing: border-box;
 }
 
 .content_top {
-  padding: 35rpx 20rpx;
-  display: flex;
-  padding-bottom: 30rpx;
-  justify-content: space-between;
-  align-items: center;
+  position: relative;
+  padding: 40rpx 30rpx 30rpx;
+  height: 38rpx;
+  line-height: 24rpx;
 }
-
+.content_top>text{
+  position: relative;
+}
+.content_top>text:before{
+  display: block;
+  content: '//';
+  position: absolute;
+  left: -35rpx;
+  top: 10rpx;
+  color: #ff00ff;
+  font-size: 24rpx;
+}
+.content_top>text:after{
+  display: block;
+  position: absolute;
+  right: -35rpx;
+  top: 10rpx;
+  content: '//';
+  color: #ff00ff;
+  font-size: 24rpx;
+}
+.pintuan-more-icon {
+  position: relative;
+  margin-right: 20rpx;
+  margin-top:12rpx;
+  padding-left: 12rpx;
+}
+.pintuan-more-icon>image{
+  height: 40rpx;
+  width: 40rpx;
+  float: left;
+  margin-left: -12rpx;
+}
+.user-img{
+  border: 1px solid #ccc;
+  border-radius: 100%;
+}
+.more-good{
+  padding: 19rpx 30rpx 25rpx;
+}
 .content_main {
-  padding: 25rpx;
+  margin-bottom: 44rpx;
   justify-content: space-between;
-  border-top: 1rpx solid rgb(238, 238, 238);
 }
 
 .content_main .goods-image {
@@ -191,18 +231,16 @@ view {
 
 .content_main .goods-detail {
   position: relative;
+  padding: 23rpx 8rpx 28rpx 0;
   width: 410rpx;
 }
 
 .content_main .goods-detail .goods-name {
-  font-size: 24rpx;
-  line-height: 2;
-  height: 96rpx;
+  line-height: 1;
 }
 
 .content_main .goods-detail .goods-sales {
   margin: 20rpx 0;
-  font-size: 24rpx;
   color: #fc8434;
 }
 
@@ -217,25 +255,20 @@ view {
 }
 
 .content_main .goods-detail .goods-price {
-  font-size: 38rpx;
+  
 }
 
 .content_main .goods-detail .line-price {
   margin: 0 20rpx 0 10rpx;
-  font-size: 24rpx;
-  color: #8e8e8e;
-  text-decoration: line-through;
 }
 
 .content_main .goods-detail .btn-navie {
   margin: 0;
   padding: 0;
   width: 130rpx;
-  background: linear-gradient(to right, #fa1e8c 0, #fc1e56 100%);
   line-height: 55rpx;
   height: 100%;
-  color: #fff;
-  font-size: 26rpx;
+  border-radius: 25rpx;
 }
 
 /* 拼团须知 */
@@ -243,9 +276,10 @@ view {
 .notice {
   display: flex;
   margin: auto;
-  margin-top: 30rpx;
-  padding: 35rpx 20rpx;
-  width: 95%;
+  margin-top: 20rpx;
+  padding: 35rpx 25rpx;
+  width: 100%;
+  line-height: 50rpx;
   border-radius: 10rpx;
   box-sizing: border-box;
   justify-content: space-between;

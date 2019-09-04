@@ -36,26 +36,6 @@
       </view>
     </view>
     
-    <!-- 团购提醒 -->
-    <!-- <view class="goods-attention dis-flex flex-y-center"> -->
-      <!-- 商品价格 -->
-      <!-- <view class="goods-price">
-        <text class="price-currency f-26">￥</text>
-        <text class="price-text">{{ sharing_price }}</text>
-      </view>
-      <view class="goods-message">
-        <view class="line-price" wx:if="{{line_price > 0}}">
-          <text class="f-22">￥</text>
-          <text class="f-26">{{ line_price }}</text>
-        </view>
-        <view class="dis-flex flex-y-center">
-          <view class="in-tag f-24">团购中</view>
-          <view class="in-txt f-24">
-            <text></text>{{ detail.goods_sales }}人已参团</view>
-        </view>
-      </view>
-    </view> -->
-
     <view class="goods-name b-13 border-box">
       <view class="dis-flex flex-x-between flex-y-center">
         <view class="leftbox flex-box">
@@ -70,11 +50,11 @@
           </view>
         </view>
         <view class="right goods__share dis-flex">
-          <view class="collect dis-flex flex-dir-column">
-            <!-- <image src="../../../images/goods/collect.png"></image> -->
+          <!-- <view class="collect dis-flex flex-dir-column">
+            <image src="../../../images/goods/collect.png"></image>
             <image src="../../../images/goods/collected.png" class="icon-img"></image>
             <view class="line-54 f-20 col-f3c">收藏</view>
-          </view>
+          </view> -->
           <form bindsubmit="openActionsheet" report-submit="true">
             <button formType="submit" class="share-btn dis-flex flex-dir-column">
               <image src="../../../images/goods/share.png" class="icon-img"></image>
@@ -131,7 +111,7 @@
         <view class="corwd_time dis-flex flex-y-center">
           <view class="corwd_time_text">
             <!-- 进行中的团购-开团人数 -->
-            <text class="corwd_time_title onelist-hidden">还差<text>{{ item.people - item.actual_people }}</text>人成团</text>
+            <text class="corwd_time_title onelist-hidden">还差<text class="col-f3c">{{ item.people - item.actual_people }}</text>人成团</text>
             <!-- 进行中的团购-倒计时 -->
             <text class="corwd_time_number col-9 onelist-hidden">剩余{{ countDownList[index].day }}天{{ countDownList[index].hou }}:{{ countDownList[index].min }}:{{ countDownList[index].sec }}</text>
           </view>
@@ -239,10 +219,12 @@
 
     <!-- 商品描述 -->
     <view class="p-bottom">
-      <view class="top-nav m-top20 b-13 b-b">
-        <view class="top-nav-bar col-9">商品描述</view>
+      <view class="top-nav b-33 b-b dis-flex flex-x-center flex-y-center">
+        <view class="linear b-66"></view>
+        <view class="top-nav-bar f-24 col-6">商品描述</view>
+        <view class="linear b-66"></view>
       </view>
-      <view class="order" hidden="{{hiddenOrder}}">
+      <view class="order b-13" hidden="{{hiddenOrder}}">
         <view wx:if="{{detail.content!=''}}">
           <view class="b-13 goods-detail-box">
             <!-- <view class="goods-cont-li"> -->
@@ -357,11 +339,11 @@
         </view>
         <view class="selectNumber">
           <form bindsubmit="down" report-submit="true">
-            <button formType="submit" class="default {{goods_num>1?'':' default-active'}}" type="default">-</button>
+            <button formType="submit" class="default {{goods_num>1?'':'default-active'}}" type="default">-</button>
           </form>
           <input bindinput="import" type="number" value="{{goods_num}}" disabled></input>
           <form bindsubmit="up" report-submit="true">
-            <button formType="submit" class="default default-active" type="default">+</button>
+            <button formType="submit" class="default {{order_type === '10'? '': 'default-active'}}" type="default">+</button>
           </form>
         </view>
       </view>

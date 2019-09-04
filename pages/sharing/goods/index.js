@@ -235,10 +235,15 @@ Page({
    * 增加商品数量
    */
   up: function(e) {
-    // App.saveFormId(e.detail.formId);
-    // this.setData({
-    //   goods_num: ++this.data.goods_num
-    // })
+    let that= this
+    console.log(that.data.order_type)
+    if(that.data.order_type === '20') {
+      return
+    }
+    App.saveFormId(e.detail.formId);
+    this.setData({
+      goods_num: ++this.data.goods_num
+    })
   },
 
   /**
@@ -495,6 +500,7 @@ Page({
     let _this = this;
     // 设置当前购买类型
     _this.setData({
+      goods_num: 1,
       order_type: e.currentTarget.dataset.type
     }, function() {
       _this.onToggleTrade();
