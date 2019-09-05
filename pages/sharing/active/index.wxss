@@ -50,6 +50,10 @@ view {
   text-align: center;
   border-radius: 100%;
 }
+.states{
+  right: 30rpx;
+  bottom: 0;
+}
 /* 拼团成员 */
 
 .main {
@@ -218,6 +222,7 @@ view {
 }
 
 .content_main .goods-image {
+  position: relative;
   width: 240rpx;
   height: 240rpx;
   border-radius: 10rpx;
@@ -227,6 +232,20 @@ view {
   display: block;
   width: 100%;
   height: 100%;
+}
+.goods-image .main_goods_left-people {
+  position: absolute;
+  top: 8rpx;
+  left: -12rpx;
+  height: 40rpx;
+}
+.goods-image .main_goods_left-people text {
+  position: absolute;
+  line-height: 40rpx;
+  white-space: nowrap;
+  padding: 0 20rpx 0 10rpx;
+  border-radius: 0 20rpx 20rpx 0;
+  background: #ff33cc;
 }
 
 .content_main .goods-detail {

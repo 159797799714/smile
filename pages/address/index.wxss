@@ -1,6 +1,54 @@
-.address-list {
-  border-bottom: 1px solid #f6f6f9;
+page{
+  background: #131313;
+  line-height: 1;
 }
+.address-list {
+  border-bottom: 1px solid #333;
+}
+.address-item{
+  height: 148rpx;
+  border-bottom: 1rpx solid #333;
+}
+.address-item .name{
+  height: 90rpx;
+  width: 90rpx;
+  line-height: 90rpx;
+  border-radius: 100%;
+}
+.address-item .phone{
+  line-height: 40rpx;
+  margin-bottom: 12rpx;
+}
+.address-info{
+  padding: 0 25rpx;
+}
+.detail{
+  line-height: 30rpx;
+}
+.address-info .left-box{
+  padding-right: 25rpx;
+  width: 130rpx;
+}
+.receiver{
+  width: 130rpx;
+}
+.address-info .default-mark{
+  margin-top: 20rpx;
+  padding: 8rpx 25rpx;
+  width: 50rpx;
+  border-radius: 20rpx;
+}
+.edit-btn{
+  padding: 0 15rpx 0 36rpx;
+  height: 90rpx;
+  border-left: 1px solid #666;
+  text-align: center;
+  line-height: 90rpx;
+}
+
+
+
+
 
 .address-list .list {
   padding: 15rpx;
@@ -39,6 +87,9 @@
   font-size: 30rpx;
 }
 
+
+
+
 .flow-fixed-footer {
   position: fixed;
   bottom: 0;
@@ -59,7 +110,7 @@
 
 .address-header {
   padding: 28rpx 0;
-  border-bottom: 1px solid #f6f6f9;
+  border-bottom: 1px solid #333;
   background-size: 120rpx auto;
   font-size: 1.7rem;
 }

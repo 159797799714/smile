@@ -95,7 +95,7 @@
     <!-- 进行中的团购 -->
     <view class="top-nav-bar b-13" wx:if="{{ activeList.length }}">
       <view class="top-nav dis-flex flex-x-between col-9">
-        <text>进行中的拼团</text>
+        <text class="f-28">进行中的拼团</text>
         <!-- <text class="col-9">更多团购 <text class="iconfont icon-xiangyoujiantou"></text> </text> -->
       </view>
       <!-- 进行中的团购-内容部分 -->
@@ -111,7 +111,7 @@
         <view class="corwd_time dis-flex flex-y-center">
           <view class="corwd_time_text">
             <!-- 进行中的团购-开团人数 -->
-            <text class="corwd_time_title onelist-hidden">还差<text class="col-f3c">{{ item.people - item.actual_people }}</text>人成团</text>
+            <text class="corwd_time_title f-20 onelist-hidden">还差<text class="col-f3c">{{ item.people - item.actual_people }}</text>人成团</text>
             <!-- 进行中的团购-倒计时 -->
             <text class="corwd_time_number col-9 onelist-hidden">剩余{{ countDownList[index].day }}天{{ countDownList[index].hou }}:{{ countDownList[index].min }}:{{ countDownList[index].sec }}</text>
           </view>

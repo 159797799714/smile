@@ -15,7 +15,7 @@ page {
 }
 
 .common-header-xian {
-  border-top: 1rpx solid #eee;
+  border-top: 1rpx solid #333;
   position: fixed;
   top: 0;
   width: 100%;

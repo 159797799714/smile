@@ -10,6 +10,22 @@ Page({
    */
   data: {
     dataType: 'all', // 列表类型
+    headTabList: [{
+      name: '全部',
+      type: 'all'
+    }, {
+      name: '待付款',
+      type: 'payment'
+    }, {
+      name: '拼团中',
+      type: 'sharing'
+    }, {
+      name: '待发货',
+      type: 'delivery'
+    }, {
+      name: '待收货',
+      type: 'received'
+    }],
     list: [], // 订单列表
     scrollHeight: null, // 列表容器高度
 
@@ -236,7 +252,7 @@ Page({
   setListHeight: function() {
     let systemInfo = wx.getSystemInfoSync(),
       rpx = systemInfo.windowWidth / 750, // 计算rpx
-      tapHeight = Math.floor(rpx * 88), // tap高度
+      tapHeight = Math.floor(rpx * 100), // tap高度
       scrollHeight = systemInfo.windowHeight - tapHeight; // swiper高度
     this.setData({
       scrollHeight

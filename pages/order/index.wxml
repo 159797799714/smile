@@ -58,41 +58,36 @@
           </view>
           <view class="order-box b-13">
             <view class="order-btn dis-flex flex-x-end">
-              <view class="order-right">
-                <view class="btn-group dis-flex" wx:if="{{ item.order_status.value != 20 }}">
-                  <!-- 未支付取消订单 -->
-                  <view wx:if="{{ item.pay_status.value==10 }}">
-                    <view catchtap="cancelOrder" class="btn-default" data-id="{{item.order_id}}">取消</view>
-                  </view>
-                  <!-- 已支付取消订单 -->
-                  <block wx:if="{{ item.order_status.value!=21 }}">
-                    <view wx:if="{{ item.pay_status.value==20 && item.delivery_status.value==10 }}">
-                      <view catchtap="cancelOrder" class="btn-default" data-id="{{item.order_id}}">申请取消</view>
-                    </view>
-                    <!-- 订单核销码 -->
-                    <view wx:if="{{ item.pay_status.value==20 && item.delivery_type.value == deliverys.EXTRACT.value && item.delivery_status.value == 10 }}">
-                      <view catchtap="onExtractQRCode" class="btn-main" data-id="{{item.order_id}}">
-                        <text class="iconfont icon-qr-extract"></text>
-                        <text class="m-l-10">核销码</text>
-                      </view>
-                    </view>
-                  </block>
-                  <block wx:else>
-                    <view class="f-28 col-8">取消申请中</view>
-                  </block>
-                  <!-- 订单付款 -->
-                  <view wx:if="{{item.pay_status.value==10}}">
-                    <view catchtap="payOrder" class="btn-main" data-id="{{item.order_id}}">付款</view>
-                  </view>
-                  <!-- 确认收货 -->
-                  <view wx:if="{{item.delivery_status.value==20 && item.receipt_status.value == 10}}">
-                    <view catchtap="receipt" class="btn-main" data-id="{{item.order_id}}">确认收货</view>
-                  </view>
-                  <!-- 订单评价 -->
-                  <view wx:if="{{item.order_status.value==30 && item.is_comment==0}}">
-                    <view catchtap="comment" class="btn-default" data-id="{{item.order_id}}">评价</view>
-                  </view>
+              <view class="btn-group dis-flex" wx:if="{{ item.order_status.value != 20 }}">
+                <!-- 未支付取消订单 -->
+                <view wx:if="{{ item.pay_status.value==10 }}">
+                  <view catchtap="cancelOrder" class="btn-default" data-id="{{item.order_id}}">取消订单</view>
                 </view>
+                <!-- 已支付取消订单 -->
+                <block wx:if="{{ item.order_status.value!=21 }}">
+                  <view wx:if="{{ item.pay_status.value==20 && item.delivery_status.value==10 }}">
+                    <view catchtap="cancelOrder" class="btn-default" data-id="{{item.order_id}}">申请取消</view>
+                  </view>
+                  <!-- 订单核销码 -->
+                  <view wx:if="{{ item.pay_status.value==20 && item.delivery_type.value == deliverys.EXTRACT.value && item.delivery_status.value == 10 }}">
+                    <view catchtap="onExtractQRCode" class="btn-main" data-id="{{item.order_id}}">
+                      <text class="iconfont icon-qr-extract"></text>
+                      <text class="m-l-10">核销码</text>
+                    </view>
+                  </view>
+                </block>
+                <block wx:else>
+                  <view class="f-24 col-9">取消申请中</view>
+                </block>
+                <!-- 订单付款 -->
+                <view wx:if="{{item.pay_status.value==10}}" catchtap="payOrder" class="btn-main" data-id="{{item.order_id}}">立即付款</view>
+                
+                <!-- 确认收货 -->
+                <view wx:if="{{item.delivery_status.value==20 && item.receipt_status.value == 10}}" catchtap="receipt" class="btn-main" data-id="{{item.order_id}}">确认收货</view>
+                
+                <!-- 订单评价 -->
+                <view wx:if="{{item.order_status.value==30 && item.is_comment==0}}" catchtap="comment" class="btn-default" data-id="{{item.order_id}}">评价</view>
+                
               </view>
             </view>
           </view>

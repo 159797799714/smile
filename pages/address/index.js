@@ -31,7 +31,7 @@ Page({
    */
   createAddress: function() {
     wx.navigateTo({
-      url: './create'
+      url: "./detail"
     });
   },
 

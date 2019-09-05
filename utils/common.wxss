@@ -346,6 +346,9 @@
 .col-s {
   color: #be0117 !important;
 }
+.col-0{
+  color: #000;
+}
 
 .col-green {
   color: #0ed339 !important;
@@ -548,8 +551,6 @@
 }
 .states{
   position: absolute;
-  right: 30rpx;
-  bottom: 0;
   height: 150rpx;
   width: 150rpx;
   overflow: hidden;
@@ -561,6 +562,7 @@
   text-align: center;
   border-radius: 100%;
   border: 25rpx double #ff33cc;
+  color: #ff33cc;
 }
 .pingtuan-status>text{
   position: absolute;
@@ -573,9 +575,12 @@
   /* padding: 50rpx 5rpx 0; */
   border-radius: 100%;
   background: #131313;
-  transform: rotate(-45deg);
+  transform: rotate(-35deg);
   font-size: 40rpx;
   font-weight: bold;
-  color: #ff33cc;
   line-height: 40rpx;
+}
+.style-66{
+  border-color: #666!important;
+  color: #666!important;
 }

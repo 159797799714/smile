@@ -228,7 +228,7 @@ Page({
   setListHeight: function() {
     let systemInfo = wx.getSystemInfoSync(),
       rpx = systemInfo.windowWidth / 750, // 计算rpx
-      tapHeight = Math.floor(rpx * 88), // tap高度
+      tapHeight = Math.floor(rpx * 100), // tap高度
       scrollHeight = systemInfo.windowHeight - tapHeight; // swiper高度
     this.setData({
       scrollHeight

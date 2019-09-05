@@ -10,16 +10,24 @@ Page({
     nav_select: false, // 快捷导航
     region: '',
     detail: {},
-
     error: '',
+    address_id: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    // 获取当前地址信息
-    this.getAddressDetail(options.address_id);
+    if(options.address_id) {
+      
+      this.data.address_id= options.address_id
+      // 获取当前地址信息
+      this.getAddressDetail(options.address_id);
+      return
+    }
+    wx.setNavigationBarTitle({
+      title: '添加收货地址'
+    })
   },
 
   /**

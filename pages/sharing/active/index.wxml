@@ -21,8 +21,8 @@
       </view>
       <view class="states">
         <view class="pingtuan-status">
-          <text wx:if="{{ detail.status.value == 10 }}" style="padding: 50rpx 5rpx 0;">待成团</text>
-          <text wx:if="{{ detail.status.value != 10 }}" style="padding: 30rpx 25rpx 0;">{{ detail.status.value == 20 ? '拼团失败': '拼团成功' }}</text>
+          <text wx:if="{{ detail.status.value === 10 }}" style="padding: 50rpx 5rpx 0;">待成团</text>
+          <text wx:if="{{ detail.status.value !== 10 }}" style="padding: 30rpx 25rpx 0;">{{ detail.status.value === 30 ? '拼团失败': '拼团成功' }}</text>
         </view>
       </view>
       
@@ -64,8 +64,9 @@
       
       <view class="line b-purple"></view>
     </view> 
-    <view wx:if="{{ detail.status.value === 30 }}" class="t-c f-26 col-f3c">拼团成功，点击查看详情</view>
-    <view wx:if="{{ detail.status.value !== 30 }}" class="t-c f-26 col-f3c">{{
+    <view wx:if="{{ detail.status.value === 20 }}" class="t-c f-26 col-f3c">拼团成功，点击查看详情</view>
+    
+    <view wx:if="{{ detail.status.value !== 20 }}" class="t-c f-26 col-f3c">{{
       detail.status.value === 10 ? '再邀请' + detail.surplus_people + '个名额拼团' : '拼团失败，系统将自动退款'
       }}
     </view>
@@ -94,6 +95,9 @@
       <view wx:for="{{ goodsList.data }}" wx:key="key" class="content_main dis-flex b-33" catchtap="onTargetGoods" data-id="{{ item.goods_id }}">
         <view class="goods-image">
           <image src="{{ item.image[0].file_path }}"></image>
+          <view class="main_goods_left-people">
+            <text class="col-f f-22">{{ item.people }}人团</text>
+          </view>
         </view>
         <view class="goods-detail dis-flex flex-dir-column flex-x-between border-box">
           <view class="goods-name f-30 col-f onelist-hidden">{{ item.goods_name }}</view>

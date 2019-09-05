@@ -118,11 +118,8 @@ view{
   color: #888;
 }
 
-.order-btn .order-right {
-  flex: 3;
-}
 
-.order-btn .order-right .btn-group {
+.order-btn  .btn-group {
   justify-content: flex-end;
 }
 
@@ -136,22 +133,28 @@ view{
 }
 
 .btn-default {
-  border-radius: 4px;
-  border: 1rpx solid #ccc;
-  padding: 6rpx 20rpx;
-  font-size: 28rpx;
-  color: #555;
   float: right;
+  padding: 18rpx 23rpx;
+  min-width: 95rpx;
+  text-align: center;
+  border-radius: 30rpx;
+  border: 1rpx solid #9933ff;
+  font-size: 24rpx;
+  line-height: 24rpx;
+  color: #999;
 }
 
 .btn-main {
-  border-radius: 4px;
-  border: 1rpx solid #FF585F;
-  padding: 6rpx 20rpx;
-  font-size: 28rpx;
-  color: #FF585F;
-  margin-left: 10rpx;
   float: right;
+  padding: 18rpx 22rpx;
+  min-width: 95rpx;
+  margin-left: 20rpx;
+  text-align: center;
+  border-radius: 30rpx;
+  border: 1rpx solid #FF33FF;
+  font-size: 24rpx;
+  color: #FF33FF;
+  line-height: 24rpx;
 }
 
 .user-orderJtou {
