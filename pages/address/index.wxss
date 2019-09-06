@@ -26,7 +26,6 @@ page{
   line-height: 30rpx;
 }
 .address-info .left-box{
-  padding-right: 25rpx;
   width: 130rpx;
 }
 .receiver{
@@ -45,10 +44,6 @@ page{
   text-align: center;
   line-height: 90rpx;
 }
-
-
-
-
 
 .address-list .list {
   padding: 15rpx;
@@ -86,9 +81,6 @@ page{
   color: #777;
   font-size: 30rpx;
 }
-
-
-
 
 .flow-fixed-footer {
   position: fixed;

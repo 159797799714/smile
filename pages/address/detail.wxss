@@ -1,3 +1,6 @@
+page{
+  background: #131313;
+}
 .profile-list .admin {
   padding-left: 15px;
   font-size: 30rpx;
@@ -5,14 +8,25 @@
 }
 
 .address-box .left-name {
-  width: 85px;
+  width: 190rpx;
+  color: #999;
+  display: flex;
+  align-items: center;
+}
+.left-name>image{
+  height: 55rpx;
+  width: 55rpx;
+  margin-right: 15rpx;
 }
 
 .address-cont-title .list {
   width: auto;
-  padding: 24rpx;
+  padding: 24rpx 30rpx;
 }
-
+.address-cont-title .list>image{
+  width: 30rpx;
+  height: 38rpx;
+}
 .tui-picker-detail text {
   padding: 0 10rpx;
 }
@@ -84,7 +98,11 @@ picker-view-column view {
 .left-bt {
   left: 30rpx;
 }
-
+.left-box{
+  padding-left: 70rpx;
+  min-width: 120rpx;
+  line-height: 24rpx;
+}
 .right-bt {
   right: 30rpx;
   color: #ec5151;
@@ -98,13 +116,56 @@ picker-view-column view {
   margin-top: 89rpx;
   background-color: #eee;
 }
-
-.address-box .right-cont input {
-  width: 100%;
-  font-size: 30rpx;
-  color: #444;
+.right-cont{
+  height: 32rpx;
+  
+}
+.address-box .right-cont .tag{
+  display: inline-block;
+  margin-right: 18rpx;
+  width: 94rpx;
+  border-radius: 15rpx;
+  height: 32rpx;
+  line-height: 32rpx;
 }
 
+.address-box .right-cont input {
+  height: 30rpx;
+  width: 100%;
+  font-size: 24rpx;
+  color: #999;
+}
+.right-cont>view{
+  position: relative;
+  height: 32rpx;
+  width: 60rpx;
+}
+.address-cont-box picker{
+  margin: auto 0;
+}
+.address-cont-box picker text{
+  line-height: 55rpx;
+}
+.detail{
+  line-height: 1rem;
+}
+.detail-left{
+  height: 80rpx;
+  width: 120rpx;
+  padding-left: 70rpx;
+}
+.detail-left>text{
+  line-height: 80rpx;
+}
+.detail-right{
+  padding-left: 70rpx;
+}
+.detail-right .ipt{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 80rpx!important;
+}
 .bargain-commont-bg {
   background: rgba(0, 0, 0, 0.6);
   position: fixed;
@@ -114,45 +175,19 @@ picker-view-column view {
   bottom: 0;
   z-index: 20;
 }
-
-.f-34 {
-  font-size: 34rpx;
-}
-
-.f-32 {
-  font-size: 32rpx;
-}
-
-.f-31 {
-  font-size: 31rpx;
-}
-
-.f-28 {
-  font-size: 28rpx;
-}
-
-.f-26 {
-  font-size: 26rpx;
-}
-
-.f-24 {
-  font-size: 24rpx;
-}
-
-.f-22 {
-  font-size: 22rpx;
-}
-
 .b-r {
-  border-right: 1rpx solid #eee;
+  border-right: 1rpx solid #333;
 }
 
 .b-b {
-  border-bottom: 1rpx solid #eee;
+  border-bottom: 1rpx solid #333;
 }
 
 .b-t {
-  border-top: 1rpx solid #eee;
+  border-top: 1rpx solid #333;
+}
+.p-b-0{
+  padding: 24rpx 30rpx 0 30rpx!important;
 }
 
 .m-top4 {
@@ -169,4 +204,7 @@ picker-view-column view {
 
 .m-top35 {
   margin-top: 35rpx;
+}
+.m-top80{
+  margin-top: 80rpx;
 }

@@ -39,8 +39,9 @@ Page({
    * 编辑地址
    */
   editAddress: function(e) {
+    console.log(e.currentTarget.dataset)
     wx.navigateTo({
-      url: "./detail?address_id=" + e.currentTarget.dataset.id
+      url: "./detail?address_id=" + e.currentTarget.dataset.id + '&defaultId=' + e.currentTarget.dataset.defaultid
     });
   },
 

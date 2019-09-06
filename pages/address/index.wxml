@@ -4,16 +4,16 @@
     <view wx:for="{{list}}" wx:for-item="item" wx:key="this" class="address-item dis-flex flex-x-between flex-y-center p-30-box col-6">
       <view class="name b-33 f-24 col-9 t-c onelist-hidden">{{ item.name }}</view>
       <view class="address-info flex-box dis-flex flex-x-between">
-        <view class="left-box">
+        <view class="left-box dis-flex flex-dir-column flex-x-center">
           <view class="receiver f-36 col-9 onelist-hidden">{{ item.name }}</view>
           <view wx:if="{{item.address_id == default_id}}" class="default-mark b-93f f-24 col-0">默认</view>
         </view>
-        <view class="f-24">
+        <view class="flex-box f-24">
           <view class="phone">{{ item.phone }}</view>
           <view class="detail twolist-hidden">{{item.region.province}} {{item.region.city}} {{item.region.region}} {{item.detail}}</view>
         </view>
       </view>
-      <view class="edit-btn f-24"  bindtap="editAddress" data-id="{{item.address_id}}">编辑</view>
+      <view class="edit-btn f-24"  bindtap="editAddress" data-id="{{item.address_id}}" data-defaultId="{{ default_id }}">编辑</view>
       <!-- <view class="address-header b-13 m-top18">
         <view class="flow-header-left pl-12">
           <view class="flow-checkout-admin">{{item.name}}

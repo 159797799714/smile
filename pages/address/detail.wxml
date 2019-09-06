@@ -2,52 +2,77 @@
   <view class="common-header-xian"></view>
   <!-- 表单 -->
   <form bindsubmit="saveData" report-submit="true">
-    
-    
-    <!-- <view class="address-cont-title b-f b-b">
+    <view class="address-cont-title b-13 b-b">
       <view class="list address-box dis-flex b-b">
         <view class="left-name">
-          <text class="f-30">收货人</text>
+          <image src="../../images/address/icon1.png"></image>
+          <text class="f-24">收货人:</text>
         </view>
         <view class="right-cont flex-box">
-          <input name="name" placeholder="请输入收货人姓名" value="{{detail.name}}"></input>
+          <input name="name" placeholder="请输入收货人姓名" value="{{detail.name}}" placeholder-style="color: #333;"></input>
         </view>
       </view>
-      <view class="list address-box dis-flex">
+      <view class="list address-box dis-flex b-b">
         <view class="left-name">
-          <text class="f-30">手机号</text>
+          <image src="../../images/address/icon2.png"></image>
+          <text class="f-24">手机号:</text>
         </view>
         <view class="right-cont flex-box">
-          <input maxlength="11" name="phone" placeholder="请输入收货人联系电话" type="number" value="{{detail.phone}}"></input>
+          <input maxlength="11" name="phone" placeholder="请输入收货人联系电话" type="number" value="{{detail.phone}}" placeholder-style="color: #333;"></input>
         </view>
       </view>
-    </view>
-    <view class="address-cont-title b-f b-b">
-      <view class="dis-flex list address-box m-top20 b-b">
+      
+      <view class="dis-flex list p-b-0 address-box">
         <view class="left-name">
-          <text class="f-30">所在地区</text>
+          <image src="../../images/address/icon3.png"></image>
+          <text class="f-24">所在地区:</text>
         </view>
         <view class="address-cont-box flex-box">
           <picker mode="region" bindchange="bindRegionChange" value="{{ region }}">
-            <text wx:if="{{ region.length }}" class="f-30">{{ region }}</text>
-            <text wx:else class="f-30 col-7">选择省、市、区</text>
+            <text wx:if="{{ region.length }}" class="f-24 col-9">{{ region }}</text>
+            <text wx:else class="f-24 col-9">选择省、市、区</text>
           </picker>
         </view>
+        <image src="../../images/address/icon4.png"></image>
       </view>
-      <view class="dis-flex list address-box">
+      
+      <view class="detail p-30-box dis-flex b-b">
+        <!-- <view class="detail-left col-9">
+          <text class="f-24">详细地址:</text>
+        </view> -->
+        <view class="detail-right flex-box f-24 col-9">
+          <input class="ipt" name="detail" placeholder="详细地址：如道路，门排号，小区，楼栋号，单元" placeholder-style="color: #333;" type="text" value="{{detail.detail}}"></input>
+        </view>
+      </view>
+      
+      <view class="dis-flex flex-y-center list address-box b-b">
         <view class="left-name">
-          <text class="f-30">详细地址</text>
+          <image src="../../images/address/icon5.png"></image>
+          <text class="f-24">地址地标:</text>
         </view>
         <view class="right-cont flex-box">
-          <input name="detail" placeholder="请输入街道小区楼层" type="text" value="{{detail.detail}}"></input>
+          <text wx:for="{{ tags_name }}" wx:key="index" class="tag {{ tagData === item.name? 'b-93f': 'b-33'}} f-18 col-f t-c onelist-hidden" catchtap="selectTag" data-name="{{ item.name }}">{{ item.name }}</text>
+        </view>
+        <view class="f-24 col-6">
+          更多 <text class="iconfont icon-xiangyoujiantou col-6"></text>
         </view>
       </view>
-    </view> -->
-    <view class="padding-box m-top35 btn-green btn-sm">
-      <button class="f-32" catchtap="chooseAddress">一键获取微信地址</button>
+      <view wx:if="{{ !isDefault && address_id }}" class="dis-flex flex-y-center list address-box">
+        <view class="left-box col-9">
+          <text class="f-24">默认收货地址:</text>
+        </view>
+        <view class="right-cont flex-box">
+          <view class="fr f-24 col-6">
+            <switch checked="{{ isDefault }}" color="#9933ff" style='zoom:.6;' bindchange="switchChange"/>
+          </view>  
+        </view>
+      </view>
     </view>
-    <view class="padding-box m-top20 profile-btn">
-      <button formType="submit" disabled="{{disabled}}">保存</button>
+    <view wx:if="{{ !address_id }}" class="padding-box m-top35 btn-green btn-sm">
+      <button class="b-33 f-26" catchtap="chooseAddress">{{ address_id }}一键获取微信地址</button>
+    </view>
+    <view class="padding-box m-top80">
+      <button formType="submit" disabled="{{disabled}}" class="b-93f f-26 col-f">保存</button>
     </view>
   </form>
 </view>

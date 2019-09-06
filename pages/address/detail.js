@@ -7,11 +7,21 @@ Page({
    */
   data: {
     disabled: false,
-    nav_select: false, // 快捷导航
+    nav_select: false,   // 快捷导航
     region: '',
     detail: {},
     error: '',
-    address_id: ''
+    address_id: '',     // 地址id
+    tags: [{
+      name: '家'
+    }, {
+      name: '公司'
+    }, {
+      name: '学校'
+    }],                 // 地址标签
+    tagData: '家',      // 默认选中家
+    defauleId: '',      // 默认选中的id
+    isDefault: false,   // 是否默认
   },
 
   /**
@@ -19,8 +29,11 @@ Page({
    */
   onLoad: function(options) {
     if(options.address_id) {
-      
-      this.data.address_id= options.address_id
+      this.setData({
+        address_id: options.address_id,
+        isDefault: options.defaultId === options.address_id,
+        defauleId: options.defaultId
+      })
       // 获取当前地址信息
       this.getAddressDetail(options.address_id);
       return
@@ -66,7 +79,16 @@ Page({
 
     // 提交到后端
     values.address_id = _this.data.detail.address_id;
-    App._post_form('address/edit', values, function(result) {
+    values.tags_id = _this.data.tagData
+    
+    let url= 'address/edit'
+    
+    // 添加新地址
+    if(!_this.data.address_id) {
+      url= 'address/add'
+    }
+    console.log(values)
+    App._post_form(url, values, function(result) {
       App.showSuccess(result.msg, function() {
         wx.navigateBack();
       });
@@ -76,6 +98,35 @@ Page({
         disabled: false
       });
     });
+  },
+  
+  // 选择地址标签
+  selectTag(e) {
+    console.log(e.currentTarget.dataset.name)
+    this.setData({
+      tagData: e.currentTarget.dataset.name
+    })
+  },
+  
+  // 是否默认收货地址
+  switchChange(e) {
+    let _this = this
+    if (e.detail.value) {
+      App._post_form('address/setDefault', {
+        address_id: _this.data.address_id
+      }, function(result) {
+        App.showSuccess('设置成功', function() {
+          _this.setData({
+            isDefault: true
+          })
+        })
+      })
+      return
+    } else {
+      _this.setData({
+        isDefault: false
+      })
+    }
   },
 
   /**
