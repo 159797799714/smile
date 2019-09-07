@@ -145,7 +145,7 @@ page {
 /* 作者回复 */
 .authors-reply {
     width:555rpx;
-    background:rgba(245,245,245,1);
+    background: #333;
     border-radius:4rpx;
     padding: 36rpx 20rpx;
     margin: -20rpx 0 50rpx 114rpx;

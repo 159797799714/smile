@@ -1,6 +1,9 @@
 /* wxParse.wxss */
 @import "/wxParse/wxParse.wxss";
 
+page{
+  background: #333;
+}
 .slide-image {
   background: #fff;
 }

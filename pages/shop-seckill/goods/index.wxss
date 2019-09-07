@@ -215,9 +215,7 @@ page{
 }
 
 .goods-list-box .tmall-types .tipstxt {
-  font-size: 26rpx;
-  color: #888;
-  margin-bottom: 10rpx;
+  line-height: 72rpx;
 }
 
 .goods-list-box .tmall-types .cartypelist {
@@ -225,20 +223,19 @@ page{
 }
 
 .goods-list-box .tmall-types .cartypelist .cartypeitem {
-  font-size: 26rpx;
   height: 55rpx;
   line-height: 55rpx;
-  padding: 0 30rpx;
-  margin: 0 20rpx 20rpx 0;
-  border-radius: 8rpx;
-  color: #888;
-  border: 1px solid #e6e6e6;
+  padding: 0 25rpx;
+  margin: 0 40rpx 20rpx 0;
+  border-radius: 25rpx;
+  background: #666;
+  border: 2rpx solid #666;
 }
 
 .goods-list-box .tmall-types .cartypelist .cartypeitem.cur {
-  background: #f20c59;
-  border: 1rpx solid #f20c59;
-  color: #fff;
+  background: #131313;
+  border-color: #ff00ff;
+  color: #ff00ff;
 }
 
 .goods-list-box .tmall-types .cartypelist .cartypeitem.cur:after {
@@ -446,9 +443,8 @@ page{
 }
 
 .popup__trade .trade-main {
-  background: #fff;
   box-sizing: border-box;
-  padding: 24rpx;
+  padding: 40rpx 30rpx;
 }
 
 .popup__trade .footer-fixed {
@@ -457,21 +453,18 @@ page{
 }
 
 .popup__trade .trade-main .goods-info {
-  margin-bottom: 10rpx;
+  margin-bottom: 30rpx;
+  height: 180rpx;
 }
 
 .popup__trade .trade-main .goods-info .goods-image {
-  margin-top: -40px;
   margin-right: 20rpx;
 }
 
 .popup__trade .trade-main .goods-info .goods-image image {
-  width: 90px;
-  height: 90px;
-  border: 5rpx solid #fff;
-  box-shadow: 0 4rpx 10rpx rgba(220, 220, 220, 0.79);
+  width: 180rpx;
+  height: 180rpx;
 }
-
 .popup__trade .trade-main .goods-info .money-box {
   margin: 0;
 }
@@ -481,15 +474,13 @@ page{
 }
 
 .popup__trade .trade-main .buy_number {
-  margin: 20rpx 0;
-  justify-content: space-between;
+  padding: 54rpx 0;
 }
 
 .popup__trade .trade-main .buy_number .buyNumber {
   color: #888;
-  background: #fff;
   border-radius: 10rpx;
-  margin-bottom: 10rpx;
+  line-height: 45rpx;
 }
 
 /* 商品卖点 */

@@ -234,13 +234,12 @@ Page({
   /**
    * 增加商品数量
    */
-  up: function(e) {
+  up: function() {
     let that= this
     console.log(that.data.order_type)
     if(that.data.order_type === '20') {
       return
     }
-    App.saveFormId(e.detail.formId);
     this.setData({
       goods_num: ++this.data.goods_num
     })
@@ -249,8 +248,7 @@ Page({
   /**
    * 减少商品数量
    */
-  down: function(e) {
-  App.saveFormId(e.detail.formId);
+  down: function() {
     if (this.data.goods_num > 1) {
       this.setData({
         goods_num: --this.data.goods_num

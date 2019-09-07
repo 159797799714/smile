@@ -67,7 +67,7 @@
       </view> -->
     </view>
     <!-- 促销信息 -->
-    <view wx:if="{{detail.goods_promotions_list.length > 0}}" class="btn-normal">
+    <view wx:if="{{detail.goods_promotions_list.length > 0}}" class="btn-normal" catchtap="closeAlert">
       <view class="sku-selector cont-box b-13 m-top20 dis-flex flex-y-center">
         <view class="f-28">
           <text class="col-9">促销信息：</text>
@@ -101,42 +101,36 @@
       <view class="popup__trade">
         <!-- 关闭按钮 -->
         <view class="trade-close dis-flex flex-x-center flex-y-center" catchtap="onToggleTrade">
-          <text class="iconfont icon-close f-26"></text>
+          <text class="iconfont icon-close f-26 col-9"></text>
         </view>
         <!-- 主体信息 -->
-        <view class="trade-main">
+        <view class="trade-main b-13">
           <view class="goods-info dis-flex">
             <!-- 图片名称 -->
             <view class="goods-image" bindtap="previewSkuImage">
               <image src="{{ image_path }}"></image>
             </view>
-            <view class="right flex-box">
-              <view class="money-box">
-                <text class="col-m f-26">￥</text>
-                <text class="price col-m">{{goods_price}}</text>
-                <text class="del" wx:if="{{line_price>0}}">￥{{line_price}}</text>
+            <view class="right flex-box dis-flex flex-dir-column flex-x-end">
+              <view class="money-box col-9">
+                <text class="f-32">￥</text>
+                <text class="price">{{goods_price}}</text>
               </view>
               <view class="goods-stock dis-flex">
-                <text class="flex-box f-26 col-7">库存：{{stock_num}}</text>
+                <text class="flex-box f-26 col-7">仅剩{{stock_num}}件</text>
               </view>
             </view>
           </view>
           <!-- 规格列表 -->
           <view class="goods-list-box" scroll-y="true">
             <view class="cf tmall-types" wx:for="{{specData.spec_attr}}" wx:for-item="attr" wx:for-index="attr_idx" wx:key="key">
-              <view class="tipstxt" data-id="{{attr.group_id}}">{{attr.group_name}}</view>
+              <view class="tipstxt f-24 col-6" data-id="{{attr.group_id}}">{{attr.group_name}}</view>
               <view class="cf cartypelist" wx:for="{{attr.spec_items}}" wx:for-index="item_idx" wx:key="ikey">
-                <view wx:if="{{item.checked}}">
-                  <view bindtap="modelTap" class="cartypeitem cur" data-attr-idx="{{attr_idx}}" data-item-idx="{{item_idx}}">{{item.spec_value}}</view>
-                </view>
-                <view wx:else>
-                  <view bindtap="modelTap" class="cartypeitem" data-attr-idx="{{attr_idx}}" data-item-idx="{{item_idx}}">{{item.spec_value}}</view>
-                </view>
+                <view bindtap="modelTap" class="cartypeitem f-26 col-13 {{item.checked ? 'cur': ''}}" data-attr-idx="{{attr_idx}}" data-item-idx="{{item_idx}}">{{item.spec_value}}</view>
               </view>
             </view>
           </view>
           <!-- 购买数量 -->
-          <view class="buy_number">
+          <view class="buy_number dis-flex flex-x-between">
             <view class="buyNumber f-26">
               <text>购买数量</text>
             </view>
@@ -150,8 +144,8 @@
         <!-- 底部操作栏 -->
         <view class="footer-fixed f-30">
           <block wx:if="{{stock_num > 0}}">
-            <view class="order-number b-63f" bindtap="submit" data-type="addCart">加入购物车</view>
-            <view class="order-bt b-purple" bindtap="submit" data-type="buyNow" style="background-color:#F4433D"> 立即购买</view>
+            <!-- <view class="order-number b-63f" bindtap="submit" data-type="addCart">加入购物车</view> -->
+            <view class="buy-btn b-purple" bindtap="submit" data-type="buyNow" style="background-color:#F4433D"> 立即购买</view>
           </block>
           <view class="default-btn" wx:else>暂无现货</view>
         </view>
@@ -173,6 +167,11 @@
         </view>
       </view>
     </view>
+    
+    <!-- 服务说明弹窗 -->
+    <zan-popup show="{{ showRemark }}" type="bottom" bindclose="closeAlert">
+      <view class="col-f">减肥减肥了副经理</view>
+    </zan-popup>
     
     <!-- 没有评价时 -->
     <view wx:if="{{ detail.comment_data.length === 0 }}" class="btn-normal">
@@ -261,8 +260,8 @@
           <text class="">{{cart_total_num}}</text>
         </view>
       </view>
-      <view class="order-number b-63f" catchtap="onToggleTrade">加入购物车</view>
-      <view wx:if="{{ activityStart }}" class="order-bt b-purple" catchtap="onToggleTrade">立即购买</view>
+      <!-- <view class="order-number b-63f" catchtap="onToggleTrade">加入购物车</view> -->
+      <view wx:if="{{ activityStart }}" class="buy-btn b-purple" catchtap="onToggleTrade">立即购买</view>
       <form class="order-bt" name="pushMsgFm" bindsubmit="remindMe" wx:if="{{ !activityStart }}" report-submit="true" >
         <button form-type="submit" class="f-30 col-f">
           {{ isremind == "no" ? '立即提醒' : '取消提醒'}}

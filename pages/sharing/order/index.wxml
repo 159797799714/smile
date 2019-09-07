@@ -1,7 +1,7 @@
 <view class="container">
   <view class="goods-detail-box dis-flex flex-dir-column">
     <view class="header padding-l-r-30 border-box b-13 f-28 col-9">
-      <view wx:for="{{ headTabList }}" wx:for-item="item" catchtap="bindHeaderTap" class="{{dataType=== item.type ?'active':'f-28 col-9'}}"
+      <view wx:for="{{ headTabList }}" wx:key="this" wx:for-item="item" catchtap="bindHeaderTap" class="{{dataType=== item.type ?'active':'f-28 col-9'}}"
         data-type="{{item.type}}">
         <text>{{ item.name }}</text>
       </view>
@@ -98,7 +98,7 @@
           </form>
           
           <!-- 拼团状态 -->
-          <view wx:if="{{ item.order_type.value === 20 }}" class="order-status {{ item.active_status.value !== 30 ? '': 'style-66' }}">
+          <view wx:if="{{ item.order_type.value === 20 && item.pay_status.value === 20 }}" class="order-status {{ item.active_status.value !== 30 ? '': 'style-66' }}">
             <view class="pingtuan-order-status {{ item.active_status.value !== 30 ? '': 'style-66' }}"  style="padding:{{ item.active_status.value !== 10 ? '12rpx 0 0 24rpx;' : '32rpx 0 0 8rpx;' }}">
               <text wx:if="{{ item.active_status.value === 10 }}">待成团</text>
               <text wx:if="{{ item.active_status.value !== 10 }}">{{ item.active_status.value == 30 ? '拼团失败': '拼团成功' }}</text>

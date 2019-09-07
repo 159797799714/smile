@@ -20,6 +20,9 @@
 .b-f {
   background: #fff;
 }
+.b-f0f{
+  background: #ff00ff!important;
+}
 .b-f9 {
     background: #f9f9f9;
   }
@@ -465,15 +468,20 @@
 }
 
 .b-r {
-  border-right: 1rpx solid #eee;
+  border-right: 1rpx solid #333;
 }
 
 .b-b {
-  border-bottom: 1rpx solid #eee;
+  border-bottom: 1rpx solid #333;
 }
 
 .b-t {
-  border-top: 1rpx solid #eee;
+  border-top: 1rpx solid #333;
+}
+.b-c-f0f{
+  background: #131313!important;
+  border-color: #ff00ff!important;
+  color: #ff00ff!important;
 }
 
 .ts-1 {
@@ -586,4 +594,9 @@
 .style-66{
   border-color: #666!important;
   color: #666!important;
+}
+.num-btn{
+  line-height: 45rpx;
+  width: 50rpx;
+  text-align: center;
 }

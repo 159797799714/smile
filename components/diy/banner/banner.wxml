@@ -1,5 +1,5 @@
 <!-- banner轮播 -->
-<view class="my-class diy-banner">
+<view class="my-class diy-banner linear-border">
   <swiper autoplay="{{ autoplay }}" class="banner-box swiper-box dot-{{ itemStyle.btnShape }}" duration="{{ duration }}" circular="{{ true }}" indicator-dots="{{ indicatorDots }}" interval="{{ params.interval }}" indicator-color="{{ itemStyle.btnColor }}" indicator-active-color="#000"
     bindchange="_bindChange" data-item-key="{{ itemIndex }}" style="height: {{ imgHeights[imgCurrent] }}rpx">
     <swiper-item wx:for-item="banner" wx:for="{{dataList}}" wx:key="this">

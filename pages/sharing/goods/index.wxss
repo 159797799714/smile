@@ -79,7 +79,11 @@ page{
 }
 
 /* 底部操作栏 */
-
+.footer-fixed .btn{
+  height: 100%;
+  width: 100%;
+  line-height: 92rpx;
+}
 .footer-fixed .goods-fixed-icon {
   width: 100rpx;
   margin: 0 auto;
@@ -380,9 +384,9 @@ page{
 }
 
 .popup__trade .trade-main {
-  background: #fff;
+  background: #131313;
   box-sizing: border-box;
-  padding: 24rpx;
+  padding: 40rpx 30rpx;
 }
 
 .popup__trade .footer-fixed {
@@ -395,19 +399,17 @@ page{
 }
 
 .popup__trade .trade-main .goods-info {
-  margin-bottom: 10rpx;
+  margin-bottom: 30rpx;
+  height: 180rpx;
 }
 
 .popup__trade .trade-main .goods-info .goods-image {
-  margin-top: -40px;
   margin-right: 20rpx;
 }
 
 .popup__trade .trade-main .goods-info .goods-image image {
-  width: 90px;
-  height: 90px;
-  border: 5rpx solid #fff;
-  box-shadow: 0 4rpx 10rpx rgba(220, 220, 220, 0.79);
+  width: 180rpx;
+  height: 180rpx;
 }
 
 .popup__trade .trade-main .goods-info .money-box {
@@ -423,12 +425,6 @@ page{
   justify-content: space-between;
 }
 
-.popup__trade .trade-main .buy_number .buyNumber {
-  color: #888;
-  background: #fff;
-  border-radius: 10rpx;
-  margin-bottom: 10rpx;
-}
 
 /* 商品规格 */
 
@@ -438,8 +434,7 @@ page{
 
 .goods-list-box .tmall-types .tipstxt {
   font-size: 26rpx;
-  color: #888;
-  margin-bottom: 10rpx;
+  line-height: 72rpx;
 }
 
 .goods-list-box .tmall-types .cartypelist {
@@ -447,20 +442,13 @@ page{
 }
 
 .goods-list-box .tmall-types .cartypelist .cartypeitem {
-  font-size: 26rpx;
   height: 55rpx;
   line-height: 55rpx;
-  padding: 0 30rpx;
-  margin: 0 20rpx 20rpx 0;
-  border-radius: 8rpx;
-  color: #888;
-  border: 1px solid #e6e6e6;
-}
-
-.goods-list-box .tmall-types .cartypelist .cartypeitem.cur {
-  background: #f20c59;
-  border: 1rpx solid #f20c59;
-  color: #fff;
+  padding: 0 25rpx;
+  margin: 0 40rpx 20rpx 0;
+  border-radius: 25rpx;
+  background: #666;
+  border: 2rpx solid #666;
 }
 
 .goods-list-box .tmall-types .cartypelist .cartypeitem.cur:after {

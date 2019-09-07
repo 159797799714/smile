@@ -1,5 +1,7 @@
+<view class="border-6"></view>
 <!-- 商品分类tab -->
 <view class="header">
+  
   <view  class="cs-box">
     <view class="cs {{ category_id ==  0 ? 'active' : '' }}" catchtap="onSwitchTab" data-id="0">
       <text>全部</text>

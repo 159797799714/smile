@@ -21,7 +21,6 @@
     "pages/order/refund/apply/apply",
     "pages/order/refund/detail/detail",
     "pages/address/index",
-    "pages/address/create",
     "pages/address/detail",
     "pages/login/login",
     "pages/dealer-dialog/index",

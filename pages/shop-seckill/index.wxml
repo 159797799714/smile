@@ -1,4 +1,5 @@
 <view class="container dis-flex flex-dir-column b-15">
+  <view class="border-6"></view>
   <view class="tabs">
     <view wx:for="{{ timeList }}" wx:key="index" class="tab-item {{ selectIndex === item.category_id ? 'selected' : ''}}"
       catchtap="selectTime" data-index="{{ index }}" data-categoryid="{{ item.category_id }}">
@@ -21,7 +22,7 @@
 
     <view class="leave-time" wx:if="{{ openingTime }}">{{ title === '秒杀'?'秒杀': '抢购' }}，距离下场开始时间 <text>{{ openingTime }}</text></view>
     <!--  catchtap="toGoodDetail" -->
-    <view catchtap="toGoodDetail" data-url="{{ item.surplus_inventory < 1 ? '' : item.url }}" wx:for="{{ goodList }}"
+    <view catchtap="toGoodDetail" data-url="{{ item.surplus_inventory < 1 || item.isbuy === 'no_allow' ? '' : item.url }}" wx:for="{{ goodList }}"
       wx:key="index" class="item b-15">
       <view class="goodImg">
         <view wx:if="{{ item.surplus_inventory < 1 }}" class="imgCover">
@@ -31,7 +32,7 @@
       </view>
       <view class="goodInfo">
         <view class="goodName twolist-hidden f-28 col-9">{{ item.goods_name }}</view>
-        <view class="f-20 col-f3c">{{ tiem.selling_point }}</view>
+        <view class="selling_point f-20 col-f3c onelist-hidden">{{ item.selling_point }}</view>
         <view class="dis-flex">
           <view class="newPrice f-24 col-f3c">￥<text class="f-36">{{ item.goods_min_price }}</text></view>
           <text class="oldPrice col-6">￥{{ item.goods_max_price }}</text>

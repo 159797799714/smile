@@ -7,12 +7,14 @@ page{
   width: 100%;
   overflow: auto;
 }
-
+.border-6{
+  height: 6rpx;
+  width: 100%;
+  background: linear-gradient(to right, #00BFFF, #9933FF, #ff33cc);
+}
 .tabs{
   height: 130rpx;
   width: 100%;
-  border-top: 6rpx transparent solid;
-  border-image: linear-gradient(to right,#00BFFF, #9933FF, #ff33cc) 1 10;
   display: flex;
   flex-wrap: nowrap; 
   overflow: auto;
@@ -113,6 +115,10 @@ page{
   height: 80rpx;
   line-height: 40rpx;
   white-space: wrap;
+}
+.goodInfo .selling_point{
+  height: 24rpx;
+  line-height: 24rpx;
 }
 .item .goodInfo .leaver{
   position: relative;

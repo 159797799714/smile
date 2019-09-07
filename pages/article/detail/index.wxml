@@ -48,9 +48,9 @@
     <view class="comment-wrap b-33">
       <view class="b-13">
         <view class="comment-wrap-content">
-          <text class="f-32 col-3 f-w">评论({{ detail.comments.num }})</text>
+          <text class="f-32 col-9 f-w">评论({{ detail.comments.num }})</text>
           <!-- 有评论的情况 -->
-          <view wx:for="{{ detail.comments_show }}" wx:key="index" wx:for-index="index" wx:for-item="item" wx:if="{{haveComment && index < 10}}" class="comment-wrap-content-people dis-flex flex-x-between m-top20">
+          <view wx:for="{{ detail.comments_show }}" wx:key="index" wx:for-index="index" wx:for-item="item" wx:if="{{haveComment && index < 10}}" class="comment-wrap-content-people dis-flex flex-x-between m-top20 b-b">
             <view class="uesr-photo">
               <image mode="widthFix" src="{{ item.avatarUrl }}" />
             </view>
@@ -69,7 +69,7 @@
             <image mode="widthFix" src="../../../images/no-comment.png" />
             <view class="f-28">
               <text class="col-9">暂时还没有评论，</text>
-              <text bindtap="toComment" class="col-m">快去评论吧~</text>
+              <text bindtap="toComment" class="col-f3c">快去评论吧~</text>
             </view>
           </view>
         </view>
@@ -95,12 +95,9 @@
     </view>
 
     <!-- 查看全部评论 -->
-    <scroll-view
-        scroll-y 
-        class="{{isClose ? 'all-comment b-f close-style' : 'all-comment b-f'}}"
-    >
+    <scroll-view scroll-y class="{{isClose ? 'all-comment b-13 close-style' : 'all-comment b-13'}}">
       <view class="all-comment-text dis-flex flex-x-between flex-y-center">
-        <text class="f-30 col-3 f-w">全部评论（{{ detail.comments.num }}）</text>
+        <text class="f-30 col-9 f-w">全部评论（{{ detail.comments.num }}）</text>
         <image mode="widthFix" src="../../../images/close.png" bindtap="closeAllcomment" />
       </view>
       <view wx:for="{{ detail.comments.list }}" wx:key="index" wx:for-index="index" wx:for-item="item"  class="all-comment-content b-b">
@@ -109,9 +106,9 @@
             <image mode="widthFix" src="{{ item.avatarUrl }}" />
           </view>
           <view class="dis-flex flex-dir-column flex-box">
-            <text class="f-28 col-3 f-w">{{ item.nickName }}</text>
+            <text class="f-28 col-9 f-w">{{ item.nickName }}</text>
             <text class="f-26 col-6 m-top10">{{ item.content }}</text>
-            <text class="f-24 col-9 m-top4">{{ item.input_date }}</text>
+            <text class="f-24 col-3 m-top4">{{ item.input_date }}</text>
           </view>
           <view class="like-number flex-self-end">
             <text class="col-9 f-24 pr-12">{{ item.likenum }}</text>
@@ -123,27 +120,27 @@
           <view  class="authors-reply dis-flex flex-x-between" wx:for="{{ item.replys }}" wx:key="this" wx:for-item="replysItem" wx:for-index="replysIndex" >
             <view class="authors-reply-line"></view>
             <view class="authors-reply-content flex-box">
-              <text class="f-28 col-3 f-w">作者</text>
+              <text class="f-28 col-9 f-w">作者</text>
               <text class="f-26 col-6 m-top15">{{ replysItem.reply_content }}</text>
               <!-- <rich-text nodes="{{replysItem.reply_content}}" bindtap="tap"></rich-text> -->
-              <text class="f-24 col-9 m-top15">{{ replysItem.reply_input_date }}</text>
+              <text class="f-24 col-3 m-top15">{{ replysItem.reply_input_date }}</text>
             </view>
             <view class="authors-reply-like flex-self-end">
               <image bindtap="like" data-state="commentreplylike" data-index="{{ index }}" mode="widthFix" src="{{replysItem.isreplylike != 'no' ? '../../../images/like-active.png' : '../../../images/like.png'}}" />
             </view>
           </view>
-
+    
         </view>
       </view>
-  
     </scroll-view>
+    
 
 
 
     <!-- 发布评论 -->
     <view class="{{isSendComment ? 'post-comment b-t flex-y-center' : 'post-comment close-style'}}">
       <textarea value="{{ commentValue }}" adjust-position="false" bindfocus="textareaFocus" bindinput="textareaInput" bindblur="textareaBlur" focus="{{isTextareaFocus}}" fixed cursor-spacing="10" class="col-9 f-28" auto-height placeholder="添加你的评论..." />
-      <view bindtap="sendComment" class="f-30 col-m f-w">发布</view>
+      <view bindtap="sendComment" class="f-30 col-f3c f-w">发布</view>
     </view>
 
     <!-- 遮罩层 -->

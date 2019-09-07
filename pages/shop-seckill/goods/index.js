@@ -10,30 +10,30 @@ Page({
    * 页面的初始数据
    */
   data: {
-    goodsType: 1,    //1代表秒杀 2代表限时购
-    countDownTime: "",   //倒计时时间
-    activityStart: true,  //活动是否开始
+    goodsType: 1,          //1代表秒杀 2代表限时购
+    countDownTime: "",     //倒计时时间
+    activityStart: true,   //活动是否开始
 
-    indicatorDots: false, // 是否显示面板指示点
-    autoplay: true, // 是否自动切换
-    interval: 3000, // 自动切换时间间隔
-    duration: 800, // 滑动动画时长
+    indicatorDots: false,  // 是否显示面板指示点
+    autoplay: true,        // 是否自动切换
+    interval: 3000,        // 自动切换时间间隔
+    duration: 800,         // 滑动动画时长
 
-    currentIndex: 1, // 轮播图指针
-    floorstatus: false, // 返回顶部
-    showView: true, // 显示商品规格
+    currentIndex: 1,       // 轮播图指针
+    floorstatus: false,    // 返回顶部
+    showView: true,        // 显示商品规格
 
-    detail: {}, // 商品详情信息
-    goods_price: 0, // 商品价格
-    line_price: 0, // 划线价格
-    stock_num: 0, // 库存数量
+    detail: {},            // 商品详情信息
+    goods_price: 0,        // 商品价格
+    line_price: 0,         // 划线价格
+    stock_num: 0,          // 库存数量
 
-    goods_num: 1, // 商品数量
-    goods_sku_id: 0, // 规格id
-    cart_total_num: 0, // 购物车商品总数量
-    specData: {}, // 多规格信息
+    goods_num: 1,          // 商品数量
+    goods_sku_id: 0,       // 规格id
+    cart_total_num: 0,     // 购物车商品总数量
+    specData: {},          // 多规格信息
 
-    percent: 10,    //秒杀进度状态
+    percent: 10,           //秒杀进度状态
 
     // 分享按钮组件
     share: {
@@ -51,6 +51,7 @@ Page({
       // 商品海报
       showPopup: false,
     },
+    showRemark: false
 
   },
 
@@ -526,8 +527,14 @@ Page({
       e.detail.hasOwnProperty('formId') && App.saveFormId(e.detail.formId);
     }
     this.setData({
-      showBottomPopup: !this.data.showBottomPopup
+      showBottomPopup: !this.data.showBottomPopup,
+      showRemark: !this.data.showRemark
     });
   },
+  closeAlert() {
+    this.setData({
+      showRemark: !this.data.showRemark
+    });
+  }
 
 })

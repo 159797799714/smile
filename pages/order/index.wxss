@@ -135,6 +135,7 @@ view{
 .btn-default {
   float: right;
   padding: 18rpx 23rpx;
+  margin-left: 20rpx;
   min-width: 95rpx;
   text-align: center;
   border-radius: 30rpx;

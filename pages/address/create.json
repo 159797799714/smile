@@ -1,8 +1,0 @@
-{
-    "navigationBarTitleText": "新增收货地址",
-    "navigationBarBackgroundColor": "#131313",
-    "navigationBarTextStyle": "white",
-    "usingComponents": {
-      "shortcut": "/components/shortcut/shortcut"
-    }
-}
