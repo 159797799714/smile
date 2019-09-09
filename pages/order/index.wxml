@@ -1,7 +1,7 @@
 <view class="container">
   <view class="goods-detail-box">
     <view class="header padding-l-r-30 border-box b-13 f-28 col-9">
-      <view wx:for="{{ headTabList }}" wx:for-item="item" catchtap="bindHeaderTap" class="{{dataType=== item.type ?'active':'f-28 col-9'}}" data-type="{{item.type}}">
+      <view wx:for="{{ headTabList }}" wx:key="index" wx:for-item="item" catchtap="bindHeaderTap" class="{{dataType=== item.type ?'active':'f-28 col-9'}}" data-type="{{item.type}}">
         <text>{{ item.name }}</text>
       </view>
     </view>

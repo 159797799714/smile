@@ -384,6 +384,19 @@ App({
       referee_id: app.getUserId()
     }, params));
   },
+  
+  getSystemInfo(f) {
+    wx.getSystemInfo({
+      success: function(res) {
+        f.cb(res);
+      }
+    });
+  },
+  goBack(num) {
+    wx.navigateBack({
+      delta: num
+    })
+  }
 
 });
 

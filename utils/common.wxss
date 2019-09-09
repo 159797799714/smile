@@ -393,7 +393,7 @@
   color: #00BFFF!important;
 } 
 .cont-box {
-  padding: 20rpx;
+  padding: 20rpx 30rpx;
 }
 
 .cont-bot {

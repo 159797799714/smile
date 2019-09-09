@@ -8,6 +8,18 @@ page {
   
 }
 
+.topBar{
+  position: fixed;
+  padding: 0 30rpx;
+  z-index: 5;
+  height: 30px;
+  width: 100%;
+  left: 0;
+  top: 0;
+  background: #333;
+  color: #999;
+}
+
 ::-webkit-scrollbar{
     width: 0;
     height: 0;
@@ -225,7 +237,7 @@ page {
 
 .goods-comment-cont {
   font-size: 30rpx;
-  color: #333;
+  color: #999;
   margin: 10rpx 0;
 }
 
@@ -235,7 +247,7 @@ page {
   bottom: 0px;
   left: 0px;
   right: 0px;
-  height: 98rpx;
+  height: 92rpx;
   z-index: 11;
   box-shadow: 1px 5px 15px rgba(50, 50, 50, 0.3);
   background: #131313;
@@ -275,7 +287,7 @@ page {
 }
 
 .com_xing .icon-shoucang.active {
-  color: #f4a213;
+  color: #ff00ff;
 }
 
 .goods-comment-box .left {
@@ -636,4 +648,12 @@ flex: 4;
   border-radius: 25rpx;
   background: #666;
   border: 2rpx solid #666;
+}
+
+.linear{
+  height: 2rpx;
+  width: 140rpx;
+}
+.r-180{
+  transform: rotate(180deg);
 }

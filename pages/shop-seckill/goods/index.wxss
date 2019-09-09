@@ -340,8 +340,6 @@ page{
 
 .top-nav-bar {
   padding: 24rpx;
-  font-size: 28rpx;
-  color: #333;
 }
 
 .goods-fixed-icon contact-button {
@@ -359,7 +357,7 @@ page{
   border: none;
 }
 .collect{
-  margin-right: 20rpx;
+  margin-right: 40rpx;
 }
 
 .goods__share button.share-btn::after {
@@ -478,8 +476,7 @@ page{
 }
 
 .popup__trade .trade-main .buy_number .buyNumber {
-  color: #888;
-  border-radius: 10rpx;
+  color: #666;
   line-height: 45rpx;
 }
 

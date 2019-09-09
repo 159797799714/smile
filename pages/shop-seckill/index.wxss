@@ -127,7 +127,6 @@ page{
   font-size: 22rpx;
   line-height: 30rpx;
   color: #fff;
-  background: #FCD1D1;
   border-radius: 15rpx;
   overflow: hidden;
 }

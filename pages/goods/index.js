@@ -10,25 +10,27 @@ Page({
    * 页面的初始数据
    */
   data: {
+    statusBarHeight: 20,    // 手机顶部状态栏高度
+    topList: ['商品', '评价', '详情', '为您推荐'],   // 顶部菜单
+    navData: 0,             // 默认选中第一个
+    indicatorDots: false,   // 是否显示面板指示点
+    autoplay: true,         // 是否自动切换
+    interval: 3000,         // 自动切换时间间隔
+    duration: 800,          // 滑动动画时长
 
-    indicatorDots: false, // 是否显示面板指示点
-    autoplay: true, // 是否自动切换
-    interval: 3000, // 自动切换时间间隔
-    duration: 800, // 滑动动画时长
+    currentIndex: 1,        // 轮播图指针
+    floorstatus: false,     // 返回顶部
+    showView: true,         // 显示商品规格
 
-    currentIndex: 1, // 轮播图指针
-    floorstatus: false, // 返回顶部
-    showView: true, // 显示商品规格
+    detail: {},             // 商品详情信息
+    goods_price: 0,         // 商品价格
+    line_price: 0,          // 划线价格
+    stock_num: 0,           // 库存数量
 
-    detail: {}, // 商品详情信息
-    goods_price: 0, // 商品价格
-    line_price: 0, // 划线价格
-    stock_num: 0, // 库存数量
-
-    goods_num: 1, // 商品数量
-    goods_sku_id: 0, // 规格id
-    cart_total_num: 0, // 购物车商品总数量
-    specData: {}, // 多规格信息
+    goods_num: 1,           // 商品数量
+    goods_sku_id: 0,        // 规格id
+    cart_total_num: 0,      // 购物车商品总数量
+    specData: {},           // 多规格信息
 
     // 分享按钮组件
     share: {
@@ -46,6 +48,8 @@ Page({
       // 商品海报
       showPopup: false,
     },
+    ishave: '',              // buyNow点击购买，addCart点击加入购物车，点击选择规格则为空字符串
+    heightArr: [],           // 依次为商品，评价， 详情， 为你推荐的高度
 
   },
 
@@ -56,14 +60,77 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(e) {
+    console.log(this)
     let _this = this,
     scene = App.getSceneData(e);
     // 商品id
     _this.data.goods_id = e.goods_id ? e.goods_id : scene.gid;
     // 获取商品信息
     _this.getGoodsDetail();
+    App.getSystemInfo({
+      cb: function(res) {
+        console.log(res.statusBarHeight)
+        _this.setData({
+          statusBarHeight: res.statusBarHeight
+        })
+      }
+    });
+    
   },
-
+  onReady() {
+    // 获取各元素高度
+    this.getHeight()
+  },
+  // 获取商品，评价， 详情， 为你推荐的高度
+  getHeight() {
+    let arr= []
+    //创建节点选择器
+    var query = wx.createSelectorQuery();
+    
+    //获取商品高度
+    query.select('.goods').boundingClientRect()
+    query.exec(function (res) {
+      console.log(res)
+      //res就是 所有标签为mjltest的元素的信息 的数组
+      //取高度
+      arr.push(res[0].height);
+    })
+    
+    
+    //获取评价高度
+    query.select('.goods-comment').boundingClientRect()
+    query.exec(function (res) {
+      //res就是 所有标签为mjltest的元素的信息 的数组
+      //取高度
+      arr.push(res[0].height);
+    })
+    
+    //获取详情高度
+    query.select('.p-bottom').boundingClientRect()
+    query.exec(function (res) {
+      //res就是 所有标签为mjltest的元素的信息 的数组
+      //取高度
+      arr.push(res[0].height);
+    })
+    
+    this.setData({
+      heightArr: arr
+    })
+    
+    
+  },
+  
+ // 返回
+  goBack() {
+    App.goBack(1)
+  },
+  selectNav(e) {
+    console.log(e.currentTarget.dataset)
+    let index= e.currentTarget.dataset.index
+    this.setData({
+      navData: e.currentTarget.dataset.index
+    })
+  },
   /**
    * 获取商品信息
    */
@@ -144,7 +211,11 @@ Page({
     // 更新商品规格信息
     this.updateSpecGoods();
   },
-
+  
+  // 页面滚动
+  onPageScroll(e) {
+    console.log(e)
+  },
   /**
    * 更新商品规格信息
    */
@@ -435,6 +506,18 @@ Page({
    * 确认购买弹窗
    */
   onToggleTrade(e) {
+    if(e) {
+      let type= e.currentTarget.dataset.type
+      this.setData({
+        ishave: type ? type: ''
+      })
+    }
+    if(!e) {
+      this.setData({
+        ishave: ''
+      })
+    }
+    // console.log(this.data.ishave)
     if (typeof e === 'object') {
       // 记录formId
       e.detail.hasOwnProperty('formId') && App.saveFormId(e.detail.formId);

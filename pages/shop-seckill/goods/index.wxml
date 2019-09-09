@@ -223,8 +223,10 @@
 
     <!-- 商品描述 -->
     <view class="p-bottom">
-      <view class="top-nav m-top20 b-13 b-b">
-        <view class="top-nav-bar">商品描述</view>
+      <view class="top-nav b-33 b-b dis-flex flex-x-center flex-y-center">
+        <view class="linear b-66"></view>
+        <view class="top-nav-bar f-24 col-6">商品描述</view>
+        <view class="linear b-66"></view>
       </view>
       <view class="order" hidden="{{hiddenOrder}}">
         <view wx:if="{{detail.content!=''}}">

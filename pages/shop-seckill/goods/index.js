@@ -527,8 +527,7 @@ Page({
       e.detail.hasOwnProperty('formId') && App.saveFormId(e.detail.formId);
     }
     this.setData({
-      showBottomPopup: !this.data.showBottomPopup,
-      showRemark: !this.data.showRemark
+      showBottomPopup: !this.data.showBottomPopup
     });
   },
   closeAlert() {

@@ -1,3 +1,5 @@
 {
-  "navigationBarTitleText": "商品评价"
+  "navigationBarTitleText": "商品评价",
+  "navigationBarBackgroundColor": "#131313",
+  "navigationBarTextStyle": "white"
 }

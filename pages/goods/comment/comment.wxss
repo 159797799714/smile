@@ -1,28 +1,21 @@
 /* 选项卡 */
-
+page{
+  background: #131313;
+}
 .swiper-tab {
-  width: 100%;
+  padding: 28rpx 30rpx 0;
   text-align: center;
-  height: 80rpx;
-  background-color: #fff;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #333;
 }
 
 .swiper-tab .swiper-tab-item {
-  width: 25%;
-  height: 100%;
-  font-size: 28rpx;
-  color: #777;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-  border-bottom: 2px solid #ffffff00;
+  padding: 11rpx 24rpx;
+  margin: 0 27rpx 20rpx 0;
+  border-radius: 23rpx;
 }
 
 .swiper-tab .on {
-  color: #f74c45;
-  border-bottom: 2px solid #f74c45;
+  background: #ff00ff!important;
 }
 
 /* 设置scroll-view容器高度 */

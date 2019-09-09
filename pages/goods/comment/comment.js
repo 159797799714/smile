@@ -6,7 +6,39 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    tabList: [{
+        name: '全部',
+        scoreType: -1,
+        type: 'all',
+        num: 0,
+      }, {
+        name: '最新',
+        scoreType: '',
+        type: 'newest',
+        num: ''
+      }, {
+        name: '有图',
+        scoreType: '',
+        type: 'is_picture',
+        num: 0
+      }
+    // }, {
+    //   name: '好评',
+    //   scoreType: 10,
+    //   type: 'praise',
+    //   num: 0
+    // }, {
+    //   name: '中评',
+    //   scoreType: 20,
+    //   typa: 'review',
+    //   num: 0
+    // }, {
+    //   name: '差评',
+    //   scoreType: 30,
+    //   type: 'negative',
+    //   num: 0
+    ],
+    
     // 当前tab
     // currentTab: -1,
 
@@ -16,7 +48,7 @@ Page({
     // 页面参数
     options: {
       goods_id: null,
-      scoreType: -1
+      type: 'all'
     },
 
     // 评论列表
@@ -68,19 +100,37 @@ Page({
     let _this = this;
     let params = _this.data.options;
     params.page = page || 1;
-    App._get('comment/lists', params, function(result) {
+    App._get('comment/listsnew', params, function(result) {
       let resultList = result.data.list,
-        dataList = _this.data.list;
+        dataList = _this.data.list,
+        total= result.data.total,
+        tabList= _this.data.tabList;
+        
+      // 处理评论的数量
+      for(let str in total) {
+        tabList.map((item, index) => {
+          if(item.type === str) {
+            console.log(total[str])
+            tabList[index].num= total[str]
+          }
+        })
+      }
+      
+      _this.setData({
+        tabList: tabList
+      })
+      
+      
       if (isNextPage !== true || typeof dataList.data === 'undefined') {
         _this.setData({
           list: resultList,
-          total: result.data.total,
+          total: total,
           notcont: !resultList.length
         });
       } else {
         _this.setData({
           'list.data': dataList.data.concat(resultList.data),
-          total: result.data.total
+          total: total
         });
       }
     });
@@ -95,7 +145,7 @@ Page({
       list: {},
       page: 1,
       no_more: false,
-      'options.scoreType': e.target.dataset.current
+      'options.type': e.target.dataset.current
     }, function() {
       // 获取评论列表
       _this.getCommentList();
