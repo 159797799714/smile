@@ -12,6 +12,13 @@ Page({
     },                                // 商品列表
     status: '',                       // 抢购活动状态
     leave_time: '',                   // 剩余时间抢购
+    swiperList: [{
+      type: "banner",
+      data: [],
+      params: {
+        interval: 2800
+      }
+    }],                               // 轮播图
     
   },
 
@@ -37,21 +44,22 @@ Page({
   getActivityList() {
     let that = this
     let url = 'luckydraw/categorys'
-    App._get(url,{},function(result) {
-      // let time = result.data.list[0].activity_endtime
+    App._get(url,{},function(res) {
+      // let time = res.data.list[0].activity_endtime
       // utils.countDown(time,function(nowTime) {
       //   console.log(nowTime)
       //   that.setData({
       //     leave_time: nowTime
       //   })
       // })
-      if(result.data.list.length > 0) {
+      if(res.data.list.length > 0) {
         that.setData({
-          activityList: result.data.list,
-          selectBarIndex: result.data.list[0].category_id,
-          status: result.data.list[0].status
+          activityList: res.data.list,
+          selectBarIndex: res.data.list[0].category_id,
+          status: res.data.list[0].status
         })
-        that.getGoodsById(result.data.list[0].category_id)  
+        // 通过id获取活动列表
+        that.getGoodsById(res.data.list[0].category_id)  
       }
     })
   },
@@ -63,8 +71,9 @@ Page({
     App._post_form(url, {
       category_id: id
     }, function(res) {
-      console.log('商品列表', res.data.list)
+      console.log('商品列表', res.data.list, res.data.list.banners)
       that.setData({
+        'swiperList[0].data': res.data.list.banners,
         goodsList: res.data.list
       })
     })

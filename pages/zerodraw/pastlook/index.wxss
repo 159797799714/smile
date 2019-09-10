@@ -8,6 +8,15 @@ page{
 .container{
   height: 100%;
 }
+.tabList{
+  padding: 20rpx;
+}
+.tab{
+  margin-right: 30rpx;
+  padding: 10rpx 20rpx;
+  border-radius: 24rpx;
+  line-height: 28rpx;
+}
 .activity-list{
   display: flex;
   align-items: center;
@@ -46,13 +55,14 @@ page{
 }
 .good-item{
   display: flex;
-  height: 330rpx;
+  height: 300rpx;
   width: 100%;
   margin-bottom: 15rpx;
 }
 .good-item .good-img{
-  height: 330rpx;
-  width: 326rpx;
+  height: 300rpx;
+  width: 260rpx;
+  overflow: hidden;
 }
 .good-img > image{
   height: 100%;

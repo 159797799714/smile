@@ -1,25 +1,42 @@
 <view class="container dis-flex flex-dir-column b-15 col-f">
-  <view wx:if="{{ activityList.length > 0 }}" class="activity-list col-f b-15">
-    <view class="past-activity f-25" catchtap="goPast">往期查看</view>
-    <view class="activity-menu">
-      <view wx:for="{{ activityList }}" wx:key="this" class="activity-menu-bar {{ item.category_id === selectBarIndex ? 'b-red': '' }}" catchtap="selectBar" data-id="{{ item.category_id }}" data-status="{{ item.status }}" data-endtime="{{ item.activity_endtime }}">
-        <view class="day f-22">{{ item.activity_date }}</view>
-        <view class="time f-33">{{ item.activity_time }}</view>
-        <view class="status f-23">{{ item.status }}</view>
+  <view class="border-6"></view>
+  <view wx:if="{{ activityList.length > 0 }}" class="activity-list col-9 b-15">
+    <view class="past-activity f-25" catchtap="goPast">抽奖记录</view>
+    <view class="activity-menu dis-flex flex-x-around">
+      <view wx:for="{{ activityList }}" wx:key="this" class="activity-menu-bar t-c {{ item.category_id === selectBarIndex ? 'col-f': 'col-9' }}" catchtap="selectBar" data-id="{{ item.category_id }}" data-status="{{ item.status }}" data-endtime="{{ item.activity_endtime }}">
+        <view class="day f-24">{{ item.activity_date }}</view>
+        <!-- <view class="time f-33">{{ item.activity_time }}</view> -->
+        <view class="status f-24">{{ item.status }}</view>
       </view>
     </view>
   </view>
+  
+  <!-- DIY组件 轮播图 -->
+  <diy-component wx:if="{{ swiperList[0].data.length > 0 }}" diyItems="{{ swiperList }}"></diy-component>
+  
+  
   <view class="content">
-    <view wx:if="{{ goodsList.data.length !== 0 }}" wx:for="{{ goodsList.data }}" wx:key="this" class="good-item b-f" data-id="{{ item.goods_id }}">
+    <view wx:if="{{ goodsList.data.length !== 0 }}" wx:for="{{ goodsList.data }}" wx:key="this" class="good-item" data-id="{{ item.goods_id }}">
       <view class="good-img">
         <image src="{{ item.image[0].file_path }}"></image>
       </view>
-      <view class="good-info dis-flex flex-dir-column flex-x-center flex-y-center">
-        <view class="good-name f-22 col-13">{{ item.goods_name }}</view>
-        <view class="good-price f-25 col-13">官方价：￥{{ item.goods_max_price }}</view>
+      <view class="good-info">
+        <view class="good-name f-28 col-9">{{ item.goods_name }}</view>
+        <view class="sell-point f-20 col-purple twolist-hidden">{{ item.selling_point }}</view>
+        <view class="f-18 col-9">{{ item.luckydraw_time }}开奖</view>
+        <view class="price t-r">
+          <view class="f-24 col-purple">官方价：
+            <text class="f-28">￥{{ item.goods_max_price }}</text>
+          </view>
+          <form name="pushMsgFm" bindsubmit="goDraw" report-submit="true" data-good_id="{{ item.goods_id }}" data-activity_category_id="{{ selectBarIndex }}">
+            <button wx:if="{{ item.isbuy === 'no_allow' }}" class="draw-btn m-top20 f-24 col-f none}}" form-type="submit">{{ status === '即将开始'? '即将开始': '已结束' }}</button>
+            <button wx:if="{{ item.isbuy === 'allow' }}" class="draw-btn m-top20 f-24 col-f {{ item.isbuy === 'no_allow'? 'none': 'b-f0f' }}" form-type="submit">{{ item.isbuy === 'no_allow'? '已参加': '0元抽奖' }}</button>
+          </form>
+        </view>
+        <!-- <view class="good-price f-25 col-13">官方价：￥{{ item.goods_max_price }}</view>
         <form name="pushMsgFm" bindsubmit="goDraw" report-submit="true" data-good_id="{{ item.goods_id }}" data-activity_category_id="{{ selectBarIndex }}">
-          <button class="draw-btn f-30 col-f {{ item.isbuy === 'no_allow'? 'none': 'b-red' }}" form-type="submit">￥ 0 抽奖</button>
-        </form>
+          <button class="draw-btn f-30 col-f {{ item.isbuy === 'no_allow'? 'none': 'b-f0f' }}" form-type="submit">￥ 0 抽奖</button>
+        </form> -->
       </view>
     </view>
     <cover-view class="b-f col-13 f-30 f-w">{{ formId }}</cover-view>

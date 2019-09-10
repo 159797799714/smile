@@ -20,6 +20,10 @@ page {
   color: #999;
 }
 
+.b-r-50{
+  border-radius: 50%;
+}
+
 ::-webkit-scrollbar{
     width: 0;
     height: 0;

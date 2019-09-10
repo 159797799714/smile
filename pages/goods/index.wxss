@@ -6,6 +6,7 @@ page{
 }
 .topNav{
   margin-right: 60rpx;
+  padding: 0 40rpx;
   color: #999;
 }
 .navLi{
@@ -21,7 +22,7 @@ page{
   left: 0;
   right: 0;
   margin: 0 auto;
-  height: 4rpx;
+  height: 3rpx;
   width: 44rpx;
   background: #ff00ff;
 }
@@ -136,14 +137,22 @@ page{
 /* sku选择器 */
 
 .sku-selector {
-  padding: 30rpx 20rpx;
+  padding: 30rpx;
+}
+.span{
+  margin-right: 10rpx;
+  padding: 5rpx 14rpx;
+  border-radius: 15rpx;
+  letter-spacing: 1rpx;
+}
+.span-info{
+  max-width: 300rpx;
 }
 
 /* 商品评论 */
 
 .goods-comment .goods-property-box {
   position: relative;
-  padding: 12px;
 }
 
 .goods-comment .goods-property-jianTou {
@@ -406,12 +415,6 @@ page{
 
 .pop-poster .profile-btn button {
   margin-bottom: 0;
-}
-
-/* sku选择器 */
-
-.sku-selector {
-  padding: 30rpx 20rpx;
 }
 
 /* 确认购买弹窗 */

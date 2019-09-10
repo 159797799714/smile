@@ -90,7 +90,7 @@ page {
   background: #131313;
 }
 .selectTab{
-  color: #fff;
+  color: #ff33cc;
   position: relative;
 }
 .selectTab::after{

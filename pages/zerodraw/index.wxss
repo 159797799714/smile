@@ -12,11 +12,17 @@ page{
   flex: 1;
   overflow: auto;
 }
+.border-6{
+  height: 6rpx;
+  width: 100%;
+  background: linear-gradient(to right, #00BFFF, #9933FF, #ff33cc);
+}
 .activity-list{
   display: flex;
   align-items: center;
-  height: 130rpx;
+  min-height: 92rpx;
   padding: 0 30rpx;
+  margin-bottom: 30rpx;
 }
 .activity-list .past-activity{
   width: 102rpx;
@@ -26,31 +32,33 @@ page{
   flex: 1;
   height: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-wrap: nowrap;
+  overflow: auto;
+  line-height: 1;
 }
 .activity-menu .activity-menu-bar{
   flex: 1;
-  height: 100%;
+  height: 100;
   min-width: 120rpx;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  padding-top: 20rpx;
+  box-sizing: border-box;
 }
 .activity-menu .activity-menu-bar .time{
   line-height: 48rpx;
 }
+.activity-menu .activity-menu-bar .status{
+  line-height: 50rpx;
+}
 .good-item{
   display: flex;
-  height: 330rpx;
-  width: calc(100% - 60rpx);
-  margin: 30rpx 30rpx 0;
+  height: 260rpx;
+  padding: 20rpx;
+  margin: 49rpx 30rpx 0;
 }
 .good-item .good-img{
-  height: 330rpx;
-  width: 326rpx;
+  height: 260rpx;
+  width: 260rpx;
+  margin-right: 30rpx;
 }
 .good-img > image{
   height: 100%;
@@ -58,20 +66,34 @@ page{
 }
 .good-info{
   flex: 1;
+  position: relative;
+  line-height: 1;
 }
 .good-info .good-name{
-  max-height: 89rpx;
+  max-height: 105rpx;
   overflow: hidden;
   width: 280rpx;
+  line-height: 38rpx;
 }
-.good-info .good-price{
-  margin: 44rpx 0 20rpx;
-  line-height: 25rpx;
+.good-info .sell-point{
+  line-height: 34rpx;
+  letter-spacing: 2rpx;
+}
+.good-info .price{
+  position: absolute;
+  right: 27rpx;
+  bottom: 10rpx;
+  overflow: hidden;
 }
 .draw-btn{
-  height: 58rpx;
-  width: 174rpx;
-  line-height: 58rpx;
-  text-align: center;
+  float: right;
+  height: 32rpx;
+  width: 122rpx;
+  line-height: 32rpx;
+  background: #ff00ff;
+  border-radius: 16rpx;
+}
+button{
+  padding: 0!important;
 }
 

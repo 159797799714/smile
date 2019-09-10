@@ -36,7 +36,7 @@
       <!-- 品牌及分类 -->
       
       <view wx:if="{{tabIndex === 1 && filterList.length > 1}}" class="filter-tags b-15">
-        <view wx:for="{{ filter }}" wx:key="index" class="filter-tag {{ filterTag_Index === index? 'b-36f': 'b-63f' }}" data-index="{{ index }}" catchtap="selectFilterTag">{{ item }}
+        <view wx:for="{{ filter }}" wx:key="index" class="filter-tag {{ filterTag_Index === index? 'b-63f' : 'b-f3c' }}" data-index="{{ index }}" catchtap="selectFilterTag">{{ item }}
           <image class="{{ filterTag_Index === index? '': 'rotate-180' }}" src="../../images/up-icon.png" />
         </view>
       </view>

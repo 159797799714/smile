@@ -12,6 +12,7 @@ Page({
   data: {
     statusBarHeight: 20,    // 手机顶部状态栏高度
     topList: ['商品', '评价', '详情', '为您推荐'],   // 顶部菜单
+    scrollTop: 0,           // 滚动距离顶部
     navData: 0,             // 默认选中第一个
     indicatorDots: false,   // 是否显示面板指示点
     autoplay: true,         // 是否自动切换
@@ -59,8 +60,8 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
+  
   onLoad: function(e) {
-    console.log(this)
     let _this = this,
     scene = App.getSceneData(e);
     // 商品id
@@ -76,24 +77,39 @@ Page({
       }
     });
     
-  },
-  onReady() {
     // 获取各元素高度
     this.getHeight()
+    
+  },
+  observers: {
+    'navData': function(top) {
+      // 每次 setData 都触发
+      console.log(top, 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
+    },
   },
   // 获取商品，评价， 详情， 为你推荐的高度
   getHeight() {
-    let arr= []
+    let that= this
+    const arr= []
     //创建节点选择器
-    var query = wx.createSelectorQuery();
+    const query = wx.createSelectorQuery();
+    
+    query.select('.topBar').boundingClientRect()
+    query.exec(function (res) {
+      console.log('topBar', res)
+      //res就是 所有标签为mjltest的元素的信息 的数组
+      //取高度
+      arr.push(res[0].height);
+    })
+    
     
     //获取商品高度
     query.select('.goods').boundingClientRect()
     query.exec(function (res) {
-      console.log(res)
+      console.log('goods', res[1].height)
       //res就是 所有标签为mjltest的元素的信息 的数组
       //取高度
-      arr.push(res[0].height);
+      arr.push(res[1].height);
     })
     
     
@@ -102,7 +118,8 @@ Page({
     query.exec(function (res) {
       //res就是 所有标签为mjltest的元素的信息 的数组
       //取高度
-      arr.push(res[0].height);
+      console.log('goods-comment', res[2].height)
+      arr.push(res[1].height + res[2].height);
     })
     
     //获取详情高度
@@ -110,25 +127,27 @@ Page({
     query.exec(function (res) {
       //res就是 所有标签为mjltest的元素的信息 的数组
       //取高度
-      arr.push(res[0].height);
+      console.log('p-bottom', res[3].height)
+      arr.push(res[1].height + res[2].height + res[3].height);
+      that.setData({
+        heightArr: arr
+      })
     })
-    
-    this.setData({
-      heightArr: arr
-    })
-    
-    
   },
   
  // 返回
   goBack() {
     App.goBack(1)
   },
+  // 选择顶部菜单
   selectNav(e) {
-    console.log(e.currentTarget.dataset)
+    console.log(e.currentTarget.dataset.index)
     let index= e.currentTarget.dataset.index
+    
+    console.log(index === 0 ? 0:  this.data.heightArr[index])
     this.setData({
-      navData: e.currentTarget.dataset.index
+      navData: e.currentTarget.dataset.index,
+      scrollTop: index === 0 ? 0:  this.data.heightArr[index] - this.data.heightArr[0]
     })
   },
   /**
@@ -214,7 +233,39 @@ Page({
   
   // 页面滚动
   onPageScroll(e) {
-    console.log(e)
+    let that= this
+    console.log(e.detail.scrollTop)
+    that.setData({
+      floorstatus: e.detail.scrollTop > 200
+    })
+    if(Number(e.detail.scrollTop) > Number(that.data.heightArr[3]) ) {
+      console.log('3')
+      that.setData({
+        navData: 3
+      })
+      return
+    }
+    if(Number(e.detail.scrollTop) > Number(that.data.heightArr[2])) {
+      console.log('2')
+      that.setData({
+        navData: 2
+      })
+      return
+    }
+    if(Number(e.detail.scrollTop) > Number(that.data.heightArr[1]) ) {
+      console.log('1')
+      that.setData({
+        navData: 1
+      })
+      return
+    }
+    if(Number(e.detail.scrollTop) < Number(that.data.heightArr[1])) {
+      console.log('0')
+      that.setData({
+        navData: 0
+      })
+      return
+    }
   },
   /**
    * 更新商品规格信息
@@ -268,14 +319,6 @@ Page({
     });
   },
 
-  /**
-   * 显示/隐藏 返回顶部按钮
-   */
-  scroll: function(e) {
-    this.setData({
-      floorstatus: e.detail.scrollTop > 200
-    })
-  },
 
   /**
    * 增加商品数量

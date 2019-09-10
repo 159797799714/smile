@@ -1,8 +1,11 @@
 <view class="container b-15">
+  <view class="tabList p-30-box">
+    <text wx:for="{{ tabList }}" wx:key="index" class="tab f-28 col-f {{ tabData === index ? 'b-36f': 'b-99' }}" catchtap="selectTab" data-index="{{ index }}">{{ item }}</text>
+  </view>
   <view wx:for="{{ activityList }}"  wx:key="this" class="list-item">
     <view class="good-item b-f">
       <view class="good-img">
-        <image src="{{ item.image[0].file_path }}"></image>
+        <image src="{{ item.image[0].file_path }}" mode="widthFix"></image>
       </view>
       <view class="good-info dis-flex flex-dir-column flex-x-center">
         <view class="good-name f-22 col-13">{{ item.goods.goods_name }}</view>
@@ -10,13 +13,13 @@
         <view class="draw-btn f-23 col-f0">￥0抽奖</view>
       </view>
     </view>
-    <view class="prize dis-flex flex-x-between col-f">
+    <!-- <view class="prize dis-flex flex-x-between col-f">
       <view class="prize-info f-22">
         <view class="prize-num">中奖号码：{{ item.win_luckydraw_code }}</view>
-        <view class="prize-time">{{ item.win_luckydraw_date }}</view>
+        <view class="prize-time">{{ item.win_luckydraw_date }}开奖</view>
       </view>
       <view class="prize-status f-30">已结束</view>
-    </view>
+    </view> -->
   </view>
   
   {{ !activityList }}

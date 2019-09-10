@@ -8,7 +8,7 @@
     </view>
   </view>
 </view>
-<scroll-view bindscroll="scroll" scroll-top="{{scrollTop}}" scroll-y="true" bindscroll="onPageScroll">
+<scroll-view bindscroll="scroll" scroll-top="{{scrollTop}}" scroll-y="true" bindscroll="onPageScroll" style="height: 100%;">
   <view class="container" wx:if="{{detail.goods_id}}">
     <!-- 商品 -->
     <view class="goods">
@@ -136,6 +136,18 @@
         </view>
       </view>
     </view>
+    
+    <!-- 没有评价时 -->
+    <view wx:if="{{ detail.comment_data.length < 1 }}" class="goods-comment btn-normal">
+      <view class="sku-selector cont-box b-13 m-top20 dis-flex flex-x-between flex-y-center">
+        <view class="f-28">
+          <text class="col-9">暂无评价与问答</text>
+        </view>
+        <view class="flex-box f-26 col-9 t-r">
+          <text class="iconfont icon-xiangyoujiantou"></text>
+        </view>
+      </view>
+    </view>
 
     <!-- 商品详情 -->
     <view class="p-bottom">
@@ -242,7 +254,7 @@
 </scroll-view>
 
 <!-- 返回顶部 -->
-<view bindtap="goTop" class="widget-goTop" wx:if="{{floorstatus}}">
+<view wx:if="{{ floorstatus }}"  class="widget-goTop" bindtap="goTop">
   <text class="iconfont icon-fanhuidingbu"></text>
 </view>
 
