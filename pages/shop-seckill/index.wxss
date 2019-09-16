@@ -79,10 +79,9 @@ page{
   height: 260rpx;
   width: 260rpx;
   margin-right: 33rpx;
-  background: #ccc;
+  overflow: hidden;
 }
 .item .goodImg >image{
-  height: 100%;
   width: 100%;
 }
 .item .goodImg .imgCover{

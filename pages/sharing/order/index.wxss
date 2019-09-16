@@ -69,31 +69,3 @@
   line-height: 40rpx;
 }
 
-/* 拼团状态 */
-.order-status{
-  position: absolute;
-  top: 140rpx;
-  right: 50rpx;
-  height: 150rpx;
-  width: 150rpx;
-  border-radius: 100%;
-  font-size: 35rpx;
-  font-weight: bold;
-  color: #ff00ff;
-  border: 5rpx solid #ff00ff;
-  opacity: 0.6;
-}
-.style-66{
-  border-color: #666!important;
-  color: #666;
-}
-
-.order-status .pingtuan-order-status{
-  margin: 15rpx 0 0 15rpx;
-  box-sizing: border-box;
-  height: 120rpx;
-  width: 120rpx;
-  border-radius: 100%;
-  border: 3rpx solid #ff00ff;
-  transform: rotate(-35deg);
-}

@@ -4,6 +4,15 @@ const utils = require("../../../utils/util.js")
 Page({
 
   data: {
+    indicatorDots: false,  // 是否显示面板指示点
+    autoplay: true,        // 是否自动切换
+    interval: 3000,        // 自动切换时间间隔
+    duration: 800,         // 滑动动画时长
+    
+    currentIndex: 1,       // 轮播图指针
+    
+    
+    
     detail: [],                      // 活动列表
     endtime: '',                        // 抽奖剩余时间
     leave_time:  '',                 // 活动开奖剩余时间 
@@ -57,6 +66,13 @@ Page({
     this.getDetail(this.data.data.goods_id)
     // 获取收货地址
     this.getAddress()
+  },
+  
+  // 设置轮播图当前指针 数字
+  setCurrent: function(e) {
+    this.setData({
+      currentIndex: e.detail.current + 1
+    });
   },
   // 获取详情
   getDetail(id) {

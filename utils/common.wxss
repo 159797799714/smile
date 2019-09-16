@@ -224,6 +224,9 @@
 .f-100{
   font-size: 100rpx;
 }
+.f-64 {
+    font-size: 64rpx;
+}
 .f-60 {
     font-size: 60rpx;
 }
@@ -434,7 +437,10 @@
   }
 
 .m-top20 {
-  margin-top: 25rpx!important;
+  margin-top: 20rpx!important;
+}
+.m-top30 {
+  margin-top: 30rpx!important;
 }
 .m-b-20{
   margin-bottom: 20rpx;
@@ -599,4 +605,30 @@
   line-height: 45rpx;
   width: 50rpx;
   text-align: center;
+}
+
+/* 拼团状态 */
+.order-status{
+  position: absolute;
+  top: 140rpx;
+  right: 50rpx;
+  height: 150rpx;
+  width: 150rpx;
+  border-radius: 100%;
+  font-size: 35rpx;
+  font-weight: bold;
+  color: #ff00ff;
+  border: 5rpx solid #ff00ff;
+  opacity: 0.6;
+}
+
+
+.order-status .pingtuan-order-status{
+  margin: 15rpx 0 0 15rpx;
+  box-sizing: border-box;
+  height: 120rpx;
+  width: 120rpx;
+  border-radius: 100%;
+  border: 3rpx solid #ff00ff;
+  transform: rotate(-35deg);
 }

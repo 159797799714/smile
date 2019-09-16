@@ -2,27 +2,37 @@
   <view class="tabList p-30-box">
     <text wx:for="{{ tabList }}" wx:key="index" class="tab f-28 col-f {{ tabData === index ? 'b-36f': 'b-99' }}" catchtap="selectTab" data-index="{{ index }}">{{ item }}</text>
   </view>
-  <view wx:for="{{ activityList }}"  wx:key="this" class="list-item">
-    <view class="good-item b-f">
+  <view class="content">
+    <view wx:if="{{ activityList.length > 0 }}" wx:for="{{ activityList }}" wx:key="this" class="good-item" data-id="{{ item.goods_id }}">
       <view class="good-img">
-        <image src="{{ item.image[0].file_path }}" mode="widthFix"></image>
+        <image src="{{ tabData === 0? item.image[0].file_path : item.image[0] }}"></image>
       </view>
-      <view class="good-info dis-flex flex-dir-column flex-x-center">
-        <view class="good-name f-22 col-13">{{ item.goods.goods_name }}</view>
-        <view class="good-price f-25 col-13">官方价：￥{{ item.goods.max_price }}</view>
-        <view class="draw-btn f-23 col-f0">￥0抽奖</view>
+      <view class="good-info p-r">
+        <view class="good-name f-28 col-9">{{ item.goods.goods_name }}</view>
+        <view class="sell-point f-20 col-purple twolist-hidden">{{ item.selling_point }}</view>
+        <view class="f-24 col-purple">官方价：
+          <text class="f-28">￥{{ item.goods.luckydraw_original_price }}</text>
+        </view>
+        <view class="m-top10 f-18 col-9">{{ item.goods.luckydraw_time }}开奖</view>
+        <view class="win-code t-c b-66 f-24 col-f">
+          中奖码：<text class="f-20">{{ item.win_luckydraw_code }}</text>
+        </view>
+        
+        <!-- 中奖状态 -->
+        <view wx:if="{{ tabData === 1 }}"  class="order-status {{ item.is_win === 'yes' ? '': 'style-66' }}">
+          <view class="pingtuan-order-status {{ item.is_win === 'yes' ? '': 'style-66' }}"  style="padding: 24rpx 0 0 24rpx;">
+            <!-- style="padding:{{ item.active_status.value !== 10 ? '12rpx 0 0 24rpx;' : '32rpx 0 0 8rpx;' }}" -->
+            <text>{{ item.is_win === 'yes' ? '恭喜中奖': '感谢参与'}}</text>
+            <!-- <text wx:if="{{ item.active_status.value !== 10 }}">{{ item.active_status.value == 30 ? '拼团失败': '拼团成功' }}</text> -->
+          </view>
+        </view>
+        
       </view>
+      
     </view>
-    <!-- <view class="prize dis-flex flex-x-between col-f">
-      <view class="prize-info f-22">
-        <view class="prize-num">中奖号码：{{ item.win_luckydraw_code }}</view>
-        <view class="prize-time">{{ item.win_luckydraw_date }}开奖</view>
-      </view>
-      <view class="prize-status f-30">已结束</view>
-    </view> -->
   </view>
   
-  {{ !activityList }}
+  
   <!-- 无数据 -->
   <view wx:if="{{ !activityList }}" class="yoshop-notcont">
     <view class="img">

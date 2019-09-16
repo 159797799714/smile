@@ -1,5 +1,98 @@
 <view  wx:if="{{ endtime }}" class="container b-15">
-  <view class="good-img p-r {{ detail.iswin === 'yes' && !isOverTime ? 'lucky-img' : '' }}">
+  <view class="swiper">
+    <swiper autoplay="{{autoplay}}" bindchange="setCurrent" class="banner-box  swiper-box" duration="{{duration}}" indicator-dots="{{indicatorDots}}" interval="{{interval}}" circular="{{true}}">
+      <swiper-item wx:for="{{detail.image}}" wx:key="this" bindtap="previewImages" data-index="{{ index }}">
+        <image class="slide-image" mode="aspectFill" src="{{item.file_path}}"></image>
+      </swiper-item>
+    </swiper>
+    <view class="banner-num">
+      <text>{{currentIndex}}</text>
+      <text>/{{detail.image.length}}</text>
+    </view>
+  </view>
+  <!-- 秒杀状态 -->
+  <view class="seckill-state {{ activityStart ? '' : 'activity-start-false'}} dis-flex flex-y-center flex-x-between linear-border">
+    <view class="seckill-state-price dis-flex flex-y-center flex-x-between">
+      <view class="dis-flex flex-y-center">
+        <text class="skill-title f-26 col-f f-w">0 元抽奖</text>
+        <view class="f-56">
+          ￥<text class="f-64 f-w">{{ detail.sku[0].goods_price * 100 / 100 }}</text>
+          <!-- <text class="f-26 m-l-20 m-top20 t-dec-line">¥{{ detail.sku[0].line_price * 100 / 100 }}</text> -->
+        </view>  
+      </view>
+      <text class="seckill-state-line"></text>
+    </view>
+    <view>
+      <view class="seckill-state-time dis-flex flex-y-center">
+        <image mode="widthFix" src="../../../images/seckill-shop-icon.png" />
+        <text class="f-22">参加人数: {{ detail.luckydraw_total }}人</text>
+      </view>
+      <view class="seckill-state-progress">
+        <text class=" f-22">{{ detail.luckydraw_num }}个名额</text>
+      </view>
+    </view>
+  </view>
+  
+  <view class="cont-box b-13">
+    <view class="left flex-box dis-flex flex-dir-column">
+      <!-- 商品名称 -->
+      <view class="goods-title twolist-hidden f-24 col-9">
+        <text class="f-24 col-f">0元抽奖</text>
+        {{detail.goods_name}}
+      </view>
+      <!-- 商品卖点 -->
+      <view class="goods-selling-point">
+        <text class="f-24 col-f3c">{{ detail.selling_point }}</text>
+      </view>
+    </view>
+    <view class="lucky">
+      
+      <!-- 还未开奖 -->
+      <view wx:if="{{ endtime === '00:00:00' }}" class="dis-flex flex-x-between flex-y-end col-9">
+        <text class="f-jlinxin f-36">开奖倒计时</text>
+        <view class="f-24">
+          <text>抽奖详情</text>
+          <text class="iconfont icon-xiangyoujiantou"></text>
+        </view>
+      </view>
+      
+      <!-- 已开奖 -->
+      <view wx:else class="info t-c">
+        <text class="f-36 f-w col-9">恭喜中奖了</text>
+      </view>
+      
+      
+      <view class="linear-box {{ endtime === '00:00:00' && detail.iswin === 'no' && detail.isremind === 'yes'? 'b-99': 'linear-border'}}">
+        <view wx:if="{{ endtime !== '00:00:00' }}"  class="time f-36 col-f">
+          <text class="black-bg b-13">0</text>天<text class="black-bg b-13">11</text>时<text class="black-bg b-13">14</text>分<text class="black-bg b-13">1</text>秒
+        </view>
+        <view wx:else class="time t-c">
+          <text class="f-48 col-13 f-w">中奖码{{ detail.win_code }}</text>
+        </view>
+      </view>
+      <view class="t-c">
+        <text class="f-28 col-9">开奖时间：{{ detail.luckydraw_time }}</text>
+      </view>
+      <view wx:if="{{ detail.luckydraw_code.length > 0 }}" class="dis-flex m-top30 flex-x-center">
+        <text class="f-28 col-9">我的抽奖码</text>
+        <view class="m-l-20 draw-box">
+          <text wx:for="{{ detail.luckydraw_code }}" wx:key="{{ index }}" wx:for-item="li" class="draw-code m-b-20 b-93f t-c f-26 col-f">{{ li }}</text>
+        </view>
+      </view>
+      <view class="t-c m-top15">
+        <text class="f-18 col-9">参奖码是参与抽奖的凭证，中奖结果会按规定时间开奖，请注意</text>
+      </view>
+    </view>
+  </view>
+  
+  <form name="pushMsgFm" bindsubmit="goDraw" report-submit="true">
+    <button wx:if="{{ detail.isremind === 'no' && !detail.win_code && endtime !== '00:00:00' }}" class="btn b-63f t-c f-50 col-f {{ endtime !== '00:00:00' ? '' : 'none' }}" form-type="submit">{{ endtime !== '00:00:00'? '点击抽奖' : '抽奖结束' }}</button>
+  </form>
+  
+  <button wx:if="{{ detail.isremind === 'yes' && detail.iswin !== 'yes' && endtime !== '00:00:00' && detail.luckydraw_code.length < 5 }}" open-type="share"  class="btn b-63f t-c f-38 col-f">分享获得更多抽奖码，增加中奖率</button>
+ 
+  
+  <!-- <view class="good-img p-r {{ detail.iswin === 'yes' && !isOverTime ? 'lucky-img' : '' }}">
     <image src="{{ detail.image[0].file_path }}" mode="aspectFill"></image>
     <view wx:if="{{ detail.iswin === 'yes' && !isOverTime }}" class="win-word f-60 col-f f-w b-red">恭喜你中奖了!</view>
     <view wx:if="{{ detail.iswin === 'yes' && isOverTime }}" class="bg-fali p-a">
@@ -38,12 +131,12 @@
       <view class="word">
         {{ item }}
       </view>
-    </view>
+    </view> -->
     
     <!-- 收货地址 -->
-    <view wx:if="{{ detail.iswin === 'yes' }}" class="address dis-flex flex-x-between flex-y-center b-f" catchtap="goSelectAddress" data-type="{{ addressData ? 'index': 'create' }}">
+    <!-- <view wx:if="{{ detail.iswin === 'yes' }}" class="address dis-flex flex-x-between flex-y-center b-f" catchtap="goSelectAddress" data-type="{{ addressData ? 'index': 'create' }}"> -->
       <!-- 已获奖，有地址 -->
-      <view wx:if="{{ addressData }}" class="col-13">
+      <!-- <view wx:if="{{ addressData }}" class="col-13">
         <view class="one-row dis-flex flex-x-between f-22">
           <text>{{ addressData.name }}</text>
           <text>{{ addressData.phone }}</text>
@@ -51,31 +144,31 @@
         </view>
         <view class="two-row f-16">{{ addressData.region.city + addressData.region.province + addressData.region.region + addressData.detail}}</view>
       </view>
-      <text wx:if="{{ addressData }}" class="iconfont icon-xiangyoujiantou f-28 col-13 f-w"></text>
+      <text wx:if="{{ addressData }}" class="iconfont icon-xiangyoujiantou f-28 col-13 f-w"></text> -->
       <!-- 已获奖，没有地址 -->
-      <view wx:if="{{ !addressData && !isOverTime }}" class="address-null col-13 f-30">暂无收货地址，点击添加~</view>
+      <!-- <view wx:if="{{ !addressData && !isOverTime }}" class="address-null col-13 f-30">暂无收货地址，点击添加~</view> -->
       <!-- 已获奖，超过72小时未领取 -->
-      <view wx:if="{{ isOverTime }}" class="address-null col-13 f-30">由于您未能在3天之内填写收货地址,已视为自动放弃~</view>
-    </view>
+      <!-- <view wx:if="{{ isOverTime }}" class="address-null col-13 f-30">由于您未能在3天之内填写收货地址,已视为自动放弃~</view> -->
+   <!-- </view>
     <view wx:if="{{ detail.iswin === 'yes' && !isOverTime && !canReceive }}" class="address-remarks col-f f-16">请核对寄件信息，确保无误</view>
-    <view wx:if="{{ addressData && canReceive }}" class="address-remarks col-f f-16">奖品将按照以上地址寄出，请注意查收</view>
+    <view wx:if="{{ addressData && canReceive }}" class="address-remarks col-f f-16">奖品将按照以上地址寄出，请注意查收</view> -->
   
-  </view>
+  <!-- </view> -->
   <!-- <view wx:if="{{ detail.isremind !== 'yes' }}" class="btn f-56 col-f {{ leave_time !== '00:00:00' ? 'b-red' : 'none' }}" catchtap="goDraw">{{ leave_time !== '00:00:00'? '点击抽奖' : '抽奖结束' }}</view> -->
   
-  <form name="pushMsgFm" bindsubmit="goDraw" report-submit="true">
+  <!-- <form name="pushMsgFm" bindsubmit="goDraw" report-submit="true">
     <button wx:if="{{ detail.isremind === 'no' && !detail.win_code && endtime !== '00:00:00' }}" class="btn f-56 col-f {{ endtime !== '00:00:00' ? 'b-red' : 'none' }}" form-type="submit">{{ endtime !== '00:00:00'? '点击抽奖' : '抽奖结束' }}</button>
   </form>
   
   <button wx:if="{{ detail.isremind === 'yes' && detail.iswin !== 'yes' && endtime !== '00:00:00' && detail.luckydraw_code.length < 5 }}" open-type="share"  class="btn f-56 col-f b-red">点击分享领取更多抽奖码</button>
   <button wx:if="{{ detail.isremind === 'yes' && detail.iswin !== 'yes' && endtime !== '00:00:00' && detail.luckydraw_code.length >= 5 }}"  class="btn f-56 col-f b-red" catchtap="shareAction">点击分享领取更多抽奖码</button>
   <button wx:if="{{ detail.iswin === 'yes' && !canReceive }}"  class="btn f-56 col-f b-red changeAddress"  catchtap="goSelectAddress" data-type="{{ addressData ? 'index': 'create' }}">编辑收货地址</button>
-  
+  -->
   <!-- 无数据 -->
   <view wx:if="{{ !detail }}" class="yoshop-notcont">
     <view class="img">
       <image mode="aspectFit" src="../../images/no_content.png"></image>
     </view>
-    <text class="cont">亲, 没有相关内容</text>
+    <text class="cont">亲, 没有查到相关内容</text>
   </view>
 </view>

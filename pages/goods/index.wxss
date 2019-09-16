@@ -484,3 +484,6 @@ page{
     color:#f4433d !important;
 }
     
+.f-jlinxin{
+  font-family: JLinXin;
+}

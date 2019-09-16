@@ -18,8 +18,8 @@
         <view class="dis-flex flex-y-center">
           <text class="skill-title f-26 col-f f-w">限时秒杀</text>
           <view >
-            <text class="f-56 f-w">￥{{ goods_price }}</text>
-            <text class="f-26 m-l-20 m-top20 t-dec-line">¥{{ line_price }}</text>
+            <text class="f-56 f-w">￥{{ goods_price * 100 / 100 }}</text>
+            <text class="f-26 m-l-20 m-top20 t-dec-line">¥{{ line_price * 100 / 100 }}</text>
           </view>  
         </view>
         <text class="seckill-state-line"></text>
@@ -30,7 +30,7 @@
           <text class="f-22">{{ activityStart ? '距结束' : '距开始'}} {{ countDownTime }}</text>
         </view>
         <view class="seckill-state-progress">
-          <text wx:if="{{ activityStart }}" class="f-22">已抢{{percent}}%</text>
+          <text wx:if="{{ activityStart }}" class="f-22 col-f">已抢{{percent}}%</text>
           <text wx:if="{{ !activityStart }}" class="f-22">未开始</text>
           <progress percent="{{percent}}" border-radius="15rpx" activeColor="#FEF8F0" stroke-width="15" backgroundColor="rgba(255,255,255,0.3)" class="progress"/>
         </view>
