@@ -11,10 +11,19 @@ Page({
     
     currentIndex: 1,       // 轮播图指针
     
+    day: 0,         // 剩余开奖天数,
+    hour: 0,        // 剩余开奖小时
+    min: 0,         // 剩余开奖分钟
+    sec: 0,         // 剩余开奖秒  
+    
+    
+    showBottomPopup: false,   // 选择规格弹窗
+    isWin: true,              // 可以领奖
+    canGet: false,            // 中奖了领奖弹窗
     
     
     detail: [],                      // 活动列表
-    endtime: '',                        // 抽奖剩余时间
+    endtime: '',                     // 抽奖剩余时间
     leave_time:  '',                 // 活动开奖剩余时间 
     selectBarIndex: 0,               // 选中的活动列表的索引值,
     param: {},                       //传过来的抽奖的参数
@@ -66,6 +75,14 @@ Page({
     this.getDetail(this.data.data.goods_id)
     // 获取收货地址
     this.getAddress()
+    
+    // 弹出领奖弹窗
+    // setTimeout(function() {
+    //   this.setData({
+    //     canGet: true
+    //   })  
+    // }.bind(this), 1000)
+    
   },
   
   // 设置轮播图当前指针 数字
@@ -89,14 +106,25 @@ Page({
       
       let luckydrawtime = res.data.detail.luckydraw_time
       let endtime = res.data.detail.activity_endtime
+      let time = 0
       // 成功
       if(res.code === 1) {
+        
+        // 剩余开奖时间
         utils.countDown(luckydrawtime,function(luckytime) {
-          
+          let index = luckytime.indexOf(':')
+          // 处理剩余开奖时间
+          that.setData({
+            day: Math.floor(luckytime.slice(0, index) / 24),
+            hour: luckytime.slice(0, index) % 24,
+            min: luckytime.slice(index + 1, index + 3),
+            sec: luckytime.slice(index + 4, index + 6) 
+          })
+          // 剩余开奖时间为零
           if(luckytime === '00:00:00') {
             console.log('luckytime === 00:00:00', that.data.time)
-            
-            if(that.data.time > 0) {
+            // 停留等待活动开奖
+            if(time > 0) {
               that.getDetail(that.data.data.goods_id)
               that.setData({
                 time: 0
@@ -107,7 +135,7 @@ Page({
             })
             return
           } else {
-            let time = that.data.time + 1
+            time += 1
             // 每次进来次数加1
             that.setData({
               time: time,
@@ -115,7 +143,10 @@ Page({
             })  
           }
         })
+        
+        // 活动结束剩余时间
         utils.countDown(endtime,function(nowtime) {
+          
           that.setData({
             endtime: nowtime
           })
@@ -126,17 +157,18 @@ Page({
           detail: res.data.detail
         })
         if(res.data.detail.iswin === 'yes') {
-          that.setData({
-            remarks: ['分享微信获取更多中奖信息', '请于开奖后3天内填写收货地址及信息,否则视为自动放弃奖励！']
-          }) 
           // 获取收货地址
           that.getAddress()
-          // 判断是否超过中奖后领奖72小时
+          // 判断是否超过中奖后领奖7天
           let canReceive = utils.DecideReceive(luckydrawtime)
-          console.log('是否超过71小时', canReceive)
-          that.setData({
-            canReceive: canReceive
-          })
+          console.log('是否超过7天', canReceive)
+          
+          if(!canReceive && res.data.detail.is_confirm === 'no' ) {
+            that.setData({
+              canGet: true
+            })  
+          }
+          
           // 判断有没有地址
           if(!that.data.addressData) {
             that.setData({
@@ -156,6 +188,33 @@ Page({
         })
       }
     })
+  },
+  
+  // 关闭或者开启弹窗
+  onToggleTrade() {
+    this.setData({
+      showBottomPopup: !this.data.showBottomPopup
+    });
+  },
+  // 立即领奖
+  getPrize() {
+    this.closeWinAlert()
+    this.setData({
+      showBottomPopup: true
+    })
+  },
+  
+  // 关闭领奖弹窗
+  closeWinAlert() {
+    let that= this
+    that.setData({
+      canGet: false
+    })
+    setTimeout(function() {
+      that.setData({
+        isWin: false
+      })
+    }, 1000);
   },
    
   // 抽奖
@@ -184,7 +243,16 @@ Page({
       }
     })
   },
-  
+  sureAction() {
+    let that= this
+    let url= 'luckydraw/winConfirm'
+    let param = {
+      win_code: that.data.detail.win_code
+    }
+    App._post_form(url, param,function(result){
+      console.log(result)
+    })
+  },
   shareAction() {
     App.showError('分享失败，每个用户最多只能拥有5个抽奖码！')
     return
@@ -232,11 +300,11 @@ Page({
   // 去选择地址或者添加地址
   goSelectAddress(e) {
     console.log(e.currentTarget.dataset.type)
-    if(!this.data.canReceive) {
+    // if(!this.data.detail.is_confirm === 'no') {
       wx.navigateTo({
-        url: '../../address/' + e.currentTarget.dataset.type
+        url: '../../address/index' 
       })  
-    }
+    // }
   },
   
   // 获取收货地址

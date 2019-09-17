@@ -472,6 +472,14 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
 }
+.twolist-hidden {
+  display: -webkit-box;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
 
 .b-r {
   border-right: 1rpx solid #333;

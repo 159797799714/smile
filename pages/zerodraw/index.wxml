@@ -26,7 +26,7 @@
         <view class="f-18 col-9">{{ item.luckydraw_time }}开奖</view>
         <view class="price t-r">
           <view class="f-24 col-purple">官方价：
-            <text class="f-28">￥{{ item.goods_max_price }}</text>
+            <text class="f-28">￥{{ item.sku[0].goods_price }}</text>
           </view>
           <form name="pushMsgFm" bindsubmit="goDraw" report-submit="true" data-good_id="{{ item.goods_id }}" data-activity_category_id="{{ selectBarIndex }}">
             <button wx:if="{{ item.isbuy === 'no_allow' }}" class="draw-btn m-top20 f-24 col-f none}}" form-type="submit">{{ status === '即将开始'? '即将开始': '已结束' }}</button>

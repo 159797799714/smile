@@ -4,8 +4,7 @@
 page {
   height: 100%;
   width: 100%;
-  background: #f7f7f7;
-  
+  background: #131313;
 }
 
 .topBar{
@@ -123,15 +122,14 @@ page {
   float: left;
   line-height: 24px;
   padding: 0;
-  background: #fff;
-  color: #444;
+  background: #131313;
+  color: #999;
   font-size: 40rpx;
   border-radius: unset;
 }
 
 .selectNumber .default-active {
-  background: #f7f7f7;
-  color: #ddd;
+  color: #666;
 }
 
 .selectNumber button:after {
@@ -141,8 +139,8 @@ page {
 
 .selectNumber input {
   float: left;
-  width: 78rpx;
-  height: 45rpx;
+  width: 71rpx;
+  height: 40rpx;
   background: #999;
   line-height: 45rpx;
   text-align: center;

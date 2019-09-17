@@ -70,7 +70,7 @@ page{
   line-height: 1;
 }
 .good-info .good-name{
-  max-height: 105rpx;
+  max-height: 115rpx;
   overflow: hidden;
   width: 280rpx;
   line-height: 38rpx;

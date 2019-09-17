@@ -49,7 +49,7 @@
 }
 
 .shop-classify-item {
-  width: 25%;
+  width: 20%;
   height: 140rpx;
   margin-bottom: 48rpx;
 }

@@ -47,24 +47,33 @@
     </view>
     <view class="lucky">
       
-      <!-- 还未开奖 -->
-      <view wx:if="{{ endtime === '00:00:00' }}" class="dis-flex flex-x-between flex-y-end col-9">
-        <text class="f-jlinxin f-36">开奖倒计时</text>
+      <!-- 还未开奖未参与抽奖 -->
+      <view wx:if="{{ leave_time !== '00:00:00' && detail.isremind === 'no' }}" class="dis-flex flex-x-between flex-y-end col-9">
+        <text class="f-jlinxin f-36">抽奖倒计时</text>
         <view class="f-24">
           <text>抽奖详情</text>
           <text class="iconfont icon-xiangyoujiantou"></text>
         </view>
       </view>
+      <!-- 未开奖已抽奖 -->
+      <view wx:if="{{ leave_time !== '00:00:00' }}" class="info t-c">
+        <text class="f-36 f-w col-9">开奖倒计时</text>
+      </view>
       
       <!-- 已开奖 -->
-      <view wx:else class="info t-c">
-        <text class="f-36 f-w col-9">恭喜中奖了</text>
+      <view wx:if="{{ leave_time === '00:00:00' }}" class="info t-c">
+        <!-- 开奖中奖 -->
+        <text wx:if="{{ detail.iswin === 'yes' }}" class="f-36 f-w col-9">恭喜中奖了</text>
+        <!-- 开奖未中奖 -->
+        <text wx:if="{{ detail.isremind === 'yes' && detail.iswin === 'no' }}" class="f-36 f-w col-9">很遗憾，未中奖，再接再励</text>
+        <!-- 开奖未抽奖 -->
+        <text wx:if="{{ detail.isremind === 'no' && detail.iswin === 'no' && leave_time === '00:00:00' }}" class="f-36 f-w col-9">您未参与本次抽奖</text>
       </view>
       
       
-      <view class="linear-box {{ endtime === '00:00:00' && detail.iswin === 'no' && detail.isremind === 'yes'? 'b-99': 'linear-border'}}">
-        <view wx:if="{{ endtime !== '00:00:00' }}"  class="time f-36 col-f">
-          <text class="black-bg b-13">0</text>天<text class="black-bg b-13">11</text>时<text class="black-bg b-13">14</text>分<text class="black-bg b-13">1</text>秒
+      <view class="linear-box {{ leave_time === '00:00:00' && detail.iswin === 'no' && detail.isremind === 'yes'? 'b-99': 'linear-border'}}">
+        <view wx:if="{{ leave_time !== '00:00:00' }}"  class="time f-36 col-f">
+          <text class="black-bg b-13">{{ day }}</text>天<text class="black-bg b-13">{{ hour }}</text>时<text class="black-bg b-13">{{ min }}</text>分<text class="black-bg b-13">{{ sec }}</text>秒
         </view>
         <view wx:else class="time t-c">
           <text class="f-48 col-13 f-w">中奖码{{ detail.win_code }}</text>
@@ -82,15 +91,106 @@
       <view class="t-c m-top15">
         <text class="f-18 col-9">参奖码是参与抽奖的凭证，中奖结果会按规定时间开奖，请注意</text>
       </view>
+      
+      <!-- 中奖未确认收货地址 -->
+      <view wx:if="{{ detail.iswin === 'yes' && detail.is_confirm === 'no' }}" class="edit b-13 t-c" catchtap="getPrize">
+        <text class="edit-btn f-26 col-f">填写收货信息</text>
+      </view>
+      
+      <!-- 中奖已确认收货地址 -->
+      <view wx:if="{{ detail.iswin === 'yes' && detail.is_confirm === 'yes' }}" class="confirm f-26 col-f">
+        <view class="t-c">已确认填写收货信息</view>
+        <view class="m-top15 t-c">您的礼物快马加鞭送过来，请耐心等待</view>
+      </view>
     </view>
   </view>
   
   <form name="pushMsgFm" bindsubmit="goDraw" report-submit="true">
-    <button wx:if="{{ detail.isremind === 'no' && !detail.win_code && endtime !== '00:00:00' }}" class="btn b-63f t-c f-50 col-f {{ endtime !== '00:00:00' ? '' : 'none' }}" form-type="submit">{{ endtime !== '00:00:00'? '点击抽奖' : '抽奖结束' }}</button>
+    <button wx:if="{{ !detail.win_code && leave_time !== '00:00:00' }}" class="btn t-c f-50 col-f {{ endtime !== '00:00:00' ? 'b-63f' : 'b-99' }}" form-type="submit">{{ endtime !== '00:00:00'? '点击抽奖' : '抽奖结束' }}</button>
   </form>
   
   <button wx:if="{{ detail.isremind === 'yes' && detail.iswin !== 'yes' && endtime !== '00:00:00' && detail.luckydraw_code.length < 5 }}" open-type="share"  class="btn b-63f t-c f-38 col-f">分享获得更多抽奖码，增加中奖率</button>
  
+  
+  <!-- 确认购买弹窗 -->
+  <zan-popup show="{{ showBottomPopup }}" type="bottom" bindclose="onToggleTrade">
+    <view class="popup__trade">
+      <!-- 关闭按钮 -->
+      <view class="trade-close dis-flex flex-x-center flex-y-center" catchtap="onToggleTrade">
+        <text class="iconfont icon-close f-26 col-9"></text>
+      </view>
+      <!-- 主体信息 -->
+      <view class="trade-main b-13">
+        <view class="goods-info dis-flex">
+          <!-- 图片名称 -->
+          <view class="goods-image" bindtap="previewSkuImage">
+            <image src="{{ detail.sku[0].image ? detail.sku[0].image: detail.image[0].file_path }}" mode="widthFix"></image>
+          </view>
+          <view class="right flex-box dis-flex flex-dir-column flex-x-end">
+            <view class="money-box col-9">
+              <text class="f-32">￥</text>
+              <text class="price">{{detail.sku[0].goods_price}}</text>
+            </view>
+            <view class="goods-stock dis-flex">
+              <text class="flex-box f-26 col-7">仅剩{{detail.sku[0].stock_num? detail.sku[0].stock_num: detail.surplus_inventory}}件</text>
+            </view>
+          </view>
+        </view>
+        <!-- 规格列表 -->
+        <view class="goods-list-box" scroll-y="true">
+          <view class="cf tmall-types" wx:for="{{specData.spec_attr}}" wx:for-item="attr" wx:for-index="attr_idx" wx:key="key">
+            <view class="tipstxt f-24 col-6" data-id="{{attr.group_id}}">{{attr.group_name}}</view>
+            <view class="cf cartypelist" wx:for="{{attr.spec_items}}" wx:for-index="item_idx" wx:key="ikey">
+              <view bindtap="modelTap" class="cartypeitem f-26 col-13 {{item.checked ? 'cur': ''}}" data-attr-idx="{{attr_idx}}" data-item-idx="{{item_idx}}">{{item.spec_value}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view wx:if="{{ detail.iswin === 'yes' }}" class="address dis-flex flex-x-between flex-y-center b-33" catchtap="goSelectAddress" data-type="{{ addressData ? 'index': 'create' }}">
+         <!-- 已获奖，有地址 -->
+         <view wx:if="{{ addressData }}" class="col-9">
+           <view class="one-row dis-flex flex-x-between f-26">
+             <text>{{ addressData.name }}</text>
+             <text>{{ addressData.phone }}</text>
+             <text>{{ addressData.district }}</text>
+           </view>
+           <view class="m-top20 two-row f-26">收货地址: {{ addressData.region.city + addressData.region.province + addressData.region.region + addressData.detail}}</view>
+         </view>
+         <text wx:if="{{ addressData }}" class="iconfont icon-xiangyoujiantou f-42 col-9 f-w"></text>
+         <!-- 已获奖，没有地址 -->
+         <view wx:if="{{ !addressData && !isOverTime }}" class="address-null col-9 f-30">暂无收货地址，点击添加~</view>
+         <!-- 已获奖，超过72小时未领取 -->
+         <!-- <view wx:if="{{ isOverTime }}" class="address-null col-9 f-30">由于您未能在3天之内填写收货地址,已视为自动放弃~</view> -->
+      </view>
+      
+      <view class="footer b-33 t-c">
+        <text class="sure-btn f-26 col-f" catchtap="sureAction">请确认</text>
+      </view>
+      
+      
+      <!-- 底部操作栏 -->
+      <!-- <view class="footer-fixed f-30">
+        <block wx:if="{{ stock_num > 0 }}">
+          <view wx:if="{{ !ishave }}" class="order-number b-63f col-f" bindtap="submit" data-type="addCart">加入购物车</view>
+          <view wx:if="{{ !ishave }}" class="order-number b-purple col-f" bindtap="submit" data-type="buyNow"> 立即购买</view>
+          <view wx:if="{{ ishave }}" class="buy-btn b-purple col-f" bindtap="submit" data-type="{{ ishave }}"> 确定</view>
+        </block>
+        <view class="default-btn" wx:else>暂无现货</view>
+      </view> -->
+    </view>
+  </zan-popup>
+  
+  <!-- 中奖弹窗提示 -->
+  <view wx:if="{{ isWin }}" class="winAlert {{ canGet ? '': 'scale-big' }}">
+    <view class="img">
+      <image src="../../../images/zero/win.png" mode="widthFix" catchtap="getPrize"></image>
+      <view class="t-c" catchtap="closeWinAlert">
+        <text class="iconfont icon-close f-36 f-w col-9"></text>
+      </view>
+    </view>
+  </view>
+  
+  
   
   <!-- <view class="good-img p-r {{ detail.iswin === 'yes' && !isOverTime ? 'lucky-img' : '' }}">
     <image src="{{ detail.image[0].file_path }}" mode="aspectFill"></image>
@@ -125,13 +225,6 @@
       <view class="lucky-title f-22 col-f line-42">开奖时间：{{ detail.luckydraw_time }}</view>
       <view wx:if="{{ detail.win_code || leave_time !== '00:00:00' }}" class="lucky-time col-f f-36 num-item b-f03">{{ leave_time === '00:00:00' ? '中奖码：' + detail.win_code : '开奖倒计时：' + leave_time }}</view>
     </view>
-    
-    <view wx:for="{{ remarks }}" wx:key="this" class="draw-info f-22">
-      <view class="span-box b-f"></view>
-      <view class="word">
-        {{ item }}
-      </view>
-    </view> -->
     
     <!-- 收货地址 -->
     <!-- <view wx:if="{{ detail.iswin === 'yes' }}" class="address dis-flex flex-x-between flex-y-center b-f" catchtap="goSelectAddress" data-type="{{ addressData ? 'index': 'create' }}"> -->

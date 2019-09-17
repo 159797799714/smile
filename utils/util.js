@@ -96,7 +96,7 @@ module.exports = {
     let countDown = Date.parse(new Date(format))
     var leftTime = (new Date() - (countDown)); //计算剩余的毫秒数 
     console.log(leftTime)
-    return (leftTime > 259200000)
+    return (leftTime > 604800000)
   }
 
 };

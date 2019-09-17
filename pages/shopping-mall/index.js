@@ -287,7 +287,7 @@ Page({
    */
   getAllgoodsCategory() {
     let _this = this;
-    App._get('category/goodscategory', {}, function(result) {
+    App._get('category/goodscategorynew', {}, function(result) {
       _this.setData({
         shopClassify: result.data.list
         // shopClassify: this.data.shopClassify

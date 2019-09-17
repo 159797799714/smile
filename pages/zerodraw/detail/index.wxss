@@ -7,9 +7,10 @@ page{
   background: #151515;
   line-height: 1;
 }
+button{
+  border-radius: 0;
+}
 .container{
-  max-height: calc(100% + 125rpx);
-  box-sizing: border-box;
   padding-bottom: 125rpx;
 }
 .seckill-state-progress{
@@ -83,4 +84,149 @@ page{
   height: 28rpx;
   border-radius: 14rpx;
   line-height: 28rpx;
+}
+
+.edit{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 30rpx 0;
+}
+.edit-btn{
+  display: inline-block;
+  padding: 17rpx 7rpx;
+  border-radius: 30rpx;
+  background: #9900ff;
+}
+.confirm{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 13rpx 0;
+  background: #9900ff;
+}
+
+/* 确认购买弹窗 */
+
+.popup__trade {
+  position: relative;
+  width: 750rpx;
+  padding-bottom: 0!important;
+  z-index: 10;
+}
+
+.popup__trade .trade-close {
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.popup__trade .trade-main {
+  box-sizing: border-box;
+  padding: 40rpx 30rpx;
+}
+
+.popup__trade .footer-fixed {
+  position: absolute;
+}
+
+.popup__trade .trade-main .goods-info {
+  margin-bottom: 30rpx;
+  height: 180rpx;
+}
+
+.popup__trade .trade-main .goods-info .goods-image {
+  margin-right: 20rpx;
+  width: 180rpx;
+  height: 180rpx;
+  overflow: hidden;
+}
+
+.popup__trade .trade-main .goods-info .goods-image image {
+  width: 100%;
+}
+
+.popup__trade .trade-main .goods-info .money-box {
+  margin: 0;
+}
+
+.popup__trade .trade-main .goods-info .goods-stock {
+  padding-left: 10rpx;
+}
+
+.popup__trade .trade-main .buy_number {
+  padding: 54rpx 0;
+}
+
+.popup__trade .trade-main .buy_number .buyNumber {
+  color: #666;
+  line-height: 45rpx;
+}
+
+/* 中奖弹窗 */
+.winAlert{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  transition: 1s;
+}
+.winAlert .img{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 665rpx;
+  height: 620rpx;
+  margin: auto;
+  overflow: hidden;
+  transition: 1s;
+}
+.winAlert .img>image{
+  width: 100%;
+  max-height: 620rpx;
+  margin-bottom: 43rpx;
+}
+.scale-big{
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+}
+/*  地址 */
+.address{
+  height: 120rpx;
+  width: 100%;
+  padding: 0 36rpx;
+  box-sizing: border-box;
+}
+.address .two-row{
+  line-height: 26rpx;
+}
+.address-remarks{
+  padding: 10rpx 0 0 6rpx;
+}
+.address-null{
+  flex: 1;
+  text-align: center;
+}
+
+/* 底部确认按钮 */
+.footer{
+  padding: 3rpx 0 22rpx ;
+  width: 100%;
+}
+.footer .sure-btn{
+  display: inline-block;
+  padding: 10rpx 25rpx;
+  border-radius: 23rpx;
+  background: #9900ff;
 }

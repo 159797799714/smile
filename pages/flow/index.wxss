@@ -78,9 +78,7 @@
 .dish-item {
   width: 100%;
   padding: 26rpx 20rpx;
-  border-bottom: 1rpx solid #eee;
   position: relative;
-  background: #fff;
   box-sizing: border-box;
 }
 

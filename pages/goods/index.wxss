@@ -450,6 +450,9 @@ page{
 
 .popup__trade .trade-main .goods-info .goods-image {
   margin-right: 20rpx;
+  width: 180rpx;
+  height: 180rpx;
+  overflow: hidden;
 }
 
 .popup__trade .trade-main .goods-info .goods-image image {

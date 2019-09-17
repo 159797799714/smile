@@ -1,12 +1,12 @@
-<view class="container p-bottom">
+<view class="container b-33">
   <view class="flow-list">
     <view wx:if="{{goods_list.length}}">
-      <view class="cart-edit-wrap dis-flex flex-x-end">
+      <view class="cart-edit-wrap dis-flex flex-x-end col-9">
         <text wx:if="{{ action === 'complete' }}" catchtap="switchAction" class="f-30" data-action="edit">编辑</text>
         <text wx:if="{{ action === 'edit' }}" catchtap="switchAction" class="f-30" data-action="complete">完成</text>
       </view>
       <view wx:for="{{goods_list}}" wx:key="this">
-        <view class="dish-item dis-flex flex-y-center" data-index="{{index}}" style="{{item.txtStyle}}">
+        <view class="dish-item dis-flex flex-y-center b-13" data-index="{{index}}" style="{{item.txtStyle}}">
           <!-- 选择框 -->
           <view class="dish-item-radio" bindtap="radioChecked" data-index="{{ index }}">
             <label class="radio">
@@ -24,7 +24,7 @@
             <view class="dish-item-info flex-box">
               <!-- <navigator hover-class="none" url="../goods/index?goods_id={{item.goods_id}}"> -->
                 <view class="goods-name" catchtap="goDetail" data-goods-id="{{ item.goods_id }}" data-type="{{ item.goods_type }}">
-                  <text class="twolist-hidden f-30 col-3">{{item.goods_name}}</text>
+                  <text class="twolist-hidden f-22 col-9">{{item.goods_name}}</text>
                 </view>
                 <view class="goods-attr dis-flex" catchtap="goDetail" data-goods-id="{{ item.goods_id }}" data-type="{{ item.goods_type }}">
                   <text class="col-7 f-24">{{item.goods_sku.goods_attr}}</text>

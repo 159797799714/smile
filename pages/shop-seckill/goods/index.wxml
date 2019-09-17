@@ -108,7 +108,7 @@
           <view class="goods-info dis-flex">
             <!-- 图片名称 -->
             <view class="goods-image" bindtap="previewSkuImage">
-              <image src="{{ image_path }}"></image>
+              <image src="{{ image_path }}" mode="widthFix"></image>
             </view>
             <view class="right flex-box dis-flex flex-dir-column flex-x-end">
               <view class="money-box col-9">
