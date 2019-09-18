@@ -110,17 +110,17 @@ page {
 }
 
 .selectNumber {
-  height: 45rpx;
+  height: 40rpx;
   flex-direction: row;
   border-radius: 5rpx;
   display: inline-block;
 }
 
 .selectNumber .default {
-  width: 30px;
-  height: 45rpx;
+  width: 18px;
+  height: 40rpx;
   float: left;
-  line-height: 24px;
+  line-height: 40rpx;
   padding: 0;
   background: #131313;
   color: #999;
@@ -139,13 +139,14 @@ page {
 
 .selectNumber input {
   float: left;
-  width: 71rpx;
-  height: 40rpx;
+  width: 72rpx;
+  height: 45rpx;
   background: #999;
-  line-height: 45rpx;
+  line-height: 40rpx;
   text-align: center;
   font-size: 28rpx;
   color: #131313;
+  border-radius: 5rpx;
 }
 
 /* 返回顶部 */

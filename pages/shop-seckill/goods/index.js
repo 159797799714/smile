@@ -62,6 +62,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(e) {
+    console.log(e)
     let _this = this,
       scene = App.getSceneData(e);
 

@@ -80,7 +80,7 @@
       
       <!-- 商品 -->
       <view wx:if="{{ tabIndex === 1 }}" class="b-15 border-box {{ style === 0 ? 'main' : 'row' }}">
-        <navigator hover-class="none" url="../goods/index?goods_id={{item.goods_id}}" wx:for="{{ list.data }}" wx:key="index" class="good-item b-f">
+        <view wx:for="{{ list.data }}" wx:key="index" class="good-item b-f" catchtap="goDetail" data-id="{{item.goods_id}}" data-type="{{ item.goods_type }}">
           <view class="good-img">
             <image mode="widthFix" src="{{item.image[0].file_path}}"></image>
           </view>
@@ -102,7 +102,7 @@
               <text class="f-16 m-l-10">获得积分：100</text>
             </view>
           </view>
-        </navigator>
+        </view>
       </view>
     </scroll-view>
 

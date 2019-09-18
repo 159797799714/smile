@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    goods_list: [], // 商品列表
+    cart_goods_list: [], // 商品列表
     // order_total_num: 0,
     // 商品总金额
     // order_total_price: 0,
@@ -41,9 +41,10 @@ Page({
    */
   getCartList: function() {
     let _this = this;
-    App._get('cart/lists', {}, function(result) {
+    App._get('cart/listsnew', {}, function(result) {
+      console.log(result)
       _this.setData({
-        goods_list: result.data.goods_list,
+        cart_goods_list: result.data.cart_goods_list,
         order_total_price: result.data.order_total_price,
         action: 'complete',
         checkedAll: false,
@@ -51,20 +52,59 @@ Page({
       });
     });
   },
-
-  /**
-   * 选择框选中
-   */
-  radioChecked: function(e) {
+  // 品牌分类选中
+  storeChecked(e) {
     let _this = this,
       index = e.currentTarget.dataset.index,
-      checked = !_this.data.goods_list[index].checked;
+      goodslist = _this.data.cart_goods_list[index].goods_list;
+    if(_this.data.cart_goods_list[index].checked) {
+      goodslist.forEach(function(item, num){
+        item.checked = false
+      })  
+    } else {
+      goodslist.forEach(function(item, num){
+        item.checked = true
+      })  
+    }
     _this.setData({
-      ['goods_list[' + index + '].checked']: checked
+      ['cart_goods_list[' + index + '].goods_list']: goodslist,
+      ['cart_goods_list[' + index + '].checked']: !_this.data.cart_goods_list[index].checked
     }, function() {
       // 更新购物车已选商品总价格
       _this.updateTotalPrice();
     });
+    
+  },
+  /**
+   * 普通商品单个选择框选中
+   */
+  radioChecked: function(e) {
+    let _this = this,
+      time = 0,
+      index = e.currentTarget.dataset.index,
+      num = e.currentTarget.dataset.num,
+      goodslist = _this.data.cart_goods_list[index].goods_list,
+      checked = !_this.data.cart_goods_list[index].goods_list[num].checked;
+    _this.setData({
+      ['cart_goods_list[' + index + '].goods_list[' + num + '].checked']: checked
+    }, function() {
+      // 更新购物车已选商品总价格
+      _this.updateTotalPrice();
+    });
+    goodslist.forEach(function(item, numj) {
+      if(item.checked) {
+        time += 1
+      }
+    })
+    if(time === goodslist.length) {
+      _this.setData({
+        ['cart_goods_list[' + index + '].checked']: true
+      })
+    } else {
+      _this.setData({
+        ['cart_goods_list[' + index + '].checked']: false
+      })
+    }
   },
 
   /**
@@ -72,12 +112,16 @@ Page({
    */
   radioCheckedAll: function(e) {
     let _this = this,
-      goodsList = this.data.goods_list;
-    goodsList.forEach(function(item) {
+      cartgoodlist = this.data.cart_goods_list;
+    cartgoodlist.forEach(function(item) {
       item.checked = !_this.data.checkedAll;
+      item.goods_list.forEach(function(li) {
+        li.checked = !_this.data.checkedAll;
+      })
+      
     });
     _this.setData({
-      goods_list: goodsList,
+      cart_goods_list: cartgoodlist,
       checkedAll: !_this.data.checkedAll
     }, function() {
       // 更新购物车已选商品总价格
@@ -124,10 +168,13 @@ Page({
    */
   getCheckedIds: function() {
     let arrIds = [];
-    this.data.goods_list.forEach(function(item) {
-      if (item.checked === true) {
-        arrIds.push(item.goods_id + '_' + item.goods_sku_id);
-      }
+    this.data.cart_goods_list.forEach(function(item) {
+      item.goods_list.forEach(function(li) {
+        if (li.checked === true) {
+          arrIds.push(li.goods_id + '_' + li.goods_sku_id);
+        }  
+      })
+      
     });
     return arrIds;
   },
@@ -138,10 +185,13 @@ Page({
   updateTotalPrice: function() {
     let _this = this;
     let cartTotalPrice = 0;
-    _this.data.goods_list.forEach(function(item) {
-      if (item.checked === true) {
-        cartTotalPrice = _this.mathadd(cartTotalPrice, item.total_price);
-      }
+    _this.data.cart_goods_list.forEach(function(item) {
+      item.goods_list.forEach(function(li) {
+        if (li.checked === true) {
+          cartTotalPrice = _this.mathadd(cartTotalPrice, li.total_price);
+        }  
+      })
+      
     });
     _this.setData({
       cartTotalPrice: Number(cartTotalPrice).toFixed(2)
@@ -156,8 +206,9 @@ Page({
     if(type === 0) {
       let _this = this,
         index = e.currentTarget.dataset.index,
+        num = e.currentTarget.dataset.num,
         goodsSkuId = e.currentTarget.dataset.skuId,
-        goods = _this.data.goods_list[index];
+        goods = _this.data.cart_goods_list[index].goods_list[num];
       // order_total_price = _this.data.order_total_price;  
       // 后端同步更新
       wx.showLoading({
@@ -175,7 +226,7 @@ Page({
         goods.total_price = _this.mathadd(goods.total_price, goods.goods_price);
         // 更新商品信息
         _this.setData({
-          ['goods_list[' + index + ']']: goods
+          ['cart_goods_list[' + index + '].goods_list[' + num + ']']: goods
         }, function() {
           // 更新购物车总价格
           _this.updateTotalPrice();
@@ -209,8 +260,9 @@ Page({
   minusCount: function(e) {
     let _this = this,
       index = e.currentTarget.dataset.index,
+      num = e.currentTarget.dataset.num,
       goodsSkuId = e.currentTarget.dataset.skuId,
-      goods = _this.data.goods_list[index];
+      goods = _this.data.cart_goods_list[index].goods_list[num];
     // order_total_price = _this.data.order_total_price;
 
     if (goods.total_num > 1) {
@@ -223,7 +275,7 @@ Page({
       App._post_form('cart/sub', {
         goods_id: goods.goods_id,
         goods_sku_id: goodsSkuId
-      }, function() {
+      }, function(res) {
         // 商品数量
         goods.total_num--;
         if (goods.total_num > 0) {
@@ -231,7 +283,7 @@ Page({
           goods.total_price = _this.mathsub(goods.total_price, goods.goods_price);
           // 更新商品信息
           _this.setData({
-            ['goods_list[' + index + ']']: goods
+            ['cart_goods_list[' + index + '].goods_list[' + num + ']']: goods
           }, function() {
             // 更新购物车总价格
             _this.updateTotalPrice();

@@ -472,7 +472,7 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
 }
-.twolist-hidden {
+.threelist-hidden {
   display: -webkit-box;
   word-break: break-all;
   text-overflow: ellipsis;

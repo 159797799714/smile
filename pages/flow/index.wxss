@@ -1,38 +1,57 @@
 @import "../../wxParse/wxParse.wxss";
-
+input{
+  min-height: 1rem;
+}
+.container{
+  margin-bottom: 80rpx;
+}
 .image {
   width: 100%;
   height: 100%;
 }
 
 .cart-edit-wrap {
-  padding: 15rpx;
+  padding: 10rpx 50rpx;
 }
-
+.store{
+  line-height: 44rpx;
+  height: 44rpx;
+}
+.store>image {
+  float: left;
+  display: inline-block;
+  height: 44rpx;
+  width: 44rpx;
+  margin: 0 10rpx;
+  border-radius: 100%;
+  border: 1px solid #333;
+  overflow: hidden;
+}
+.store>text{
+  float: left;
+  
+}
 .cart-tab-item-btn {
-  width: 160rpx;
+  width: 100%;
   display: block;
   height: 100rpx;
   line-height: 100rpx;
   font-size: 30rpx;
-  background: #16171c;
   color: #fff;
   float: right;
   text-align: center;
 }
 
 .cart-tab-item {
-  width: 75%;
+  width: calc(100% - 220rpx);
 }
 .cart-tab-item_1{
-  width: 25%;
+  width: 220rpx;
 }
 .cart-tab-wrp {
   height: 100rpx;
   position: fixed;
   bottom: 0rpx;
-  background: #fff;
-  border-top: 1rpx solid #ddd;
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -76,24 +95,28 @@
 }
 
 .dish-item {
-  width: 100%;
-  padding: 26rpx 20rpx;
   position: relative;
+  width: 100%;
+  padding: 26rpx 50rpx;
+  margin-bottom: 24rpx;
   box-sizing: border-box;
 }
 
 .dish-item-radio {
   padding: 20rpx 0;
+  margin-bottom: 48rpx;
+  border-bottom: 6rpx solid #333;
 }
 
 .dish-item-wrp {
   flex-direction: row;
+  margin-bottom: 38rpx;
 }
 
 .dish-item-pic {
   width: 180rpx;
   height: 180rpx;
-  margin: 0 12rpx ;
+  margin: 0 30rpx ;
 }
 
 .dish-item-pic image {
@@ -103,14 +126,26 @@
   background: #fff;
   border: 1rpx solid #eee;
 }
+.goods-attr>text{
+  display: block;
+  padding: 6rpx 11rpx;
+  line-height: 18rpx;
+  border-radius: 15rpx;
+}
 
 .dish-item-info {
-  padding-left: 16rpx;
+  padding-left: 10rpx;
   /* margin-right: 15px; *//* width: 68%; */
 }
 
 .dish-item-info .goods-name {
-  height: 80rpx;
+  height: 85rpx;
+  margin-bottom: 11rpx;
+  overflow: hidden;
+}
+.goods-name>text{
+  margin-top: -5rpx;
+  line-height: 32rpx;
 }
 
 .dish-item-sales {
@@ -118,10 +153,14 @@
   font-size: 20rpx;
   line-height: 50rpx;
 }
-
+.control{
+  padding-top: -5rpx;
+}
+.selectNumber input{
+  height: 45rpx;
+}
 .dish-item-money {
-  color: #FF5C00;
-  font-size: 32rpx;
+  line-height: 40rpx;
   /* padding: 0 0 10rpx 0; */
 }
 
@@ -152,4 +191,52 @@
   text-align: center;
   color: #777;
   margin-top: 25rpx;
+}
+
+/*  重写 radio 样式  */
+/* 未选中的 背景样式 */
+radio .wx-radio-input{
+   border-radius: 50%;/* 圆角 */
+   border-width: 2rpx;
+   width: 34rpx;
+   height: 34rpx;
+   background: #131313;
+}
+/* 选中后的 背景样式 （红色背景 无边框 可根据UI需求自己修改） */
+radio .wx-radio-input.wx-radio-input-checked{
+  
+}
+/* 选中后的 对勾样式 （白色对勾 可根据UI需求自己修改） */
+radio .wx-radio-input.wx-radio-input-checked::before{
+   border-radius: 50%;/* 圆角 */
+   width: 34rpx; /* 选中后对勾大小，不要超过背景的尺寸 */
+   height: 34rpx; /* 选中后对勾大小，不要超过背景的尺寸 */
+   line-height: 34rpx;
+   text-align: center;
+   font-size:30rpx; /* 对勾大小 30rpx */
+   color:#131313; /* 对勾颜色 白色 */
+   background: transparent;
+   transform:translate(-50%, -50%) scale(1);
+   -webkit-transform:translate(-50%, -50%) scale(1);
+}
+
+/* 底部结算选择框样式 */
+.cart-tab-wrp radio .wx-radio-input{
+   border-radius: 50%;/* 圆角 */
+   border-width: 2rpx;
+   width: 34rpx;
+   height: 34rpx;
+   background: #333;
+}
+.cart-tab-wrp .wx-radio-input.wx-radio-input-checked::before{
+   border-radius: 50%;/* 圆角 */
+   width: 34rpx; /* 选中后对勾大小，不要超过背景的尺寸 */
+   height: 34rpx; /* 选中后对勾大小，不要超过背景的尺寸 */
+   line-height: 34rpx;
+   text-align: center;
+   font-size:30rpx; /* 对勾大小 30rpx */
+   color: #333; /* 对勾颜色 白色 */
+   background: transparent;
+   transform:translate(-50%, -50%) scale(1);
+   -webkit-transform:translate(-50%, -50%) scale(1);
 }

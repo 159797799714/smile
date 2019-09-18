@@ -1,76 +1,88 @@
 <view class="container b-33">
   <view class="flow-list">
-    <view wx:if="{{goods_list.length}}">
-      <view class="cart-edit-wrap dis-flex flex-x-end col-9">
+    <view wx:if="{{cart_goods_list.length}}">
+      <view class="cart-edit-wrap dis-flex flex-x-end b-33 col-9">
         <text wx:if="{{ action === 'complete' }}" catchtap="switchAction" class="f-30" data-action="edit">编辑</text>
         <text wx:if="{{ action === 'edit' }}" catchtap="switchAction" class="f-30" data-action="complete">完成</text>
       </view>
-      <view wx:for="{{goods_list}}" wx:key="this">
-        <view class="dish-item dis-flex flex-y-center b-13" data-index="{{index}}" style="{{item.txtStyle}}">
-          <!-- 选择框 -->
-          <view class="dish-item-radio" bindtap="radioChecked" data-index="{{ index }}">
-            <label class="radio">
-              <radio checked="{{ item.checked }}" color="#FF5C00"></radio>
+      <view wx:for="{{cart_goods_list}}" wx:key="this" class="dish-item b-13" data-index="{{index}}">
+       
+        <view class="dish-item-radio dis-flex flex-x-between flex-y-center">
+          <view class="dis-flex flex-y-center">
+             <!-- 选择框 -->
+            <label class="radio" bindtap="storeChecked" data-index="{{ index }}">
+              <radio checked="{{ item.checked }}" color="#ff00ff"></radio>
             </label>
+            <view class="store dis-flex flex-y-center">
+              <image src="{{ item.image.file_path }}" mode="widthFix"></image>
+              <text class="f-30 col-9">{{ item.brand_theme_name }}</text>
+            </view>  
           </view>
-          <view class="dish-item-wrp dis-flex flex-box">
+          <text  class="f-22 col-purple">领券</text>
+        </view>
+        <view>
+          <view wx:for="{{ item.goods_list }}" wx:key="index" wx:for-item="li" wx:for-index="num" class="dish-item-wrp dis-flex flex-box">
+            <!-- 选择框 -->
+            <label class="radio" bindtap="radioChecked" data-index="{{ index }}" data-num="{{ num }}">
+              <radio checked="{{ li.checked }}" color="#ff00ff"></radio>
+            </label>
             <!-- 商品图片 -->
-            <!-- <navigator hover-class="none" url="../goods/index?goods_id={{item.goods_id}}"> -->
-              <view class="dish-item-pic" catchtap="goDetail" data-goods-id="{{ item.goods_id }}" data-type="{{ item.goods_type }}">
-                <image mode="aspectFill" class="image" src="{{item.image[0].file_path}}"></image>
+            <navigator hover-class="none" url="../goods/index?goods_id={{li.goods_id}}">
+              <view class="dish-item-pic" catchtap="goDetail" data-goods-id="{{ li.goods_id }}" data-type="{{ li.goods_type }}">
+                <image mode="aspectFill" class="image" src="{{li.image[0].file_path}}"></image>
               </view>
-            <!-- </navigator> -->
+            </navigator>
             <!-- 商品信息 -->
             <view class="dish-item-info flex-box">
-              <!-- <navigator hover-class="none" url="../goods/index?goods_id={{item.goods_id}}"> -->
-                <view class="goods-name" catchtap="goDetail" data-goods-id="{{ item.goods_id }}" data-type="{{ item.goods_type }}">
-                  <text class="twolist-hidden f-22 col-9">{{item.goods_name}}</text>
+              <navigator hover-class="none" url="../goods/index?goods_id={{li.goods_id}}">
+                <view class="goods-name" catchtap="goDetail" data-goods-id="{{ li.goods_id }}" data-type="{{ li.goods_type }}">
+                  <text class="threelist-hidden f-22 col-9">{{li.goods_name}}</text>
                 </view>
-                <view class="goods-attr dis-flex" catchtap="goDetail" data-goods-id="{{ item.goods_id }}" data-type="{{ item.goods_type }}">
-                  <text class="col-7 f-24">{{item.goods_sku.goods_attr}}</text>
+                <view class="goods-attr dis-flex" catchtap="goDetail" data-goods-id="{{ li.goods_id }}" data-type="{{ li.goods_type }}">
+                  <text class="b-93f col-13 f-18">{{li.goods_sku.goods_attr ? li.goods_sku.goods_attr : '默认'}}</text>
                 </view>
-              <!-- </navigator> -->
-              <view class="dis-flex flex-x-between m-top20">
-                <!-- 商品价格 -->
-                <view class="wx-goods_price dis-flex flex-y-center">
-                  <text class="dish-item-money">￥{{item.goods_price}}</text>
-                </view>
+              </navigator>
+              <!-- 商品价格 -->
+              <view class="wx-goods_price dis-flex flex-y-center">
+                <text class="dish-item-money f-20 col-9">￥{{li.goods_price}}</text>
+              </view>
+              <view class="control">
                 <!-- 数量选择器 -->
-                <view class="selectNumber">
-                  <button bindtap="minusCount" class="default {{item.total_num > 1 ?'':'default-active'}}" data-index="{{index}}" data-sku-id="{{item.goods_sku_id}}" data-type="{{ item.goods_type }}" type="default">-</button>
-                  <input bindinput="import" disabled="{{true}}" type="number" value="{{item.total_num}}"></input>
-                  <button bindtap="addCount" class="default {{item.total_num > 1 || item.goods_type === 0?'':'default-active'}}" data-index="{{index}}" data-sku-id="{{item.goods_sku_id}}" data-type="{{ item.goods_type }}" type="default">+</button>
+                <view class="fr selectNumber">
+                  <button bindtap="minusCount" class="default {{li.total_num > 1 ?'':'default-active'}}" data-index="{{index}}" data-num="{{ num }}" data-sku-id="{{li.goods_sku_id}}" data-type="{{ li.goods_type }}" type="default">-</button>
+                  <input bindinput="import" disabled="{{true}}" type="number" value="{{li.total_num}}"></input>
+                  <button bindtap="addCount" class="default {{li.total_num > 1 || li.goods_type === 0?'':'default-active'}}" data-index="{{index}}" data-num="{{ num }}" data-sku-id="{{li.goods_sku_id}}" data-type="{{ li.goods_type }}" type="default">+</button>
                 </view>
               </view>
               <!-- 删除按钮 -->
-              <!-- <view catchtap="del" class="flow-dete" data-goods-id="{{item.goods_id}}" data-sku-id="{{item.goods_sku_id}}">
+              <!-- <view catchtap="del" class="flow-dete" data-goods-id="{{li.goods_id}}" data-sku-id="{{li.goods_sku_id}}">
                 <text class="iconfont icon-lajixiang"></text>
               </view> -->
-            </view>
+            </view> 
           </view>
         </view>
       </view>
       <!-- 底部操作栏 -->
-      <view class="cart-tab-wrp">
+      <view class="cart-tab-wrp b-33">
         <view class="cart-item-total cart-tab-item dis-flex flex-y-center">
           <view class="checked-all">
             <label catchtap="radioCheckedAll" class="radio dis-flex flex-y-center">
-              <radio class="margin-right: 10rpx;" checked="{{ checkedAll }}" color="#FF5C00"></radio>
-              <text class="f-28">全选</text>
+              <radio class="margin-right: 10rpx;" checked="{{ checkedAll }}" style="background: #333;" color="#ff00ff"></radio>
+              <text class="f-30 col-9">全选</text>
             </label>
           </view>
           <view wx:if="{{ action === 'complete' }}" class="cart-item-total-price dis-flex">
-            <text class="f-28 col-m">合计：￥{{cartTotalPrice}}</text>
+            <text class="f-28 col-9">合计 （不含运费）{{cartTotalPrice}}</text>
           </view>
         </view>
-        <view class="cart-tab-item_1">
-          <view wx:if="{{ action === 'complete' }}" bindtap="submit" class="cart-tab-item-btn">去结算</view>
+        <view class="cart-tab-item_1 b-f0f">
+          <view wx:if="{{ action === 'complete' }}" bindtap="submit" class="cart-tab-item-btn">结算</view>
           <view wx:if="{{ action === 'edit' }}" bindtap="deleteHandle" class="cart-tab-item-btn">删除</view>
         </view>
       </view>
     </view>
     <view wx:else>
-      <view class="yoshop-notcont">
+      <view class="yoshop-notcont b-13">
         <text class="iconfont icon-wushuju"></text>
         <text class="cont">亲，购物车还没有商品哦</text>
         <view bindtap="goShopping" class="flow-btn-min">去购物</view>

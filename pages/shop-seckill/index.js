@@ -29,18 +29,7 @@ Page({
     ],                              // 时间
     selectIndex: 0,                 // 选中的时间
     nowState: '',                   //当前状态
-    goodList: [
-      {
-        goods_name: 'Sony/索尼 MDR-ZX310头戴式监听重低音耳机Sony/索尼 MDR-ZX310头戴式监听重低音耳机',
-        surplus_inventory: 0,
-        total_inventory: 100,
-        // discount: '4.6',
-        goods_min_price: 300,
-        goods_max_price: 4000,
-        code: 1,
-        goods_id: 10002
-      }, 
-    ],
+    goodList: [],
     openingTime: "",    //距下次开场时间
   },
   onLoad(option) {

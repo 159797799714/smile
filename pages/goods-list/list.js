@@ -150,8 +150,6 @@ Page({
       
       // _this.getBrandsList()
     });
-    
-    
 
   },
 
@@ -217,7 +215,45 @@ Page({
     }
     this.searchGoods()
   },
-
+  // 根据商品类型跳转到相应商品详情
+  goDetail(e) {
+    let goods_id = e.currentTarget.dataset.id,
+      type = e.currentTarget.dataset.type;
+    console.log(goods_id, type)
+    switch(type) {
+      // 普通商品0
+      case 0: 
+        wx.navigateTo({
+          url: '../goods/index?goods_id=' + goods_id
+        })
+        break;
+      // 秒杀商品1
+      case 1:
+        wx.navigateTo({
+          url: '../shop-seckill/goods/index?goods_id=' + goods_id + '&type=' + type
+        })
+        break;
+      // 限时商品2
+      case 2:
+        wx.navigateTo({
+          url: '../shop-seckill/goods/index?goods_id=' + goods_id + '&type=' + type
+        })
+        break;
+      // 0元抽奖3
+      case 3:
+        wx.navigateTo({
+          url: '../zerodraw/detail/index?goods_id=' + goods_id
+        })
+        break;
+      // 积分商品4
+      case 4:
+        wx.navigateTo({
+          url: '../goods/index?goods_id=' + goods_id
+        })
+        break;
+    }
+    
+  },
   // 搜索框
   seachInput(e) {
     console.log("输入框的值",e)

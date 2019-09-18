@@ -49,11 +49,10 @@
           </view>
         </view>
         <view class="right goods__share dis-flex">
-          <view class="collect dis-flex flex-dir-column">
-            <!-- <image src="../../../images/goods/collect.png"></image> -->
+          <!-- <view class="collect dis-flex flex-dir-column">
             <image src="../../../images/goods/collected.png" class="icon-img"></image>
             <view class="line-54 f-20 col-f3c">收藏</view>
-          </view>
+          </view> -->
           <form bindsubmit="openActionsheet" report-submit="true">
             <button formType="submit" class="share-btn dis-flex flex-dir-column">
               <image src="../../../images/goods/share.png" class="icon-img"></image>
