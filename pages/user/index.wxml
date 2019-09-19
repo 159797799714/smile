@@ -100,12 +100,106 @@
       </view>
     </view> -->
   </view>
+  <view class="menu-box">
+    <!-- 菜单栏2 -->
+    <view class="menu-title f-28">
+      <text class="col-f">我的订单</text>
+      <view class="col-9">
+        <text>全部订单</text>
+        <text class="iconfont icon-xiangyoujiantou m-l-10 user-orderJtou"></text>
+      </view>
+    </view>
+    <view class="menu">
+      <view wx:for="{{ munulist1 }}" wx:key="index" class="menu-item t-c">
+        <view class="item-icon">
+          <image src="{{ item.icon }}"></image>
+        </view>
+        <view class="item-name m-top10">{{ item.name }}</view>
+      </view>
+    </view>
+  </view>
   
-  <view class="menu-title f-28">
-    <text class="col-f">我的订单</text>
-    <view class="col-9">
-      <text>全部订单</text>
-      <text class="iconfont icon-xiangyoujiantou user-orderJtou"></text>
+  <view class="menu-box b-b-10">
+    <!-- 菜单栏3 -->
+    <view class="menu-title f-28">
+      <text class="col-f">拼团订单</text>
+      <view class="col-9">
+        <text>全部订单</text>
+        <text class="iconfont icon-xiangyoujiantou m-l-10 user-orderJtou"></text>
+      </view>
+    </view>
+    
+    <view class="menu">
+      <view wx:for="{{ munulist1 }}" wx:key="index" class="menu-item t-c">
+        <view class="item-icon">
+          <image src="{{ item.icon }}"></image>
+        </view>
+        <view class="item-name m-top10">{{ item.name }}</view>
+      </view>
+    </view>
+  </view>
+  
+  <view class="menu-box b-b-10">
+    <!-- 菜单栏3 -->
+    <view class="menu-title f-28">
+      <text class="col-f">我的钱包</text>
+    </view>
+    
+    <view class="menu f-24">
+      <view wx:for="{{ munulist1 }}" wx:key="index" class="menu-item t-c">
+        <view>
+          <text class="col-9">1000</text>
+        </view>
+        <view class="item-name m-top10">{{ item.name }}</view>
+      </view>
+    </view>
+  </view>
+  
+  <view class="menu-box b-b-10">
+    <!-- 菜单栏3 -->
+    <view class="menu-title f-28">
+      <text class="col-f">我的分销</text>
+    </view>
+    
+    <view class="menu">
+      <view wx:for="{{ munulist1 }}" wx:key="index" class="menu-item t-c">
+        <view class="item-icon">
+          <image src="{{ item.icon }}"></image>
+        </view>
+        <view class="item-name m-top10">{{ item.name }}</view>
+      </view>
+    </view>
+  </view>
+  
+  <view class="menu-box b-b-10">
+    <!-- 菜单栏3 -->
+    <view class="menu-title f-28">
+      <text class="col-f">我的福利</text>
+    </view>
+    
+    <view class="menu">
+      <view wx:for="{{ munulist1 }}" wx:key="index" class="menu-item t-c">
+        <view class="item-icon">
+          <image src="{{ item.icon }}"></image>
+        </view>
+        <view class="item-name m-top10">{{ item.name }}</view>
+      </view>
+    </view>
+  </view>
+  
+  <view class="menu-box b-b-10">
+    <!-- 菜单栏3 -->
+    <view class="menu-title f-28">
+      <text class="col-f">动态</text>
+    </view>
+    
+    <view class="menu">
+      <view wx:for="{{ munulist1 }}" wx:key="index" class="menu-item t-c">
+        <view class="item-icon">
+          <image src="{{ item.icon }}"></image>
+        </view>
+        <view class="item-name m-top10">{{ item.name }}</view>
+      </view>
     </view>
   </view>
   

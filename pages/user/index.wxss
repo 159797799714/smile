@@ -36,6 +36,9 @@
 }
 
 /* 菜单 */
+.menu-box{
+  padding: 0 60rpx;
+}
 .menu{
   display: flex;
   justify-content: space-between;
