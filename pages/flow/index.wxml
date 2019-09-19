@@ -14,7 +14,9 @@
               <radio checked="{{ item.checked }}" color="#ff00ff"></radio>
             </label>
             <view class="store dis-flex flex-y-center">
-              <image src="{{ item.image.file_path }}" mode="widthFix"></image>
+              <view class="img">
+                <image src="{{ item.image.file_path }}" mode="aspectFill"></image>
+              </view>
               <text class="f-30 col-9">{{ item.brand_theme_name }}</text>
             </view>  
           </view>
@@ -36,7 +38,7 @@
             <view class="dish-item-info flex-box">
               <navigator hover-class="none" url="../goods/index?goods_id={{li.goods_id}}">
                 <view class="goods-name" catchtap="goDetail" data-goods-id="{{ li.goods_id }}" data-type="{{ li.goods_type }}">
-                  <text class="threelist-hidden f-22 col-9">{{li.goods_name}}</text>
+                  <text class="twolist-hidden f-24 col-9">{{li.goods_name}}</text>
                 </view>
                 <view class="goods-attr dis-flex" catchtap="goDetail" data-goods-id="{{ li.goods_id }}" data-type="{{ li.goods_type }}">
                   <text class="b-93f col-13 f-18">{{li.goods_sku.goods_attr ? li.goods_sku.goods_attr : '默认'}}</text>

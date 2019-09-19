@@ -365,7 +365,7 @@ flex: 4;
 
 .flow-shopList .flow-list-right .flow-cont {
   font-size: 30rpx;
-  color: #FF5C00;
+  color: #999;
 }
 
 .flow-shopList .flow-list-right .small {
@@ -382,7 +382,6 @@ flex: 4;
   bottom: 0;
   width: 100%;
   background: #fff;
-  border-top: 1px solid #eee;
   z-index: 11;
 }
 
@@ -391,6 +390,7 @@ flex: 4;
   color: #777;
   padding: 15rpx 12px;
   text-align: right;
+  border-top: 1px solid #999;
 }
 
 .flow-all-money {

@@ -1,42 +1,51 @@
-<view class="container p-bottom">
+<view class="container p-bottom b-13">
 
   <!-- 顶部选项卡 -->
-  <view class="swiper-tab dis-flex flex-y-center flex-x-around">
+  <!-- <view class="swiper-tab dis-flex flex-y-center flex-x-around">
     <view wx:for="{{ deliverys }}" wx:key="this" class="swiper-tab-item {{ currentDelivery == item.value ? 'on' : '' }}" data-current="{{ item.value }}" bindtap="onSwichDelivery">
       {{ item.name }}
     </view>
-  </view>
+  </view> -->
 
   <!-- 快递配送：配送地址 -->
-  <view wx:if="{{ currentDelivery == deliverys.EXPRESS.value }}" catchtap="onSelectAddress" class="flow-delivery">
-    <view class="flow-delivery__detail dis-flex flex-y-center">
-      <view class="detail-location dis-flex">
+  <view wx:if="{{ currentDelivery == deliverys.EXPRESS.value }}" catchtap="onSelectAddress" class="flow-delivery b-t b-b">
+    <view class="flow-delivery__detail dis-flex flex-y-center col-9">
+      <!-- <view class="detail-location dis-flex">
         <text class="iconfont icon-dingwei"></text>
-      </view>
+      </view> -->
       <view class="detail-content flex-box">
         <block wx:if="{{ address.address_id }}">
-          <view class="detail-content__title dis-flex">
-            <text class="f-30">{{ address.name }}</text>
-            <text class="detail-content__title-phone f-28">{{ address.phone }}</text>
+          <view class="address-one oh">
+            <text class="fl address-left f-30">{{ address.name }}</text>
+            <view class="fl detail-content__title dis-flex">
+              <text class="detail-content__title-phone f-24">{{ address.phone }}</text>
+            </view>
           </view>
-          <view class="detail-content__describe">
-            <text class="col-7">{{address.region.province}} {{address.region.city}} {{address.region.region}} {{address.detail}}</text>
+          <view class="detail-content__describe oh">
+            <view class="fl address-left oh">
+              <text class="fl f-24 b-93f col-13">公司</text>
+            </view>
+            <text class="fl f-24 col-9">{{address.region.province}} {{address.region.city}} {{address.region.region}} {{address.detail}}{{address.region.province}} {{address.region.city}} {{address.region.region}} {{address.detail}}</text>
           </view>
         </block>
         <block wx:else>
           <view class="detail-content__describe dis-flex">
-            <text class="col-6">请选择配送地址</text>
+            <text class="f-30 col-9">请选择配送地址</text>
           </view>
         </block>
       </view>
       <view class="detail-arrow dis-flex">
-        <text class="iconfont icon-xiangyoujiantou user-orderJtou"></text>
+        <text class="iconfont icon-xiangyoujiantou f-20 col-purple"></text>
       </view>
     </view>
   </view>
+  <view class="row pay-way b-b col-9">
+    <text>支付方式</text>
+    <text class="">在线支付</text>
+  </view>
 
   <!-- 上门自提：自提门店 -->
-  <view wx:if="{{ currentDelivery == deliverys.EXTRACT.value }}" catchtap="onSelectExtractPoint" class="flow-delivery">
+  <!-- <view wx:if="{{ currentDelivery == deliverys.EXTRACT.value }}" catchtap="onSelectExtractPoint" class="flow-delivery">
     <view class="flow-delivery__detail dis-flex flex-y-center">
       <view class="detail-location dis-flex">
         <text class="iconfont icon-dingwei"></text>
@@ -60,46 +69,111 @@
         <text class="iconfont icon-xiangyoujiantou user-orderJtou"></text>
       </view>
     </view>
-  </view>
+  </view> -->
 
   <!-- 商品列表 -->
-  <view class="m-top20">
-    <view class="checkout_list " wx:for="{{goods_list}}" wx:key="this">
+  <view class="m-top20 b-b">
+    <view class="checkout_list b-13" wx:for="{{goods_list}}" wx:key="this">
       <navigator url="../goods/index?goods_id={{item.goods_id}}">
         <view class="dis-flex flow-shopList" data-index="{{index}}">
           <view class="flow-list-left">
             <image mode="scaleToFill" src="{{item.image[0].file_path}}"></image>
           </view>
           <view class="flow-list-right flex-box">
-            <text class="f-30 col-3 twolist-hidden">{{item.goods_name}}</text>
-            <text class="f-26 col-7">{{item.goods_sku.goods_attr}}</text>
+            <view class="goods-name" data-goods-id="{{ item.goods_id }}" data-type="{{ item.goods_type }}">
+              <text class="twolist-hidden f-24 col-9">{{item.goods_name}}</text>
+            </view>
+            <view class="goods-attr dis-flex" data-goods-id="{{ item.goods_id }}" data-type="{{ item.goods_type }}">
+              <text class="b-93f col-13 f-18">{{item.goods_sku.goods_attr ? item.goods_sku.goods_attr : '默认'}}</text>
+            </view>
             <view class="flow-list-cont dis-flex flex-x-between flex-y-center">
-              <text class="flow-cont">￥{{item.goods_price}}</text>
+              <text class="f-20 col-9">￥{{item.goods_price}}</text>
               <text class="small">×{{item.total_num}}</text>
             </view>
           </view>
         </view>
       </navigator>
     </view>
-    <view class="flow-num-box b-f padding-box">
+    <!-- <view class="flow-num-box padding-box">
       <text>共{{order_total_num}}件商品，合计：</text>
-      <text class="flow-money col-m">￥{{order_total_price}}</text>
+      <text class="flow-money col-9">￥{{order_total_price}}</text>
+    </view> -->
+  </view>
+  
+  <view class="row">
+    <text>U币</text>
+    <view>
+      <text>请选择</text>
+      <text class="iconfont icon-xiangyoujiantou m-l-10 col-purple"></text>
+    </view>
+  </view>
+  <view class="row">
+    <text>优惠券</text>
+    <view catchtap="togglePopupCoupon">
+      <block wx:if="{{ coupon_list.length > 0 }}">
+        <text wx:if="{{ selectCoupon.couponId }}">-￥{{ selectCoupon.reduced_price }}</text>
+        <text wx:else>有{{ coupon_list.length }}张优惠券可用</text>
+        <text class="iconfont icon-xiangyoujiantou m-l-10 col-purple"></text>
+      </block>
+      <text wx:else class="">无优惠券可用</text>
+    </view>
+  </view>
+  <view class="row">
+    <text>红包</text>
+    <view>
+      <text>请选择</text>
+      <text class="iconfont icon-xiangyoujiantou m-l-10 col-purple"></text>
+    </view>
+  </view>
+  
+  <view class="row b-t">
+    <text>商品金额</text>
+    <view>
+      <text>￥</text>
+      <text>100.00</text>
+    </view>
+  </view>
+  <view class="row">
+    <text>运费金额</text>
+    <view>
+      <view wx:if="{{address.address_id}}">
+        <text class="col-9" wx:if="{{intra_region}}">+￥{{express_price}}</text>
+        <text wx:else>不在配送范围</text>
+      </view>
+      <view wx:else>
+        <text class="col-7">请先选择配送地址</text>
+      </view>
+    </view>
+  </view>
+  <view class="row">
+    <text>优惠金额</text>
+    <view>
+      <text>￥</text>
+      <text>100.00</text>
+    </view>
+  </view>
+  
+  <view class="row b-t">
+    <text>发票</text>
+    <view>
+      <text>暂不开发票（默认）</text>
+      <text class="iconfont icon-xiangyoujiantou m-l-10 col-purple"></text>
     </view>
   </view>
 
   <!-- 买家留言 -->
-  <view class="flow-all-money b-f m-top20">
+  <!-- <view class="flow-all-money m-top20">
     <view class="ipt-wrapper dis-flex flow-all-list">
       <input bindinput="bindRemark" placeholder="选填：买家留言（50字以内）" value="{{remark}}"></input>
     </view>
   </view>
-
+ -->
   <!-- 商品金额 -->
-  <view class="flow-all-money b-f m-top20">
+  <!-- <view class="flow-all-money m-top20">
     <view class="dis-flex flow-all-list">
       <text class="flex-five">商品总金额：</text>
       <view class="flex-five t-r">
-        <text class="col-m">￥{{order_total_price}}</text>
+        <text class="col-9">￥{{order_total_price}}</text>
       </view>
     </view>
     <view class="dis-flex flow-all-list">
@@ -107,37 +181,38 @@
       <view class="flex-five t-r">
         <view class="" catchtap="togglePopupCoupon">
           <block wx:if="{{ coupon_list.length > 0 }}">
-            <text class="col-m" wx:if="{{ selectCoupon.couponId }}">-￥{{ selectCoupon.reduced_price }}</text>
-            <text class="col-m" wx:else>有{{ coupon_list.length }}张优惠券可用</text>
+            <text class="col-9" wx:if="{{ selectCoupon.couponId }}">-￥{{ selectCoupon.reduced_price }}</text>
+            <text class="col-9" wx:else>有{{ coupon_list.length }}张优惠券可用</text>
             <text class="iconfont icon-xiangyoujiantou user-orderJtou"></text>
           </block>
           <text wx:else class="">无优惠券可用</text>
         </view>
       </view>
-    </view>
+    </view> -->
     <!-- 配送费用 -->
-    <view wx:if="{{ currentDelivery == deliverys.EXPRESS.value }}" class="dis-flex flow-all-list">
+   <!-- <view wx:if="{{ currentDelivery == deliverys.EXPRESS.value }}" class="dis-flex flow-all-list">
       <text class="flex-five">配送费用：</text>
       <view class="flex-five t-r">
         <view wx:if="{{address.address_id}}">
-          <text class="col-m" wx:if="{{intra_region}}">+￥{{express_price}}</text>
+          <text class="col-9" wx:if="{{intra_region}}">+￥{{express_price}}</text>
           <text wx:else>不在配送范围</text>
         </view>
         <view wx:else>
           <text class="col-7">请先选择配送地址</text>
         </view>
       </view>
-    </view>
-  </view>
+    </view> 
+  </view>-->
 
   <!-- 提交订单 -->
-  <view class="flow-fixed-footer b-f m-top10">
+  <view class="flow-fixed-footer m-top10 b-33 col-9">
     <view class="dis-flex chackout-box">
-      <view class=" chackout-left pl-12 ">实付款：
-        <text class="col-m">￥{{ actual_pay_price > 0 ? actual_pay_price:  order_pay_price }}</text>
+      <view class="chackout-left pl-12 ">
+        <text class="col-9">(共 {{order_total_num}} 件) </text>
+        <text class="m-l-20 col-9">总计: {{ actual_pay_price > 0 ? actual_pay_price:  order_pay_price }}</text>
       </view>
       <view bindtap="submitOrder" class="chackout-right">
-        <text class="flow-btn f-32">提交订单</text>
+        <text class="flow-btn b-f0f f-32">提交订单</text>
       </view>
     </view>
   </view>

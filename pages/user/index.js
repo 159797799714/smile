@@ -5,15 +5,37 @@ Page({
    * 页面的初始数据
    */
   data: {
+    statusBarHeight: 20,    // 原生导航栏高度
     userInfo: {},
     orderCount: {},
+    munulist1: [{
+      icon: '',
+      name: '每日签到'
+    }, {
+      icon: '',
+      name: '每日签到'
+    }, {
+      icon: '',
+      name: '每日签到'
+    }, {
+      icon: '',
+      name: '每日签到'
+    }]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    let that = this
+    App.getSystemInfo({
+      cb: function(res) {
+        console.log(res.statusBarHeight)
+        that.setData({
+          statusBarHeight: res.statusBarHeight
+        })
+      }
+    });
   },
 
   /**

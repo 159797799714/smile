@@ -241,16 +241,19 @@ Page({
         break;
       // 0元抽奖3
       case 3:
+        let form = {
+          goods_id: goods_id
+        }
         wx.navigateTo({
-          url: '../zerodraw/detail/index?goods_id=' + goods_id
+          url: '../zerodraw/detail/index?form=' + JSON.stringify(form)
         })
         break;
-      // 积分商品4
-      case 4:
-        wx.navigateTo({
-          url: '../goods/index?goods_id=' + goods_id
-        })
-        break;
+      // // 积分商品4
+      // case 4:
+      //   wx.navigateTo({
+      //     url: '../goods/index?goods_id=' + goods_id
+      //   })
+      //   break;
     }
     
   },

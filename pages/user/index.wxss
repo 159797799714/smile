@@ -2,15 +2,12 @@
 
 .user {
   position: relative;
-  background: #fff;
-  margin-bottom: 150rpx;
+  padding: 0 60rpx 27rpx;
 }
 
 .user-header {
   display: flex;
-  padding-top: 1px;
-  width: 100%;
-  height: 310rpx;
+  padding: 25rpx 0;
   align-content: center;
   background-color: #16171c;
   background-repeat: no-repeat;
@@ -18,23 +15,59 @@
   background-size: auto 100%;
 }
 
-.user-header .user-header-cont {
-  display: flex;
-  margin: auto;
-  margin-bottom: 135rpx;
-  width: 79%;
-  align-items: center;
+.user-header-cont {
+  width: 100%;
 }
 
 .user-header .user-header-cont .user-header-avatar {
   display: block;
   margin-right: 30rpx;
-  width: 120rpx;
-  height: 120rpx;
+  width: 114rpx;
+  height: 114rpx;
   border-radius: 50%;
   border: 5rpx solid #fff;
   overflow: hidden;
 }
+/* 关注收藏等一栏 */
+.column{
+  height: 70rpx;
+  padding-top: 13rpx;
+  margin-bottom: 45rpx;
+}
+
+/* 菜单 */
+.menu{
+  display: flex;
+  justify-content: space-between;
+}
+.menu-item{
+  text-align: center;
+}
+.menu-item .item-icon{
+  height: 86rpx;
+  width: 86rpx;
+  margin: 0 auto;
+}
+.menu-item .item-icon>image{
+  height: 100%;
+  width: 100%;
+  background: #333;
+}
+.menu-item .item-name{
+  font-size: 24rpx;
+  color: #999;
+  line-height: 58rpx;
+}
+
+/* 菜单标题 */
+.menu-title{
+  display: flex;
+  justify-content: space-between;
+  padding: 45rpx 0;
+  line-height: 28rpx;
+}
+
+
 
 /* 订单导航栏 */
 
@@ -111,7 +144,17 @@
   color: #444;
   margin-left: 20rpx;
 }
-
+.name{
+  padding-top: 34rpx;
+  max-width: 350rpx;
+}
+.setting{
+  padding-top: 30rpx;
+}
 .user-header-cont-name {
-  color: #fff;
+  line-height: 48rpx;
+}
+
+.b-b-10{
+  border-bottom: 10rpx solid #333;
 }

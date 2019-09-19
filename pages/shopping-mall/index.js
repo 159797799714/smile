@@ -70,12 +70,13 @@ Page({
     // 加载页面数据
     that.getPageData();
     App.getSystemInfo({
-      cb: (height) => {
+      cb: function(res) {
+        console.log(res.statusBarHeight)
         that.setData({
-          statusHeight: height
+          statusBarHeight: res.statusBarHeight
         })
       }
-    })
+    });
   },
   onShow() {
     if (this.data.swiperList[0].data.length < 1) {

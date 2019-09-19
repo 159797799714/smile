@@ -48,15 +48,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(options)
+    console.log('11111', options)
     let that = this
-    let opt = JSON.parse(options.form)
-    that.setData({
-      data: opt
-    })
+    
     if(options.form) {
+      let opt = JSON.parse(options.form)
       let user_id = wx.getStorageInfoSync('user_id')
       that.setData({
+        data: opt,
         param: opt
       })
       if(opt.reuser_id !== undefined) {

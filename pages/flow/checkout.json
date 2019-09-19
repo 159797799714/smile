@@ -1,5 +1,7 @@
 {
   "navigationBarTitleText": "订单确认",
+  "navigationBarBackgroundColor": "#131313",
+  "navigationBarTextStyle": "white",
   "usingComponents": {
     "zan-popup": "/components/popup/index",
     "shortcut": "/components/shortcut/shortcut"

@@ -1,16 +1,55 @@
-<view class="container" wx:if="{{ userInfo.user_id > 0 }}">
+<view class="container" wx:if="{{ userInfo.user_id > 0 }}" style="padding-top: {{ statusBarHeight + 'px' }}">
   <!-- 用户信息 -->
-  <view class="user">
-    <view class="user-header" style="background-color; #000">
-      <view class="user-header-cont">
-        <view class="user-header-avatar">
-          <open-data class="" lang="zh_CN" type="userAvatarUrl"></open-data>
+  <view class="user b-b-10">
+    <view class="user-header">
+      <view class="user-header-cont dis-flex flex-y-center flex-x-between">
+        <view class="oh">
+          <view class="fl user-header-avatar">
+            <open-data class="" lang="zh_CN" type="userAvatarUrl"></open-data>
+          </view>
+          <view class="fl name">
+            <open-data class="user-header-cont-name f-36 col-f" lang="zh_CN" type="userNickName"></open-data>
+            <view class="f-22 col-f onelist-hidden" style="letter-spacing: 1px;">个性签名：嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻</view>
+          </view>
         </view>
-        <open-data class="user-header-cont-name" lang="zh_CN" type="userNickName"></open-data>
+        <view class="fr setting">
+          <text class="iconfont icon-shezhi1 col-9"></text>
+        </view>
       </view>
     </view>
+    
+    <!-- 关注，收藏，点赞，粉丝 -->
+    <view class="column dis-flex flex-x-between f-24 col-9">
+      <view class="flex-box t-c">
+        <view>1314</view>
+        <view class="m-top10">关注</view>
+      </view>
+      <view class="flex-box t-c">
+        <view>1314</view>
+        <view class="m-top10">收藏</view>
+      </view>
+      <view class="flex-box t-c">
+        <view>1314</view>
+        <view class="m-top10">点赞</view>
+      </view>
+      <view class="flex-box t-c">
+        <view>1314</view>
+        <view class="m-top10">粉丝</view>
+      </view>
+    </view>
+    
+    <!-- 菜单栏1 -->
+    <view class="menu">
+      <view wx:for="{{ munulist1 }}" wx:key="index" class="menu-item t-c">
+        <view class="item-icon">
+          <image src="{{ item.icon }}"></image>
+        </view>
+        <view class="item-name m-top10">{{ item.name }}</view>
+      </view>
+    </view>
+    
     <!-- 订单导航栏 -->
-    <view class="order-navbar">
+    <!-- <view class="order-navbar">
       <form bindsubmit="onTargetOrder" data-type="all" report-submit="true">
         <button formType="submit" class="btn-normal">
           <view class="order-navbar-header dis-flex">
@@ -59,10 +98,20 @@
           </form>
         </view>
       </view>
+    </view> -->
+  </view>
+  
+  <view class="menu-title f-28">
+    <text class="col-f">我的订单</text>
+    <view class="col-9">
+      <text>全部订单</text>
+      <text class="iconfont icon-xiangyoujiantou user-orderJtou"></text>
     </view>
   </view>
+  
+  
   <!-- 菜单列表 -->
-  <view class="menus-list m-top20">
+  <!-- <view class="menus-list m-top20">
     <form wx:for="{{ menus }}" wx:key="this" bindsubmit="onTargetMenus" data-url="{{item.url}}" report-submit="true">
       <button formType="submit" class="btn-normal">
         <view class="menus-item dis-flex b-f">
@@ -76,5 +125,5 @@
         </view>
       </button>
     </form>
-  </view>
+  </view> -->
 </view>

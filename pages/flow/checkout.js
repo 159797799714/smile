@@ -123,7 +123,7 @@ Page({
    */
   onSelectAddress() {
     wx.navigateTo({
-      url: '../address/' + (this.data.exist_address ? 'index?from=flow' : 'create')
+      url: '../address/index'
     });
   },
 
