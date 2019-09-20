@@ -143,12 +143,12 @@ input{
 }
 
 .dish-item-info .goods-name {
-  height: 70rpx;
+  height: 85rpx;
   overflow: hidden;
 }
 .goods-name>text{
   margin-top: -5rpx;
-  line-height: 32rpx;
+  line-height: 40rpx;
 }
 
 .dish-item-sales {

@@ -43,7 +43,7 @@
                     <view class="order-shop-right">
                       <view class="goods_name twolist-hidden f-24 col-9">{{ li.goods_name }}</view>
                       <view class="goods_attr m-top10">
-                        <text wx:if="{{ li.goods_attr }}" class="onelist-hidden b-99 f-16 col-13">{{ li.goods_attr }}</text>
+                        <text wx:if="{{ li.goods_attr }}" class="onelist-hidden b-93f f-16 col-13">{{ li.goods_attr }}</text>
                       </view>
                     </view>
                     <text class="goods-number">￥{{li.total_pay_price * 100 / 100}}元</text>  

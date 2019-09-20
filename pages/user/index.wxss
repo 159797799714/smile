@@ -2,12 +2,12 @@
 
 .user {
   position: relative;
-  padding: 0 60rpx 27rpx;
+  padding: 0 40rpx 27rpx;
 }
 
 .user-header {
   display: flex;
-  padding: 25rpx 0;
+  padding: 25rpx 40rpx;
   align-content: center;
   background-color: #16171c;
   background-repeat: no-repeat;
@@ -31,20 +31,27 @@
 /* 关注收藏等一栏 */
 .column{
   height: 70rpx;
-  padding-top: 13rpx;
+  padding: 13rpx 30rpx 0;
   margin-bottom: 45rpx;
 }
 
 /* 菜单 */
 .menu-box{
-  padding: 0 60rpx;
+  padding: 0 40rpx;
 }
 .menu{
   display: flex;
-  justify-content: space-between;
 }
 .menu-item{
+  width: 25%;
   text-align: center;
+}
+.menu button{
+  padding: 0;
+  background: #131313;
+  font-size: 24rpx;
+  color: #999;
+  line-height: 58rpx;
 }
 .menu-item .item-icon{
   height: 86rpx;
@@ -54,7 +61,6 @@
 .menu-item .item-icon>image{
   height: 100%;
   width: 100%;
-  background: #333;
 }
 .menu-item .item-name{
   font-size: 24rpx;
@@ -62,11 +68,15 @@
   line-height: 58rpx;
 }
 
+.purse{
+  padding-bottom: 28rpx;
+}
+
 /* 菜单标题 */
 .menu-title{
   display: flex;
   justify-content: space-between;
-  padding: 45rpx 0;
+  padding: 45rpx 40rpx;
   line-height: 28rpx;
 }
 

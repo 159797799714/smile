@@ -55,7 +55,9 @@
     "pages/zerodraw/index",
     "pages/zerodraw/pastlook/index",
     "pages/zerodraw/detail/index",
-    "pages/loading/index"
+    "pages/loading/index",
+    "pages/setting/index/index",
+    "pages/setting/about/about"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",

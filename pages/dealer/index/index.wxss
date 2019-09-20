@@ -1,9 +1,10 @@
 page {
-  background: #fff;
+  background: #131313;
 }
 
-.dealer-bg image {
+.dealer-bg{
   width: 100%;
+  height: 220rpx;
 }
 
 .widget-body .widget {
@@ -20,7 +21,7 @@ page {
 .widget__base .base__user {
   position: relative;
   padding: 15rpx 40rpx;
-  border-bottom: 1rpx solid #e7e7e7;
+  border-bottom: 1rpx solid #131313;
 }
 
 .widget__base .base__user .user-avatar {
@@ -49,7 +50,6 @@ page {
 .widget__base .base__capital .capital-card {
   height: 200rpx;
   padding: 30rpx 0;
-  background-color: #8e84fc;
   border-radius: 10rpx;
   box-sizing: border-box;
   text-align: center;
@@ -59,8 +59,8 @@ page {
   width: 130rpx;
   height: 50rpx;
   line-height: 50rpx;
-  background: #fff;
-  color: #8e84fc;
+  border: 1px solid #ff33ff;
+  color: #ff33ff;
   border-radius: 25rpx;
   margin-right: 32rpx;
 }

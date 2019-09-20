@@ -12,7 +12,7 @@
             <view class="f-22 col-f onelist-hidden" style="letter-spacing: 1px;">个性签名：嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻</view>
           </view>
         </view>
-        <view class="fr setting">
+        <view class="fr setting" catchtap="goSetting">
           <text class="iconfont icon-shezhi1 col-9"></text>
         </view>
       </view>
@@ -20,138 +20,85 @@
     
     <!-- 关注，收藏，点赞，粉丝 -->
     <view class="column dis-flex flex-x-between f-24 col-9">
-      <view class="flex-box t-c">
-        <view>1314</view>
-        <view class="m-top10">关注</view>
-      </view>
-      <view class="flex-box t-c">
-        <view>1314</view>
-        <view class="m-top10">收藏</view>
-      </view>
-      <view class="flex-box t-c">
-        <view>1314</view>
-        <view class="m-top10">点赞</view>
-      </view>
-      <view class="flex-box t-c">
-        <view>1314</view>
-        <view class="m-top10">粉丝</view>
+      <view wx:for="{{ msglist }}" wx:key="index"  class="flex-box t-c">
+        <view>{{ item.num }}</view>
+        <view class="m-top10">{{ item.name }}</view>
       </view>
     </view>
     
     <!-- 菜单栏1 -->
     <view class="menu">
-      <view wx:for="{{ munulist1 }}" wx:key="index" class="menu-item t-c">
+      <view wx:for="{{ munulist1 }}" wx:key="index" wx:if="{{ index < 3 }}" class="menu-item t-c">
         <view class="item-icon">
           <image src="{{ item.icon }}"></image>
         </view>
         <view class="item-name m-top10">{{ item.name }}</view>
       </view>
+      <button open-type="contact" sessionFrom="weapp" class="menu-item t-c">
+        <view class="item-icon">
+          <image src="{{ munulist1[3].icon }}"></image>
+        </view>
+        <view class="item-name m-top10">{{ munulist1[3].name }}</view>
+      </button>
+      
     </view>
     
-    <!-- 订单导航栏 -->
-    <!-- <view class="order-navbar">
-      <form bindsubmit="onTargetOrder" data-type="all" report-submit="true">
-        <button formType="submit" class="btn-normal">
-          <view class="order-navbar-header dis-flex">
-            <text class="f-30">我的订单</text>
-            <view class="dis-flex flex-y-center">
-              <text class="f-24 col-6">全部订单</text>
-              <text class="iconfont icon-xiangyoujiantou user-orderJtou"></text>
-            </view>
-          </view>
-        </button>
-      </form>
-      <view class="order-navbar-footer dis-flex m-top10">
-        <view class="order-navbar-item flex-box">
-          <form bindsubmit="onTargetOrder" data-type="all" report-submit="true">
-            <button formType="submit" class="btn-normal">
-              <text class="order-navbar__icon iconfont icon-form"></text>
-              <text class="order-navbar__name">全部订单</text>
-            </button>
-          </form>
-        </view>
-        <view class="order-navbar-item flex-box">
-          <form bindsubmit="onTargetOrder" data-type="payment" report-submit="true">
-            <button formType="submit" class="btn-normal">
-              <text class="order-navbar__icon iconfont icon-daifukuan"></text>
-              <text class="order-navbar__name">待付款</text>
-              <text class="order-badge" wx:if="{{orderCount.payment > 0}}">{{orderCount.payment}}</text>
-            </button>
-          </form>
-        </view>
-        <view class="order-navbar-item flex-box">
-          <form bindsubmit="onTargetOrder" data-type="received" report-submit="true">
-            <button formType="submit" class="btn-normal">
-              <text class="order-navbar__icon iconfont icon-daishouhuo"></text>
-              <text class="order-navbar__name">待收货</text>
-              <text class="order-badge" wx:if="{{orderCount.received > 0}}">{{orderCount.received}}</text>
-            </button>
-          </form>
-        </view>
-        <view class="order-navbar-item flex-box">
-          <form bindsubmit="onTargetOrder" data-type="refund" report-submit="true">
-            <button formType="submit" class="btn-normal">
-              <text class="order-navbar__icon iconfont icon-shouhou"></text>
-              <text class="order-navbar__name">退款/售后</text>
-              <text class="order-badge" wx:if="{{orderCount.refund > 0}}">{{orderCount.refund}}</text>
-            </button>
-          </form>
-        </view>
-      </view>
-    </view> -->
   </view>
+  
+  <!-- 我的订单导航栏 -->
   <view class="menu-box">
-    <!-- 菜单栏2 -->
+    <!-- 菜单栏1 -->
     <view class="menu-title f-28">
       <text class="col-f">我的订单</text>
-      <view class="col-9">
+      <navigator url="/pages/order/index?type=all" class="col-9">
         <text>全部订单</text>
         <text class="iconfont icon-xiangyoujiantou m-l-10 user-orderJtou"></text>
-      </view>
+      </navigator>
     </view>
     <view class="menu">
-      <view wx:for="{{ munulist1 }}" wx:key="index" class="menu-item t-c">
+      <navigator wx:for="{{ munulist2 }}" wx:key="index" url="{{ item.url }}" class="menu-item t-c">
         <view class="item-icon">
           <image src="{{ item.icon }}"></image>
         </view>
         <view class="item-name m-top10">{{ item.name }}</view>
-      </view>
+      </navigator>
     </view>
   </view>
   
+  <!-- 我的拼团订单 -->
   <view class="menu-box b-b-10">
-    <!-- 菜单栏3 -->
+    <!-- 菜单栏2 -->
     <view class="menu-title f-28">
-      <text class="col-f">拼团订单</text>
-      <view class="col-9">
+      <text class="col-f">我的拼团订单</text>
+      <navigator url="/pages/sharing/order/index?type=all" class="col-9">
         <text>全部订单</text>
         <text class="iconfont icon-xiangyoujiantou m-l-10 user-orderJtou"></text>
-      </view>
+      </navigator>
     </view>
     
     <view class="menu">
-      <view wx:for="{{ munulist1 }}" wx:key="index" class="menu-item t-c">
+      <navigator wx:for="{{ munulist2_2 }}" wx:key="index" url="{{ item.url }}" class="menu-item t-c">
         <view class="item-icon">
           <image src="{{ item.icon }}"></image>
         </view>
         <view class="item-name m-top10">{{ item.name }}</view>
-      </view>
+      </navigator>
     </view>
   </view>
   
-  <view class="menu-box b-b-10">
-    <!-- 菜单栏3 -->
+  <view class="menu-box purse b-b-10">
+    <!-- 菜单栏2 -->
     <view class="menu-title f-28">
       <text class="col-f">我的钱包</text>
     </view>
     
     <view class="menu f-24">
-      <view wx:for="{{ munulist1 }}" wx:key="index" class="menu-item t-c">
+      <navigator wx:for="{{ purselist }}" wx:key="index" url="{{ item.url }}" class="menu-item t-c">
         <view>
           <text class="col-9">1000</text>
         </view>
         <view class="item-name m-top10">{{ item.name }}</view>
-      </view>
+      </navigator>
     </view>
   </view>
   
@@ -162,39 +109,39 @@
     </view>
     
     <view class="menu">
-      <view wx:for="{{ munulist1 }}" wx:key="index" class="menu-item t-c">
+      <navigator wx:for="{{ munulist3 }}" wx:key="index" url="{{ item.url }}" class="menu-item t-c">
         <view class="item-icon">
           <image src="{{ item.icon }}"></image>
         </view>
         <view class="item-name m-top10">{{ item.name }}</view>
-      </view>
+      </navigator>
     </view>
   </view>
   
   <view class="menu-box b-b-10">
-    <!-- 菜单栏3 -->
+    <!-- 菜单栏4 -->
     <view class="menu-title f-28">
       <text class="col-f">我的福利</text>
     </view>
     
     <view class="menu">
-      <view wx:for="{{ munulist1 }}" wx:key="index" class="menu-item t-c">
+      <navigator wx:for="{{ munulist4 }}" wx:key="index" url="{{ item.url }}" class="menu-item t-c">
         <view class="item-icon">
           <image src="{{ item.icon }}"></image>
         </view>
         <view class="item-name m-top10">{{ item.name }}</view>
-      </view>
+      </navigator>
     </view>
   </view>
   
-  <view class="menu-box b-b-10">
-    <!-- 菜单栏3 -->
+  <view class="menu-box">
+    <!-- 菜单栏5 -->
     <view class="menu-title f-28">
       <text class="col-f">动态</text>
     </view>
     
     <view class="menu">
-      <view wx:for="{{ munulist1 }}" wx:key="index" class="menu-item t-c">
+      <view wx:for="{{ munulist5 }}" wx:key="index" class="menu-item t-c">
         <view class="item-icon">
           <image src="{{ item.icon }}"></image>
         </view>
