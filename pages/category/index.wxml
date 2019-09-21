@@ -1,13 +1,13 @@
-<view class="container">
+<view class="container b-13">
   <!-- 搜索框 -->
-  <view class="index-search-box">
+  <!-- <view class="index-search-box">
     <navigator class="index-search " hover-class="none" openType="navigate" url="../search/index">
       <view class="index-cont-search t-c">
         <icon class="text-center" color="{{searchColor}}" size="{{searchSize}}" type="search"></icon>
         <text>{{searchName}}</text>
       </view>
     </navigator>
-  </view>
+  </view> -->
 
   <!-- 分类样式：一级分类(大图) 10 -->
   <view class="cate-content" wx:if="{{ templet.category_style == 10 && list.length > 0 }}">

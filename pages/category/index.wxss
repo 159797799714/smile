@@ -1,7 +1,7 @@
 /* 搜索框 */
 
 .index-search-box {
-  background: #fff;
+  background: #131313;
   padding: 13rpx 13rpx 18rpx 13rpx;
 }
 
@@ -21,11 +21,11 @@
 /* 通用 */
 
 page {
-  background: #fff;
+  background: #131313;
 }
 
 .cate-content {
-  background: #fff;
+  background: #131313;
 }
 
 .cate-wrapper {

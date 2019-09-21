@@ -16,7 +16,7 @@ Page({
     min: 0,         // 剩余开奖分钟
     sec: 0,         // 剩余开奖秒  
     
-    
+    specData: {},             // 商品规格信息
     showBottomPopup: false,   // 选择规格弹窗
     isWin: true,              // 可以领奖
     canGet: false,            // 中奖了领奖弹窗
@@ -27,8 +27,6 @@ Page({
     leave_time:  '',                 // 活动开奖剩余时间 
     selectBarIndex: 0,               // 选中的活动列表的索引值,
     param: {},                       //传过来的抽奖的参数
-    draw_num: '请点击抽奖领取抽奖码',  // 还未抽奖时我的抽奖码显示的文字
-    remarks: ['分享微信领取抽奖码', '邀请好友参加得额外抽奖码（邀请越多，抽奖码越多，中奖概率越高）', '开奖通知(微信服务通知)'],
     addressData: {},
     data: '',
     id: '',
@@ -83,6 +81,29 @@ Page({
     //   })  
     // }.bind(this), 1000)
     
+  },
+  
+  /**
+   * 点击切换不同规格
+   */
+  modelTap: function(e) {
+    let attrIdx = e.currentTarget.dataset.attrIdx,
+      itemIdx = e.currentTarget.dataset.itemIdx,
+      specData = this.data.specData;
+    for (let i in specData.spec_attr) {
+      for (let j in specData.spec_attr[i].spec_items) {
+        if (attrIdx == i) {
+          specData.spec_attr[i].spec_items[j].checked = false;
+          if (itemIdx == j) {
+            specData.spec_attr[i].spec_items[itemIdx].checked = true;
+            this.goods_spec_arr[i] = specData.spec_attr[i].spec_items[itemIdx].item_id;
+          }
+        }
+      }
+    }
+    this.setData({
+      specData
+    });
   },
   
   // 设置轮播图当前指针 数字
@@ -154,7 +175,8 @@ Page({
         // 过滤时间将2017-10-11 换成2017年10月11日
         res.data.detail.luckydraw_time = data.substr(0,4) + '年' + data.substr(5,2) + '月' + data.substr(8, 2) + '日' + data.substr(11,5)
         that.setData({
-          detail: res.data.detail
+          detail: res.data.detail,
+          specData: res.data.specData
         })
         if(res.data.detail.iswin === 'yes') {
           // 获取收货地址

@@ -51,7 +51,7 @@ Page({
     },
     ishave: '',              // buyNow点击购买，addCart点击加入购物车，点击选择规格则为空字符串
     heightArr: [],           // 依次为商品，评价， 详情， 为你推荐的高度
-
+    onSelectTab: false,      // 是否正在点击顶部tab
   },
 
   // 记录规格的数组
@@ -77,9 +77,11 @@ Page({
       }
     });
     
-    // 获取各元素高度
+  },
+  
+  onReady() {
+    // 获取元素高度
     this.getHeight()
-    
   },
   observers: {
     'navData': function(top) {
@@ -123,16 +125,19 @@ Page({
     })
     
     //获取详情高度
-    query.select('.p-bottom').boundingClientRect()
-    query.exec(function (res) {
-      //res就是 所有标签为mjltest的元素的信息 的数组
-      //取高度
-      console.log('p-bottom', res[3].height)
-      arr.push(res[1].height + res[2].height + res[3].height);
-      that.setData({
-        heightArr: arr
-      })
-    })
+    setTimeout(function() {
+      query.select('.p-bottom').boundingClientRect()
+      query.exec(function (res) {
+        //res就是 所有标签为mjltest的元素的信息 的数组
+        //取高度
+        console.log('p-bottom', res[3].height)
+        arr.push(res[1].height + res[2].height + res[3].height);
+        that.setData({
+          heightArr: arr
+        })
+      })  
+    }, 500)
+    
   },
   
  // 返回
@@ -146,9 +151,18 @@ Page({
     
     console.log(index === 0 ? 0:  this.data.heightArr[index])
     this.setData({
+      onSelectTab: true,
       navData: e.currentTarget.dataset.index,
       scrollTop: index === 0 ? 0:  this.data.heightArr[index] - this.data.heightArr[0]
     })
+    
+    //  分开写是为了改变滚动距离顶部时不跳
+    setTimeout(function() {
+      this.setData({
+        onSelectTab: false
+      })
+    }.bind(this), 1000)
+    
   },
   /**
    * 获取商品信息
@@ -235,36 +249,38 @@ Page({
   onPageScroll(e) {
     let that= this
     console.log(e.detail.scrollTop)
-    that.setData({
-      floorstatus: e.detail.scrollTop > 200
-    })
-    if(Number(e.detail.scrollTop) > Number(that.data.heightArr[3]) ) {
-      console.log('3')
+    if(!that.data.onSelectTab) {
       that.setData({
-        navData: 3
+        floorstatus: e.detail.scrollTop > 200
       })
-      return
-    }
-    if(Number(e.detail.scrollTop) > Number(that.data.heightArr[2])) {
-      console.log('2')
-      that.setData({
-        navData: 2
-      })
-      return
-    }
-    if(Number(e.detail.scrollTop) > Number(that.data.heightArr[1]) ) {
-      console.log('1')
-      that.setData({
-        navData: 1
-      })
-      return
-    }
-    if(Number(e.detail.scrollTop) < Number(that.data.heightArr[1])) {
-      console.log('0')
-      that.setData({
-        navData: 0
-      })
-      return
+      if(Number(e.detail.scrollTop) > Number(that.data.heightArr[3]) ) {
+        console.log('3')
+        that.setData({
+          navData: 3
+        })
+        return
+      }
+      if(Number(e.detail.scrollTop) > Number(that.data.heightArr[2])) {
+        console.log('2')
+        that.setData({
+          navData: 2
+        })
+        return
+      }
+      if(Number(e.detail.scrollTop) > Number(that.data.heightArr[1]) ) {
+        console.log('1')
+        that.setData({
+          navData: 1
+        })
+        return
+      }
+      if(Number(e.detail.scrollTop) < Number(that.data.heightArr[1])) {
+        console.log('0')
+        that.setData({
+          navData: 0
+        })
+        return
+      }
     }
   },
   /**

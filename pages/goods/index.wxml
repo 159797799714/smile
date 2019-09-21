@@ -1,14 +1,13 @@
 <import src="../../wxParse/wxParse.wxml"></import>
 <view class="topBar dis-flex flex-y-center" style="padding-top: {{ statusBarHeight + 'px' }}">
   <text class="iconfont icon-xiangyoujiantou f-32 col-9 r-180 f-w" catchtap="goBack"></text>
-  <view class="topNav flex-box dis-flex flex-x-around">
-    <view wx:for="{{ topList }}" wx:key="index" class="navLi f-24 {{ navData === index ? 'selected': '' }}" catchtap="selectNav" data-index="{{ index }}">
+  <view class="topNav p-r flex-box dis-flex flex-x-around">
+    <!-- <view wx:for="{{ topList }}" wx:key="index" class="navLi f-24 {{ navData === index ? 'selected': '' }}" catchtap="selectNav" data-index="{{ index }}">
       {{ item }}
-      <!-- <text class="navSwiper" style="left: {{ swiperLeft + 'px' }}"></text> -->
-    </view>
+    </view> -->
   </view>
 </view>
-<scroll-view bindscroll="scroll" scroll-top="{{scrollTop}}" scroll-y="true" bindscroll="onPageScroll" style="height: 100%;">
+<scroll-view scroll-top="{{scrollTop}}" scroll-y="true" bindscroll="onPageScroll" style="height: 100%;">
   <view class="container" wx:if="{{detail.goods_id}}">
     <!-- 商品 -->
     <view class="goods">

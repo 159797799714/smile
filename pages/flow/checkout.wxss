@@ -90,7 +90,7 @@
   font-size: 24rpx;
   color: #999;
   line-height: 24rpx;
-  padding: 17rpx 80rpx;
+  padding: 22rpx 80rpx;
 }
 /* 支付方式 */
 .pay-way{
