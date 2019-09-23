@@ -110,7 +110,11 @@ button{
 }
 
 /* 确认购买弹窗 */
-
+.cur {
+  background: #131313;
+  border-color: #ff00ff;
+  color: #ff00ff;
+}
 .popup__trade {
   position: relative;
   width: 750rpx;

@@ -140,8 +140,8 @@
         <view class="goods-list-box" scroll-y="true">
           <view class="cf tmall-types" wx:for="{{specData.spec_attr}}" wx:for-item="attr" wx:for-index="attr_idx" wx:key="key">
             <view class="tipstxt f-24 col-6" data-id="{{attr.group_id}}">{{attr.group_name}}</view>
-            <view class="cf cartypelist" wx:for="{{attr.spec_items}}" wx:for-index="item_idx" wx:key="ikey">
-              <view bindtap="modelTap" class="cartypeitem f-26 col-13 {{item.checked ? 'cur': ''}}" data-attr-idx="{{attr_idx}}" data-item-idx="{{item_idx}}">{{item.spec_value}}</view>
+            <view class="cf cartypelist col-f" wx:for="{{attr.spec_items}}" wx:for-index="item_idx" wx:key="ikey">
+              <view bindtap="modelTap" class="cartypeitem f-26 col-13 {{ item.checked ? 'cur': ''}}" data-attr-idx="{{attr_idx}}" data-item-idx="{{item_idx}}">{{item.spec_value}}</view>
             </view>
           </view>
         </view>

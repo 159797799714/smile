@@ -224,6 +224,9 @@
 .f-100{
   font-size: 100rpx;
 }
+.f-90{
+  font-size: 90rpx;
+}
 .f-64 {
     font-size: 64rpx;
 }

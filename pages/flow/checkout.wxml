@@ -94,19 +94,16 @@
         </view>
       </navigator>
     </view>
-    <!-- <view class="flow-num-box padding-box">
-      <text>共{{order_total_num}}件商品，合计：</text>
-      <text class="flow-money col-9">￥{{order_total_price}}</text>
-    </view> -->
   </view>
   
-  <view class="row">
+ <!-- <view class="row">
     <text>U币</text>
     <view>
       <text>请选择</text>
       <text class="iconfont icon-xiangyoujiantou m-l-10 col-purple"></text>
     </view>
-  </view>
+  </view> -->
+  
   <view class="row">
     <text>优惠券</text>
     <view catchtap="togglePopupCoupon">
@@ -153,13 +150,13 @@
     </view>
   </view>
   
-  <view class="row b-t">
+  <!-- <view class="row b-t">
     <text>发票</text>
     <view>
       <text>暂不开发票（默认）</text>
       <text class="iconfont icon-xiangyoujiantou m-l-10 col-purple"></text>
     </view>
-  </view>
+  </view> -->
 
   <!-- 买家留言 -->
   <!-- <view class="flow-all-money m-top20">
@@ -219,8 +216,8 @@
 
   <!-- 优惠券弹出框 -->
   <zan-popup show="{{ showBottomPopup }}" type="bottom" bindclose="togglePopupCoupon">
-    <view class="popup__coupon">
-      <view class="coupon__title f-32">选择优惠券</view>
+    <view class="popup__coupon b-13">
+      <view class="coupon__title f-36 col-purple">优惠</view>
       <!-- 不使用优惠券 -->
       <view class="coupon__do_not dis-flex flex-y-center flex-x-center">
         <view class="control dis-flex flex-y-center flex-x-center" catchtap="doNotCouponTap">
@@ -257,7 +254,7 @@
           </view>
         </scroll-view>
       </view>
-      <view class="footer-fixed f-32">
+      <view class="footer-fixed b-purple f-32">
         <view bindtap="togglePopupCoupon" class="order-bt" style="width:100%">关闭</view>
       </view>
     </view>

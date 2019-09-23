@@ -15,7 +15,9 @@ Page({
     checkedAll: false,
 
     // 商品总价格
-    cartTotalPrice: '0.00'
+    cartTotalPrice: '0.00',
+    showBottomPopup: false,     // 优惠券弹窗显示隐藏
+    couponList: [],             // 优惠券列表
   },
 
   /**
@@ -75,6 +77,34 @@ Page({
     });
     
   },
+  
+  // 通过ID查询优惠券
+  searchCoupon(id) {
+    let that = this;
+    App._get('coupon/getCouponsByThemeId', {
+      theme_id: id
+    }, function(res) {
+      console.log(res.data.list)
+      that.setData({
+        couponList: res.data.list
+      });
+    });
+  },
+  
+  // 控制优惠券弹窗显示隐藏
+  controlCoupon(e) {
+    let that = this,
+      id = e.currentTarget.dataset.id;
+    // 打开弹窗时
+    if(id && !that.data.showBottomPopup) {
+      // 通过ID搜索优惠券
+      that.searchCoupon(id)
+    }
+    that.setData({
+      showBottomPopup: !that.data.showBottomPopup
+    })
+  },
+  
   /**
    * 普通商品单个选择框选中
    */

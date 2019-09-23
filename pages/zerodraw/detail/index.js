@@ -20,6 +20,8 @@ Page({
     showBottomPopup: false,   // 选择规格弹窗
     isWin: true,              // 可以领奖
     canGet: false,            // 中奖了领奖弹窗
+    goods_sku_id: '',         // 选中商品id
+    goods_id_arr: [],         // 选中规格id数组
     
     
     detail: [],                      // 活动列表
@@ -87,23 +89,69 @@ Page({
    * 点击切换不同规格
    */
   modelTap: function(e) {
-    let attrIdx = e.currentTarget.dataset.attrIdx,
+    let arr = [],
+      attrIdx = e.currentTarget.dataset.attrIdx,
       itemIdx = e.currentTarget.dataset.itemIdx,
       specData = this.data.specData;
-    for (let i in specData.spec_attr) {
-      for (let j in specData.spec_attr[i].spec_items) {
-        if (attrIdx == i) {
-          specData.spec_attr[i].spec_items[j].checked = false;
-          if (itemIdx == j) {
-            specData.spec_attr[i].spec_items[itemIdx].checked = true;
-            this.goods_spec_arr[i] = specData.spec_attr[i].spec_items[itemIdx].item_id;
-          }
+      console.log(attrIdx, itemIdx,this.data.goods_id_arr, specData.spec_attr[attrIdx].spec_items[itemIdx].item_id)
+      
+    // 改变选中id数组相应索引的值
+    this.data.goods_id_arr[attrIdx] = specData.spec_attr[attrIdx].spec_items[itemIdx].item_id
+    
+    specData.spec_attr.map((item, index) => {
+      item.spec_items.map((li, num) => {
+        if(this.data.goods_id_arr.indexOf(li.item_id) === -1) {
+          li.checked = false
+        } else {
+          li.checked = true
         }
-      }
-    }
+        // item.spec_items[num].checked = false
+        // if(index === attrIdx) {
+        //   if(num === itemIdx) {
+        //     li.checked = true
+        //   }
+        // } else if(li.checked) {
+        //   li.checked = true
+        // }
+      })
+    })
+      
     this.setData({
-      specData
+      specData: specData,
+      goods_id_arr: this.data.goods_id_arr
     });
+    // 重新设置选中的id
+    this.setIdStr()
+  },
+  
+  // 初始化商品选中id数组goods_id_arr  传过来的参数分别是
+  initIdArr() {
+    let that= this,
+      arr = [],
+      spec_attr = that.data.specData.spec_attr;
+    spec_attr.map((item, index) => {
+      arr.push(item.spec_items[0].item_id)
+      item.spec_items.map((li, num) => {
+        if(num === 0) {
+          li.checked = true
+        } else {
+          li.checked = false
+        }
+      })
+    })
+    that.setData({
+      goods_id_arr: arr,
+      'specData.spec_attr': spec_attr
+    })
+    console.log(that.data.specData.spec_attr)
+  },
+  
+  // 重新组装选中id数组并拼装成id_id字符串
+  setIdStr() {
+    this.setData({
+      goods_sku_id: this.data.goods_id_arr.join('_')
+    })
+    console.log(this.data.goods_id_arr, this.data.goods_sku_id)
   },
   
   // 设置轮播图当前指针 数字
@@ -174,10 +222,22 @@ Page({
         })
         // 过滤时间将2017-10-11 换成2017年10月11日
         res.data.detail.luckydraw_time = data.substr(0,4) + '年' + data.substr(5,2) + '月' + data.substr(8, 2) + '日' + data.substr(11,5)
+        
         that.setData({
           detail: res.data.detail,
-          specData: res.data.specData
+          specData: res.data.specData,
+          goods_sku_id: res.data.specData? res.data.specData.spec_list[0].spec_sku_id: 0
         })
+        
+        
+        // 有规格可选
+        if(res.data.specData) {
+          // 初始化选中规格id数组
+          that.initIdArr()
+        }
+        
+        
+        
         if(res.data.detail.iswin === 'yes') {
           // 获取收货地址
           that.getAddress()
@@ -211,6 +271,7 @@ Page({
       }
     })
   },
+  
   
   // 关闭或者开启弹窗
   onToggleTrade() {
@@ -265,20 +326,24 @@ Page({
       }
     })
   },
+  
   sureAction() {
     let that= this
     let url= 'luckydraw/winConfirm'
     let param = {
-      win_code: that.data.detail.win_code
+      win_code: that.data.detail.win_code,
+      goods_sku_id: that.data.goods_sku_id
     }
     App._post_form(url, param,function(result){
       console.log(result)
     })
   },
+  
   shareAction() {
     App.showError('分享失败，每个用户最多只能拥有5个抽奖码！')
     return
   },
+  
   // 分享
   onShareAppMessage(options) {
     let that = this

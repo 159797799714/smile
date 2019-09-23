@@ -2,6 +2,9 @@
     "navigationBarTitleText": "购物车",
     "enablePullDownRefresh": true,
     "navigationBarBackgroundColor": "#131313",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "white",
+    "usingComponents": {
+      "zan-popup": "/components/popup/index"
+    }
     
 }
