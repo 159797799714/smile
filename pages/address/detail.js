@@ -108,6 +108,20 @@ Page({
     })
   },
   
+  delAddress(e) {
+    let that= this,
+      address_id= that.data.address_id;
+    App._get('address/delete', {
+      address_id:address_id
+    }, function(result) {
+      App.showSuccess('删除成功', function() {
+        wx.navigateBack({
+          delta: 1
+        })
+      })
+    })
+  },
+  
   // 是否默认收货地址
   switchChange(e) {
     let _this = this

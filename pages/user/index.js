@@ -81,10 +81,8 @@ Page({
       name: '余额'
     }, {
       num: 1000,
-      name: '优惠券'
-    }, {
-      num: 1000,
-      name: '积分'
+      name: '优惠券',
+      url: '/pages/coupon/mycoupon/index'
     }, {
       num: 1000,
       name: '红包'

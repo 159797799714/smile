@@ -245,9 +245,6 @@
                   <view class="time flex-box">
                     <text>有效期：{{ item.start_time.text }}~{{ item.end_time.text }}</text>
                   </view>
-                  <!-- <view class="state flex-box">
-                    <text>-￥{{ item.reduced_price }}</text>
-                  </view> -->
                 </view>
               </view>
             </view>

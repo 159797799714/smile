@@ -94,58 +94,36 @@
             <text class="f-28 col-purple">领券</text>
           </view>
           <!-- 优惠券列表 -->
-          <view class="coupon-list">
-            <scroll-view scroll-y="{{ true }}" style="height: 565rpx;">
+          <view wx:if="{{ couponList.length > 0 }}" class="coupon-list">
+            <scroll-view scroll-y="{{ true }}" style="max-height: 565rpx;">
               
-              <view wx:for="{{ couponList }}" wx:key="index" class="coupon-item">
-                <view class="coupon-left fl dis-flex flex-x-between">
-                  <view class="col-f">
+              <view wx:for="{{ couponList }}" wx:key="index" class="coupon-item dis-flex flex-x-between flex-y-center {{ item.is_receive ? 'b-cc': 'b-linear' }}">
+                <view class="coupon-left dis-flex flex-x-between">
+                  <view class="num col-f">
                     <view class="fl">
-                      <text class="f-18">现金券</text>
-                      <view class="m-top30 t-c f-32">￥</view>
+                      <text class="f-18">{{ item.coupon_type.value === 10 ?'满减券' : '折扣券' }}</text>
+                      <view wx:if="{{ item.coupon_type.value === 10 }}" class="m-top25 t-c f-32">￥</view>
                     </view>
                     <view class="discount dis-flex">
-                      <text class="f-90">10</text>
-                      <text class="f-32">折</text>
+                      <text class="f-90">{{ item.coupon_type.value === 20 ? item.discount : item.reduce_price * 100 /100 }}</text>
+                      <text wx:if="{{ item.coupon_type.value === 20 }}" class="word f-32">折</text>
                     </view>
                   </view>
-                  <view class="coupon-info f-18">
-                    <view>耳机类商品专用购物劵</view>
-                    <view>无金额门槛</view>
-                    <view>有效期：即日起~2020.08.31</view>
+                  <view class="coupon-info flex-box f-18">
+                    <view class="onelist-hidden">{{ item.name }}</view>
+                    <view class="onelist-hidden">{{ item.min_price ? '最低消费' + item.min_price + '元': '无金额门槛' }}</view>
+                    <view class="onelist-hidden">有效期：即日起~{{ item.end_time.text }}</view>
                   </view>
                 </view>
-                <view class="coupon-right fr">
-                  <text class="fr b-13 f-20 col-purple t-c">{{ item.is_receive ? '已经领取': '立即领取' }}</text>
+                <view class="split-line"></view>
+                <view class="coupon-right">
+                  <text class="b-13 f-20 t-c {{item.is_receive ? 'col-cc': 'col-purple' }}" catchtap="getCoupon" data-index="{{ index }}" data-id="{{ item.coupon_id }}" data-status="{{ item.is_receive }}">{{ item.is_receive ? '已经领取': '立即领取' }}</text>
                 </view>
               </view>
-              
-              <!-- <view class="coupon-item" wx:for="{{ coupon_list }}" wx:key="this">
-                <view class="item-wrapper color__{{ item.color.text }}" catchtap="selectCouponTap" data-index="{{ index }}" data-coupon-id="{{ item.user_coupon_id }}">
-                  <view class="coupon-type">{{ item.coupon_type.text }}</view>
-                  <view class="tip dis-flex flex-dir-column flex-x-center">
-                    <view wx:if="{{ item.coupon_type.value == 10 }}">
-                      <text class="f-30">￥</text>
-                      <text class="money">{{ item.reduce_price }}</text>
-                    </view>
-                    <text class="money" wx:if="{{ item.coupon_type.value == 20 }}">{{ item.discount }}折</text>
-                    <text class="pay-line">满{{ item.min_price }}元可用</text>
-                  </view>
-                  <view class="split-line"></view>
-                  <view class="content dis-flex flex-dir-column flex-x-between">
-                    <view class="title">{{ item.name }}</view>
-                    <view class="bottom dis-flex flex-y-center">
-                      <view class="time flex-box">
-                        <text>有效期：{{ item.start_time.text }}~{{ item.end_time.text }}</text>
-                      </view>
-                    </view>
-                  </view>
-                </view>
-              </view> -->
             </scroll-view>
           </view>
           <view class="footer-fixed b-purple f-32">
-            <view bindtap="togglePopupCoupon" class="order-bt" style="width:100%">关闭</view>
+            <view bindtap="controlCoupon" class="order-bt" style="width:100%">关闭</view>
           </view>
         </view>
       </zan-popup>

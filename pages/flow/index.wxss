@@ -268,21 +268,68 @@ radio .wx-radio-input.wx-radio-input-checked::before{
 
 .popup__coupon .coupon-list .coupon-item {
   margin-top: 25rpx;
-  padding: 25rpx 5rpx 0 25rpx;
+  padding: 0 5rpx 0 25rpx;
   box-sizing: border-box;
   height: 122rpx;
   width: 100%;
   border-radius: 30rpx;
-  background:linear-gradient(-70deg,rgba(26,182,252,1),rgba(82,95,247,1),rgba(191,35,242,1),rgba(251,0,240,1));
+}
+.b-linear{
+   background:linear-gradient(-70deg,rgba(251,0,240,1),rgba(191,35,242,1),rgba(82,95,247,1),rgba(26,182,252,1));
+}
+.b-cc{
+  background: #ccc;
 }
 .coupon-item .coupon-left{
   width: 71%;
   line-height: 18rpx;
+  overflow: hidden;
+}
+.coupon-item .num{
+  min-width: 240rpx;
+}
+.coupon-item .coupon-left .discount{
+  position: relative;
+  min-width: 130rpx;
+  line-height: 78rpx;
+  white-space: nowrap;
+}
+.coupon-item .discount .word{
+  line-height: 32rpx;
+  height: 32rpx;
+  margin-top: 40rpx;
+}
+.coupon-item .coupon-left .coupon-info{
+  margin-top: -5rpx;
+  line-height: 30rpx;
+}
+.coupon-item .split-line {
+  position: relative;
+  height: 100%;
+  border-left: 2rpx dashed #131313;
+  margin: 0 5px 0 3px;
 }
 
-.coupon-item .coupon-left .discount{
-  line-height: 78rpx;
+.coupon-item .split-line:before,
+.coupon-item .split-line:after {
+  content: '';
+  position: absolute;
+  width: 14rpx;
+  height: 7rpx;
+  background: #131313;
+  left: -8rpx;
 }
+
+.coupon-item .split-line:before {
+  border-radius: 0 0 7px 7px;
+  top: 0;
+}
+
+.coupon-item .split-line:after {
+  border-radius: 7px 7px 0 0;
+  bottom: 0;
+}
+
 .coupon-item .coupon-right{
   width: 29%;
   text-align: center;
@@ -290,6 +337,7 @@ radio .wx-radio-input.wx-radio-input-checked::before{
 .coupon-item .coupon-right> text{
   display: block;
   padding: 15rpx;
+  margin: auto;
   width: 40rpx;
   height: 40rpx;
   border-radius: 100%;

@@ -79,16 +79,47 @@ Page({
   },
   
   // 通过ID查询优惠券
-  searchCoupon(id) {
+  searchCoupon: function (id, cb) {
     let that = this;
     App._get('coupon/getCouponsByThemeId', {
       theme_id: id
     }, function(res) {
-      console.log(res.data.list)
+      if(res.data.list.length < 1) {
+        wx.showToast({
+          title: '该品牌暂无可用优惠券哦！',
+          icon: 'none'
+        })
+      }
       that.setData({
         couponList: res.data.list
       });
+      cb(true);
     });
+  },
+  
+  // 领取优惠券
+  getCoupon(e) {
+    let that= this,
+      coupon_id= e.currentTarget.dataset.id,
+      index= e.currentTarget.dataset.index,
+      couponList = this.data.couponList,
+      is_receive= e.currentTarget.dataset.status;
+    if(is_receive) {
+      wx.showToast({
+        title: '不要太贪心哦！',
+        icon: 'none'
+      })
+    } else {
+      App._post_form('user.coupon/receive', {
+        coupon_id: coupon_id
+      }, function(res) {
+        App.showSuccess(res.msg)
+        couponList[index].is_receive = true
+        that.setData({
+          couponList: couponList
+        })
+      });
+    }
   },
   
   // 控制优惠券弹窗显示隐藏
@@ -98,11 +129,18 @@ Page({
     // 打开弹窗时
     if(id && !that.data.showBottomPopup) {
       // 通过ID搜索优惠券
-      that.searchCoupon(id)
+      that.searchCoupon(id, function(status) {
+        if(that.data.couponList.length > 0 && id) {
+          that.setData({
+            showBottomPopup: true
+          })
+        }
+      })
+    } else {
+      that.setData({
+        showBottomPopup: false
+      })
     }
-    that.setData({
-      showBottomPopup: !that.data.showBottomPopup
-    })
   },
   
   /**

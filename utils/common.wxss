@@ -442,6 +442,9 @@
 .m-top20 {
   margin-top: 20rpx!important;
 }
+.m-top25 {
+  margin-top: 25rpx!important;
+}
 .m-top30 {
   margin-top: 30rpx!important;
 }
