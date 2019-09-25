@@ -23,13 +23,16 @@ Page({
     selectedShopId: 0, // 选择的自提门店id
 
     goods: {}, // 商品信息
-
-    // 选择的优惠券
-    selectCoupon: {
-      index: null,
-      couponId: null,
-      reduced_price: '0.00'
-    },
+    coupon_list_new: [],     // 优惠券列表
+    redenvelope_list: [],    // 红包列表
+    coupon: [{
+      coupon_id: 0,          // 选择的优惠券id
+      reduced_price: '',     // 优惠券优惠的金额
+    }, {
+      red_envelope_id: 0,    // 选择红包id
+      reduced_price: '',     // 红包优惠的金额
+    }],
+    popupType: '',          // 弹窗类型 coupon为优惠券 redenvelope为红包
 
     // 买家留言
     remark: '',
@@ -59,11 +62,12 @@ Page({
     // 获取当前订单信息
     _this.getOrderData();
   },
-
+  
   /**
    * 获取当前订单信息
    */
   getOrderData: function() {
+    console.log(this.data.coupon)
     let _this = this,
       options = _this.data.options;
     // 获取订单信息回调方法
@@ -78,7 +82,22 @@ Page({
         _this.data.error = result.data.error_msg;
         App.showError(_this.data.error);
       }
-      _this.setData(result.data);
+      _this.setData({
+        address: result.data.address,
+        coupon_list_new: result.data.coupon_list_new,
+        redenvelope_list: result.data.redenvelope_list,
+        delivery: result.data.delivery,
+        error_msg: result.data.error_msg,
+        exist_address: result.data.exist_address,
+        express_price: result.data.express_price,
+        extract_shop: result.data.extract_shop,
+        has_error: result.data.has_error,
+        intra_region: result.data.intra_region,
+        order_pay_price: result.data.order_pay_price,
+        order_total_num: result.data.order_total_num,
+        order_total_price: result.data.order_total_price,
+        goods_list: result.data.goods_list
+      });
     };
     // 立即购买
     if (options.order_type === 'buyNow') {
@@ -88,6 +107,10 @@ Page({
         goods_sku_id: options.goods_sku_id,
         delivery: _this.data.currentDelivery,
         shop_id: _this.data.selectedShopId,
+        remark: '',
+        pay_method: 'JSAPI',
+        coupon_id: _this.data.coupon[0].coupon_id,
+        red_envelope_id: _this.data.coupon[1].red_envelope_id
       }, function(result) {
         callback(result);
       });
@@ -98,6 +121,8 @@ Page({
         cart_ids: options.cart_ids,
         delivery: _this.data.currentDelivery,
         shop_id: _this.data.selectedShopId,
+        coupon_id: _this.data.coupon[0].coupon_id,
+        red_envelope_id: _this.data.coupon[1].red_envelope_id
       }, function(result) {
         callback(result);
       });
@@ -205,7 +230,8 @@ Page({
         goods_sku_id: options.goods_sku_id,
         delivery: _this.data.currentDelivery,
         shop_id: _this.data.selectedShopId,
-        coupon_id: _this.data.selectCoupon.couponId,
+        coupon_id: _this.data.coupon[0].coupon_id,
+        red_envelope_id: _this.data.coupon[1].red_envelope_id,
         remark: _this.data.remark
       }, function(result) {
         // success
@@ -227,7 +253,8 @@ Page({
         cart_ids: options.cart_ids,
         delivery: _this.data.currentDelivery,
         shop_id: _this.data.selectedShopId,
-        coupon_id: _this.data.selectCoupon.couponId,
+        coupon_id: _this.data.coupon[0].coupon_id,
+        red_envelope_id: _this.data.coupon[1].red_envelope_id,
         remark: _this.data.remark
       }, function(result) {
         // success
@@ -243,7 +270,28 @@ Page({
     }
 
   },
-
+  // 优惠券等选择器事件
+  radioChange: function (e) {
+    console.log('radio发生change事件，携带value值为：', e.currentTarget.dataset.id)
+    let type= this.data.popupType,
+      dataset= e.currentTarget.dataset,
+      coupon= this.data.coupon;
+    if(type === 'coupon') {
+      coupon[0].coupon_id= dataset.id
+      coupon[0].reduced_price= dataset.price
+      this.setData({
+        coupon: coupon
+      })
+    } else {
+      coupon[1].red_envelope_id= dataset.id
+      coupon[1].reduced_price= dataset.price
+      this.setData({
+        coupon: coupon
+      })
+    }
+    // 重新请求价格数据
+    this.getOrderData();
+  },
   /**
    * 买家留言
    */
@@ -256,50 +304,53 @@ Page({
   /**
    * 选择优惠券(弹出/隐藏)
    */
-  togglePopupCoupon() {
-    let _this = this;
-    if (_this.data.coupon_list.length > 0) {
+  togglePopupCoupon(e) {
+    let _this = this,
+      type= e.currentTarget.dataset.type;
+    if (_this.data.coupon_list_new.length > 0 || _this.data.redenvelope_list.length > 0 ) {
       _this.setData({
-        showBottomPopup: !_this.data.showBottomPopup
+        showBottomPopup: !_this.data.showBottomPopup,
+        popupType: type ? type: ''
       });
     }
   },
+  
 
   /**
    * 选择优惠券
    */
-  selectCouponTap: function(e) {
-    let _this = this,
-      dataset = e.currentTarget.dataset;
-    // 优惠券折扣金额
-    let reducedPrice = _this.data.coupon_list[dataset.index].reduced_price;
-    dataset.reduced_price = reducedPrice;
-    // 计算优惠后的价格
-    let actualPayPrice = _this.bcsub(_this.data.order_pay_price, reducedPrice);
-    _this.setData({
-      selectCoupon: dataset,
-      actual_pay_price: actualPayPrice > 0 ? actualPayPrice : '0.01'
-    });
-    _this.togglePopupCoupon();
-  },
+  // selectCouponTap: function(e) {
+  //   let _this = this,
+  //     dataset = e.currentTarget.dataset;
+  //   // 优惠券折扣金额
+  //   let reducedPrice = _this.data.coupon_list[dataset.index].reduced_price;
+  //   dataset.reduced_price = reducedPrice;
+  //   // 计算优惠后的价格
+  //   let actualPayPrice = _this.bcsub(_this.data.order_pay_price, reducedPrice);
+  //   _this.setData({
+  //     selectCoupon: dataset,
+  //     actual_pay_price: actualPayPrice > 0 ? actualPayPrice : '0.01'
+  //   });
+  //   _this.togglePopupCoupon();
+  // },
 
   /**
    * 不使用优惠券
    */
-  doNotCouponTap: function() {
-    this.setData({
-      selectCoupon: {},
-      actual_pay_price: this.data.order_pay_price
-    });
-    this.togglePopupCoupon();
-  },
+  // doNotCouponTap: function() {
+  //   this.setData({
+  //     selectCoupon: {},
+  //     actual_pay_price: this.data.order_pay_price
+  //   });
+  //   this.togglePopupCoupon();
+  // },
 
   /**
    * 数学运算相减
    */
-  bcsub: function(arg1, arg2) {
-    return (Number(arg1) - Number(arg2)).toFixed(2);
-  },
+  // bcsub: function(arg1, arg2) {
+  //   return (Number(arg1) - Number(arg2)).toFixed(2);
+  // },
 
 
 });
