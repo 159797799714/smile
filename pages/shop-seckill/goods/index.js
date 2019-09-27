@@ -34,6 +34,8 @@ Page({
     specData: {},          // 多规格信息
 
     percent: 10,           //秒杀进度状态
+    
+    popupType: '',         // 弹窗类型促销信息promotions或者服务说明services
 
     // 分享按钮组件
     share: {
@@ -531,9 +533,12 @@ Page({
       showBottomPopup: !this.data.showBottomPopup
     });
   },
-  closeAlert() {
+  closeAlert(e) {
+    let type= e.currentTarget.dataset.type ? e.currentTarget.dataset.type: ''
+    
     this.setData({
-      showRemark: !this.data.showRemark
+      showRemark: !this.data.showRemark,
+      popupType: type
     });
   }
 

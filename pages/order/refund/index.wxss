@@ -1,32 +1,7 @@
+@import "../index.wxss";
 .container {
   font-size: 28rpx;
   color: rgb(90, 90, 90);
-}
-
-/* 选项卡 */
-
-.swiper-tab {
-  width: 100%;
-  text-align: center;
-  height: 80rpx;
-  background-color: #fff;
-  border-bottom: 1px solid #eee;
-}
-
-.swiper-tab .swiper-tab-item {
-  width: 160rpx;
-  height: 100%;
-  color: #777;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-  border-bottom: 2px solid #ffffff00;
-}
-
-.swiper-tab .on {
-  color: #16171C;
-  border-bottom: 2px solid #16171C;
 }
 
 /* 设置scroll-view容器高度 */
@@ -45,8 +20,6 @@
 
 .widget-detail {
   box-sizing: border-box;
-  border-bottom: 1rpx solid #e7e7e7;
-  background: #fff;
   margin-bottom: 20rpx;
 }
 
@@ -57,7 +30,6 @@
 
 .widget-detail .detail-goods {
   padding: 20rpx;
-  background: #fbfbfb;
 }
 
 .widget-detail .detail-goods .goods-image {
@@ -81,9 +53,12 @@
 .widget-detail .detail-goods .goods-attr {
   min-height: 32rpx;
 }
+.goods-attr>text{
+  padding: 5rpx 9rpx;
+  border-radius: 13rpx;
+}
 
 .widget-detail .detail-operate {
-  border-top: 1px solid rgb(241, 241, 241);
   padding-top: 10rpx;
   padding-bottom: 10rpx;
 }

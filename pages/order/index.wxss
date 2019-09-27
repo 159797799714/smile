@@ -94,8 +94,6 @@ view{
 }
 .goods_attr>text{
   float: left;
-  padding: 5rpx 9rpx;
-  border-radius: 13rpx;
 }
 
 .order-shop .num {

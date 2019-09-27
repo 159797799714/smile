@@ -236,6 +236,9 @@
 .f-56 {
     font-size: 56rpx;
 }
+.f-52 {
+    font-size: 52rpx;
+}
 .f-50 {
     font-size: 50rpx;
 }
@@ -305,6 +308,9 @@
 }
 .f-16 {
   font-size: 16rpx;
+}
+.f-12 {
+  font-size: 12rpx;
 }
 
 .f-w {
@@ -646,3 +652,32 @@
   border: 3rpx solid #ff00ff;
   transform: rotate(-35deg);
 }
+
+
+/* 服务说明 */
+.popup-title{
+  line-height: 110rpx;
+}
+.trade-main{
+  min-height: 600rpx;
+}
+.trade-item{
+  
+}
+.trade-item .simple-word{
+  height: 70rpx;
+  padding-right: 16rpx;
+ }
+ .trade-item .simple-word> text{
+   display: block;
+   height: 27rpx;
+   width: 110rpx;
+   line-height: 27rpx;
+   text-align: center;
+   border-radius: 14rpx;
+   border: 1px solid #ff00ff;
+ }
+ .trade-item .item-describe{
+   margin-left: 70rpx;
+   line-height: 48rpx;
+ }

@@ -77,7 +77,7 @@
         </view>
         <view class="max-price">
           <text class="f-26 col-9 t-dec-line m-l-10">¥{{ item.goods_max_price * 100 / 100 }}</text>
-          <text class="f-16 col-9 m-l-10">积分：100</text>
+          <!-- <text class="f-16 col-9 m-l-10">积分：100</text> -->
         </view>
       </navigator>
     </view>

@@ -14,6 +14,9 @@ Page({
 
     // 表单数据
     formData: [],
+    
+    url: '',    // 提交接口地址
+    
   },
 
   submitDisable: false,
@@ -24,7 +27,12 @@ Page({
   onLoad: function(options) {
     // 记录页面参数
     this.data.options = options;
-
+    console.log(options)
+    
+    let type= options.type
+    this.setData({
+      url: type === 'user'? 'user.comment/order': 'sharing.comment/order'
+    })
     // 获取待评价商品列表
     this.getGoodsList();
   },
@@ -34,7 +42,7 @@ Page({
    */
   getGoodsList: function() {
     let _this = this;
-    App._get('user.comment/order', {
+    App._get(_this.data.url, {
       order_id: this.data.options.order_id
     }, function(result) {
       let goodsList = result.data.goodsList;
@@ -56,11 +64,7 @@ Page({
         order_goods_id: item.order_goods_id,
         score: 10,
         content: '',
-        image_list: [
-          // 'http://tmp/wxe1997e687ecca54e.o6zAJs38WC0RISx_rydS4v4D778c.VzVJOgmUHlH3fd47776794bd803898289bebee12d94c.jpg',
-          // 'http://tmp/wxe1997e687ecca54e.o6zAJs38WC0RISx_rydS4v4D778c.u8PUZLBNG2ELa7692fe0b9dfebf762cf0cb3677a42d7.jpg',
-          // 'http://tmp/wxe1997e687ecca54e.o6zAJs38WC0RISx_rydS4v4D778c.8PjhMmysqokY55a19834d4135fbf72d4e653010d375e.jpg'
-        ],
+        image_list: [],
         uploaded: []
       });
     });
@@ -143,7 +147,7 @@ Page({
       console.log('fromPostCall');
       console.log(formData);
 
-      App._post_form('user.comment/order', {
+      App._post_form(_this.data.url, {
           order_id: _this.data.options.order_id,
           formData: JSON.stringify(formData)
         }, function(result) {

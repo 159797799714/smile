@@ -40,11 +40,12 @@
     "pages/sharing/order/index",
     "pages/sharing/order/detail/detail",
     "pages/sharing/order/express/express",
-    "pages/sharing/order/comment/comment",
     "pages/sharing/order/refund/index",
     "pages/sharing/order/refund/apply/apply",
     "pages/sharing/order/refund/detail/detail",
     "pages/article/detail/index",
+    "pages/redbox/index",
+    "pages/redbox/remark/index",
     "pages/_select/extract_point/index",
     "pages/shop/detail/index",
     "pages/store/check/order",
@@ -53,6 +54,7 @@
     "pages/shop-seckill/goods/index",
     "pages/shop-seckill/goods/comment/comment",
     "pages/goods-list/list",
+    "pages/look-notes/index",
     "pages/zerodraw/index",
     "pages/zerodraw/pastlook/index",
     "pages/zerodraw/detail/index",
@@ -61,9 +63,9 @@
     "pages/setting/about/about"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarBackgroundColor": "#131313",
+    "navigationBarTextStyle": "white",
     "navigationBarTitleText": "",
-    "navigationBarTextStyle": "black",
     "backgroundTextStyle": "dark"
   },
   "tabBar": {

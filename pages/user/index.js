@@ -72,7 +72,7 @@ Page({
     }, {
       icon: '../../images/user/menu2-7.png',
       name: '待评价',
-      url: 'comnent'
+      url: '/pages/sharing/order/index?type=comment'
     },],
     
     // 我的钱包
@@ -85,7 +85,8 @@ Page({
       url: '/pages/coupon/mycoupon/index'
     }, {
       num: 1000,
-      name: '红包'
+      name: '红包',
+      url: '/pages/redbox/index'
     }],
     
     // 我的分销
@@ -110,26 +111,28 @@ Page({
     // 我的福利
     munulist4: [{
       icon: '../../images/user/menu4-1.png',
-      name: '分享有礼'
+      name: '红包中心',
+      url: '/pages/redbox/index'
     }, {
       icon: '../../images/user/menu4-2.png',
       name: '领券中心',
       url: '/pages/coupon/coupon'
     }, {
-      icon: '../../images/user/menu4-3.png',
-      name: '积分兑换'
-    }, {
       icon: '../../images/user/menu4-4.png',
       name: '会员中心'
+    }, {
+      icon: '../../images/user/menu5-2.png',
+      name: '最近浏览',
+      url: '/pages/look-notes/index'
     }],
     
     // 动态
     munulist5: [{
+      icon: '../../images/user/menu4-3.png',
+      name: '积分兑换'
+    }, {
       icon: '../../images/user/menu5-1.png',
       name: '我的收藏'
-    }, {
-      icon: '../../images/user/menu5-2.png',
-      name: '最近浏览'
     }]
   },
   

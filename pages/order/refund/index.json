@@ -1,3 +1,5 @@
 {
-  "navigationBarTitleText": "退款/售后"
+  "navigationBarTitleText": "退款/售后",
+  "navigationBarBackgroundColor": "#131313",
+  "navigationBarTextStyle": "white"
 }

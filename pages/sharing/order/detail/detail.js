@@ -69,7 +69,16 @@ Page({
       }
     });
   },
-
+  /**
+   * 订单评价
+   */
+  comment: function(e) {
+    let _this = this;
+    let order_id = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: './comment/comment?type=sharing&order_id=' + order_id,
+    })
+  },
   /**
    * 发起付款
    */

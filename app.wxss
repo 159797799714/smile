@@ -243,6 +243,10 @@ page {
   color: #999;
   margin: 10rpx 0;
 }
+.goods-attr>text{
+  padding: 5rpx 9rpx;
+  border-radius: 13rpx;
+}
 
 .footer-fixed {
   position: fixed;
@@ -364,7 +368,7 @@ flex: 4;
 }
 
 .flow-shopList .flow-list-right .flow-cont {
-  font-size: 30rpx;
+  font-size: 20rpx;
   color: #999;
 }
 
@@ -390,7 +394,6 @@ flex: 4;
   color: #777;
   padding: 15rpx 12px;
   text-align: right;
-  border-top: 1px solid #999;
 }
 
 .flow-all-money {
@@ -401,7 +404,7 @@ flex: 4;
 .flow-all-money .flow-all-list {
   font-size: 30rpx;
   padding: 15rpx 0;
-  border-bottom: 1rpx solid #f1f1f1;
+  border-bottom: 1rpx solid #333;
 }
 
 .flow-all-money .flow-all-list:last-child {

@@ -96,54 +96,31 @@ Page({
     //创建节点选择器
     const query = wx.createSelectorQuery();
     
-    query.select('.topBar').boundingClientRect()
-    query.exec(function (res) {
-      console.log('topBar', res)
-      //res就是 所有标签为mjltest的元素的信息 的数组
-      //取高度
-      arr.push(res[0].height);
-    })
-    
-    
-    //获取商品高度
-    query.select('.goods').boundingClientRect()
-    query.exec(function (res) {
-      console.log('goods', res[1].height)
-      //res就是 所有标签为mjltest的元素的信息 的数组
-      //取高度
-      arr.push(res[1].height);
-    })
-    
-    
-    //获取评价高度
-    query.select('.goods-comment').boundingClientRect()
-    query.exec(function (res) {
-      //res就是 所有标签为mjltest的元素的信息 的数组
-      //取高度
-      console.log('goods-comment', res[2].height)
-      arr.push(res[1].height + res[2].height);
-    })
-    
-    //获取详情高度
-    setTimeout(function() {
-      query.select('.p-bottom').boundingClientRect()
-      query.exec(function (res) {
-        //res就是 所有标签为mjltest的元素的信息 的数组
-        //取高度
-        console.log('p-bottom', res[3].height)
-        arr.push(res[1].height + res[2].height + res[3].height);
-        that.setData({
-          heightArr: arr
-        })
-      })  
-    }, 500)
-    
+    // query.select('.topBar').boundingClientRect()
+    // query.exec(function (res) {
+    //   console.log('topBar', res)
+    //   //res就是 所有标签为mjltest的元素的信息 的数组
+    //   //取高度
+    //   arr.push(res[0].height);
+    // })
+  },
+  // 收藏商品
+  collectGood() {
+    let that= this
+    App._get('goods/goodscollection', {
+      goods_id: that.data.goods_id,
+      type: that.data.detail.goods_iscollection === 'no'? 'add': 'cancel'
+    }, function(res) {
+      that.setData({
+        'detail.goods_iscollection': that.data.detail.goods_iscollection === 'no'? 'yes': 'no'
+      })
+    });
   },
   
  // 返回
-  goBack() {
-    App.goBack(1)
-  },
+  // goBack() {
+  //   App.goBack(1)
+  // },
   // 选择顶部菜单
   selectNav(e) {
     console.log(e.currentTarget.dataset.index)
@@ -220,6 +197,15 @@ Page({
     return data;
   },
 
+  // 查看服务说明或者促销信息
+  closeAlert(e) {
+    let type= e.currentTarget.dataset.type ? e.currentTarget.dataset.type: ''
+    
+    this.setData({
+      showRemark: !this.data.showRemark,
+      popupType: type
+    });
+  },
   /**
    * 点击切换不同规格
    */

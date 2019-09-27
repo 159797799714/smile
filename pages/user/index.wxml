@@ -141,12 +141,12 @@
     </view>
     
     <view class="menu">
-      <view wx:for="{{ munulist5 }}" wx:key="index" class="menu-item t-c">
+      <navigator wx:for="{{ munulist5 }}" wx:key="index" url="{{ item.url }}" class="menu-item t-c">
         <view class="item-icon">
           <image src="{{ item.icon }}"></image>
         </view>
         <view class="item-name m-top10">{{ item.name }}</view>
-      </view>
+      </navigator>
     </view>
   </view>
   

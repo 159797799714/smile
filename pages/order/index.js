@@ -16,9 +16,9 @@ Page({
       name: '待付款',
       type: 'payment'
     }, {
-      name: '待发货',
-      type: 'delivery'
-    }, {
+    //   name: '待发货',
+    //   type: 'delivery'
+    // }, {
       name: '待收货',
       type: 'received'
     }, {
@@ -188,7 +188,7 @@ Page({
     let _this = this;
     let order_id = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: './comment/comment?order_id=' + order_id,
+      url: './comment/comment?type=user&order_id=' + order_id,
     })
     console.log(order_id);
   },

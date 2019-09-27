@@ -8,8 +8,8 @@
           <image class="goods-image" src="{{ item.image.file_path }}"></image>
         </view>
         <view class="right dis-flex flex-box flex-dir-column flex-x-around">
-          <text class="twolist-hidden">{{ item.goods_name }}</text>
-          <text class="">￥{{ item.goods_price }}</text>
+          <text class="twolist-hidden col-f">{{ item.goods_name }}</text>
+          <text class="col-9">￥{{ item.goods_price }}</text>
         </view>
       </view>
 
@@ -55,7 +55,7 @@
   </view>
 
   <view class="flow-fixed-footer b-f">
-    <view class="flow-btn f-32">
+    <view class="flow-btn b-purple col-f f-28">
       <view catchtap="submit">确认提交</view>
     </view>
   </view>

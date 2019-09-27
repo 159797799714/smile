@@ -1,3 +1,5 @@
 {
-  "navigationBarTitleText": "查看物流"
+  "navigationBarTitleText": "查看物流",
+  "navigationBarBackgroundColor": "#131313",
+  "navigationBarTextStyle": "white"
 }

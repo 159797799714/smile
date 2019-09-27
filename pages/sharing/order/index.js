@@ -20,11 +20,11 @@ Page({
       name: '拼团中',
       type: 'sharing'
     }, {
-      name: '待发货',
-      type: 'delivery'
-    }, {
       name: '待收货',
       type: 'received'
+    }, {
+      name: '待评价',
+      type: 'comment'
     }],
     list: [], // 订单列表
     scrollHeight: null, // 列表容器高度
@@ -189,7 +189,7 @@ Page({
     let _this = this;
     let order_id = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: './comment/comment?order_id=' + order_id,
+      url: '/pages/order/comment/comment?type=sharing&order_id=' + order_id,
     })
     console.log(order_id);
   },

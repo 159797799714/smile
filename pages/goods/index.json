@@ -1,5 +1,7 @@
 {
-  "navigationStyle": "custom",
+  "navigationBarTitleText": "商品详情",
+  "navigationBarBackgroundColor": "#131313",
+  "navigationBarTextStyle": "white",
   "usingComponents": {
     "zan-actionsheet": "/components/actionsheet/index",
     "zan-popup": "/components/popup/index",

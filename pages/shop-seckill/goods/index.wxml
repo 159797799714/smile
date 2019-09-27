@@ -66,7 +66,7 @@
       </view> -->
     </view>
     <!-- 促销信息 -->
-    <view wx:if="{{detail.goods_promotions_list.length > 0}}" class="btn-normal" catchtap="closeAlert">
+    <view wx:if="{{detail.goods_promotions_list.length > 0}}" class="btn-normal" catchtap="closeAlert" data-type="promotions">
       <view class="sku-selector cont-box b-13 m-top20 dis-flex flex-y-center">
         <view class="f-28">
           <text class="col-9">促销信息：</text>
@@ -95,6 +95,51 @@
         </view>
       </button>
     </form>
+    
+    
+    <!-- 服务说明 -->
+    <view wx:if="{{ detail.goods_services_list.length > 0 }}" class="btn-normal" catchtap="closeAlert" data-type="services">
+      <view class="sku-selector cont-box b-13 m-top20 dis-flex flex-x-between flex-y-center">
+        <view class="f-28">
+          <text class="col-9">服务说明：</text>
+        </view>
+        <view class="flex-box dis-flex m-l-20 flex-y-center">
+          <text class="span b-63f f-20 col-f">{{ detail.goods_services_list[0].title }}</text>
+          <text class="span-info f-26 col-6 onelist-hidden">{{ detail.goods_services_list[0].describe }}</text>
+        </view>
+        <view class="m-l-10 f-26 col-9 t-r">
+          <text class="iconfont icon-xiangyoujiantou"></text>
+        </view>
+      </view>
+    </view>
+    
+    
+    
+    <!-- 促销信息/服务说明弹窗 -->
+    <zan-popup show="{{ showRemark }}" type="bottom" bindclose="closeAlert">
+      <view class="popup__trade b-13">
+        <view class="popup-title f-28 col-purple t-c">{{ popupType === 'promotions'? '促销信息': '服务说明' }}</view>
+        <!-- 关闭按钮 -->
+        <view class="trade-close dis-flex flex-x-center flex-y-center" catchtap="closeAlert">
+          <text class="iconfont icon-close f-26 col-9"></text>
+        </view>
+        <!-- 主体信息 -->
+        <view class="trade-main b-13">
+          <view wx:for="{{ popupType === 'promotions'? detail.goods_promotions_list: detail.goods_services_list}}" wx:key="index" class="trade-item m-top10">
+            <view class="simple-word fl">
+              <text class="f-18 col-purple">{{ item.title }}</text>
+            </view>
+            <view class="item-title f-24 col-9">{{ item.title }}</view>
+            <view class="item-describe f-20 col-6">{{ item.describe }}</view>
+          </view>
+        </view>
+        <!-- 底部操作栏 -->
+        <view class="footer-fixed f-30">
+           <view class="buy-btn b-purple" catchtap="closeAlert">关闭</view>
+        </view>
+      </view>
+    </zan-popup>
+    
     <!-- 确认购买弹窗 -->
     <zan-popup show="{{ showBottomPopup }}" type="bottom" bindclose="onToggleTrade">
       <view class="popup__trade">
@@ -151,26 +196,6 @@
       </view>
     </zan-popup>
     
-    <!-- 服务说明 -->
-    <view wx:if="{{ detail.goods_services_list.length > 0 }}" class="btn-normal">
-      <view class="sku-selector cont-box b-13 m-top20 dis-flex flex-x-between flex-y-center">
-        <view class="f-28">
-          <text class="col-9">服务说明：</text>
-        </view>
-        <view class="flex-box dis-flex m-l-20 flex-y-center">
-          <text class="span b-63f f-20 col-f">{{ detail.goods_services_list[0].title }}</text>
-          <text class="span-info f-26 col-6 onelist-hidden">{{ detail.goods_services_list[0].describe }}</text>
-        </view>
-        <view class="m-l-10 f-26 col-9 t-r">
-          <text class="iconfont icon-xiangyoujiantou"></text>
-        </view>
-      </view>
-    </view>
-    
-    <!-- 服务说明弹窗 -->
-    <zan-popup show="{{ showRemark }}" type="bottom" bindclose="closeAlert">
-      <view class="col-f">减肥减肥了副经理</view>
-    </zan-popup>
     
     <!-- 没有评价时 -->
     <view wx:if="{{ detail.comment_data.length === 0 }}" class="btn-normal">

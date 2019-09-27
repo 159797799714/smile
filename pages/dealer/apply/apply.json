@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "",
+  "navigationBarBackgroundColor": "#131313",
   "usingComponents": {
     "zan-dialog": "/components/dialog/index"
   }

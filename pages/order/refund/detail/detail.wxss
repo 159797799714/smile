@@ -1,6 +1,8 @@
+page{
+  background: #333;
+}
 .container {
   font-size: 28rpx;
-  color: rgb(78, 78, 78);
 }
 
 /* 顶部状态栏 */
@@ -96,7 +98,6 @@
 
 .address-details {
   padding: 5rpx 0;
-  border-bottom: 1px solid #eee;
 }
 
 .detail-address__row {
