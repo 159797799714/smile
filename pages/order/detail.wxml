@@ -98,8 +98,8 @@
           </view>
           <!-- 申请售后 -->
           <view class="dis-flex flex-x-end">
-            <text wx:if="{{ item.refund }}" class="f-26 col-purple">已申请售后</text>
-            <view wx:elif="{{ order.isAllowRefund }}" class="btn-default" catchtap="onApplyRefund" data-id="{{item.order_goods_id}}">申请售后</view>
+            <view wx:if="{{ item.refund }}" class="flow-btn border-93f f-26 col-f">已申请售后</view>
+            <view wx:elif="{{ order.isAllowRefund }}" class="flow-btn border-93ff-26 col-purple" catchtap="onApplyRefund" data-id="{{item.order_goods_id}}">申请售后</view>
           </view>
         </view>
       </view>

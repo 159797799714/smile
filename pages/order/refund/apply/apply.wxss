@@ -1,3 +1,6 @@
+page{
+  background: #333;
+}
 .container {
   font-size: 28rpx;
 }
@@ -38,8 +41,8 @@
 }
 
 .service-switch .switch-item.active {
-  color: #fc1e56;
-  border: 1px solid #fc1e56;
+  color: #ff00ff;
+  border: 1px solid #ff00ff;
 }
 
 /* 申请原因 */
@@ -52,7 +55,8 @@
   width: 100%;
   height: 220rpx;
   padding: 12rpx;
-  border: 1rpx solid #e8e8e8;
+  background: #333;
+  color: #999;
   border-radius: 5rpx;
   box-sizing: border-box;
 }

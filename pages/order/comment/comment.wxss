@@ -88,6 +88,7 @@
   height: 220rpx;
   padding: 12rpx;
   background: #333;
+  color: #999;
   border-radius: 5rpx;
   box-sizing: border-box;
 }

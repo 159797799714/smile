@@ -56,7 +56,7 @@
 
     <!-- 物流信息 -->
     <view class="flow-all-money b-13 padding-box m-top20 b-b" wx:if="{{ order.delivery_type.value == deliverys.EXPRESS.value && order.delivery_status.value == 20 }}">
-      <navigator class="dis-flex" hover-class="none" url="../express/express?order_id={{order.order_id}}">
+      <navigator class="dis-flex" hover-class="none" url="./express/express?order_id={{order.order_id}}">
         <view class="flex-box">
           <view class="dis-flex flow-all-list-cont">
             <text class="col-9">物流公司：{{order.express.express_name}}</text>
@@ -98,8 +98,8 @@
           </view>
           <!-- 申请售后 -->
           <view class="dis-flex flex-x-end">
-            <text wx:if="{{ item.refund }}" class="f-26 col-purple">已申请售后</text>
-            <view wx:elif="{{ order.isAllowRefund }}" class="btn-default" catchtap="onApplyRefund" data-id="{{item.order_goods_id}}">申请售后</view>
+            <text wx:if="{{ item.refund }}" class="flow-btn border-93f f-26 col-9">已申请售后</text>
+            <view wx:elif="{{ order.isAllowRefund }}" class="flow-btn border-93f t-c" catchtap="onApplyRefund" data-id="{{item.order_goods_id}}">申请售后</view>
           </view>
         </view>
       </view>

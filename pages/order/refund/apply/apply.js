@@ -17,6 +17,8 @@ Page({
 
     // 服务类型
     serviceType: 10,
+    
+    url: '',      // 拼团售后和普通订单售后申请url
   },
 
   disable: false,
@@ -27,7 +29,12 @@ Page({
   onLoad: function(options) {
     // 记录页面参数
     this.data.order_goods_id = options.order_goods_id;
-
+    console.log(options)
+    
+    let type= options.type
+    this.setData({
+      url: type === 'user'? 'user.refund/apply': 'sharing.refund/apply'
+    })
     // 获取订单商品详情
     this.getGoodsDetail();
   },
@@ -37,7 +44,7 @@ Page({
    */
   getGoodsDetail: function() {
     let _this = this;
-    App._get('user.refund/apply', {
+    App._get(_this.data.url, {
       order_goods_id: this.data.order_goods_id
     }, function(result) {
       _this.setData(result.data);
@@ -133,7 +140,7 @@ Page({
     // form提交执行函数
     let fromPostCall = function(params) {
       console.log('fromPostCall');
-      App._post_form('user.refund/apply', params, function(result) {
+      App._post_form(_this.data.url, params, function(result) {
           if (result.code === 1) {
             App.showSuccess(result.msg, function() {
               // 跳转售后管理页面

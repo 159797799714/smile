@@ -1,7 +1,6 @@
 @import "../index.wxss";
 .container {
   font-size: 28rpx;
-  color: rgb(90, 90, 90);
 }
 
 /* 设置scroll-view容器高度 */

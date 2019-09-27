@@ -41,7 +41,6 @@
     "pages/sharing/order/detail/detail",
     "pages/sharing/order/express/express",
     "pages/sharing/order/refund/index",
-    "pages/sharing/order/refund/apply/apply",
     "pages/sharing/order/refund/detail/detail",
     "pages/article/detail/index",
     "pages/redbox/index",

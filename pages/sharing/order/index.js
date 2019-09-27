@@ -25,6 +25,9 @@ Page({
     }, {
       name: '待评价',
       type: 'comment'
+    }, {
+      name: '售后',
+      type: ''
     }],
     list: [], // 订单列表
     scrollHeight: null, // 列表容器高度
@@ -89,15 +92,21 @@ Page({
    * 切换标签
    */
   bindHeaderTap: function(e) {
+    let type= e.currentTarget.dataset.type;
+    if(!type) {
+      wx.navigateTo({
+        url: './refund/index'
+      })
+    }
     this.setData({
-      dataType: e.currentTarget.dataset.type,
+      dataType: type,
       list: {},
       isLoading: true,
       page: 1,
       no_more: false,
     });
     // 获取订单列表
-    this.getOrderList(e.currentTarget.dataset.type);
+    this.getOrderList(type);
   },
 
   /**

@@ -1,4 +1,4 @@
-<view class="container">
+<view class="container b-t">
   <view class="goods-detail-box">
     <view class="header padding-l-r-30 border-box b-13 f-28 col-9">
       <view wx:for="{{ headTabList }}" wx:key="index" wx:for-item="item" catchtap="bindHeaderTap" class="{{dataType=== item.type ?'active':'f-28 col-9'}}" data-type="{{item.type}}">
@@ -42,15 +42,15 @@
                   <view class="dis-flex flex-x-between">
                     <view class="order-shop-right">
                       <view class="goods_name twolist-hidden f-24 col-9">{{ li.goods_name }}</view>
-                      <view class="goods_attr m-top10">
+                      <view class="goods-attr m-top10">
                         <text wx:if="{{ li.goods_attr }}" class="onelist-hidden b-93f f-16 col-13">{{ li.goods_attr }}</text>
                       </view>
                     </view>
                     <text class="goods-number">￥{{li.total_pay_price * 100 / 100}}元</text>  
                   </view>
                   <view wx:if="{{num === item.goods.length - 1 }}" class="t-r">
-                    <text class="f-24 col-9">共计：{{ item.goods.length }}件</text>
-                    <text class="f-24 col-9">合计：￥{{ item.pay_price * 100 /100 }}元</text>
+                    <text class="f-24 col-9">共计:{{ item.goods.length }}件</text>
+                    <text class="m-l-10 f-24 col-9">合计:￥{{ item.pay_price * 100 /100 }}元</text>
                   </view>
                 </view>
               </view>

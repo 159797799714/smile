@@ -37,7 +37,7 @@
 
       <!-- 评价内容 -->
       <view class="dis-flex content-row">
-        <textarea bindinput="contentInput" data-index="{{index}}" maxlength="2000" placeholder="请输入评价内容 (留空则不评价)" placeholderStyle="color:#ccc"></textarea>
+        <textarea bindinput="contentInput" data-index="{{index}}" maxlength="2000" placeholder="请输入评价内容 (留空则不评价)" placeholderStyle="color:#666"></textarea>
       </view>
 
       <!-- 图片列表 -->

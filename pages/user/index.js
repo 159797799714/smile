@@ -54,7 +54,7 @@ Page({
     }, {
       icon: '../../images/user/menu2-4.png',
       name: '退款/售后',
-      url: '/pages/order/refund/index'
+      url: '/pages/order/refund/index?type=user'
     }],
     // 我的拼团订单
     munulist2_2: [{

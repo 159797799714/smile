@@ -119,7 +119,7 @@ Page({
    */
   triggerDetail: function(e) {
     wx.navigateTo({
-      url: './detail/detail?order_refund_id=' + e.currentTarget.dataset.id
+      url: '/pages/order/rerund/apply/apply?type=sharing&order_refund_id=' + e.currentTarget.dataset.id
     });
   },
 

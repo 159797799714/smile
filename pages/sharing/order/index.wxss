@@ -1,6 +1,5 @@
 @import "../../order/index.wxss";
 
-
 .yoshop-notcont navigator {
   background: #16171C;
   height: 30px;
