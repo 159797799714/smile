@@ -8,7 +8,7 @@
   <!-- 退款/售后单 -->
   <scroll-view scroll-y="{{ true }}" bindscrolltolower="triggerDownLoad" style="height: {{swiperHeight}}px;">
     <view class="widget-list" wx:if="{{ list.data.length }}">
-      <view class="widget-detail" wx:for="{{ list.data }}" wx:key="this" catchtap="triggerDetail" data-id="{{ item.order_refund_id }}">
+      <view class="widget-detail b-13" wx:for="{{ list.data }}" wx:key="this" catchtap="triggerDetail" data-id="{{ item.order_refund_id }}">
         <view class="row-block dis-flex flex-y-center">
           <view class="flex-box col-9">{{ item.create_time }}</view>
           <view class="flex-box t-r">

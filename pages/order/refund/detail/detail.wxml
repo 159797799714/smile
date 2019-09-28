@@ -110,7 +110,7 @@
         </view>
       </view>
     </view>
-    <view class="detail-address__row">
+    <view class="detail-address__row b-t">
       <view class="f-26 col-9">
         <text>· 未与卖家协商一致情况下，请勿寄到付或平邮</text>
       </view>

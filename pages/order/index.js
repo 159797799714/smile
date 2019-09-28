@@ -140,6 +140,24 @@ Page({
       }
     });
   },
+  // s删除订单
+  delOrder(e) {
+    let _this = this;
+    let order_id = e.currentTarget.dataset.id;
+    wx.showModal({
+      title: "提示",
+      content: "确认删除此订单？",
+      success: function(o) {
+        if (o.confirm) {
+          App._post_form('user.order/delete', {
+            order_id
+          }, function(result) {
+            _this.getOrderList(_this.data.dataType);
+          });
+        }
+      }
+    });
+  },
 
   /**
    * 发起付款

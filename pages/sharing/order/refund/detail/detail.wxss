@@ -88,7 +88,7 @@
 
 .address-details {
   padding: 5rpx 0;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #333;
 }
 
 .detail-address__row {

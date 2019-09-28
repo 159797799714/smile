@@ -101,7 +101,7 @@ page{
 }
 
 .detail-address__row {
-  margin: 15rpx 0;
+  padding: 15rpx 0;
 }
 
 .address-details .address-details__row {
