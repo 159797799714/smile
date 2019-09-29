@@ -45,7 +45,7 @@
     </scroll-view>
 
     <!-- 右侧 二级分类 -->
-    <scroll-view class="cate-right b-f" scroll-top="{{ scrollTop }}" scroll-y="true" style="height: {{ scrollHeight }}px; ">
+    <scroll-view class="cate-right" scroll-top="{{ scrollTop }}" scroll-y="true" style="height: {{ scrollHeight }}px; ">
       <view wx:if="{{list[curIndex]}}">
         <view class="cate-right-cont">
           <view class="cate-two-box">

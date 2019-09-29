@@ -663,3 +663,18 @@ flex: 4;
 .r-180{
   transform: rotate(180deg);
 }
+
+/* 数字角标 */
+.angle-size{
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 32rpx;
+  min-width: 32rpx;
+  font-size: 28rpx;
+  line-height: 32rpx;
+  text-align: center;
+  background: #FF3C3E;
+  color: #fff;
+  border-radius: 16rpx;
+}

@@ -9,7 +9,7 @@
           </view>
           <view class="fl name">
             <open-data class="user-header-cont-name f-36 col-f" lang="zh_CN" type="userNickName"></open-data>
-            <view class="f-22 col-f onelist-hidden" style="letter-spacing: 1px;">个性签名：嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻</view>
+            <view class="f-22 col-f onelist-hidden" style="letter-spacing: 1px;">个性签名：{{ userInfo.sign? userInfo.sign: '暂未设置个性签名' }}</view>
           </view>
         </view>
         <view class="fr setting" catchtap="goSetting">
@@ -21,7 +21,7 @@
     <!-- 关注，收藏，点赞，粉丝 -->
     <view class="column dis-flex flex-x-between f-24 col-9">
       <view wx:for="{{ msglist }}" wx:key="index"  class="flex-box t-c">
-        <view>{{ item.num }}</view>
+        <view>{{ mycircle[item.type]}}</view>
         <view class="m-top10">{{ item.name }}</view>
       </view>
     </view>
@@ -50,15 +50,16 @@
     <!-- 菜单栏1 -->
     <view class="menu-title f-28">
       <text class="col-f">我的订单</text>
-      <navigator url="/pages/order/index?type=all" class="col-9">
+      <navigator url="/pages/order/index?type=all" class="p-r col-9">
         <text>全部订单</text>
         <text class="iconfont icon-xiangyoujiantou m-l-10 user-orderJtou"></text>
       </navigator>
     </view>
     <view class="menu">
       <navigator wx:for="{{ munulist2 }}" wx:key="index" url="{{ item.url }}" class="menu-item t-c">
-        <view class="item-icon">
+        <view class="p-r item-icon">
           <image src="{{ item.icon }}"></image>
+          <view wx:if="{{ orderCount[item.type] }}" class="angle-size">{{ orderCount[item.type] }}</view>
         </view>
         <view class="item-name m-top10">{{ item.name }}</view>
       </navigator>
@@ -78,8 +79,9 @@
     
     <view class="menu">
       <navigator wx:for="{{ munulist2_2 }}" wx:key="index" url="{{ item.url }}" class="menu-item t-c">
-        <view class="item-icon">
+        <view class="item-icon p-r">
           <image src="{{ item.icon }}"></image>
+          <view wx:if="{{ sharingOrderCount[item.type] }}" class="angle-size">{{ sharingOrderCount[item.type] }}</view>
         </view>
         <view class="item-name m-top10">{{ item.name }}</view>
       </navigator>
@@ -95,7 +97,7 @@
     <view class="menu f-24">
       <navigator wx:for="{{ purselist }}" wx:key="index" url="{{ item.url }}" class="menu-item t-c">
         <view>
-          <text class="col-9">1000</text>
+          <text class="col-9">{{ wallet[item.type] }}</text>
         </view>
         <view class="item-name m-top10">{{ item.name }}</view>
       </navigator>

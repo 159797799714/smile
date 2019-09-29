@@ -76,13 +76,6 @@ Page({
     // 获取收货地址
     this.getAddress()
     
-    // 弹出领奖弹窗
-    // setTimeout(function() {
-    //   this.setData({
-    //     canGet: true
-    //   })  
-    // }.bind(this), 1000)
-    
   },
   
   /**
@@ -105,14 +98,6 @@ Page({
         } else {
           li.checked = true
         }
-        // item.spec_items[num].checked = false
-        // if(index === attrIdx) {
-        //   if(num === itemIdx) {
-        //     li.checked = true
-        //   }
-        // } else if(li.checked) {
-        //   li.checked = true
-        // }
       })
     })
       
@@ -240,7 +225,8 @@ Page({
         
         if(res.data.detail.iswin === 'yes') {
           // 获取收货地址
-          that.getAddress()
+          // that.getAddress()
+          
           // 判断是否超过中奖后领奖7天
           let canReceive = utils.DecideReceive(luckydrawtime)
           console.log('是否超过7天', canReceive)

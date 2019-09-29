@@ -89,7 +89,6 @@ page {
   width: 200rpx;
   color: #444;
   height: 100%;
-  background: #f8f8f8;
 }
 
 .cate-right {
@@ -110,25 +109,35 @@ page {
 
 .type-nav {
   position: relative;
+  display: block;
+  z-index: 10;
   height: 90rpx;
   line-height: 90rpx;
   text-align: center;
-  z-index: 10;
-  display: block;
   font-size: 26rpx;
+  color: #999;
 }
 
 .type-nav.selected {
-  background: #fff;
-  color: #ff495e;
-  border-right: none;
+  position: relative;
+  color: #fff;
   font-size: 28rpx;
+}
+.selected:before{
+  content: '';
+  height: 28rpx;
+  width: 7rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  background: #9933ff;
 }
 
 .cate-cont-box {
   margin-bottom: 30rpx;
   padding-bottom: 10rpx;
-  background: #fff;
   overflow: hidden;
 }
 
@@ -145,8 +154,8 @@ page {
   text-align: center;
   display: block;
   font-size: 26rpx;
+  color: #999;
   padding-bottom: 14rpx;
-  color: #444;
   padding: 0 15rpx 30rpx 15rpx;
 }
 

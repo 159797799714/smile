@@ -10,17 +10,17 @@ Page({
     orderCount: {},
     
     msglist: [{
-      num: 100,
-      name: '关注'
+      name: '关注',
+      type: 'like_num'
     }, {
-      num: 100,
-      name: '收藏'
+      name: '收藏',
+      type: 'collection_num'
     }, {
-      num: 100,
-      name: '点赞'
+      name: '点赞',
+      type: 'focus_num'
     }, {
-      num: 100,
-      name: '粉丝'
+      name: '粉丝',
+      type: 'fans'
     }],
     
     // 每日签到等一栏
@@ -42,15 +42,18 @@ Page({
     munulist2: [{
       icon: '../../images/user/menu2-1.png',
       name: '待付款',
-      url: '/pages/order/index?type=payment'
+      url: '/pages/order/index?type=payment',
+      type: 'payment'
     }, {
       icon: '../../images/user/menu2-2.png',
       name: '待收货',
-      url: '/pages/order/index?type=received'
+      url: '/pages/order/index?type=received',
+      type: 'received'
     }, {
       icon: '../../images/user/menu2-3.png',
       name: '待评价',
-      url: '/pages/order/index?type=comment'
+      url: '/pages/order/index?type=comment',
+      type: 'comment'
     }, {
       icon: '../../images/user/menu2-4.png',
       name: '退款/售后',
@@ -60,33 +63,40 @@ Page({
     munulist2_2: [{
       icon: '../../images/user/menu2-1.png',
       name: '待付款',
-      url: '/pages/sharing/order/index?type=payment'
+      url: '/pages/sharing/order/index?type=payment',
+      type: 'payment'
     }, {
       icon: '../../images/user/menu2-5.png',
       name: '拼团中',
-      url: '/pages/sharing/order/index?type=sharing'
+      url: '/pages/sharing/order/index?type=sharing',
+      type: 'sharing'
     }, {
       icon: '../../images/user/menu2-6.png',
       name: '待收货',
-      url: '/pages/sharing/order/index?type=received'
+      url: '/pages/sharing/order/index?type=received',
+      type: 'received'
     }, {
       icon: '../../images/user/menu2-7.png',
       name: '待评价',
-      url: '/pages/sharing/order/index?type=comment'
+      url: '/pages/sharing/order/index?type=comment',
+      type: 'comment'
     },],
     
     // 我的钱包
     purselist: [{
       num: 1000,
-      name: '余额'
+      name: '余额',
+      type: 'balance_num'
     }, {
       num: 1000,
       name: '优惠券',
-      url: '/pages/coupon/mycoupon/index'
+      url: '/pages/coupon/mycoupon/index',
+      type: 'coupons_num'
     }, {
       num: 1000,
       name: '红包',
-      url: '/pages/redbox/index'
+      url: '/pages/redbox/index',
+      type: 'red_envelope_num'
     }],
     
     // 我的分销
@@ -128,16 +138,17 @@ Page({
     
     // 动态
     munulist5: [{
-      icon: '../../images/user/menu4-3.png',
-      name: '积分兑换'
-    }, {
       icon: '../../images/user/menu5-1.png',
-      name: '我的收藏'
-    }]
+      name: '我的收藏',
+      url: '/pages/mycollect/index'
+    }],
+    
+    // {
+    //   icon: '../../images/user/menu4-3.png',
+    //   name: '积分兑换'
+    // }, 
   },
   
-  
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -166,7 +177,7 @@ Page({
    */
   getUserDetail: function() {
     let _this = this;
-    App._get('user.index/detail', {}, function(result) {
+    App._get('user.index/wxCenter', {}, function(result) {
       _this.setData(result.data);
     });
   },
