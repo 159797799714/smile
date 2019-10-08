@@ -24,16 +24,18 @@ Page({
     }],
     
     // 每日签到等一栏
-    munulist1: [{
-      icon: '../../images/user/menu1-1.png',
-      name: '每日签到'
-    }, {
-      icon: '../../images/user/menu1-2.png',
-      name: '我的分享'
-    }, {
-      icon: '../../images/user/menu1-3.png',
-      name: '我的消息'
-    }, {
+    munulist1: [
+    // {
+    //   icon: '../../images/user/menu1-1.png',
+    //   name: '每日签到'
+    // }, {
+    //   icon: '../../images/user/menu1-2.png',
+    //   name: '我的分享'
+    // }, {
+    //   icon: '../../images/user/menu1-3.png',
+    //   name: '我的消息'
+    // }, 
+      {
       icon: '../../images/user/menu1-4.png',
       name: '客服小蜜'
     }],
@@ -130,10 +132,6 @@ Page({
     }, {
       icon: '../../images/user/menu4-4.png',
       name: '会员中心'
-    }, {
-      icon: '../../images/user/menu5-2.png',
-      name: '最近浏览',
-      url: '/pages/look-notes/index'
     }],
     
     // 动态
@@ -141,6 +139,10 @@ Page({
       icon: '../../images/user/menu5-1.png',
       name: '我的收藏',
       url: '/pages/mycollect/index'
+    }, {
+      icon: '../../images/user/menu5-2.png',
+      name: '最近浏览',
+      url: '/pages/look-notes/index'
     }],
     
     // {

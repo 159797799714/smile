@@ -10,53 +10,10 @@
       </view>
     </view>
 
-    <!-- 快递配送：配送地址 -->
-    <view wx:if="{{ order.delivery_type.value == deliverys.EXPRESS.value }}" class="flow-delivery">
-      <view class="flow-delivery__detail dis-flex flex-y-center col-9 b-b">
-        <view class="detail-location dis-flex">
-          <text class="iconfont icon-dingwei f-48 col-f f-w"></text>
-        </view>
-        <view class="detail-content flex-box">
-          <view class="detail-content__title dis-flex">
-            <text class="f-30">{{ order.address.name }}</text>
-            <text class="detail-content__title-phone f-28">{{ order.address.phone }}</text>
-          </view>
-          <view class="detail-content__describe">
-            <text>{{order.address.region.province}} {{order.address.region.city}} {{order.address.region.region}} {{address.detail}}</text>
-          </view>
-        </view>
-      </view>
-    </view>
-
-    <!-- 上门自提：自提门店 -->
-    <view wx:if="{{ order.delivery_type.value == deliverys.EXTRACT.value }}" class="m-top20 b-13">
-      <view class="flow-delivery">
-        <view class="flow-delivery__title m-top20">
-          <text class="flow-delivery__title-text f-30">自提门店</text>
-          <text class="f-24 col-8">您须到该自提点取货</text>
-        </view>
-        <view class="flow-delivery__detail dis-flex flex-y-center" catchtap="onTargetShop" data-id="{{ order.extract_shop.shop_id }}">
-          <view class="detail-location dis-flex">
-            <text class="iconfont icon-dingwei"></text>
-          </view>
-          <view class="detail-content flex-box">
-            <view class="detail-content__title dis-flex">
-              <text class="f-30">{{ order.extract_shop.shop_name }}</text>
-            </view>
-            <view class="detail-content__describe">
-              <text class="col-9">{{order.extract_shop.region.province}} {{order.extract_shop.region.city}} {{order.extract_shop.region.region}} {{order.extract_shop.address}}</text>
-            </view>
-          </view>
-          <view class="detail-arrow dis-flex">
-            <text class="iconfont icon-xiangyoujiantou user-orderJtou"></text>
-          </view>
-        </view>
-      </view>
-    </view>
 
     <!-- 物流信息 -->
     <view class="flow-all-money b-13 padding-box m-top20 b-b" wx:if="{{ order.delivery_type.value == deliverys.EXPRESS.value && order.delivery_status.value == 20 }}">
-      <navigator class="dis-flex" hover-class="none" url="./express/express?order_id={{order.order_id}}">
+      <navigator class="dis-flex" hover-class="none" url="/pages/order/express/express?order_id={{order.order_id}}&type=sharing">
         <view class="flex-box">
           <view class="dis-flex flow-all-list-cont">
             <text class="col-9">物流公司：{{order.express.express_name}}</text>

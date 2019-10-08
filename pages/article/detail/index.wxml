@@ -75,22 +75,17 @@
         </view>
           <!-- 有评论的情况 -->
         <text bindtap="closeAllcomment" wx:if="{{haveComment && detail.comments.num > 10}}" class="see-all-comment f-30 col-9 f-w dis-block">查看全部{{ detail.comments.num }}条评论</text>
-        <view class="article-status dis-flex">
-          <view class="article-status-see dis-flex">
-            <image mode="widthFix" src="../../../images/see.png" />
-            <text class="f-26 col-9 flex-box">{{ detail.show_views }}</text>
-            <text class="f-26 col-e">|</text>
-          </view>
-          <view class="article-status-like dis-flex">
-            <image bindtap="like"  data-state="articlelike" mode="widthFix" src="{{isLike ? '../../../images/like-active.png' : '../../../images/like.png'}}" />
-            <text class="f-26 col-9 flex-box">{{ detail.like_num }}</text>
-            <text class="f-26 col-e">|</text>
-          </view>
-          <view bindtap="toComment" class="article-status-comment dis-flex flex-x-center">
+        
+        <view class="article-status dis-flex b-13">
+          <input placeholder="留下你精彩的评论吧" />
+          <view class="foot-right dis-flex flex-x-center">
             <image mode="widthFix" src="../../../images/comment.png" />
-            <text class="f-26 col-9">{{ detail.comments.num }}</text>
+            <image mode="widthFix" src="../../../images/comment.png" />
+            <image mode="widthFix" src="../../../images/comment.png" />
+            <image mode="widthFix" src="../../../images/comment.png" />
           </view>
         </view>
+        
       </view>
     </view>
 

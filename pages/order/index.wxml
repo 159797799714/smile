@@ -82,6 +82,11 @@
                 <!-- 订单付款 -->
                 <view wx:if="{{item.pay_status.value==10}}" catchtap="payOrder" class="btn-main" data-id="{{item.order_id}}">立即付款</view>
                 
+                <!-- 查看物流  -->
+                <navigator url="/pages/order/express/express?order_id={{item.order_id}}&type=user" wx:if="{{item.delivery_status.value==20 && item.receipt_status.value == 10}}">
+                  <view class="btn-default">查看物流</view>
+                </navigator>
+                
                 <!-- 确认收货 -->
                 <view wx:if="{{item.delivery_status.value==20 && item.receipt_status.value == 10}}" catchtap="receipt" class="btn-main" data-id="{{item.order_id}}">确认收货</view>
                 

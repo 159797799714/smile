@@ -104,7 +104,7 @@
     </view>
   </view> -->
 
-  <view class="row">
+  <view wx:if="{{ options.order_type === 'cart' || options.order_type === 'buyNow' }}" class="row">
     <text>优惠券</text>
     <view>
       <view wx:if="{{ coupon_list_new.length > 0  }}" catchtap="togglePopupCoupon" data-type="coupon">
@@ -116,7 +116,7 @@
     </view>
   </view>
   
-  <view class="row">
+  <view wx:if="{{ options.order_type === 'cart' || options.order_type === 'buyNow' }}" class="row">
     <text>红包</text>
     <view>
       <view wx:if="{{ redenvelope_list.length > 0 }}" catchtap="togglePopupCoupon" data-type="redenvelope">

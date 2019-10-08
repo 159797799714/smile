@@ -10,7 +10,7 @@
 }
 
 .logis-detail .logis-item.first {
-  border-left: 2px solid #f40;
+  border-left: 2px solid #ff00ff;
 }
 
 .logis-detail .logis-item:after {
@@ -27,32 +27,16 @@
 }
 
 .logis-detail .logis-item.first:after {
-  background: #f40;
+  background: #ff00ff;
 }
 
 .logis-detail .logis-item .logis-item-content {
   position: relative;
-  background: #f9f9f9;
   padding: 10rpx 20rpx;
   box-sizing: border-box;
-  color: #666;
+  color: #999;
 }
 
 .logis-detail .logis-item.first .logis-item-content {
-  background: #ff6e39;
-  color: #fff;
-}
-
-.logis-detail .logis-item .logis-item-content:after {
-  content: '';
-  display: inline-block;
-  position: absolute;
-  left: -10px;
-  top: 18px;
-  border-left: 10px solid #fff;
-  border-bottom: 10px solid #f3f3f3;
-}
-
-.logis-detail .logis-item.first .logis-item-content:after {
-  border-bottom-color: #ff6e39;
+  
 }

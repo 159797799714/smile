@@ -56,7 +56,7 @@
 
     <!-- 物流信息 -->
     <view class="flow-all-money b-13 padding-box m-top20 b-b" wx:if="{{ order.delivery_type.value == deliverys.EXPRESS.value && order.delivery_status.value == 20 }}">
-      <navigator class="dis-flex" hover-class="none" url="./express/express?order_id={{order.order_id}}">
+      <navigator class="dis-flex" hover-class="none" url="./express/express?order_id={{order.order_id}}&type=user">
         <view class="flex-box">
           <view class="dis-flex flow-all-list-cont">
             <text class="col-9">物流公司：{{order.express.express_name}}</text>

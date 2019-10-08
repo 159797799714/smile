@@ -183,8 +183,6 @@ Page({
         console.log(_this.data.swiperList)
         
         
-        
-        
         _this.setData({
           goodList: goodsResultList,
           openingTime: goodsResult.data.list.header_info.next_activity_starttime

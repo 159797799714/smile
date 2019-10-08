@@ -3,7 +3,7 @@
   <view class="user b-b-10">
     <view class="user-header">
       <view class="user-header-cont dis-flex flex-y-center flex-x-between">
-        <view class="oh">
+        <navigator url="../setting/personal/index" class="oh">
           <view class="fl user-header-avatar">
             <open-data class="" lang="zh_CN" type="userAvatarUrl"></open-data>
           </view>
@@ -11,7 +11,7 @@
             <open-data class="user-header-cont-name f-36 col-f" lang="zh_CN" type="userNickName"></open-data>
             <view class="f-22 col-f onelist-hidden" style="letter-spacing: 1px;">个性签名：{{ userInfo.sign? userInfo.sign: '暂未设置个性签名' }}</view>
           </view>
-        </view>
+        </navigator>
         <view class="fr setting" catchtap="goSetting">
           <text class="iconfont icon-shezhi1 col-9"></text>
         </view>
@@ -27,7 +27,7 @@
     </view>
     
     <!-- 菜单栏1 -->
-    <view class="menu">
+    <!-- <view class="menu">
       <view wx:for="{{ munulist1 }}" wx:key="index" wx:if="{{ index < 3 }}" class="menu-item t-c">
         <view class="item-icon">
           <image src="{{ item.icon }}"></image>
@@ -41,7 +41,7 @@
         <view class="item-name m-top10">{{ munulist1[3].name }}</view>
       </button>
       
-    </view>
+    </view> -->
     
   </view>
   

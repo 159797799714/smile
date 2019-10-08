@@ -51,7 +51,9 @@ Page({
     console.log(options);
     let _this = this;
     // 当前页面参数
-    _this.data.options = options;
+    _this.setData({
+      options: options
+    })
   },
 
   /**
@@ -84,8 +86,8 @@ Page({
       }
       _this.setData({
         address: result.data.address,
-        coupon_list_new: result.data.coupon_list_new,
-        redenvelope_list: result.data.redenvelope_list,
+        coupon_list_new: result.data.coupon_list_new? result.data.coupon_list_new: [],
+        redenvelope_list: result.data.redenvelope_list? result.data.redenvelope_list: [],
         delivery: result.data.delivery,
         error_msg: result.data.error_msg,
         exist_address: result.data.exist_address,
@@ -123,6 +125,17 @@ Page({
         shop_id: _this.data.selectedShopId,
         coupon_id: _this.data.coupon[0].coupon_id,
         red_envelope_id: _this.data.coupon[1].red_envelope_id
+      }, function(result) {
+        callback(result);
+      });
+    } else {
+      App._get('sharing.order/checkout', {
+        order_type: options.order_type,
+        goods_id: options.goods_id,
+        goods_num: options.goods_num,
+        goods_sku_id: options.goods_sku_id,
+        delivery: _this.data.currentDelivery,
+        shop_id: _this.data.selectedShopId,
       }, function(result) {
         callback(result);
       });
@@ -181,15 +194,53 @@ Page({
 
     // 订单创建成功后回调--微信支付
     let callback = function(result) {
-      if (result.code === -10) {
-        App.showError(result.msg, function() {
-          // 跳转到未付款订单
-          wx.redirectTo({
-            url: '../order/index',
+      // 普通订单
+      if(options.order_type === 'buyNow' || options.order_type === 'cart') {
+        if (result.code === -10) {
+          App.showError(result.msg, function() {
+            // 跳转到未付款订单
+            wx.redirectTo({
+              url: '../order/index',
+            });
           });
-        });
-        return false;
-      }
+          return false;
+        }
+        
+        // 发起微信支付
+        wx.requestPayment({
+          timeStamp: result.data.payment.timeStamp,
+          nonceStr: result.data.payment.nonceStr,
+          package: 'prepay_id=' + result.data.payment.prepay_id,
+          signType: 'MD5',
+          paySign: result.data.payment.paySign,
+          success: function(res) {
+            // 跳转到订单详情
+            wx.redirectTo({
+              url: '../order/detail?order_id=' + result.data.order_id,
+            });
+          },
+          fail: function() {
+            App.showError('订单未支付', function() {
+              // 跳转到未付款订单
+              wx.redirectTo({
+                url: '../order/index',
+              });
+            });
+          },
+        })
+      } 
+      // 拼团订单
+      else {
+        console.log('1111')
+        if (result.code === -10) {
+          App.showError(result.msg, function() {
+            // 跳转到未付款订单
+            wx.redirectTo({
+              url: '../sharing/order/index',
+            });
+          });
+          return false;
+        }
       // 发起微信支付
       wx.requestPayment({
         timeStamp: result.data.payment.timeStamp,
@@ -198,20 +249,22 @@ Page({
         signType: 'MD5',
         paySign: result.data.payment.paySign,
         success: function(res) {
-          // 跳转到订单详情
+          // 跳转到订单列表
           wx.redirectTo({
-            url: '../order/detail?order_id=' + result.data.order_id,
+            url: '../sharing/order/index',
           });
         },
         fail: function() {
           App.showError('订单未支付', function() {
-            // 跳转到未付款订单
+            // 跳转到订单列表
             wx.redirectTo({
-              url: '../order/index',
+              url: '../sharing/order/index',
             });
           });
         },
       });
+    }
+      
     };
 
     // 按钮禁用, 防止二次提交
@@ -267,7 +320,34 @@ Page({
         // 解除按钮禁用
         _this.data.disabled = false;
       });
-    }
+    } 
+      // 拼团订单
+      else {
+      // 创建订单-立即购买
+        App._post_form('sharing.order/checkout', {
+          order_type: options.order_type || 10,
+          goods_id: options.goods_id,
+          goods_num: options.goods_num,
+          goods_sku_id: options.goods_sku_id,
+          delivery: _this.data.currentDelivery,
+          shop_id: _this.data.selectedShopId || 0,
+          active_id: options.active_id || 0,
+          remark: _this.data.remark
+        }, function(result) {
+          // success
+          console.log('success');
+          callback(result);
+        }, function(result) {
+          // fail
+          console.log('fail');
+        }, function() {
+          // complete
+          console.log('complete');
+          wx.hideLoading();
+          // 解除按钮禁用
+          _this.data.disabled = false;
+        });
+      }
 
   },
   // 优惠券等选择器事件
@@ -313,44 +393,6 @@ Page({
         popupType: type ? type: ''
       });
     }
-  },
-  
-
-  /**
-   * 选择优惠券
-   */
-  // selectCouponTap: function(e) {
-  //   let _this = this,
-  //     dataset = e.currentTarget.dataset;
-  //   // 优惠券折扣金额
-  //   let reducedPrice = _this.data.coupon_list[dataset.index].reduced_price;
-  //   dataset.reduced_price = reducedPrice;
-  //   // 计算优惠后的价格
-  //   let actualPayPrice = _this.bcsub(_this.data.order_pay_price, reducedPrice);
-  //   _this.setData({
-  //     selectCoupon: dataset,
-  //     actual_pay_price: actualPayPrice > 0 ? actualPayPrice : '0.01'
-  //   });
-  //   _this.togglePopupCoupon();
-  // },
-
-  /**
-   * 不使用优惠券
-   */
-  // doNotCouponTap: function() {
-  //   this.setData({
-  //     selectCoupon: {},
-  //     actual_pay_price: this.data.order_pay_price
-  //   });
-  //   this.togglePopupCoupon();
-  // },
-
-  /**
-   * 数学运算相减
-   */
-  // bcsub: function(arg1, arg2) {
-  //   return (Number(arg1) - Number(arg2)).toFixed(2);
-  // },
-
+  }
 
 });

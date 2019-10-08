@@ -271,7 +271,7 @@ Page({
       function (res) {
       // 立即购买
         wx.navigateTo({
-          url: '../checkout/index?' + util.urlEncode({
+          url: '../../flow/checkout?' + util.urlEncode({
             order_type: _this.data.order_type,
             goods_id: _this.data.goods_id,
             goods_num: _this.data.goods_num,
