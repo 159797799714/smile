@@ -3,13 +3,13 @@
 }
 
 .store_nav_cont #list-true {
-  color: #16171c;
+  color: #fff;
   font-size: 28rpx;
   font-weight:800;
 }
 
 .store_nav_cont #list-0 {
-  color: #333;
+  color: #999;
   font-size: 28rpx;
 }
 
@@ -20,7 +20,7 @@
 }
 
 .store_nav_cont #list-true .price__arrow text.active {
-  color: #16171c;
+  color: #fff;
 }
 
 .container {
@@ -33,14 +33,13 @@
 }
 
 .index-search-box {
-  background: #fff;
   padding: 18rpx 13rpx;
   border-bottom: 1rpx solid #eee;
 }
 
 .index-search {
   border-bottom: 0;
-  background: #fff;
+  background: #333;
   border-radius: 50rpx;
   overflow: hidden;
   position: relative;
@@ -50,6 +49,9 @@
   height: 64rpx;
   line-height: 64rpx;
   margin: 0 10rpx;
+}
+.index-cont-search{
+  background: #333;
 }
 
 .list-right {
@@ -81,7 +83,7 @@
 
 .category-list .list {
   box-sizing: border-box;
-  width: 50%;
+  width: 330rpx;
   float: left;
 }
 
@@ -117,7 +119,6 @@
 .category-list.arrange .list {
   overflow: hidden;
   padding: 15rpx;
-  border-bottom: 1rpx solid #f7f7f7;
   width: 100%;
 }
 
