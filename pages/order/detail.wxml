@@ -84,13 +84,13 @@
     <!-- 商品详情 -->
     <view class="padding-box b-13">
       <view bindtap="goodsDetail" class="dis-flex flow-shopList b-13" data-id="{{item.goods_id}}" wx:for="{{order.goods}}" wx:key="this">
-        <view class="flow-list-left">
-          <image mode="scaleToFill" src="{{item.image.file_path}}"></image>
+        <view class="flow-list-left oh">
+          <image mode="widthFix" src="{{item.image.file_path}}"></image>
         </view>
         <view class="flow-list-right flex-box col-9">
           <text class="f-24 twolist-hidden">{{item.goods_name}}</text>
           <view class="goods-attr">
-            <text class="p b-93f f-18 col-13">{{item.goods_attr}}</text>
+            <text class="p b-93f f-18 col-13">{{item.goods_attr?item.goods_attr: '默认'}}</text>
           </view>
           <view class="flow-list-cont dis-flex flex-x-between flex-y-center">
             <text class="flow-cont f-20">￥{{item.goods_price}}</text>

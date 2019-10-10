@@ -22,6 +22,7 @@
     "pages/address/index",
     "pages/address/detail",
     "pages/login/login",
+    "pages/youmi/index",
     "pages/dealer-dialog/index",
     "pages/dealer/index/index",
     "pages/dealer/apply/apply",
@@ -55,6 +56,7 @@
     "pages/zerodraw/pastlook/index",
     "pages/zerodraw/detail/index",
     "pages/loading/index",
+    "pages/member/index",
     "pages/setting/index/index",
     "pages/setting/about/about"
   ],
@@ -74,6 +76,12 @@
         "text": "首页",
         "iconPath": "images/tabbar/index1.png",
         "selectedIconPath": "images/tabbar/index2.png"
+      },
+      {
+        "pagePath": "pages/youmi/index",
+        "text": "优迷",
+        "iconPath": "images/tabbar/you1.png",
+        "selectedIconPath": "images/tabbar/you2.png"
       },
       {
         "pagePath": "pages/shopping-mall/index",

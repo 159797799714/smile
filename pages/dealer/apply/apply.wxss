@@ -1,6 +1,3 @@
-page {
-  background: #fff;
-}
 
 .c-violet {
   color: #786cff;
@@ -46,7 +43,6 @@ page {
   height: 80rpx;
   margin-bottom: 24rpx;
   padding: 10rpx 28rpx;
-  background-color: #f9f9f9;
   box-sizing: border-box;
   font-size: 28rpx;
 }
@@ -93,4 +89,7 @@ page {
 
 .dealer-boot .boot__submit {
   margin-top: 60rpx;
+}
+input{
+  color: #fff;
 }

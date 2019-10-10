@@ -200,6 +200,21 @@ Page({
       App.showSuccess(result.data);
     });
   },
+  // 收藏文章
+  collect() {
+    let _this= this,
+      url= 'article/collection';
+    if(_this.data.detail.isCollection) {
+      url= 'article/unCollection'
+    }
+    App._post_form(url, {
+      article_id: _this.data.detail.article_id
+    }, function (res) {
+      _this.setData({
+        'detail.isCollection': !_this.data.detail.isCollection
+      })
+    })
+  },
   closeAllcomment(e) {
     let _this = this;
     if(_this.data.isClose) {

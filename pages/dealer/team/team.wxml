@@ -1,6 +1,6 @@
 <view class="container">
   <!-- 顶部选项卡 -->
-  <view wx:if="{{ tabList.length > 1 }}" class="swiper-tab dis-flex box-align-center flex-y-center">
+  <view wx:if="{{ tabList.length > 1 }}" class="swiper-tab dis-flex box-align-center flex-y-center b-b">
     <block wx:for="{{ tabList }}" wx:key="this">
       <view class="swiper-tab-item {{ dataType == item.value ? 'on' : ''}} flex-box" data-current="{{ item.value }}" bindtap="swichNav">{{ item.text }}({{ item.total }})</view>
     </block>
@@ -9,7 +9,7 @@
   <view class="widget-people f-28 col-9">{{ words.team.words.total_team.value }}：{{ team_total }}人</view>
   <!-- 我的团队列表 -->
   <scroll-view scroll-y="{{ true }}" bindscrolltolower="triggerDownLoad" style="height: {{swiperHeight}}px;">
-    <view class="widget-list b-f" wx:if="{{ list.data.length }}">
+    <view class="widget-list b-13" wx:if="{{ list.data.length }}">
       <view class="widget__detail dis-flex flex-x-between" wx:for="{{ list.data }}" wx:key="this">
         <view class="detail__left dis-flex flex-y-center">
           <view class="user-avatar">
@@ -21,7 +21,7 @@
           </view>
         </view>
         <view class="detail__right dis-flex flex-dir-column flex-x-center flex-y-center">
-          <view class="detail__money">
+          <view class="detail__money col-f">
             <text class="f-24">￥</text>
             <text class="f-34">{{ item.user.money }}</text>
           </view>

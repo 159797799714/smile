@@ -35,8 +35,8 @@
           <view wx:for="{{item.goods}}" wx:key="goods" wx:for-item="li" wx:for-index="num" class="order-box order-img_list b-13">
             <view class="order-shop">
               <view class="order-list-box dis-flex">
-                <view class="order-shop-left">
-                  <image src="{{li.image.file_path}}"></image>
+                <view class="order-shop-left oh">
+                  <image src="{{li.image.file_path}}" mode="widthFix"></image>
                 </view>
                 <view class="right dis-flex flex-dir-column flex-x-between">
                   <view class="dis-flex flex-x-between">

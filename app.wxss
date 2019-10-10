@@ -347,6 +347,8 @@ page {
 
 .flow-shopList .flow-list-left {
   margin-right: 20rpx;
+  height: 180rpx;
+  overflow: hidden;
 }
 
 .flow-shopList .flow-list-left image {

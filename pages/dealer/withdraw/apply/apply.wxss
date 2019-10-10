@@ -1,9 +1,6 @@
-page {
-  background: #fff;
-}
 
 .c-violet {
-  color: #786cff;
+  color: #f0f;
 }
 
 .col-bb {
@@ -78,7 +75,8 @@ page {
 }
 
 .widget__form .form__field .field-input input {
-  background-color: #f9f9f9;
+  background-color: #333;
+  color: #fff;
   height: 70rpx;
   padding: 10rpx 20rpx;
   box-sizing: border-box;
@@ -92,8 +90,8 @@ page {
 
 .form-submit button {
   font-size: 30rpx;
-  background: #786cff;
-  border: 1rpx solid #786cff;
+  background: #131313;
+  border: 1rpx solid #ff00ff;
   color: white;
   border-radius: 50rpx;
   padding: 0 120rpx;

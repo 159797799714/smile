@@ -7,7 +7,7 @@
   </view>
   <!-- 订单列表 -->
   <scroll-view scroll-y="{{ true }}" bindscrolltolower="triggerDownLoad" style="height: {{swiperHeight}}px;">
-    <view class="widget-list b-f" wx:if="{{ list.data.length }}">
+    <view class="widget-list b-13" wx:if="{{ list.data.length }}">
       <view class="widget__detail" wx:for="{{ list.data }}" wx:key="this">
         <view class="detail__row dis-flex flex-x-between">
           <view class="detail__left f-24">订单号：{{ item.order_master.order_no }}</view>
@@ -22,17 +22,17 @@
             </view>
             <view class="user-info dis-flex flex-dir-column flex-x-center">
               <view class="user-nickName f-28">{{ item.user.nickName }}</view>
-              <view class="user-time f-24 c-80">消费金额：￥{{ item.order_price }}</view>
+              <view class="user-time f-24 col-9">消费金额：￥{{ item.order_price }}</view>
             </view>
           </view>
           <view class="detail__right dis-flex flex-dir-column flex-x-center flex-y-center">
-            <view class="detail__money t-r col-m">
+            <view class="detail__money t-r col-purple">
               <text class="f-26">+ </text>
               <text class="f-28" wx:if="{{ item.first_user_id == user_id }}">{{ item.first_money }}</text>
               <text class="f-28" wx:if="{{ item.second_user_id == user_id }}">{{ item.second_money }}</text>
               <text class="f-28" wx:if="{{ item.third_user_id == user_id }}">{{ item.third_money }}</text>
             </view>
-            <view class="detail__time f-22 c-80">{{ item.create_time }}</view>
+            <view class="detail__time f-22 col-9">{{ item.create_time }}</view>
           </view>
         </view>
       </view>

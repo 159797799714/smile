@@ -1,4 +1,4 @@
-<view class="container b-f">
+<view class="container">
   <!-- 顶部选项卡 -->
   <view class="swiper-tab dis-flex box-align-center flex-y-center">
     <block wx:for="{{ tabList }}" wx:key="this">
@@ -14,7 +14,7 @@
           <view class="detail__time col-9 f-24">{{ item.create_time }}</view>
         </view>
         <view class="detail__right dis-flex flex-dir-column flex-x-center flex-y-center">
-          <view class="detail__status f-28 {{ item.apply_status == 20 || item.apply_status == 40 ? 'col-green' : 'col-m' }}">{{ applyStatus[item.apply_status] }}</view>
+          <view class="detail__status f-28 {{ item.apply_status == 20 || item.apply_status == 40 ? 'col-green' : 'col-purple' }}">{{ applyStatus[item.apply_status] }}</view>
           <block wx:if="{{ item.apply_status == 30 }}">
             <view class="detail__reason f-24" catchtap="triggerReasonMsg" data-reason="{{ item.reject_reason }}">查看原因</view>
           </block>

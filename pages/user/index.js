@@ -131,7 +131,8 @@ Page({
       url: '/pages/coupon/coupon'
     }, {
       icon: '../../images/user/menu4-4.png',
-      name: '会员中心'
+      name: '会员中心',
+      url: '/pages/member/index'
     }],
     
     // 动态

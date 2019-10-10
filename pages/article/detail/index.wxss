@@ -175,22 +175,26 @@ page {
     bottom: 0;
     right: 0;
     width: 100%;
-    z-index: 11111111111111112;
+    z-index: 12;
     overflow-y: scroll;
     padding: 26rpx 39rpx;
     box-sizing: border-box;
     overflow: hidden;
-    background-color: #fff;
+    background-color: #131313;
     display: flex;
     justify-content: space-between;
     transition: all .01s;
 }
 .post-comment> view {
     position: relative;
-    z-index: 11111111111111113;
+    z-index: 13;
 }
 .post-comment textarea {
-    width: 560rpx;
+    width: 500rpx;
+    padding: 0 30rpx;
+    background: #666;
+    color: #ccc;
+    border-radius: 25rpx;
 }
 
 /* 遮罩层 */
@@ -200,7 +204,7 @@ page {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 11111;
+    z-index: 7;
     background-color: rgba(0, 0, 0, 0.3);
 }
 
@@ -212,8 +216,36 @@ page {
     width: calc(100% - 60rpx);
     padding: 0 30rpx;
 }
-
-
+.article-status input{
+  width: 315rpx;
+  min-height: 50rpx;
+  height: 50rpx;
+  margin: auto 0;
+  border-radius: 25rpx;
+  background: #666;
+  font-size: 22rpx;
+  color: #ccc;
+  text-align: center;
+}
+.article-status .foot-right{
+  width: calc(100% - 345rpx);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.foot-right image{
+  width: 45rpx;
+}
+.foot-right .share{
+  position: relative;
+}
+.share button{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  z-index: 5;
+}
 /* .diy-component-my .diy-banner {
     margin: 0 !important;
 } */

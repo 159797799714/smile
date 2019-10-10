@@ -48,7 +48,7 @@
     <view class="comment-wrap b-33">
       <view class="b-13">
         <view class="comment-wrap-content">
-          <text class="f-32 col-9 f-w">评论({{ detail.comments.num }})</text>
+          <text class="f-32 col-9">评论({{ detail.comments.num }})</text>
           <!-- 有评论的情况 -->
           <view wx:for="{{ detail.comments_show }}" wx:key="index" wx:for-index="index" wx:for-item="item" wx:if="{{haveComment && index < 10}}" class="comment-wrap-content-people dis-flex flex-x-between m-top20 b-b">
             <view class="uesr-photo">
@@ -74,15 +74,20 @@
           </view>
         </view>
           <!-- 有评论的情况 -->
-        <text bindtap="closeAllcomment" wx:if="{{haveComment && detail.comments.num > 10}}" class="see-all-comment f-30 col-9 f-w dis-block">查看全部{{ detail.comments.num }}条评论</text>
+        <text bindtap="closeAllcomment" wx:if="{{haveComment && detail.comments.num > 10}}" class="see-all-comment f-30 col-9 dis-block">查看全部{{ detail.comments.num }}条评论</text>
         
-        <view class="article-status dis-flex b-13">
-          <input placeholder="留下你精彩的评论吧" />
+        <view class="article-status dis-flex flex-x-between b-13">
+          <input placeholder="留下你精彩的评论吧" placeholder-style="color: #ccc" bindfocus="toComment"/>
           <view class="foot-right dis-flex flex-x-center">
-            <image mode="widthFix" src="../../../images/comment.png" />
-            <image mode="widthFix" src="../../../images/comment.png" />
-            <image mode="widthFix" src="../../../images/comment.png" />
-            <image mode="widthFix" src="../../../images/comment.png" />
+            <image mode="widthFix" src="{{isLike ? '../../../images/like-active.png' : '../../../images/like.png'}}" bindtap="like"  data-state="articlelike"/>
+            <image mode="widthFix" src="{{detail.isCollection ? '../../../images/goods/collected.png' : '../../../images/goods/collect.png'}}" catchtap="collect"/>
+            <image mode="widthFix" src="../../../images/comment.png" bindtap="toComment" bindconfirm="toComment"/>
+            <view class="share">
+              <button open-type="share"></button>
+              <image mode="widthFix" src="../../../images/share.png" catchtap="onShareAppMessage"/>
+            </view>
+            
+            
           </view>
         </view>
         
@@ -133,8 +138,8 @@
 
 
     <!-- 发布评论 -->
-    <view class="{{isSendComment ? 'post-comment b-t flex-y-center' : 'post-comment close-style'}}">
-      <textarea value="{{ commentValue }}" adjust-position="false" bindfocus="textareaFocus" bindinput="textareaInput" bindblur="textareaBlur" focus="{{isTextareaFocus}}" fixed cursor-spacing="10" class="col-9 f-28" auto-height placeholder="添加你的评论..." />
+    <view wx:if="{{isSendComment}}" class="post-comment b-t flex-y-center">
+      <textarea value="{{ commentValue }}" adjust-position="false" bindfocus="textareaFocus" bindinput="textareaInput" bindblur="textareaBlur" focus="{{isTextareaFocus}}" fixed cursor-spacing="10" class="col-9 f-28" auto-height placeholder="添加你的评论..." placeholder-style="color: #ccc"/>
       <view bindtap="sendComment" class="f-30 col-f3c f-w">发布</view>
     </view>
 

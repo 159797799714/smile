@@ -24,12 +24,13 @@
         </view>
         <text class="seckill-state-line"></text>
       </view>
-      <view>
+      <view style="min-width: 220rpx;">
         <view class="seckill-state-time dis-flex flex-y-center">
           <image mode="widthFix" src="../../../images/seckill-shop-icon.png" />
-          <text class="f-22">{{ activityStart ? '距结束' : '距开始'}} {{ countDownTime }}</text>
+          <text wx:if="{{ countDownTime !== '00:00:00' }}" class="f-22">{{ activityStart ? '距结束' : '距开始'}} {{ countDownTime }}</text>
+          <text wx:else class="f-22">活动已结束</text>
         </view>
-        <view class="seckill-state-progress">
+        <view wx:if="{{ countDownTime !== '00:00:00' }}" class="seckill-state-progress">
           <text wx:if="{{ activityStart }}" class="f-22 col-f">已抢{{percent}}%</text>
           <text wx:if="{{ !activityStart }}" class="f-22">未开始</text>
           <progress percent="{{percent}}" border-radius="15rpx" activeColor="#FEF8F0" stroke-width="15" backgroundColor="rgba(255,255,255,0.3)" class="progress"/>
@@ -287,7 +288,8 @@
         </view>
       </view>
       <!-- <view class="order-number b-63f" catchtap="onToggleTrade">加入购物车</view> -->
-      <view wx:if="{{ activityStart }}" class="buy-btn b-purple" catchtap="onToggleTrade">立即购买</view>
+      <view wx:if="{{ activityStart && countDownTime !== '00:00:00' }}" class="buy-btn b-purple" catchtap="onToggleTrade">立即购买</view>
+      <view wx:else class="buy-btn b-66">活动结束</view>
       <form class="order-bt" name="pushMsgFm" bindsubmit="remindMe" wx:if="{{ !activityStart }}" report-submit="true" >
         <button form-type="submit" class="f-30 col-f">
           {{ isremind == "no" ? '立即提醒' : '取消提醒'}}

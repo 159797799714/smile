@@ -52,7 +52,7 @@
           <text class="f-24">地址地标:</text>
         </view>
         <view class="right-cont flex-box">
-          <text wx:for="{{ tags_name }}" wx:key="index" class="tag {{ tagData === item.name? 'b-93f': 'b-33'}} f-18 col-f t-c onelist-hidden" catchtap="selectTag" data-name="{{ item.name }}">{{ item.name }}</text>
+          <text wx:for="{{ tags }}" wx:key="index" class="tag {{ detail.tags_name === item.tags_name? 'b-93f': 'b-33'}} f-18 col-f t-c onelist-hidden" catchtap="selectTag" data-id="{{item.id}}" data-name="{{ item.tags_name }}">{{ item.tags_name }}</text>
         </view>
         <view class="f-24 col-6">
           更多 <text class="iconfont icon-xiangyoujiantou col-6"></text>

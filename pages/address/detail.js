@@ -12,14 +12,7 @@ Page({
     detail: {},
     error: '',
     address_id: '',     // 地址id
-    tags: [{
-      name: '家'
-    }, {
-      name: '公司'
-    }, {
-      name: '学校'
-    }],                 // 地址标签
-    tagData: '家',      // 默认选中家
+    tags: [],           // 地址标签
     defauleId: '',      // 默认选中的id
     isDefault: false,   // 是否默认
   },
@@ -28,6 +21,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    // 获取地址标签列表
+    this.getTagList()
+    
     if(options.address_id) {
       this.setData({
         address_id: options.address_id,
@@ -51,6 +47,7 @@ Page({
     App._get('address/detail', {
       address_id
     }, function(result) {
+      console.log(result)
       _this.setData(result.data);
     });
   },
@@ -79,7 +76,7 @@ Page({
 
     // 提交到后端
     values.address_id = _this.data.detail.address_id;
-    values.tags_id = _this.data.tagData
+    values.tags_id = _this.data.detail.tags_id
     
     let url= 'address/edit'
     
@@ -100,14 +97,27 @@ Page({
     });
   },
   
+  // 获取地址标签列表
+  getTagList() {
+    let _this= this
+    App._get('address/tagsList', {}, function(res) {
+      _this.setData({
+        tags: res.data.list.system_set
+      })
+    })
+  },
+  
   // 选择地址标签
   selectTag(e) {
     console.log(e.currentTarget.dataset.name)
     this.setData({
-      tagData: e.currentTarget.dataset.name
+      'detail.tags_name': e.currentTarget.dataset.name,
+      'detail.tags_id': e.currentTarget.dataset.id
     })
   },
   
+  
+  // 删除地址
   delAddress(e) {
     let that= this,
       address_id= that.data.address_id;

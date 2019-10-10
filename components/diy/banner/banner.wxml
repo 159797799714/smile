@@ -3,7 +3,7 @@
   <swiper autoplay="{{ autoplay }}" class="banner-box swiper-box dot-{{ itemStyle.btnShape }}" duration="{{ duration }}" circular="{{ true }}" indicator-dots="{{ indicatorDots }}" interval="{{ params.interval }}" indicator-color="{{ itemStyle.btnColor }}" indicator-active-color="#000"
     bindchange="_bindChange" data-item-key="{{ itemIndex }}" style="height: {{ imgHeights[imgCurrent] }}rpx">
     <swiper-item wx:for-item="banner" wx:for="{{dataList}}" wx:key="this">
-      <image mode="widthFix" catchtap="navigationTo" data-url="{{ banner.linkUrl || banner.banner_url || banner.activity_link }}" class="slide-image" bindload="_imagesHeight" src="{{banner.imgUrl || banner.banner_img || banner.file_path || banner.image.file_path}}" data-goods-id = "{{ banner.goods_id }}" data-article-id="{{ banner.article_id }}" data-id="{{index}}" data-item-key="{{ itemIndex }}" data-luckydraw-id="{{ banner.luckydraw_id }}"></image>
+      <image mode="widthFix" catchtap="navigationTo" data-url="{{ banner.linkUrl || banner.banner_url || banner.activity_link }}" class="slide-image" bindload="_imagesHeight" src="{{banner.imgUrl || banner.banner_img || banner.file_path || banner.image.file_path || banner.image }}" data-goods-id = "{{ banner.goods_id }}" data-article-id="{{ banner.article_id }}" data-id="{{index}}" data-item-key="{{ itemIndex }}" data-luckydraw-id="{{ banner.luckydraw_id }}"></image>
     </swiper-item>
   </swiper>
   <!-- 顶部置灰 -->

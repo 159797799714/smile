@@ -40,7 +40,6 @@
         </view>
         <view class="item-name m-top10">{{ munulist1[3].name }}</view>
       </button>
-      
     </view> -->
     
   </view>

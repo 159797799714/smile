@@ -1,14 +1,14 @@
-<view class="container b-f">
+<view class="container">
 
   <!-- 头部背景图 -->
   <view class="dealer-bg">
-    <image mode="widthFix" src="{{ background }}"></image>
+    <!-- <image mode="widthFix" src="{{ background }}"></image> -->
   </view>
 
-  <view class="widget-body b-f dis-flex flex-dir-column flex-y-center">
+  <view class="widget-body dis-flex flex-dir-column flex-y-center col-9">
     <form bindsubmit="formSubmit" report-submit="true">
       <!-- 提现佣金 -->
-      <view class="widget widget__capital m-top20 b-f dis-flex flex-dir-column">
+      <view class="widget widget__capital m-top20 dis-flex flex-dir-column">
         <view class="capital__item dis-flex flex-x-between flex-y-center">
           <view class="item__left">{{ words.withdraw_apply.words.capital.value }}：</view>
           <view class="item__right c-violet">
@@ -24,12 +24,12 @@
         </view>
       </view>
       <!-- 最低提现金额 -->
-      <view class="capital__lowest m-top20 f-24 col-7 t-r">
+      <view class="capital__lowest m-top20 f-24 col-9 t-r">
         {{ words.withdraw_apply.words.min_money.value }}{{ settlement.min_money }}元
       </view>
 
       <!-- 提现方式 -->
-      <view class="widget widget__form m-top20 b-f dis-flex flex-dir-column">
+      <view class="widget widget__form m-top20 dis-flex flex-dir-column">
         <view class="form__title f-28">提现方式</view>
         <view class="form__box">
           <block wx:for="{{ settlement.pay_type }}" wx:key="this">

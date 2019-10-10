@@ -2,19 +2,19 @@
 
   <!-- 头部背景图 -->
   <view class="dealer-bg">
-    <image mode="widthFix" src="{{ background }}"></image>
+    <!-- <image mode="widthFix" src="{{ background }}"></image> -->
   </view>
 
   <!-- 填写申请信息 -->
   <block wx:if="{{ !is_applying }}">
     <view class="dis-flex flex-dir-column flex-y-center">
-      <view class="widget-form b-f m-top20 dis-flex flex-dir-column">
-        <view class="form-title f-30">{{ words.apply.words.title.value }}</view>
+      <view class="widget-form b-33 m-top20 dis-flex flex-dir-column">
+        <view class="form-title f-30 col-f">{{ words.apply.words.title.value }}</view>
         <view class="form-box dis-flex flex-dir-column">
           <form bindsubmit="formSubmit" report-submit="true">
             <view class="form-field dis-flex flex-y-center">
               <view class="field-label">邀请人</view>
-              <view class="field-input">
+              <view class="field-input col-f">
                 <text>{{ referee_name }}（请核对）</text>
               </view>
             </view>
@@ -27,7 +27,7 @@
             <view class="form-field dis-flex flex-y-center">
               <view class="field-label">手机号</view>
               <view class="field-input flex-box">
-                <input name="mobile" placeholder="请输入手机号" value="{{mobile}}"></input>
+                <input name="mobile" placeholder="请输入手机号" value="{{mobile}}" maxlength="11"></input>
               </view>
             </view>
             <!-- 申请协议 -->

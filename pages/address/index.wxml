@@ -14,37 +14,6 @@
         </view>
       </view>
       <view class="edit-btn f-24"  bindtap="editAddress" data-id="{{item.address_id}}" data-defaultId="{{ default_id }}">编辑</view>
-      <!-- <view class="address-header b-13 m-top18">
-        <view class="flow-header-left pl-12">
-          <view class="flow-checkout-admin">{{item.name}}
-            <text>{{item.phone}}</text>
-          </view>
-          <view class="flow-checkout-address">
-            {{item.region.province}} {{item.region.city}} {{item.region.region}} {{item.detail}}
-          </view>
-        </view>
-      </view>
-      <view class="address-list dis-flex b-13">
-        <view class="list address-left">
-          <radio-group bindchange="setDefault" class="radio-group">
-            <label class="radio">
-              <radio checked="{{item.address_id == default_id}}" color="#FF5C00" value="{{item.address_id}}"></radio>
-              <text class="cont" wx:if="{{item.address_id == default_id}}">默认</text>
-              <text class="cont" wx:else>选择</text>
-            </label>
-          </radio-group>
-        </view>
-        <view class="list address-right dis-flex">
-          <view bindtap="editAddress" data-id="{{item.address_id}}">
-            <text class="iconfont icon-edit"></text>
-            <text class="title">编辑</text>
-          </view>
-          <view bindtap="removeAddress" data-id="{{item.address_id}}">
-            <text class="iconfont icon-lajixiang"></text>
-            <text class="title">删除</text>
-          </view>
-        </view>
-      </view> -->
     </view>
   </view>
   <view wx:else>
