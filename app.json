@@ -23,6 +23,8 @@
     "pages/address/detail",
     "pages/login/login",
     "pages/youmi/index",
+    "pages/youmi/activity/index",
+    "pages/youmi/release/index",
     "pages/dealer-dialog/index",
     "pages/dealer/index/index",
     "pages/dealer/apply/apply",

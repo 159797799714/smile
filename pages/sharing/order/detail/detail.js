@@ -142,7 +142,7 @@ Page({
    */
   onApplyRefund: function(e) {
     wx.navigateTo({
-      url: '../refund/apply/apply?order_goods_id=' + e.currentTarget.dataset.id,
+      url: '/pages/order/refund/apply/apply?type=sharing&order_goods_id=' + e.currentTarget.dataset.id,
     })
   },
 
