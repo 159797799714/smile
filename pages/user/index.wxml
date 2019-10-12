@@ -20,14 +20,14 @@
     
     <!-- 关注，收藏，点赞，粉丝 -->
     <view class="column dis-flex flex-x-between f-24 col-9">
-      <view wx:for="{{ msglist }}" wx:key="index"  class="flex-box t-c">
+      <navigator wx:for="{{ msglist }}" wx:key="index" url="{{item.url}}"  class="flex-box t-c">
         <view>{{ mycircle[item.type]}}</view>
         <view class="m-top10">{{ item.name }}</view>
-      </view>
+      </navigator>
     </view>
     
     <!-- 菜单栏1 -->
-    <!-- <view class="menu">
+    <view class="menu">
       <view wx:for="{{ munulist1 }}" wx:key="index" wx:if="{{ index < 3 }}" class="menu-item t-c">
         <view class="item-icon">
           <image src="{{ item.icon }}"></image>
@@ -40,7 +40,7 @@
         </view>
         <view class="item-name m-top10">{{ munulist1[3].name }}</view>
       </button>
-    </view> -->
+    </view>
     
   </view>
   
