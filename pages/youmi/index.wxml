@@ -1,0 +1,96 @@
+<view>
+  <!-- <view class="header-bar">
+    <view class="name">优逸</view>
+    <view class="logo"></view>
+  </view> -->
+  <!-- 搜索框 -->
+  <view class="index-search-box-bg dis-flex flex-x-between">
+    <view class="index-search-box">
+      <view class="index-search" hover-class="none" openType="navigate" url="../search/index">
+        <view class="index-cont-search dis-flex flex-x-center flex-y-center">
+          <image mode="widthFix" src="../../images/seach.png" />
+          <text class="col-6">{{searchName}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="camera-logo" catchtap="getLocalImage"></view>
+  </view>
+  
+  <view class="banner">
+    <diy-banner  dataList="{{ bannerList }}"></diy-banner>  
+  </view>
+  
+  <view id="tab-switch" class="{{tabFixed ? 'swiper-tab-fixed' : ''}} swiper-tab b-15 f-32 col-cc f-w dis-flex box-align-center flex-y-center">
+    <view wx:for="{{ tabList }}"  wx:key="this" class="swiper-tab-item {{ tabIndex === index ? 'checked' : ''}}" data-index="{{index}}" bindtap="swichNav">
+      <text>{{item}}</text>
+    </view>
+  </view>
+  
+  
+  <view class="culture">
+    
+    <!-- 种草 -->
+    <view wx:if="{{tabIndex === 0}}" class="item">
+      <view class="img">
+        <image src="https://market.pd-unixe.com/uploads/20191014144124f5a597866.png" mode="widthFix" catchtap="getLocalImage"></image>
+      </view>
+      <view class="title twolist-hidden border-box col-f">欢迎来种草，分享有礼</view>
+      <view class="info border-box">
+        <view class="user">
+          <view class="userImg">
+            <image src="{{ item.user.avatarUrl }}" mode="widthFix"></image>
+          </view>
+          <view class="userName onelist-hidden col-9">unixe官方</view>
+        </view>
+        <view class="zan">
+          <text>10k+</text>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 关注 -->
+    <view wx:if="{{tabIndex !== 2}}" wx:for="{{ articleList }}" wx:key="this" class="item" catchtap="goShareDetail" data-id="{{ item.article_id }}">
+      <view class="img">
+        <image src="{{ item.articleimage[0].file_path }}" mode="widthFix"></image>
+      </view>
+      <view class="title twolist-hidden border-box col-f">{{ item.article_title }}</view>
+      <view class="info border-box">
+        <view class="user">
+          <view class="userImg">
+            <image src="{{ item.user.avatarUrl }}" mode="widthFix"></image>
+          </view>
+          <view class="userName onelist-hidden col-9">{{ item.user.nickName }}</view>
+        </view>
+        <view class="zan">
+          <image catchtap="clickZan" data-index="{{ index }}" mode="widthFix" src="{{item.islike_count === 1 ? '/images/love-active.png' : '/images/love.png'}}" />
+          <text>{{ item.virtual_views }}</text>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 活动 -->
+    <view wx:if="{{tabIndex === 2}}" wx:for="{{activityList}}" wx:key="index" class="activity-item">
+      <image src="{{item.image.file_path}}" widthFix></image>
+      <view class="f-24 col-9 p-30">
+        <view>{{item.name}}</view>
+        <view class="twolist-hidden">{{item.subtitle}}</view>
+      </view>
+      <view class="m-top30 info border-box">
+        <view class="user">
+          <view class="userImg">
+            <image src="{{ item.user.avatarUrl }}" mode="widthFix"></image>
+          </view>
+          <view class="userName onelist-hidden col-9">{{ item.name }}</view>
+          <view class="zan">
+            <image catchtap="clickZan" data-index="{{ index }}" mode="widthFix" src="{{item.islike_count === 1 ? '/images/love-active.png' : '/images/love.png'}}" />
+            <text>{{ item.virtual_views }}</text>
+          </view>
+        </view>
+        <view class="f-24 col-f activity-btn" bindtap="goJoin" data-id="{{item.category_id}}">参加活动</view>
+      </view>
+    </view>
+    
+    
+  </view>
+  
+</view>

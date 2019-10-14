@@ -5,7 +5,6 @@
   "navigationStyle": "custom",
   "component": true,
   "usingComponents": {
-    "diy-banner": "../components/diy/banner/banner",
-    "diy-navBar": "../components/diy/navBar/navBar"
+    "diy-banner": "../components/diy/banner/banner"
   }
 }
