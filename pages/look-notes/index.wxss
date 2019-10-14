@@ -1,0 +1,232 @@
+page {
+  background: #151515;
+}
+.container{
+  height: 100%;
+  overflow: hidden;
+}
+/* 分享或者商品 */
+.tabs{
+  display: flex;
+  justify-content: space-around;
+  height: 122rpx;
+  padding: 0 150rpx;
+  font-size: 34rpx;
+  line-height: 122rpx;
+  font-weight: 500;
+  color: #ADADAD;
+  background: #131313;
+}
+.selectTab{
+  color: #fff;
+  position: relative;
+}
+.selectTab::after{
+  content: '';
+  height: 4rpx;
+  width: 34rpx;
+  background: #ff33cc;
+  position: absolute;
+  bottom: 20rpx;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+
+/* 分享或商品列表 */
+.culture{
+  height: calc(100% - 122rpx);
+  overflow: hidden;
+}
+
+/* 商品样式1 */
+.main{
+  padding: 0 30rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  overflow: hidden;
+}
+.main .item{
+  height: 524rpx;
+  width: 330rpx;
+  margin-bottom: 20rpx;
+  border: 1px solid #666;
+}
+.main .item .img{
+  height: 330rpx;
+  width: 100%;
+  margin-bottom: 18rpx;
+}
+.main .item .img>image{
+  height: 100%;
+  width: 100%;
+  background: #ccc;
+}
+.main .item .title{
+  height: 67rpx;
+  font-size: 24rpx;
+  line-height: 36rpx;
+  margin-bottom: 24rpx;
+  padding: 0 20rpx;
+}
+.main .item .info{
+  display: flex;
+  justify-content: space-between;
+  height: 40rpx;
+  width: 100%;
+  padding: 0 20rpx;
+  line-height: 40rpx;
+}
+.main .item .info .zan{
+  display: flex;
+  color: #ADADAD;
+  font-size: 24rpx;
+}
+.main .item .info .zan image {
+  width: 29rpx;
+  margin-right: 8rpx;
+  margin-top: 6rpx;
+}
+.main .item .info .user{
+  display: flex;
+}
+.main .item .info .user .userName{
+  font-size: 24rpx;
+  width: 150rpx;
+}
+.main .item .info .user .userImg{ 
+  height: 40rpx;
+  width: 40rpx;
+  margin-right: 10rpx;
+  border-radius: 100%;
+  overflow: hidden;
+}
+.main .item .info .user .userImg>image{
+  height: 100%;
+  width: 100%;
+  background: #ccc;
+}
+.main .good-item{
+  display: flex;
+  flex-direction: column;
+  height: 530rpx;
+  width: 330rpx;
+  margin-top: 20rpx;
+  border: 1px solid #666;
+}
+.main .good-item .good-img{
+  height: 330rpx;
+  width: 330rpx;
+  margin-bottom: 30rpx;
+}
+.good-item .good-img {
+  overflow: hidden;
+}
+.good-item .good-img image {
+  width: 100%;
+}
+.main .good-item .good-info{
+  flex: 1;
+  padding: 7rpx 18rpx;
+}
+.main .good-item .good-info .good-name{
+  height: 70rpx;
+  line-height: 35rpx;
+}
+.main .good-item .good-info .good-remark{
+  font-size: 20rpx;
+  line-height: 15px;
+  color: #666;
+}
+.main .good-item .good-info .good-remark>text{
+  margin-right: 32rpx;
+}
+.main .good-item .good-info .max-price{
+  line-height: 26rpx;
+}
+.main .good-item .good-info .good-price{
+  display: flex;
+  justify-content: space-between;
+  line-height: 42rpx;
+}
+
+
+.list-header {
+  position: fixed;
+  top: -1rpx;
+  left: 0;
+  right: 0;
+}
+
+.no-more {
+  text-align: center;
+  color: #737373;
+  padding: 20rpx 0;
+}
+
+.category-list {
+  overflow: hidden;
+}
+
+.category-list .list {
+  box-sizing: border-box;
+  width: 50%;
+  float: left;
+}
+
+.category-list .list:nth-child(2n) {
+  border-left: 4rpx solid #f7f7f7;
+  border-bottom: 8rpx solid #f7f7f7;
+}
+
+.category-list .list:nth-child(2n-1) {
+  border-right: 4rpx solid #f7f7f7;
+  border-bottom: 8rpx solid #f7f7f7;
+}
+
+.category-list .list .left, .category-list .right {
+  width: 100%;
+}
+
+.category-list .list .left .img image {
+  width: 100%;
+  height: 375rpx;
+  display: block;
+}
+
+.category-list .right .cont {
+  padding: 0 12rpx;
+}
+
+.category-list .right .cont .title {
+  height: 76rpx;
+  line-height: 1.3;
+}
+
+.category-list.arrange .list {
+  overflow: hidden;
+  padding: 15rpx;
+  border-bottom: 1rpx solid #f7f7f7;
+  width: 100%;
+}
+
+.category-list.arrange .list .left {
+  width: 35%;
+  float: left;
+}
+
+.category-list.arrange .list .right {
+  width: 65%;
+  float: left;
+}
+
+.category-list.arrange .list .left .img image {
+  width: 220rpx;
+  height: 220rpx;
+}
+
+.reset {
+  background: rgba(255, 255, 255, 0.3);
+}

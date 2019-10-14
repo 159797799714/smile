@@ -1,0 +1,9 @@
+{
+  "backgroundTextStyle": "light",
+  "backgroundColor": "#131313",
+  "navigationBarTextStyle": "white",
+  "component": true,
+  "usingComponents": {
+    "diy-banner": "../components/diy/banner/banner"
+  }
+}

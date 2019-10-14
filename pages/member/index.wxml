@@ -1,0 +1,23 @@
+<view class="main b-t">
+  <view class="user-avatar">
+    <open-data class="" lang="zh_CN" type="userAvatarUrl"></open-data>
+  </view>
+  <view class="name">
+    <open-data class="user-name f-24 col-9" lang="zh_CN" type="userNickName"></open-data>
+  </view>
+  <view class="item-title f-30 col-f">我的会员等级
+    <text class="f-34 col-purple">LV1</text>
+  </view>
+  <view class="grade-img">
+    
+  </view>
+  <view class="item-title f-30 col-f">升级享受更多权益</view>
+  <view class="more">
+    <view wx:for="{{itemList}}" wx:key="index" class="item">
+      <view class="item-img">
+        <image src="../../images/member/item{{index + 1}}.png" mode="widthFix"></image>
+      </view>
+      <view class="word f-24 col-9 t-c">{{ item.name }}</view>
+    </view>
+  </view>
+</view>

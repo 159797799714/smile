@@ -1,0 +1,15 @@
+<view class="content b-t">
+  <view wx:for="{{list}}" wx:key="index" class="row-item b-b">
+    <view class="head-img">
+      <image src="{{item.focus_avatarUrl || item.fans_avatarUrl}}" mode="widthFix"></image>
+    </view>
+    <view class="center">
+      <view class="name f-30 col-9">{{item.focus_nickName}}</view>
+      <view class="sign f-20 col-9 onelist-hidden">{{item.focus_sign || item.fans_sign}}</view>
+    </view>
+    <view class="left-btn">
+      <view wx:if="{{ type === 'fans' && !item.is_focus }}" class="fans-btn" catchtap="fansAction">{{ !item.is_focus ? '关注ta': '取消关注' }}</view>
+      <view wx:if="{{ type === 'like' }}" class="fans-btn">取消关注</view>
+    </view>
+  </view>
+</view>

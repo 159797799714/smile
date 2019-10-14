@@ -1,0 +1,44 @@
+<view class="container b-15">
+  <view class="header dis-flex flex-x-between flex-y-center b-b b-t">
+    <view class="name f-24 col-9">个人头像</view>
+    <view class="img">
+      <open-data class="" lang="zh_CN" type="userAvatarUrl"></open-data>
+    </view>
+  </view>
+  <view class="row b-b">
+    <text class="fl">用户昵称</text>
+    <view class="fr name f-24 col-9">
+      <open-data class="" lang="zh_CN" type="userNickName"></open-data>
+      <text class="iconfont icon-xiangyoujiantou m-l-10 col-purple"></text>
+    </view>
+  </view>
+  <view class="row b-b">
+    <text class="fl">性别</text>
+    <view class="fr name f-24 col-9">
+      <open-data class="" lang="zh_CN" type="userGender"></open-data>
+      <text class="iconfont icon-xiangyoujiantou m-l-10 col-purple"></text>
+    </view>
+  </view>
+  <!-- <view class="row b-b">
+    <text class="fl">生日</text>
+    <view class="fr name f-24 col-9">
+      <open-data class="" lang="zh_CN" type="userNickName"></open-data>
+      <text class="iconfont icon-xiangyoujiantou m-l-10 col-purple"></text>
+    </view>
+  </view> -->
+  <view class="row b-b">
+    <text class="fl">个性签名</text>
+    <view class="fr name f-24 col-9" catchtap="editSign">
+      <text class="fl" wx:if="{{!onEdit}}">{{ info.sign? info.sign: '点击设置' }}</text>
+      <input wx:else class="fl" auto-focus placeholder="请输入个性签名" value="{{info.sign}}" bindblur="submitSign" bindconfirm="submitSign"/>
+      <text class="fl iconfont icon-xiangyoujiantou m-l-10 col-purple"></text>
+    </view>
+  </view>
+  <!-- <view class="row b-b">
+    <text class="fl">绑定手机</text>
+    <view class="fr name f-24 col-9">
+      <text>{{info.mobile? info.mobile: '未绑定手机号'}}</text>
+      <text class="iconfont icon-xiangyoujiantou m-l-10 col-purple"></text>
+    </view>
+  </view> -->
+</view>

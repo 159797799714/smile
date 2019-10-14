@@ -1,0 +1,17 @@
+<view class="container b-15">
+  <navigator url="../personal/index" class="header dis-flex flex-x-between flex-y-center b-b b-t" catchtap="goPersonal">
+    <view class="user dis-flex flex-y-center">
+      <view class="img">
+        <open-data class="" lang="zh_CN" type="userAvatarUrl"></open-data>
+      </view>
+      <view class="name f-24 col-9">
+        <open-data class="" lang="zh_CN" type="userNickName"></open-data>
+      </view>
+    </view>
+    <text class="iconfont icon-xiangyoujiantou f-24 m-l-10 col-purple"></text>
+  </navigator>
+  <navigator wx:for="{{ menulist }}" wx:key="index" url="{{ item.url }}" class="row b-b">
+    <text class="fl">{{ item.name }}</text>
+    <text class="fr iconfont icon-xiangyoujiantou m-l-10 col-purple"></text>
+  </navigator>
+</view>

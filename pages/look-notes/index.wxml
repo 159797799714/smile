@@ -1,0 +1,65 @@
+<view wx:if="{{ option }}" class="container">
+  <!-- 分享或者商城 -->
+  <view class="tabs">
+    <text wx:for="{{ tabList }}" wx:key="index" class="{{ index === tabIndex ? 'selectTab' : ''}}" data-index="{{ index }}"
+      catchtap="selectTab">{{ item }}</text>
+  </view>
+  <scroll-view bindscrolltolower="bindDownLoad" scroll-y="true" class="culture">
+    <!-- 分享 -->
+    <view wx:if="{{ tabIndex === 0 }}" class="main b-15 border-box">
+      <view wx:for="{{ articles_list }}" wx:key="this" class="item" catchtap="goShareDetail" data-id="{{ item.article_id }}">
+        <view class="img">
+          <image src="{{ item.image.file_path }}" mode="aspectFill"></image>
+        </view>
+        <view class="title twolist-hidden border-box col-9">{{ item.subtitle }}</view>
+        <view class="info border-box">
+          <view class="user">
+            <view class="userImg">
+              <image src="{{ item.headimg.file_path }}" mode=""></image>
+            </view>
+            <view class="userName onelist-hidden col-f">{{ item.author }}</view>
+          </view>
+          <view class="zan">
+            <image catchtap="clickZan" data-index="{{ index }}" mode="widthFix" src="{{item.islike == 'yes' ? '/images/like-active.png' : '/images/like.png'}}" />
+            <text>{{ item.like_num }}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 商品 -->
+    <view wx:if="{{ tabIndex === 1 }}" class="b-15 border-box main">
+      <view wx:for="{{ goods_list }}" wx:key="index" class="good-item b-f" catchtap="goDetail" data-id="{{item.goods_id}}" data-type="{{ item.goods_type_name }}">
+        <view class="good-img">
+          <image mode="widthFix" src="{{item.image[0].file_path}}"></image>
+        </view>
+        <view class="good-info border-box">
+          <view class="good-name twolist-hidden f-26 col-6">{{ item.goods_name }}</view>
+          <!-- <view class="good-remark onelist-hidden">
+              <text>{{ item.selling_point }}</text>
+            </view> -->
+          <view class="good-price flex-y-center dis-flex flex-x-between">
+            <view class="f-34 col-f3c">
+              <text class="f-26 f-w">粉丝价￥</text>
+              <text class="bigText">{{ item.sku[0].goods_price * 100 % 100 === 0 ? item.sku[0].goods_price * 100 / 100 : item.sku[0].goods_price }}</text>
+            </view>
+          </view>
+          <view class="max-price f-18 col-6">
+            <text>￥</text>
+            <text class="t-dec-line">{{ (item.sku[0].line_price * 100 / 100) === 0 ? item.sku[0].goods_price * 100 / 100: item.sku[0].line_price * 100 / 100  }}</text>
+            <!-- <text class="f-16 m-l-10">获得积分：100</text> -->
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 无数据 -->
+  <view wx:if="{{ !isLoading && !list.data.length }}" class="yoshop-notcont" style="margin-top:130px;">
+    <view class="img">
+      <image mode="aspectFit" src="../../images/no_content.png"></image>
+    </view>
+    <text class="cont">亲, 没有浏览记录</text>
+  </view>
+
+</view>

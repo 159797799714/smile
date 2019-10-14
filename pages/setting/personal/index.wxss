@@ -1,0 +1,36 @@
+.header{
+  padding: 40rpx 80rpx 30rpx;
+  overflow: hidden;
+  
+}
+.header .img{
+  height: 97rpx;
+  width: 97rpx;
+  border-radius: 100%;
+  border: 1px solid #999;
+  overflow: hidden;
+}
+.header .name{
+  margin: auto 0;
+}
+input{
+  padding: 0;
+  min-height: 1rem;
+  mine-width: 60rpx;
+  text-align: right;
+  height: 24rpx;
+  line-height: 1rem;
+  overflow: hidden;
+}
+.row{
+  padding: 28rpx 80rpx;
+  line-height: 24rpx;
+  font-size: 24rpx;
+  color: #999;
+  overflow: hidden;
+}
+.row .name{
+  height: 24rpx;
+  line-height: 24rpx;
+  overflow: hidden;
+}

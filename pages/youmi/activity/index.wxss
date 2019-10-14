@@ -1,0 +1,107 @@
+/* diy组件 */
+@import "../../../components/diy/index.wxss";
+
+.header-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 64px;
+  padding-top: 24px;
+  box-sizing: border-box;
+  background-color: #131313;
+  z-index: 9;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* 种草 */
+.culture{
+  padding-left: 30rpx;
+  overflow: hidden;
+}
+
+.item{
+  float: left;
+  height: 524rpx;
+  width: 326rpx;
+  margin: 0 30rpx 20rpx 0;
+  border: 1px solid #666;
+}
+.item .img{
+  height: 330rpx;
+  width: 100%;
+  margin-bottom: 18rpx;
+}
+.item .img>image{
+  height: 100%;
+  width: 100%;
+  background: #ccc;
+}
+.item .title{
+  height: 67rpx;
+  font-size: 24rpx;
+  line-height: 36rpx;
+  margin-bottom: 24rpx;
+  padding: 0 20rpx;
+}
+.info{
+  display: flex;
+  justify-content: space-between;
+  height: 50rpx;
+  width: 100%;
+  padding: 0 20rpx;
+  line-height: 50rpx;
+}
+.info .zan{
+  display: flex;
+  color: #ADADAD;
+  font-size: 24rpx;
+}
+.info .zan image {
+  width: 29rpx;
+  margin-right: 8rpx;
+  margin-top: 10rpx;
+}
+.info .user{
+  display: flex;
+}
+.info .user .userName{
+  font-size: 24rpx;
+  width: 150rpx;
+}
+.info .user .userImg{ 
+  height: 40rpx;
+  width: 40rpx;
+  margin: 5rpx 10rpx 0 0;
+  border-radius: 100%;
+  overflow: hidden;
+}
+.info .user .userImg>image{
+  height: 100%;
+  width: 100%;
+  background: #ccc;
+}
+
+.activity-info{
+  padding: 5rpx 50rpx 0;
+}
+.summary{
+  line-height: 130rpx;
+}
+.detail{
+  line-height: 36rpx;
+}
+.culture-name{
+  line-height: 110rpx;
+  text-align: center;
+}
+.activity-btn{
+  line-height: 50rpx;
+  padding: 0 22rpx;
+  border-radius: 25rpx;
+  background: #9900ff;
+}

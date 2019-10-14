@@ -1,0 +1,38 @@
+<view class="container f-24">
+  <view class="article-title b-b">
+    <input type="text" placeholder="标题是吸引别人看关注" placeholder-style="color: #666" value="{{ formData.article_title }}" bindinput="bindTitleInput"></input>
+  </view>
+  <view class="article-content b-b">
+    <textarea  placeholder="这一刻的分享" placeholder-style="color:#666" maxlength="2000" value="{{formData.article_content}}" bindinput="bindContentInput"></textarea>
+  </view>
+  <view class="photo b-b">
+    
+    <view wx:for="{{ imgList }}" wx:key="index" class="img-item">
+      <text class="image-delete iconfont icon-shanchu" catchtap="deleteImage" data-index="{{index}}"></text>
+      <image src="{{item}}" mode="widthFix" class="img"></image>
+    </view>
+    
+    <view class="img-item" catchtap="chooseImage">
+      <image src="../../../images/umi/add.png" mode="widthFix" class="addImg"></image>
+    </view>
+  </view>
+  <view class="topic dis-flex flex-x-between flex-y-center b-b">
+    <view>
+      <view class="fl topic-icon"></view>
+      <input type="fl text" placeholder="输入参与的话题,活动" placeholder-style="color: #666" value="{{ formData.tags }}" bindinput="bindTopicInput"></input>  
+    </view>
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{topicList}}" range-key="name">
+      <text class="iconfont icon-xiangyoujiantou m-l-10 col-9"></text>
+    </picker>
+  </view>
+  
+  <view class="topic b-b" catchtap="chooseAddress">
+    <view class="fl address-icon"></view>
+    <text class="fl address onelist-hidden {{formData.address ?'col-f': 'col-6'}}">{{formData.address?formData.address: '所在的位置'}}</text>
+    <text class="fr iconfont icon-xiangyoujiantou m-l-10 col-9"></text>
+  </view>
+  
+
+  <view class="release-btn" catchtap="submit">发布</view>
+
+</view>

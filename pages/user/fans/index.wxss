@@ -1,0 +1,36 @@
+
+.row-item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 130rpx;
+  padding: 0 60rpx;
+}
+.row-item .head-img{
+  height: 80rpx;
+  width: 80rpx;
+  border-radius: 100%;
+  border: 1px solid #333;
+  overflow: hidden;
+}
+.row-item .head-img>image{
+  width: 100%;
+}
+.row-item .center{
+  flex: 1;
+  box-sizing: border-box;
+  padding: 0 30rpx;
+  line-height: 1.2rem;
+  overflow: hidden;
+}
+.fans-btn{
+  padding: 18rpx 22rpx;
+  min-width: 95rpx;
+  margin-left: 20rpx;
+  text-align: center;
+  border-radius: 30rpx;
+  border: 1rpx solid #FF33FF;
+  font-size: 22rpx;
+  color: #FF33FF;
+  line-height: 22rpx;
+}

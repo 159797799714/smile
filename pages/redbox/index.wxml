@@ -1,0 +1,33 @@
+<view class="container">
+  <view class="tab dis-flex flex-x-around f-28 col-9">
+    <text wx:for="{{ tabList }}" wx:key="index" class="tabbar {{ tabData === item.type ? 'selected': '' }}" catchtap="selectab" data-type="{{item.type}}">{{ item.name }}</text>
+  </view>
+  <navigator url="/pages/redbox/remark/index" class="remarks t-r f-26 col-f">红包说明</navigator>
+  <view class="coupon-list" wx:if="{{ list.length > 0 }}">
+    <view wx:for="{{ list }}" wx:key="index" class="coupon-item dis-flex flex-x-between flex-y-center b-33">
+      <view class="coupon-left dis-flex flex-x-between {{ tabData !== 'not_use' ? 'b-cc': 'b-linear' }}">
+        <view class="name f-40 twolist-hidden t-c {{ tabData !== 'not_use' ? 'col-f': 'col-FD' }}">
+          <view>粉丝</view>
+          <text>{{ item.name }}</text>
+        </view>
+        <view class="num f-52 col-f">{{ item.reduce_price * 100 / 100 }}
+          <text class="f-22 col-f">元</text>
+        </view>
+      </view>
+      <view class="coupon-info m-l-20 f-18 col-f">
+        <view class="onelist-hidden word-space-1">{{ item.min_price * 100 /100 !== 0 ? '最低消费' + item.min_price + '元': '无金额门槛' }}</view>
+        <view class="onelist-hidden word-space-1">{{ item.coupon_range.value > 40 ? '全场通用': item.coupon_type.text }}</view>
+        <view class="onelist-hidden">即日起~{{ item.end_time.text }}</view>
+      </view>
+      <view class="coupon-right">
+        <text class="b-13 f-20 t-c {{tabData !== 'not_use' ? 'col-f': 'col-purple' }}" catchtap="getCoupon" data-id="{{ item.coupon_id }}">{{ tabData !== 'not_use' ? ( tabData === 'is_use'? '已经使用': '已经过期' ): '立即使用' }}</text>
+      </view>
+    </view>
+  </view>
+  <view wx:else>
+    <view class="yoshop-notcont">
+      <text class="iconfont icon-wushuju"></text>
+      <text class="cont">亲，暂无红包哦</text>
+    </view>
+  </view>
+</view>

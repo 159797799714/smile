@@ -1,0 +1,8 @@
+<view class="container b-15 f-24 col-9">
+  <view class="section">1.每个订单仅能使用一张优惠券，不兑现，不找零</view>
+  <view class="section">2.每张优惠券的使用条件请查看对应优惠券的使用说明</view>
+  <view class="section">3.除非该优惠券有特殊说明，否则优惠券仅能够抵扣商品金额</view>
+  <view class="section">4.请在有效期内使用优惠券，未使用的优惠券过期后将自动作废</view>
+  <view class="section">5.每个用户仅限使用一张新用户专享券</view>
+  <view class="section">6.优惠券最终解释权归深圳优逸电子科技有限公司</view>
+</view>

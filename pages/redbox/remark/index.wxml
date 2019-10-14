@@ -1,0 +1,6 @@
+<view class="container b-15 f-24 col-9">
+  <view class="section">1.参加参加系统会出现一个抽奖码</view>
+  <view class="section">2.获得抽奖码后，受推荐人参加后（需注册登陆且参加抽奖处抽奖码），增加一份抽奖码</view>
+  <view class="section">3.最后中奖公布抽奖码，抽奖码相同则中奖</view>
+</view>
+                        

@@ -12,6 +12,7 @@
     "pages/coupon/mycoupon/index",
     "pages/coupon/remark/index",
     "pages/user/index",
+    "pages/user/fans/index",
     "pages/order/index",
     "pages/order/detail",
     "pages/order/express/express",

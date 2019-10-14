@@ -1,0 +1,80 @@
+<view class="container b-15">
+  
+  <view class="banner">
+    <diy-banner my-class="{{item.myClassTrue ? 'diy-component-my-banner' : ''}}" dataList="{{ bannerList }}"></diy-banner>
+  </view>
+  
+  <view class="activity-info">
+    <view class="summary t-c f-32 col-f">活动介绍</view>
+    <view class="detail f-24 col-9">活动介绍区域这个是活动介绍区域，活动介绍区域区域哈
+      数多了就折叠下来喽喽哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+      哈哈哈哈...               
+    </view>
+    <view class="oh">
+      <view class="fr activity-btn f-24 col-f">立即参加</view>
+    </view>
+  </view>
+  
+  
+  <view class="culture">
+    <view class="culture-name f-24 col-f">参赛作品</view>
+    <!-- 参赛作品 -->
+    <view  wx:elseif="{{ tabIndex !== 2 }}" wx:for="{{ articleList }}" wx:key="this" class="item" catchtap="goShareDetail" data-id="{{ item.article_id }}">
+      <view class="img">
+        <image src="{{ item.image.file_path }}" mode="aspectFill"></image>
+      </view>
+      <view class="title twolist-hidden border-box col-9">{{ item.subtitle }}</view>
+      <view class="info border-box">
+        <view class="user">
+          <view class="userImg">
+            <image src="{{ item.headimg.file_path }}" mode=""></image>
+          </view>
+          <view class="userName onelist-hidden col-f">{{ item.author }}</view> 
+        </view>
+        <view class="zan">
+          <image catchtap="clickZan" data-index="{{ index }}" mode="widthFix" src="{{item.islike == 'yes' ? '/images/like-active.png' : '/images/like.png'}}" />
+          <text>{{ item.like_count }}</text>
+        </view>
+      </view>
+    </view>
+    
+    <view class="item" catchtap="getLocalImage">
+      <view class="img">
+        <image src="" mode="aspectFill"></image>
+      </view>
+      <view class="title twolist-hidden border-box col-9">欢迎来种草，分享有礼</view>
+      <view class="info border-box">
+        <view class="user">
+          <view class="userImg">
+            <image src="" mode=""></image>
+          </view>
+          <view class="userName onelist-hidden col-f">unixe官方</view> 
+        </view>
+        <view class="zan">
+          <image mode="widthFix" src="/images/love-active.png" />
+          <text>10k+</text>
+        </view>
+      </view>
+    </view>
+    <view class="item" catchtap="getLocalImage">
+      <view class="img">
+        <image src="" mode="aspectFill"></image>
+      </view>
+      <view class="title twolist-hidden border-box col-9">欢迎来种草，分享有礼</view>
+      <view class="info border-box">
+        <view class="user">
+          <view class="userImg">
+            <image src="" mode=""></image>
+          </view>
+          <view class="userName onelist-hidden col-f">unixe官方</view> 
+        </view>
+        <view class="zan">
+          <image mode="widthFix" src="/images/love-active.png" />
+          <text>10k+</text>
+        </view>
+      </view>
+    </view>
+    
+  </view>
+ 
+</view>

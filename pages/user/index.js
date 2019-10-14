@@ -11,16 +11,18 @@ Page({
     
     msglist: [{
       name: '关注',
-      type: 'like_num'
+      type: 'focus_num',
+      url: '/pages/user/fans/index?type=like'
     }, {
       name: '收藏',
       type: 'collection_num'
     }, {
       name: '点赞',
-      type: 'focus_num'
+      type: 'like_num'
     }, {
       name: '粉丝',
-      type: 'fans'
+      type: 'fans',
+      url: '/pages/user/fans/index?type=fans'
     }],
     
     // 每日签到等一栏
