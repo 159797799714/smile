@@ -1,8 +1,73 @@
-/* diy组件 */
-@import "../../../components/diy/index.wxss";
+.user-header {
+  display: flex;
+  padding: 25rpx 40rpx;
+  align-content: center;
+  background-color: #16171c;
+  background-repeat: no-repeat;
+  background-position: center right;
+  background-size: auto 100%;
+}
 
+.user-header-cont {
+  width: 100%;
+}
 
-/* 种草 */
+.user-header .user-header-cont .user-header-avatar {
+  display: block;
+  margin-right: 30rpx;
+  width: 114rpx;
+  height: 114rpx;
+  border-radius: 50%;
+  border: 5rpx solid #fff;
+  overflow: hidden;
+}
+.user-header-avatar>image{
+  width: 100%;
+}
+
+/* 关注收藏等一栏 */
+.column{
+  height: 70rpx;
+  padding: 13rpx 30rpx 0;
+  margin-bottom: 32rpx;
+}
+.focus-btn{
+  padding: 10rpx 27rpx;
+  background: #9900ff;
+  text-align: center;
+  width: 130rpx;
+  font-size: 26rpx;
+  border-radius: 23rpx;
+}
+
+/* 分享或者点赞 */
+.tabs{
+  display: flex;
+  justify-content: space-around;
+  height: 122rpx;
+  padding: 0 150rpx;
+  font-size: 34rpx;
+  line-height: 122rpx;
+  font-weight: 500;
+  color: #ADADAD;
+  background: #131313;
+}
+.selectTab{
+  color: #fff;
+  position: relative;
+}
+.selectTab::after{
+  content: '';
+  height: 4rpx;
+  width: 34rpx;
+  background: #ff33cc;
+  position: absolute;
+  bottom: 20rpx;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
 .culture{
   padding-left: 30rpx;
   overflow: hidden;
@@ -80,7 +145,6 @@
   line-height: 36rpx;
 }
 .culture-name{
-  padding-right: 30rpx;
   line-height: 110rpx;
   text-align: center;
 }

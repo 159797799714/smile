@@ -3,10 +3,23 @@ const App = getApp();
 Page({
 
   data: {
-    category_id: '',                 // 文章id
-    bannerList: [],
-    detail: {},                    // 文章详情
-    articleList: []
+    tabList: ['分享', '点赞'],         // 分类
+    tabIndex: 0,                      // 选中序列号
+    fans_user_id: '',                 // 粉丝id
+    mycircle: {},                    // 数量
+    userInfo: {},                    // 用户信息
+    articleList: [],
+    likeList: [],                    // 点赞文章
+    msglist: [{
+      name: '关注',
+      type: 'focus_num'
+    },{
+      name: '粉丝',
+      type: 'fans'
+    }, {
+      name: '点赞',
+      type: 'like_num'
+    }]
   },
 
   /**
@@ -15,36 +28,27 @@ Page({
   onLoad: function(options) {
     console.log(options.id)
     this.setData({
-      category_id: options.id
+      fans_user_id: options.id
     })
     let _this = this;
-
-    // 加载录播图数据
-    this.getBannerList()
+    
     // 加载活动详情数据
     this.getDetail()
   },
   
-  // 获取轮播图数据
-  getBannerList() {
-    let _this = this;
-    App._get('umi.homebanner/gethomebanners', {}, function(res) {
-      _this.setData({
-        bannerList: res.data.list
-      })
-    });
-  },
   
   // 加载文章详情
   getDetail() {
     let _this = this;
-    App._get('umi.category/detail', {
-      category_id: _this.data.category_id
+    App._get('user.index/fansHomePage', {
+      fans_user_id: _this.data.fans_user_id
     }, function(res) {
       console.log('详情', res.data)
       _this.setData({
-        detail: res.data.activity_datail,
-        articleList: res.data.article_list.data
+        articleList: res.data.article_list,
+        likeList: res.data.like_article_list? res.data.like_article_list: [],
+        userInfo: res.data.userInfo,
+        mycircle: res.data.mycircle
       })
     });
   },
@@ -73,6 +77,15 @@ Page({
         [articlelike_count]: count
       })
     });
+  },
+  
+  // 分享商城tab点击
+  selectTab(e) {
+    let _this = this
+    let index = e.currentTarget.dataset.index
+    _this.setData({
+      tabIndex: index
+    })
   }
 
 });

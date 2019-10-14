@@ -1,0 +1,53 @@
+<view class="container b-15">
+  
+  <view class="user-header">
+    <view class="user-header-cont dis-flex flex-y-center">
+      <view class="user-header-avatar">
+        <image src="{{userInfo.avatarUrl}}" mode="widthFix"></image>
+      </view>
+      <view class="name">
+        <view class="user-header-cont-name f-36 col-f">{{userInfo.nickName}}</view>
+        <view class="f-22 col-f onelist-hidden" style="letter-spacing: 1px;">个性签名：{{ userInfo.sign? userInfo.sign: '暂未设置个性签名' }}</view>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 关注，收藏，点赞，粉丝 -->
+  <view class="column dis-flex flex-x-between f-24 col-9">
+    <view wx:for="{{ msglist }}" wx:key="index" class="flex-box t-c">
+      <view>{{ mycircle[item.type]}}</view>
+      <view class="m-top10">{{ item.name }}</view>
+    </view>
+    <view class="flex-box m-top10">
+      <view class="focus-btn f-26 col-f">已关注</view>
+    </view>
+  </view>
+  
+  <view class="culture">
+    <view class="tabs">
+      <text wx:for="{{ tabList }}" wx:key="index" class="{{ index === tabIndex ? 'selectTab' : ''}}" data-index="{{ index }}"
+        catchtap="selectTab">{{ item }}</text>
+    </view>
+    <!-- 参赛作品 -->
+    <view wx:for="{{ tabIndex === 0? articleList: likeList }}" wx:key="this" class="item" catchtap="goShareDetail" data-id="{{ item.article_id }}">
+      <view class="img">
+        <image src="{{ item.articleimage[index].file_path }}" mode="aspectFill"></image>
+      </view>
+      <view class="title twolist-hidden border-box col-9">{{ item.article_content }}</view>
+      <view class="info border-box">
+        <view class="user">
+          <view class="userImg">
+            <image src="{{ item.user.avatarUrl }}" mode=""></image>
+          </view>
+          <view class="userName onelist-hidden col-f">{{ item.user.nickName }}</view> 
+        </view>
+        <view class="zan">
+          <image catchtap="collectAction" data-index="{{ index }}" data-id="{{item.article_id}}" mode="widthFix" src="{{item.islike_count === 1 ? '/images/love-active.png' : '/images/love.png'}}" />
+          <text>{{ item.articlelike_count }}</text>
+        </view>
+      </view>
+    </view>
+    
+  </view>
+ 
+</view>

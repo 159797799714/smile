@@ -43,33 +43,35 @@
           <view class="userName onelist-hidden col-9">unixe官方</view>
         </view>
         <view class="zan">
+          <image mode="widthFix" src="/images/love-active.png" />
           <text>10k+</text>
         </view>
       </view>
     </view>
     
     <!-- 关注 -->
-    <view wx:if="{{tabIndex !== 2}}" wx:for="{{ articleList }}" wx:key="this" class="item" catchtap="goShareDetail" data-id="{{ item.article_id }}">
+    <view wx:if="{{tabIndex !== 2}}" wx:for="{{ articleList }}" wx:key="this" class="item"> 
+    <!-- catchtap="goShareDetail" data-id="{{ item.article_id }}" -->
       <view class="img">
         <image src="{{ item.articleimage[0].file_path }}" mode="widthFix"></image>
       </view>
       <view class="title twolist-hidden border-box col-f">{{ item.article_title }}</view>
       <view class="info border-box">
-        <view class="user">
+        <view class="user" catchtap="goUserDetail" data-id="{{item.user.user_id}}">
           <view class="userImg">
             <image src="{{ item.user.avatarUrl }}" mode="widthFix"></image>
           </view>
           <view class="userName onelist-hidden col-9">{{ item.user.nickName }}</view>
         </view>
         <view class="zan">
-          <image catchtap="clickZan" data-index="{{ index }}" mode="widthFix" src="{{item.islike_count === 1 ? '/images/love-active.png' : '/images/love.png'}}" />
-          <text>{{ item.virtual_views }}</text>
+          <image catchtap="collectAction" data-index="{{ index }}" data-id="{{item.article_id}}" mode="widthFix" src="{{item.islike_count === 1 ? '/images/love-active.png' : '/images/love.png'}}" />
+          <text>{{ item.articlelike_count }}</text>
         </view>
       </view>
     </view>
     
     <!-- 活动 -->
-    <view wx:if="{{tabIndex === 2}}" wx:for="{{activityList}}" wx:key="index" class="activity-item">
+    <view wx:if="{{tabIndex === 2}}" wx:for="{{activityList}}" wx:key="index" class="activity-item"  bindtap="goJoin" data-id="{{item.category_id}}">
       <image src="{{item.image.file_path}}" widthFix></image>
       <view class="f-24 col-9 p-30">
         <view>{{item.name}}</view>
@@ -78,15 +80,16 @@
       <view class="m-top30 info border-box">
         <view class="user">
           <view class="userImg">
-            <image src="{{ item.user.avatarUrl }}" mode="widthFix"></image>
+            <image src="{{ item.headimg.file_path }}" mode="widthFix"></image>
           </view>
           <view class="userName onelist-hidden col-9">{{ item.name }}</view>
           <view class="zan">
-            <image catchtap="clickZan" data-index="{{ index }}" mode="widthFix" src="{{item.islike_count === 1 ? '/images/love-active.png' : '/images/love.png'}}" />
+            <!-- <image catchtap="clickZan" data-index="{{ index }}" mode="widthFix" src="{{item.islike_count === 1 ? '/images/love-active.png' : '/images/love.png'}}" /> -->
+            <view class="icon-article-views"></view>
             <text>{{ item.virtual_views }}</text>
           </view>
         </view>
-        <view class="f-24 col-f activity-btn" bindtap="goJoin" data-id="{{item.category_id}}">参加活动</view>
+        <view class="f-24 col-f activity-btn">参加活动</view>
       </view>
     </view>
     

@@ -73,6 +73,40 @@ Page({
     });
   },
   
+  // 去作者主页
+  goUserDetail(e) {
+    let id= e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '/pages/youmi/user/index?id=' + id
+    })
+  },
+  
+  // 点赞文章
+  collectAction(e) {
+    let _this= this,
+      index= e.currentTarget.dataset.index,
+      id= e.currentTarget.dataset.id,
+      url= 'umi.article/like',
+      articleList= _this.data.articleList,
+      islike_count= 'articleList[' + index + '].islike_count',
+      articlelike_count= 'articleList[' + index + '].articlelike_count',
+      count= articleList[index].articlelike_count;
+    if(articleList[index].islike_count === 1) {
+      url= 'umi.article/unLike',
+      count--
+    } else {
+      count++
+    }
+    App._post_form(url, {
+      article_id: id
+    }, function(res) {
+      _this.setData({
+        [islike_count]: articleList[index].islike_count === 1 ? 0: 1,
+        [articlelike_count]: count
+      })
+    });
+  },
+  
   // 切换tab
   swichNav(e) {
     let index = e.currentTarget.dataset.index;
