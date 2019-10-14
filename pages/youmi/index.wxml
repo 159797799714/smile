@@ -1,0 +1,106 @@
+<view class="container">
+    <view class="topBar" :style="{'padding-top': statusBarHeight + 'px', top: isHeadShow? '0': '-88px' }">
+      <view class="search">
+        <text class="iconfont" @click="goBack">&#xe61c;</text>
+        <view class="center">
+          <image :src="userInfo.file_path" mode="aspectFill"></image>
+          <text class="name">{{ userInfo.author }}</text>
+        </view>
+        <text class="iconfont" @click="goShare">&#xe60f;</text>
+      </view>
+    </view>
+    <scroll-view scroll-y="true" class="content" @scroll="onScroll">
+      <!-- <swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :indicator-active-color="indicatorActiveColor" :interval="interval" :duration="duration" :circular="true">
+        <swiper-item v-for="(item, index) in swiperList" :key="index">
+          <view :class="{'swiper-item': true, 'bg_primary': true}">
+            <image :src="item.banner_img" mode=""></image>
+          </view>
+        </swiper-item>
+      </swiper> -->
+      
+      <!-- 歌单推荐 -->
+      <!-- <view class="songs padding-30 border-box">
+      	<view class="song-share">
+          <view class="title">
+            <text>歌单推荐</text>(4首)
+          </view>
+      	  <view>
+            全部<text class="iconfont">&#xe644;</text>
+          </view>
+      	</view>
+        <view class="sing">
+          <audio :style="{'text-align': 'left'}" :src="current.src" :controls="false">
+            <text class="iconfont">&#xe62b;</text>
+          </audio>
+        </view>
+      </view> -->
+      <view>
+        <image :src="detail.image.file_path" mode="widthFix" style="width: 100%"></image>
+      </view>
+      <view class="cultureInfo bg-black">
+       <view class="cultureTitle font-30">{{ detail.article_title }}</view>
+        <!-- <view class="cultureCategory">
+        <text v-for="(item, index) in cultureInfo.tags" :key="index">{{ item }}</text>
+        </view> 
+        <view class="cultureTime">{{ detail.headimg.create_time }}</view> -->
+        <view class="cultureWords col-99">
+          <!-- <rich-text type="node" :nodes="strings"></rich-text> -->
+          <u-parse :content="strings" @preview="preview" @navigate="navigate"/>
+        </view>
+      </view>
+      
+      <!-- 商品 -->
+      <view v-for="(item, index) in detail.article_goods_info" :key="index" class="good dis-flex flex-x-between border-box bg-black" @click="gogoodDetail(item)">
+        <view class="left">
+          <image :src="item.image[0].file_path" mode="widthFix"></image>
+        </view>
+        <view class="right border-box dis-flex flex-dir-column flex-x-between">
+          <view class="good-name font-30 twolist-hidden">{{ item.goods_name }}</view>
+          <view class="good-info dis-flex flex-x-between font-32">
+            <view class="good-price col-m">￥{{item.sku[0].goods_price}}</view>
+            <view class="good-btn col-f bg-orange t-center b-r-10">去选购</view>
+          </view>
+        </view>
+      </view>
+      
+      <!-- 评论 -->
+      <view class="comment bg-black">
+        <view class="total f-bold font-36">评论({{ detail.comments.num }})</view>
+        <view v-for="(item, index) in detail.comments_show" :key="index" v-if="index < 10" :class="{ item: true, 'border-box': true, 'no-border': index === 0 }">
+          <view class="writer">
+            <view class="writerImg">
+              <image :src="item.avatarUrl" mode=""></image>
+            </view>
+            <view class="writer-center">
+              <view class="writer-father">
+                <view class="writer-name">{{ item.nickName }}</view>
+                <view class="writer-speak">{{ item.content }}<text>{{ item.input_date }}</text></view>
+                <view class="zan">
+                  <text :class="{iconfont: true, isZan: item.islike === 'yes'}" @click="zanAction(item, index)">&#xe63a;</text>
+                  <text>{{ item.likenum }}</text>
+                </view>
+              </view>
+              <view v-for="(li, num) in item.replys" :key="num" v-if="num < 2 " class="writer-child">
+                <image class="childImg"></image>
+                <view class="childCenter">
+                  <view class="writer-name">{{ li.reply_name }}</view>
+                  <view class="writer-speak">{{ li.reply_content }}<text>{{ li.reply_input_time }}</text></view>
+                </view>
+                <view class="zan">
+                  <text class="iconfont">&#xe63a;</text>
+                  <text>{{ li.likenum }}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+    <view class="speak bg-black border-box">
+      <input type="text" class="bg-66" v-model="speakVal" placeholder="留下你的精彩评论吧" placeholder-style="color: #ccc" @confirm="addComment" @input="onInput"/>
+      <view>
+        <text class="iconfont">&#xe69d;</text>
+        <text>{{ detail.comments.num }}</text>
+      </view>
+    </view>
+  </view>
