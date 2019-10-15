@@ -33,11 +33,14 @@
 }
 .focus-btn{
   padding: 10rpx 27rpx;
-  background: #9900ff;
-  text-align: center;
   width: 130rpx;
+  box-sizing: border-box;
+  text-align: center;
   font-size: 26rpx;
   border-radius: 23rpx;
+}
+.type-item{
+  width: 125rpx;
 }
 
 /* 分享或者点赞 */

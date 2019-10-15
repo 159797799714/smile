@@ -1,0 +1,275 @@
+page {
+  background: #131313;
+}
+/* 顶部 */
+.topStatus {
+  padding: 80rpx 30rpx 0;
+  height: 88rpx;
+  display: flex;
+  align-items: center;
+}
+.back-jiantou{
+  transform: rotate(180deg);
+  font-size: 30rpx;
+  color: #fff;
+}
+.center{
+  height: 60rpx;
+  line-height: 60rpx;
+}
+.center>image{
+  float: left;
+  margin-left: 35rpx;
+  height: 60rpx;
+  width: 60rpx;
+  border-radius: 100%;
+}
+.center .name{
+  float: left;
+  margin-left: 27rpx;
+}
+.focus-btn{
+  padding: 10rpx 27rpx;
+  width: 130rpx;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 26rpx;
+  border-radius: 23rpx;
+}
+
+/* 主要内容 */
+.banner{
+  max-height: 630rpx;
+  overflow: hidden;
+}
+.container{
+  padding: 30rpx;
+}
+.article-title{
+  line-height: 1rem;
+}
+.time{
+  line-height: 54rpx;
+}
+.words{
+  line-height: 40rpx;
+}
+
+/* 评论 */
+.comment-wrap {
+  background-color: #151515;
+}
+
+.comment-wrap>view {
+  padding-bottom: 98rpx;
+}
+
+.comment-wrap-content {
+  padding: 40rpx 40rpx 0;
+}
+
+.comment-wrap-content-people {
+  margin-top: 50rpx;
+}
+/* 文章普通第一评论 */
+.uesr-photo image {
+  width: 66rpx;
+  height: 66rpx;
+  border-radius: 50%;
+  margin-right: 35rpx;
+}
+/* 评论的评论 */
+.reply-photo image{
+  width: 44rpx;
+  height: 44rpx;
+  border-radius: 50%;
+  margin-right: 35rpx;
+}
+.reply-like-num{
+  position: relative;
+  right: -42rpx;
+}
+.like-number image {
+  width: 42rpx;
+}
+
+.see-all-comment {
+  padding-left: 150rpx;
+  padding-bottom: 60rpx;
+}
+
+/* 没有评论 */
+.no-comment {
+  text-align: center;
+}
+
+.no-comment>image {
+  width: 112rpx;
+  margin: 35rpx 0 24rpx;
+}
+
+.no-comment>view {
+  margin-bottom: 70rpx;
+}
+
+/* 查看所有评论 */
+.all-comment {
+  height: 90vh;
+  padding: 50rpx 40rpx 90rpx;
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 11111;
+  border-radius: 12rpx 12rpx 0 0;
+  transition: all .4s;
+}
+
+.all-comment.close-style {
+  height: 0;
+  padding: 0;
+  transition: all .4s;
+}
+
+.post-comment.close-style {
+  padding: 0;
+  height: 0;
+  transition: all .01s;
+}
+
+.all-comment-text>image {
+  width: 27rpx;
+}
+
+.all-comment .all-comment-content {
+  margin-top: 50rpx;
+}
+
+.all-comment .all-comment-content:last-child {
+  margin-bottom: 97rpx;
+}
+
+/* 作者回复 */
+.authors-reply {
+  width: 555rpx;
+  background: #333;
+  border-radius: 4rpx;
+  padding: 36rpx 20rpx;
+  margin: -20rpx 0 50rpx 114rpx;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+}
+
+.authors-reply>.authors-reply-line {
+  width: 4rpx;
+  height: 27rpx;
+  background: rgba(240, 90, 37, 1);
+  border-radius: 2rpx;
+}
+
+.authors-reply>.authors-reply-content {
+  margin-left: 14rpx;
+}
+
+.authors-reply>.authors-reply-content>text {
+  display: block;
+  line-height: 28rpx;
+}
+
+.authors-reply>.authors-reply-like image {
+  width: 26rpx;
+  display: block;
+}
+
+/* 发布评论 */
+.post-comment {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  z-index: 12;
+  overflow-y: scroll;
+  padding: 26rpx 39rpx;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: #131313;
+  display: flex;
+  justify-content: space-between;
+  transition: all .01s;
+}
+
+.post-comment>view {
+  position: relative;
+  z-index: 13;
+}
+
+.post-comment textarea {
+  width: 500rpx;
+  padding: 0 30rpx;
+  background: #666;
+  color: #ccc;
+  border-radius: 25rpx;
+}
+
+/* 遮罩层 */
+.mask {
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 7;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* 文章状态 */
+.article-status {
+  height: 98rpx;
+  position: fixed;
+  bottom: 0;
+  width: calc(100% - 60rpx);
+  padding: 0 30rpx;
+}
+
+.article-status input {
+  width: 315rpx;
+  min-height: 50rpx;
+  height: 50rpx;
+  margin: auto 0;
+  border-radius: 25rpx;
+  background: #666;
+  font-size: 22rpx;
+  color: #ccc;
+  text-align: center;
+}
+
+.article-status .foot-right {
+  width: calc(100% - 345rpx);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.foot-right image {
+  width: 45rpx;
+}
+
+.foot-right .share {
+  position: relative;
+}
+
+.share button {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  z-index: 5;
+}
+
+/* .diy-component-my .diy-banner {
+    margin: 0 !important;
+} */
+.my-class111 .diy-banner {
+  margin: 0;
+}

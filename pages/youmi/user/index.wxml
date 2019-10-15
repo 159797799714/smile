@@ -14,12 +14,12 @@
   
   <!-- 关注，收藏，点赞，粉丝 -->
   <view class="column dis-flex flex-x-between f-24 col-9">
-    <view wx:for="{{ msglist }}" wx:key="index" class="flex-box t-c">
+    <view wx:for="{{ msglist }}" wx:key="index" class="type-item t-c">
       <view>{{ mycircle[item.type]}}</view>
       <view class="m-top10">{{ item.name }}</view>
     </view>
-    <view class="flex-box m-top10">
-      <view class="focus-btn f-26 col-f">已关注</view>
+    <view class="m-top10">
+      <view class="focus-btn f-26 col-f {{mycircle.is_focus === 'yes'? 'b-66': 'b-93f'}}" catchtap="focusAction" data-status="{{mycircle.is_focus === 'yes'}}">{{mycircle.is_focus === 'yes'? '已关注': '关注'}}</view>
     </view>
   </view>
   
@@ -28,7 +28,6 @@
       <text wx:for="{{ tabList }}" wx:key="index" class="{{ index === tabIndex ? 'selectTab' : ''}}" data-index="{{ index }}"
         catchtap="selectTab">{{ item }}</text>
     </view>
-    <!-- 参赛作品 -->
     <view wx:for="{{ tabIndex === 0? articleList: likeList }}" wx:key="this" class="item" catchtap="goShareDetail" data-id="{{ item.article_id }}">
       <view class="img">
         <image src="{{ item.articleimage[index].file_path }}" mode="aspectFill"></image>

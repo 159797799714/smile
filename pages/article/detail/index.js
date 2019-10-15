@@ -249,7 +249,8 @@ Page({
     let _this = this;
     _this.setData({
         isTextareaFocus: false,
-        scrollIntoView: ''
+        scrollIntoView: '',
+        isSendComment: false
     });
   },
   toComment(e) {

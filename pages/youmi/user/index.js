@@ -53,6 +53,23 @@ Page({
     });
   },
   
+  // 关注用户
+  focusAction(e) {
+    let _this= this,
+      status= e.currentTarget.dataset.status,
+      url= 'user.index/focusOn';           // status为true代表已关注
+    if(status) {
+      url= 'user.index/unFocus'
+    }
+    App._post_form(url, {
+      focus_user_id: _this.data.userInfo.user_id
+    }, function(res) {
+      _this.setData({
+        'mycircle.is_focus': status? 'no': 'yes'
+      })
+    });
+  },
+  
   // 点赞文章
   collectAction(e) {
     let _this= this,

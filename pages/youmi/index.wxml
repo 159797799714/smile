@@ -16,6 +16,7 @@
     <view class="camera-logo" catchtap="getLocalImage"></view>
   </view>
   
+  <!-- diy组件轮播图 -->
   <view class="banner">
     <diy-banner  dataList="{{ bannerList }}"></diy-banner>  
   </view>
@@ -50,9 +51,8 @@
     </view>
     
     <!-- 关注 -->
-    <view wx:if="{{tabIndex !== 2}}" wx:for="{{ articleList }}" wx:key="this" class="item"> 
-    <!-- catchtap="goShareDetail" data-id="{{ item.article_id }}" -->
-      <view class="img">
+    <view wx:if="{{tabIndex !== 2}}" wx:for="{{ articleList }}" wx:key="this" class="item">
+      <view class="img" catchtap="goShareDetail" data-id="{{ item.article_id }}">
         <image src="{{ item.articleimage[0].file_path }}" mode="widthFix"></image>
       </view>
       <view class="title twolist-hidden border-box col-f">{{ item.article_title }}</view>

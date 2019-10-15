@@ -39,7 +39,6 @@ Page({
       })
     });
   },
-  
   // 加载草场文章数据
   getArticleList() {
     let _this = this;
@@ -71,6 +70,13 @@ Page({
         activityList: res.data.list.data
       })
     });
+  },
+  // 去文章首页
+  goShareDetail(e) {
+    let id= e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '/pages/youmi/detail/index?article_id=' + id
+    })
   },
   
   // 去作者主页

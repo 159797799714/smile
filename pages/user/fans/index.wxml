@@ -4,12 +4,12 @@
       <image src="{{item.focus_avatarUrl || item.fans_avatarUrl}}" mode="widthFix"></image>
     </view>
     <view class="center">
-      <view class="name f-30 col-9">{{item.focus_nickName}}</view>
+      <view class="name f-30 col-9">{{item.focus_nickName || item.fans_nickName}}</view>
       <view class="sign f-20 col-9 onelist-hidden">{{item.focus_sign || item.fans_sign}}</view>
     </view>
     <view class="left-btn">
-      <view wx:if="{{ type === 'fans' && !item.is_focus }}" class="fans-btn" catchtap="fansAction">{{ !item.is_focus ? '关注ta': '取消关注' }}</view>
-      <view wx:if="{{ type === 'like' }}" class="fans-btn">取消关注</view>
+      <view wx:if="{{ type === 'fans'}}" class="fans-btn" catchtap="fansAction" data-status="{{item.is_focus}}" data-id="{{item.fans_user_id}}" data-index="{{index}}">{{ !item.is_focus ? '关注ta': '取消关注' }}</view>
+      <view wx:if="{{ type === 'like' }}" class="fans-btn" catchtap="focusAction" data-index="{{index}}" data-id="{{item.focus_user_id}}">取消关注</view>
     </view>
   </view>
 </view>

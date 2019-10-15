@@ -4,6 +4,8 @@
   position: relative;
   margin: 0 30rpx;
   padding: 2px;
+}
+.border-linear{
   background: linear-gradient(to right, #00BFFF, #9933FF, #ff33cc); 
 }
 .diy-banner swiper{

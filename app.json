@@ -26,6 +26,7 @@
     "pages/youmi/index",
     "pages/youmi/activity/index",
     "pages/youmi/release/index",
+    "pages/youmi/detail/index",
     "pages/youmi/user/index",
     "pages/dealer-dialog/index",
     "pages/dealer/index/index",

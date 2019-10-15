@@ -51,6 +51,47 @@ Page({
     });
   },
   
+  // 取消我的关注用户/
+  focusAction(e) {
+    let _this= this,
+      id= e.currentTarget.dataset.id,
+      index= e.currentTarget.dataset.index,
+      url= 'user.index/unFocus',
+      list= _this.data.list;
+      list.splice(index, 1);
+    console.log(id)
+    App._post_form(url, {
+      focus_user_id: id
+    }, function(res) {
+      _this.setData({
+        list: list
+      })
+    });
+  },
+  
+  // 我的粉丝关注
+  fansAction(e) {
+    let _this= this,
+      id= e.currentTarget.dataset.id,
+      index= e.currentTarget.dataset.index,
+      status= e.currentTarget.dataset.status,
+      url= 'user.index/focusOn',
+      list= _this.data.list;
+    let focus= 'list[' + index + '].is_focus'
+    if(status) {
+      url= 'user.index/unFocus'
+    }
+    console.log(e.currentTarget.dataset)
+    App._post_form(url, {
+      focus_user_id: id
+    }, function(res) {
+      _this.setData({
+        [focus]: !status
+      })
+    });
+  }
+  
+  
   
   
 })

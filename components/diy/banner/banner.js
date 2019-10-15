@@ -14,7 +14,8 @@ Component({
     itemIndex: String,
     itemStyle: Object,
     dataList: Object,
-    params: Object
+    params: Object,
+    border: Boolean
   },
 
   /**
@@ -25,7 +26,7 @@ Component({
     // banner轮播组件属性
     indicatorDots: true, // 是否显示面板指示点	
     autoplay: true, // 是否自动切换
-    duration: 800, // 滑动动画时长
+    duration: 1500, // 滑动动画时长
 
     imgHeights: [], // 图片的高度
     imgCurrent: 0, // 当前banne所在滑块指针
@@ -69,20 +70,37 @@ Component({
      * 跳转到指定页面
      */
     navigationTo: function(e) {
-      console.log('点击了跳转', e.currentTarget.dataset)
-      if(e.currentTarget.dataset.goodsId) {
-        App.navigationTo("pages/goods/index?goods_id=" + e.currentTarget.dataset.goodsId);
-      }
-      if(e.currentTarget.dataset.articleId) {
-        App.navigationTo("pages/article/detail/index?article_id=" + e.currentTarget.dataset.articleId);
-      }
-      if (e.currentTarget.dataset.luckydrawId){
-        let param = {
-          goods_id: e.currentTarget.dataset.luckydrawId,
-          activity_category_id: ''
+      console.log('点击了跳转', e.currentTarget.dataset, this.properties.border)
+      let isborder= this.properties.border;   // 为true代表是优迷文章详情页轮播图
+      if(!isborder) {
+        if(e.currentTarget.dataset.goodsId) {
+          App.navigationTo("pages/goods/index?goods_id=" + e.currentTarget.dataset.goodsId);
         }
-        App.navigationTo("pages/zerodraw/detail/index?form=" + JSON.stringify(param));
+        if(e.currentTarget.dataset.articleId) {
+          App.navigationTo("pages/article/detail/index?article_id=" + e.currentTarget.dataset.articleId);
+        }
+        if (e.currentTarget.dataset.luckydrawId){
+          let param = {
+            goods_id: e.currentTarget.dataset.luckydrawId,
+            activity_category_id: ''
+          }
+          App.navigationTo("pages/zerodraw/detail/index?form=" + JSON.stringify(param));
+        }
+      } else {
+        /**
+         * 浏览商品图片
+         */
+          let index = e.currentTarget.dataset.index,
+          imageUrls = [];
+          this.properties.dataList.forEach(function(item) {
+            imageUrls.push(item.file_path);
+          });
+          wx.previewImage({
+            current: imageUrls[index],
+            urls: imageUrls
+          })
       }
+      
     },
 
   }

@@ -1,0 +1,7 @@
+{
+  "navigationStyle": "custom",
+  "component": true,
+  "usingComponents": {
+    "diy-banner": "../components/diy/banner/banner"
+  }
+}
