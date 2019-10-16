@@ -73,6 +73,13 @@ Page({
         [articlelike_count]: count
       })
     });
+  },
+  
+  // 立即参加
+  goJoin() {
+    wx.navigateTo({
+      url: '/pages/youmi/release/index?activity_id=' + this.data.detail.category_id + '&name=' + this.data.detail.name
+    })
   }
 
 });

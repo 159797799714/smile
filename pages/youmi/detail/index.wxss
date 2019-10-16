@@ -54,6 +54,14 @@ page {
 .words{
   line-height: 40rpx;
 }
+.del-icon{
+  margin-right: 50rpx;
+  height: 40rpx;
+  width: 40rpx;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACcAAAAmCAYAAABH/4KQAAACE0lEQVRYhe3YP2gUQRTH8U/iSRoDChpQQvAPFioixJhC/IMWFsEiKIJYWF6a2GgjVtZWYmKxvaVCQCsFQxJSaKXRVgUr+0MwF4MWO0eWdS+5We+ChvvCMm/nvTfvt3czw+70VKtVERzDNM6hNyLvFxZxC++yjiRJmiZVIgrsxiz2ROQ06MEZvMZRfGslKUbcDWvCvuJLRO4BDGEXbuJBu8Xtz9i38Swi9yqeBntfq0kV9Et/8r4NYg9n7BGsRogbydiHMN64mZiYKIpfxmIFCzgRUQjuRsZnuRyujfjYK32Sf5GhCq7gOrZlHbgQ7BnMdaD4eWt/76x0kTVYwZMKXoUry3hG3BwedkBcow48SpJkJu+M2Ug3na64spQRdxwDBf19GFW8Xw6EvChixVWxhE8YzPle4A2e5/oHQ/xSyO+YuNOh3YHhnO9UaEdz/cMhPpvfEn8z51rNLV1jyy2ITaMrrixdcWXpiitLV1xZuuLKsqXE/cjY33O+n7m2KG4lpljMcQQ8lr63fcZ8zncfk9JTqCzz0qOIgwW+tor7gJNNfNNNii/jWmQd/Kdzrpax93aodnbcWlFAM3FvUQ92VXrg106OWPvYqYd6f9BsztUwhTvYKT0qXdDkCSPpx1lsD/dTSZIUjrvegrgn/da8FAa62AZheV6GOoWstyDqGJNuD+/FHRaux2oYbxJjSZLUmwX+BgokV6NxqKxLAAAAAElFTkSuQmCC);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
 /* 评论 */
 .comment-wrap {
@@ -206,7 +214,8 @@ page {
 
 .post-comment textarea {
   width: 500rpx;
-  padding: 0 30rpx;
+  padding: 7rpx 30rpx;
+  min-height: 40rpx;
   background: #666;
   color: #ccc;
   border-radius: 25rpx;

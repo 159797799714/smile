@@ -17,16 +17,16 @@ Page({
    */
   onLoad: function(options) {
     let _this = this;
-
     // 加载录播图数据
     this.getBannerList()
-    // 加载草场文章数据
-    this.getArticleList()
   },
   onShow() {
     if(this.data.tabIndex === 0) {
       // 加载草场文章数据
       this.getArticleList()
+    } else if(this.data.tabIndex === 1){
+      // 关注文章数据
+      this.getFocusList()
     }
   },
   
@@ -56,7 +56,7 @@ Page({
     App._get('umi.article/focusList', {}, function(res) {
       console.log('关注文章', res.data)
       _this.setData({
-        articleList: res.data.list
+        articleList: res.data.list.data
       })
     });
   },

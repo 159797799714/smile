@@ -1,0 +1,36 @@
+<view>
+  
+  <view class="index-search-box-bg dis-flex flex-x-between">
+    <view class="index-search">
+      <input type="text" placeholder="输入关键词搜索" bindinput="onInput"/>
+    </view>
+    <image src="../../../images/seach.png" class="camera-logo" mode="widthFix" catchtap="getArticleList"></image>
+    
+  </view>
+  
+  <view class="culture">
+    
+    
+    <!-- 关注 -->
+    <view wx:if="{{tabIndex !== 2}}" wx:for="{{ articleList }}" wx:key="this" class="item">
+      <view class="img" catchtap="goShareDetail" data-id="{{ item.article_id }}">
+        <image src="{{ item.articleimage[0].file_path }}" mode="widthFix"></image>
+      </view>
+      <view class="title twolist-hidden border-box col-f">{{ item.article_title }}</view>
+      <view class="info border-box">
+        <view class="user" catchtap="goUserDetail" data-id="{{item.user.user_id}}">
+          <view class="userImg">
+            <image src="{{ item.user.avatarUrl }}" mode="widthFix"></image>
+          </view>
+          <view class="userName onelist-hidden col-9">{{ item.user.nickName }}</view>
+        </view>
+        <view class="zan">
+          <image catchtap="collectAction" data-index="{{ index }}" data-id="{{item.article_id}}" mode="widthFix" src="{{item.islike_count === 1 ? '/images/love-active.png' : '/images/love.png'}}" />
+          <text>{{ item.articlelike_count }}</text>
+        </view>
+      </view>
+    </view>
+    
+  </view>
+  
+</view>

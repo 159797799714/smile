@@ -1,6 +1,6 @@
 .user-header {
   display: flex;
-  padding: 25rpx 40rpx;
+  padding: 0 40rpx 25rpx;
   align-content: center;
   background-color: #16171c;
   background-repeat: no-repeat;

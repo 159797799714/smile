@@ -1,9 +1,9 @@
 <view class="content b-t">
   <view wx:for="{{list}}" wx:key="index" class="row-item b-b">
-    <view class="head-img">
+    <view class="head-img" catchtap="goUserDetail" data-id="{{type === 'fans'? item.fans_user_id: item.focus_user_id}}">
       <image src="{{item.focus_avatarUrl || item.fans_avatarUrl}}" mode="widthFix"></image>
     </view>
-    <view class="center">
+    <view class="center" catchtap="goUserDetail" data-id="{{type === 'fans'? item.fans_user_id: item.focus_user_id}}">
       <view class="name f-30 col-9">{{item.focus_nickName || item.fans_nickName}}</view>
       <view class="sign f-20 col-9 onelist-hidden">{{item.focus_sign || item.fans_sign}}</view>
     </view>

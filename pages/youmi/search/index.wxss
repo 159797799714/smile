@@ -1,0 +1,97 @@
+
+page {
+  background: #131313 !important;
+  box-sizing: border-box;
+}
+
+input{
+  padding: 0 20rpx;
+  min-height: 60rpx;
+  font-size: 26rpx;
+  color: #999;
+}
+/* 搜索框 */
+.index-search-box-bg{
+  padding: 10rpx 30rpx 40rpx;
+}
+.index-search {
+  flex: 1;
+  margin-right: 20rpx;
+  height: 60rpx;
+  background-color: #333;
+  border-radius: 5rpx;
+}
+.camera-logo {
+  height: 40rpx;
+  width: 42rpx;
+  margin-top: 10rpx;
+}
+
+/* 种草 */
+.culture{
+  padding-left: 30rpx;
+  overflow: hidden;
+}
+
+.item{
+  float: left;
+  height: 524rpx;
+  width: 326rpx;
+  margin: 0 30rpx 20rpx 0;
+  border: 1px solid #666;
+}
+.item .img{
+  height: 330rpx;
+  width: 100%;
+  margin-bottom: 18rpx;
+  overflow: hidden;
+}
+.item .img>image{
+  height: 100%;
+  width: 100%;
+}
+.item .title{
+  height: 67rpx;
+  font-size: 24rpx;
+  line-height: 36rpx;
+  margin-bottom: 24rpx;
+  padding: 0 20rpx;
+}
+.info{
+  display: flex;
+  justify-content: space-between;
+  height: 50rpx;
+  width: 100%;
+  padding: 0 20rpx;
+  line-height: 50rpx;
+}
+.info .zan{
+  display: flex;
+  color: #ADADAD;
+  font-size: 24rpx;
+}
+.info .zan image {
+  width: 29rpx;
+  margin-right: 8rpx;
+  margin-top: 10rpx;
+}
+.info .user{
+  display: flex;
+  align-items: center;
+}
+.info .user .userName{
+  font-size: 24rpx;
+  width: 150rpx;
+}
+.info .user .userImg{ 
+  height: 40rpx;
+  width: 40rpx;
+  margin: 5rpx 10rpx 0 0;
+  border-radius: 100%;
+  overflow: hidden;
+}
+.info .user .userImg>image{
+  height: 100%;
+  width: 100%;
+  background: #ccc;
+}

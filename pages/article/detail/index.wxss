@@ -191,7 +191,8 @@ page {
 }
 .post-comment textarea {
     width: 500rpx;
-    padding: 0 30rpx;
+    padding: 7rpx 30rpx;
+    min-height: 40rpx;
     background: #666;
     color: #ccc;
     border-radius: 25rpx;

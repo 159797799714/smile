@@ -70,6 +70,13 @@ Page({
     });
   },
   
+  // 去文章首页
+  goShareDetail(e) {
+    let id= e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '/pages/youmi/detail/index?article_id=' + id
+    })
+  },
   // 点赞文章
   collectAction(e) {
     let _this= this,

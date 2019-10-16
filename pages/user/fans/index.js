@@ -10,20 +10,19 @@ Page({
     this.setData({
       type: options.type
     })
-    
+  },
+  onShow() {
     // 我的粉丝和我的关注页面区分
-    if(options.type === 'fans') {
+    if(this.data.type === 'fans') {
       wx.setNavigationBarTitle({
         title: '我的粉丝'
       })
-      
       // 获取我的粉丝列表
       this.getFansList()
     } else {
       wx.setNavigationBarTitle({
         title: '我的关注'
       })
-      
       // 获取我的关注列表
       this.getLikeList()
     }
@@ -89,6 +88,14 @@ Page({
         [focus]: !status
       })
     });
+  },
+  
+  // 去作者主页
+  goUserDetail(e) {
+    let id= e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '/pages/youmi/user/index?id=' + id
+    })
   }
   
   

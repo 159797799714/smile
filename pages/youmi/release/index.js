@@ -23,7 +23,14 @@ Page({
   },
   
   submitDisable: false,
-  onLoad() {
+  onLoad(opt) {
+    if(opt.activity_id) {
+      this.setData({
+        'formData.category_id': opt.activity_id,
+        'formData.tags': opt.name
+      })
+    }
+    console.log(this.data.formData.category_id)
     // 获取活动分类列表
     this.getTopicList()
   },

@@ -2,7 +2,7 @@
   <view class="back-jiantou" catchtap="goBack">
     <text class="iconfont icon-xiangyoujiantou"></text>
   </view>
-  <view class="center">
+  <view class="center" catchtap="goUserDetail" data-id="{{detail.user.user_id}}">
     <image src="{{detail.user.avatarUrl}}" mode="aspectFill"></image>
     <text class="name fl f-38 col-f">{{detail.user.nickName}}</text>
   </view>
@@ -17,6 +17,7 @@
   </view>
   <!-- 主要内容 -->
   <view class="container">
+    <view wx:if="{{user_id === detail.user.user_id}}" class="del-icon fr" catchtap="delArticle"></view>
     <view class="article-title">
       <text class="f-40 col-f">{{ detail.article_title }}</text>
     </view>
@@ -36,7 +37,7 @@
             <image mode="widthFix" src="{{ item.avatarUrl }}" />
           </view>
           <view class="flex-box">
-            <view class="dis-flex flex-dir-column" catchtap="commentReview" data-id="{{item.id}}" data-index="{{index}}">
+            <view class="dis-flex flex-dir-column" catchtap="commentReview" data-type="ten" data-id="{{item.id}}" data-index="{{index}}">
               <text class="f-28 col-6 f-w">{{ item.nickName }}</text>
               <text class="f-26 col-9 m-top10">{{ item.content }}</text>
               <text class="f-24 col-6 m-top4">{{ item.input_date }}</text>
@@ -53,8 +54,8 @@
                 <text class="f-26 col-9 m-top10">{{ li.reply_content }}</text>
                 <text class="f-24 col-6 m-top4">{{ li.reply_input_date }}</text>
               </view>
-              <view class="like-number reply-like-num" bindtap="like" data-state="commentreplylike" data-type="ten" data-index="{{ index }}" data-num="{{ num }}">
-                <image mode="widthFix" src="{{li.isreplylike == 'yes' ? '../../../images/love-active.png' : '../../../images/love.png'}}" />
+              <view class="like-number reply-like-num" catchtap="like" data-state="commentreplylike" data-type="ten" data-index="{{ index }}" data-num="{{ num }}">
+                <image mode="widthFix" src="{{li.isreplylike === 'yes' ? '../../../images/love-active.png' : '../../../images/love.png'}}" />
                 <view class="col-9 f-24 t-c">{{ li.replylikenum }}</view>
               </view>
             </view>
@@ -63,7 +64,7 @@
           </view>
           
           <view class="like-number">
-            <image bindtap="like" data-index="{{ index }}" data-state="commentlike" data-type="ten" mode="widthFix" src="{{item.islike == 'yes' ? '../../../images/love-active.png' : '../../../images/love.png'}}" />
+            <image catchtap="like" data-index="{{ index }}" data-state="commentlike" data-type="ten" mode="widthFix" src="{{item.islike == 'yes' ? '../../../images/love-active.png' : '../../../images/love.png'}}" />
             <view class="col-9 f-24 t-c">{{ item.likenum }}</view>
           </view>
         </view>
@@ -83,8 +84,8 @@
       <view class="article-status dis-flex flex-x-between b-13">
         <input placeholder="留下你精彩的评论吧" placeholder-style="color: #ccc" bindfocus="toComment" />
         <view class="foot-right dis-flex flex-x-center">
-          <image mode="widthFix" src="{{isLike ? '../../../images/love-active.png' : '../../../images/love.png'}}"
-            bindtap="like" data-state="articlelike" />
+          <image mode="widthFix" src="{{detail.isLike ? '../../../images/like-active.png' : '../../../images/like.png'}}"
+            catchtap="like" data-state="articlelike" />
           <image mode="widthFix" src="{{detail.isCollection === 'yes' ? '../../../images/goods/collected.png' : '../../../images/goods/collect.png'}}"
             catchtap="collect" />
           <image mode="widthFix" src="../../../images/comment.png" bindtap="toComment" bindconfirm="toComment" />
@@ -110,14 +111,14 @@
           <image mode="widthFix" src="{{ item.avatarUrl }}" />
         </view>
         <view class="flex-box">
-          <view class="dis-flex flex-dir-column">
+          <view class="dis-flex flex-dir-column" catchtap="commentReview" data-type="all" data-id="{{item.id}}" data-index="{{index}}">
             <text class="f-28 col-6 f-w">{{ item.nickName }}</text>
             <text class="f-26 col-9 m-top10">{{ item.content }}</text>
             <text class="f-24 col-6 m-top4">{{ item.input_date }}</text>
           </view>
           
           <!-- 评论的评论 -->
-          <!-- <view wx:for="{{ item.replys }}" wx:key="index" wx:for-index="num" wx:for-item="li" wx:if="{{haveComment && index < 10}}"
+          <view wx:for="{{ item.replys }}" wx:key="index" wx:for-index="num" wx:for-item="li" wx:if="{{haveComment && index < 10}}"
             class="comment-wrap-content-people dis-flex flex-x-between m-top20">
             <view class="reply-photo">
               <image mode="widthFix" src="{{ li.reply_avatarUrl }}" />
@@ -127,16 +128,16 @@
               <text class="f-26 col-9 m-top10">{{ li.reply_content }}</text>
               <text class="f-24 col-6 m-top4">{{ li.reply_input_date }}</text>
             </view>
-            <view class="like-number reply-like-num" bindtap="like" data-type="all" data-state="commentreplylike" data-index="{{ index }}" data-num="{{ num }}">
-              <image mode="widthFix" src="{{item.isreplylike == 'yes' ? '../../../images/love-active.png' : '../../../images/love.png'}}" />
+            <view class="like-number reply-like-num" catchtap="like" data-type="all" data-state="commentreplylike" data-index="{{ index }}" data-num="{{ num }}">
+              <image mode="widthFix" src="{{li.isreplylike === 'yes' ? '../../../images/love-active.png' : '../../../images/love.png'}}" />
               <view class="col-9 f-24 t-c">{{ li.replylikenum }}</view>
             </view>
-          </view> -->
+          </view>
           
         </view>
         
         <view class="like-number">
-          <image bindtap="like" data-index="{{ index }}" data-state="commentlike" data-type="all" mode="widthFix" src="{{item.islike ==='yes' ? '../../../images/love-active.png' : '../../../images/love.png'}}" />
+          <image catchtap="like" data-index="{{ index }}" data-state="commentlike" data-type="all" mode="widthFix" src="{{item.islike ==='yes' ? '../../../images/love-active.png' : '../../../images/love.png'}}" />
           <view class="col-9 f-24 t-c">{{ item.likenum }}</view>
         </view>
       </view>
@@ -147,10 +148,18 @@
   <!-- 发布评论 -->
   <view wx:if="{{isSendComment}}" class="post-comment b-t flex-y-center">
     <textarea value="{{ commentValue }}" adjust-position="false" bindfocus="textareaFocus" bindinput="textareaInput"
-      bindblur="textareaBlur" focus="{{isTextareaFocus}}" fixed cursor-spacing="10" class="col-9 f-28" auto-height
+      bindblur="textareaBlur" focus="{{isTextareaFocus}}" fixed cursor-spacing="10" class="col-9 f-28" auto-height auto-focus
       placeholder="添加你的评论..." placeholder-style="color: #ccc" />
     <view bindtap="sendComment" class="f-30 col-f3c f-w">发布</view>
-    </view>
+  </view>
+  
+  <!-- 评论评论评论 -->
+  <view wx:if="{{ isReplyComment }}" class="post-comment b-t flex-y-center">
+    <textarea value="{{ replyCommentValue }}" adjust-position="false"  bindinput="replyCommentInput"
+      bindblur="textareaBlur" fixed cursor-spacing="10" class="col-9 f-28" auto-height auto-focus
+      placeholder="发表你对此评论的看法..." placeholder-style="color: #ccc" />
+    <view bindtap="sendReplyComment" class="f-30 col-f3c f-w">发布</view>
+  </view>
 
     <!-- 遮罩层
     <view class="{{isTextareaFocus ? 'mask' : ''}}"></view>

@@ -28,6 +28,7 @@
     "pages/youmi/release/index",
     "pages/youmi/detail/index",
     "pages/youmi/user/index",
+    "pages/youmi/search/index",
     "pages/dealer-dialog/index",
     "pages/dealer/index/index",
     "pages/dealer/apply/apply",

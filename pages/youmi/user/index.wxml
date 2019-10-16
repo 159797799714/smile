@@ -30,9 +30,9 @@
     </view>
     <view wx:for="{{ tabIndex === 0? articleList: likeList }}" wx:key="this" class="item" catchtap="goShareDetail" data-id="{{ item.article_id }}">
       <view class="img">
-        <image src="{{ item.articleimage[index].file_path }}" mode="aspectFill"></image>
+        <image src="{{ item.articleimage[0].file_path }}" mode="aspectFill"></image>
       </view>
-      <view class="title twolist-hidden border-box col-9">{{ item.article_content }}</view>
+      <view class="title twolist-hidden border-box col-f">{{ item.article_title }}</view>
       <view class="info border-box">
         <view class="user">
           <view class="userImg">
