@@ -29,6 +29,7 @@
     "pages/youmi/detail/index",
     "pages/youmi/user/index",
     "pages/youmi/search/index",
+    "pages/brand-theme/index",
     "pages/dealer-dialog/index",
     "pages/dealer/index/index",
     "pages/dealer/apply/apply",

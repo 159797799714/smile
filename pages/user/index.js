@@ -37,10 +37,12 @@ Page({
     {
       icon: '../../images/user/menu1-2.png',
       name: '我的分享'
-    }, {
-      icon: '../../images/user/menu1-4.png',
-      name: '客服小蜜'
-    }],
+    }
+    // , {
+    //   icon: '../../images/user/menu1-4.png',
+    //   name: '客服小蜜'
+    // }
+    ],
     
     // 我的订单
     munulist2: [{

@@ -4,7 +4,7 @@ Page({
 
   data: {
     tabList: ['分享', '点赞'],         // 分类
-    tabIndex: 0,                      // 选中序列号
+    tabIndex: 0,                      // 选中分享
     fans_user_id: '',                 // 粉丝id
     mycircle: {},                    // 数量
     userInfo: {},                    // 用户信息

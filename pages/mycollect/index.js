@@ -72,21 +72,25 @@ Page({
 
   //点赞
   clickZan(e) {
-    let index = e.currentTarget.dataset.index
-    let url = ""
-    let that = this
-    let articleData = this.data.articles_list[index]
-    if(articleData.islike == "yes") {
-      url = 'article/unLike'
-    }else {
-      url = 'article/like'
+    let index = e.currentTarget.dataset.index,
+      type = e.currentTarget.dataset.type,
+      url = "",
+      that = this,
+      articleData = this.data.articles_list[index];
+    if(type === 'umi') {
+      url= 'umi.'
+    }
+    if(articleData.isLike) {
+      url = url + 'article/unLike'
+    } else {
+      url = url + 'article/like'
     }
     let param = {
       article_id: articleData.article_id
     }
     App._get(url,param,function(result) {
-      articleData.islike = articleData.islike === 'yes' ? 'no' : 'yes'
-      articleData.like_num = articleData.islike === 'yes' ? articleData.like_num + 1 : articleData.like_num - 1
+      articleData.isLike = !articleData.isLike
+      articleData.like_num = articleData.isLike ? articleData.like_num + 1 : articleData.like_num - 1
       that.setData({
         articles_list: that.data.articles_list
       })
@@ -141,9 +145,17 @@ Page({
   // 文章详情
   goShareDetail(e) {
     let that = this,
-      id = e.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: '/pages/article/detail/index?article_id=' + id
-    })
+      id = e.currentTarget.dataset.id,
+      type = e.currentTarget.dataset.type;
+    console.log(type)
+    if(type === 'umi') {
+      wx.navigateTo({
+        url: '/pages/youmi/detail/index?article_id=' + id
+      }) 
+    } else {
+      wx.navigateTo({
+        url: '/pages/article/detail/index?article_id=' + id
+      })  
+    } 
   }
 });

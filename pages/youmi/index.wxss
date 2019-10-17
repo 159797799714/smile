@@ -142,9 +142,8 @@ page {
   font-size: 24rpx;
 }
 .info .zan image {
-  width: 29rpx;
-  margin-right: 8rpx;
-  margin-top: 10rpx;
+  width: 42rpx;
+  margin: 7rpx 7rpx 0 0;
 }
 .info .user{
   display: flex;

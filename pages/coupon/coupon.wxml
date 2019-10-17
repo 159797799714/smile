@@ -19,9 +19,9 @@
           </view>
         </view>
         <view class="coupon-info flex-box f-18">
-          <view class="onelist-hidden">{{ item.name }}</view>
-          <view class="onelist-hidden">{{ item.min_price ? '最低消费' + item.min_price + '元': '无金额门槛' }}</view>
-          <view class="onelist-hidden">有效期：即日起~{{ item.end_time.text }}</view>
+          <view class="nowrap">{{ item.name }}</view>
+          <view class="nowrap">{{ item.min_price ? '最低消费' + item.min_price + '元': '无金额门槛' }}</view>
+          <view class="nowrap">有效期：{{item.start_time.text}}~{{ item.end_time.text }}</view>
         </view>
       </view>
       <view class="split-line"></view>

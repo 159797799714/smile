@@ -36,6 +36,10 @@ page {
   font-size: 26rpx;
   border-radius: 23rpx;
 }
+.content{
+  max-height: calc(100% - 176rpx);
+  overflow: auto;
+}
 
 /* 主要内容 */
 .banner{
@@ -86,6 +90,11 @@ page {
   border-radius: 50%;
   margin-right: 35rpx;
 }
+.reply-num{
+  margin-left: 20rpx;
+  padding: 3rpx 10rpx;
+  border-radius: 5rpx;
+}
 /* 评论的评论 */
 .reply-photo image{
   width: 44rpx;
@@ -122,7 +131,7 @@ page {
 
 /* 查看所有评论 */
 .all-comment {
-  height: 90vh;
+  height: 88vh;
   padding: 50rpx 40rpx 90rpx;
   box-sizing: border-box;
   position: fixed;
@@ -281,4 +290,22 @@ page {
 } */
 .my-class111 .diy-banner {
   margin: 0;
+}
+
+.open-icon{
+  display: inline-block;
+  transition: 500ms;
+}
+.rotate-180{
+  -ms-transform: rotate(180deg); 		/* IE 9 */
+  -ms-transform-origin:50% 50%; 		/* IE 9 */
+  
+  -webkit-transform: rotate(180deg);	/* Safari 和 Chrome */
+  -webkit-transform-origin:50% 50%;	/* Safari 和 Chrome */
+  
+  -moz-transform: rotate(180deg);		/* Firefox */
+  -moz-transform-origin:50% 50%;		/* Firefox */
+  
+  -o-transform: rotate(180deg);		/* Opera */
+  -o-transform-origin:50% 50%;		/* Opera */
 }

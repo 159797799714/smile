@@ -13,12 +13,12 @@
             <label class="radio" bindtap="storeChecked" data-index="{{ index }}">
               <radio checked="{{ item.checked }}" color="#ff00ff"></radio>
             </label>
-            <view class="store dis-flex flex-y-center">
+            <navigator url="/pages/brand-theme/index?id={{item.brand_category_id}}" class="store dis-flex flex-y-center">
               <view class="img">
                 <image src="{{ item.image.file_path }}" mode="aspectFill"></image>
               </view>
               <text class="f-30 col-9">{{ item.brand_theme_name }}</text>
-            </view>  
+            </navigator>  
           </view>
           <text  class="f-22 col-purple" catchtap="controlCoupon" data-id="{{ item.id }}">领券</text>
         </view>

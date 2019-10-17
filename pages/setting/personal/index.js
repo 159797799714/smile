@@ -4,7 +4,8 @@ Page({
 
   data: {
     info: {},
-    onEdit: false
+    onEdit: false,
+    sign: ''
   },
 
   /**
@@ -29,15 +30,21 @@ Page({
     })
   },
   
+  signOninput(e) {
+    this.setData({
+      sign: e.detail.value
+    })
+  },
   // 输入框失去焦点
-  submitSign(e) {
-    let _this= this
-    if(_this.data.info.sign !== e.detail.value) {
+  submitSign() {
+    let _this= this,
+      value= _this.data.sign;
+    if(_this.data.info.sign !== value) {
       App._post_form('app.center/modifyWxUserInfo', {
-        sign: e.detail.value? e.detail.value: '',
+        sign: value? value: '',
       }, function(result) {
         _this.setData({
-          'info.sign': e.detail.value
+          'info.sign': value
         })
       });  
     }

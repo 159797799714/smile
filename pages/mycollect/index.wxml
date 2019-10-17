@@ -7,11 +7,11 @@
   <scroll-view bindscrolltolower="bindDownLoad" scroll-y="true" class="culture">
     <!-- 分享 -->
     <view wx:if="{{ tabIndex === 0 }}" class="main b-15 border-box">
-      <view wx:for="{{ articles_list }}" wx:key="this" class="item" catchtap="goShareDetail" data-id="{{ item.article_id }}">
+      <view wx:for="{{ articles_list }}" wx:key="this" class="item" catchtap="goShareDetail" data-id="{{ item.article_id }}" data-type="{{item.article_type}}">
         <view class="img">
-          <image src="{{ item.image.file_path }}" mode="aspectFill"></image>
+          <image src="{{ item.article_type === 'umi'?item.image[0].file_path: item.image.file_path }}" mode="aspectFill"></image>
         </view>
-        <view class="title twolist-hidden border-box col-9">{{ item.subtitle }}</view>
+        <view class="title twolist-hidden border-box col-f">{{ item.article_title }}</view>
         <view class="info border-box">
           <view class="user">
             <view class="userImg">
@@ -20,7 +20,7 @@
             <view class="userName onelist-hidden col-f">{{ item.author }}</view>
           </view>
           <view class="zan">
-            <image catchtap="clickZan" data-index="{{ index }}" mode="widthFix" src="{{item.islike == 'yes' ? '/images/like-active.png' : '/images/like.png'}}" />
+            <image catchtap="clickZan" data-index="{{ index }}" data-type="{{item.article_type}}" mode="widthFix" src="{{item.isLike? '/images/like-active.png' : '/images/like.png'}}" />
             <text>{{ item.like_num }}</text>
           </view>
         </view>

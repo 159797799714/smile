@@ -34,12 +34,15 @@
         </view>
         <view class="item-name m-top10">{{ item.name }}</view>
       </view>
-      <button open-type="contact" sessionFrom="weapp" class="menu-item t-c">
-        <view class="item-icon">
-          <image src="{{ munulist1[3].icon }}"></image>
-        </view>
-        <view class="item-name m-top10">{{ munulist1[3].name }}</view>
-      </button>
+      <view class="menu-item">
+        <button open-type="contact" sessionFrom="weapp" class="t-c">
+          <view class="item-icon">
+            <image src="../../images/user/menu1-4.png"></image>
+          </view>
+          <view class="item-name m-top10">客服小蜜</view>
+        </button>  
+      </view>
+      
     </view>
     
   </view>

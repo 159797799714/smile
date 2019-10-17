@@ -117,6 +117,28 @@ Page({
       })
     });
   },
+  
+  // 展开评论回复
+  openReply(e) {
+    let _this= this,
+      index= e.currentTarget.dataset.index,
+      type= e.currentTarget.dataset.type;
+    console.log(index, type)
+    if(type === 'ten') {
+      let comments_show= _this.data.detail.comments_show
+        comments_show[index].isopen= !comments_show[index].isopen
+      _this.setData({
+        'detail.comments_show': comments_show
+      })
+    } else {
+      let isopen= 'detail.comments.list[' + index + '].isopen',
+        open= !_this.data.detail.comments.list[index].isopen
+      _this.setData({
+        [isopen]: open
+      })
+      console.log(isopen, open)
+    }
+  },
   /**
    * 发布评论
    */
@@ -157,7 +179,7 @@ Page({
         params = {
           article_id: _this.data.article_id,
         }
-        if (this.data.isLike) {
+        if (this.data.detail.isLike) {
           url = 'umi.article/unLike';
         }
         break;
@@ -194,7 +216,7 @@ Page({
           _this.setData({
             'detail.like_num': _this.data.isLike ? _this.data.detail.like_num - 1 : _this.data.detail.like_num +
               1,
-            isLike: !_this.data.isLike,
+            'detail.isLike': !_this.data.detail.isLike,
           });
           break;
           

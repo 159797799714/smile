@@ -30,7 +30,7 @@
     <text class="fl">个性签名</text>
     <view class="fr name f-24 col-9" catchtap="editSign">
       <text class="fl" wx:if="{{!onEdit}}">{{ info.sign? info.sign: '点击设置' }}</text>
-      <input wx:else class="fl" auto-focus placeholder="请输入个性签名" value="{{info.sign}}" bindblur="submitSign" bindconfirm="submitSign"/>
+      <input wx:else class="fl" auto-focus placeholder="请输入个性签名" value="{{info.sign}}" bindinput="signOninput" bindblur="submitSign" bindconfirm="submitSign"/>
       <text class="fl iconfont icon-xiangyoujiantou m-l-10 col-purple"></text>
     </view>
   </view>

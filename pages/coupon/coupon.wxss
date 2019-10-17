@@ -69,6 +69,10 @@ page {
 .coupon-item .coupon-left .coupon-info{
   margin-top: -5rpx;
   line-height: 30rpx;
+  overflow: auto;
+}
+.nowrap{
+  white-space: nowrap;
 }
 .coupon-item .split-line {
   position: relative;

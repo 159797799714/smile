@@ -1,23 +1,12 @@
 
 <import src="../../../wxParse/wxParse.wxml"></import>
 
-  <!-- DIY组件 轮播图 -->
-  <!-- <diy-component my-class="diy-component-my" diyItems="{{ swipeList }}"></diy-component> -->
-
 <view wx:if="{{ detail }}" style="height: {{scrollViewHeight}};overflow: hidden;" class="b-f">
     <image class="article-little-image" mode="widthFix" src="{{ detail.image.file_path }}"></image>
   <view class="container b-f p-b">
     <view class="article-title">
       <text class="f-32">{{ detail.article_title }}</text>
     </view>
-    <!-- <view class="article-little dis-flex flex-x-between m-top10">
-      <view class="article-little__left">
-        <text class="article-views f-24 col-8">{{ detail.show_views }}次浏览</text>
-      </view>
-      <view class="article-little__right">
-        <text class="article-views f-24 col-8">{{ detail.view_time }}</text>
-      </view>
-    </view> -->
     <view class="article-content m-top20">
       <template is="wxParse" data="{{wxParseData:content.nodes}}"></template>
     </view>
@@ -37,13 +26,6 @@
       </view>
     </navigator>
 
-    <!-- <view class="like-wrap" wx:if="{{ detail }}">
-      <view class="{{ isLike ? 'like active' : 'like'}}" bindtap="like">
-        <view class="icon-like"></view>
-      </view>
-      <view style="margin-top: 10rpx;">{{ isLike ? '已点赞' : '点赞' }}</view>
-    </view> -->
-
     <!-- 评论 -->
     <view class="comment-wrap b-33">
       <view class="b-13">
@@ -55,9 +37,9 @@
               <image mode="widthFix" src="{{ item.avatarUrl }}" />
             </view>
             <view class="dis-flex flex-dir-column flex-box">
-              <text class="f-28 col-9 f-w">{{ item.nickName }}</text>
-              <text class="f-26 col-6 m-top10">{{ item.content }}</text>
-              <text class="f-24 col-3 m-top4">{{ item.input_date }}</text>
+              <text class="f-28 col-6 f-w">{{ item.nickName }}</text>
+              <text class="f-26 col-9 m-top10">{{ item.content }}</text>
+              <text class="f-24 col-6 m-top4">{{ item.input_date }}</text>
             </view>
             <view class="like-number flex-self-end">
               <text class="col-9 f-24 pr-12">{{ item.likenum }}</text>
@@ -106,9 +88,9 @@
             <image mode="widthFix" src="{{ item.avatarUrl }}" />
           </view>
           <view class="dis-flex flex-dir-column flex-box">
-            <text class="f-28 col-9 f-w">{{ item.nickName }}</text>
-            <text class="f-26 col-6 m-top10">{{ item.content }}</text>
-            <text class="f-24 col-3 m-top4">{{ item.input_date }}</text>
+            <text class="f-28 col-6 f-w">{{ item.nickName }}</text>
+            <text class="f-26 col-9 m-top10">{{ item.content }}</text>
+            <text class="f-24 col-6 m-top4">{{ item.input_date }}</text>
           </view>
           <view class="like-number flex-self-end">
             <text class="col-9 f-24 pr-12">{{ item.likenum }}</text>
