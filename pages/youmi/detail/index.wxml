@@ -123,7 +123,7 @@
                 <text class="f-28 col-6 f-w">{{ item.nickName }}</text>
                 <text class="f-26 col-9 m-top10">{{ item.content }}</text>
                 <view class="dis-flex">
-                  <text class="f-24 col-6 m-top4">{{ item.input_date }}</text>
+                  <text class="f-24 col-6 m-top4">{{ item.input_time }}</text>
                   <view wx:if="{{item.replys.length > 0}}" class="reply-num b-33 f-24 col-9" catchtap="openReply" data-index="{{index}}" data-type="all">{{item.replys.length}}回复
                     <text class="open-icon iconfont icon-xiajiantous f-24 col-f {{item.isopen? 'rotate-180': ''}}"></text>
                   </view>  
@@ -139,7 +139,7 @@
                 <view class="dis-flex flex-dir-column flex-box">
                   <text class="f-28 col-6 f-w">{{ li.reply_name }}</text>
                   <text class="f-26 col-9 m-top10">{{ li.reply_content }}</text>
-                  <text class="f-24 col-6 m-top4">{{ li.reply_input_date }}</text>
+                  <text class="f-24 col-6 m-top4">{{ li.reply_input_time }}</text>
                 </view>
                 <view class="like-number reply-like-num" catchtap="like" data-type="all" data-state="commentreplylike" data-index="{{ index }}" data-num="{{ num }}">
                   <image mode="widthFix" src="{{li.isreplylike === 'yes' ? '../../../images/love-active.png' : '../../../images/love.png'}}" />

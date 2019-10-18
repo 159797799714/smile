@@ -22,7 +22,7 @@
       </view>
       <view class="title twolist-hidden border-box col-f">{{ item.article_title }}</view>
       <view class="info border-box">
-        <view class="user">
+        <view class="user" catchtap="goUserDetail" data-id="{{item.user.user_id}}">
           <view class="userImg">
             <image src="{{ item.user.avatarUrl }}" mode=""></image>
           </view>

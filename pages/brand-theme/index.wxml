@@ -1,6 +1,31 @@
 <import src="../../wxParse/wxParse.wxml"></import>
 
-<view class="main">
-  <template is="wxParse" data="{{wxParseData:content.nodes}}"></template>
+<template is="wxParse" data="{{wxParseData:content.nodes}}"></template>
+
+<!-- 模板1 -->
+<view wx:if="{{theme.brand_theme_template === '1-1'}}"  class="main p-10">
+  <image src="{{theme.goods_list[0].cover_image}}" mode="widthFix" class="m-top10"></image>
+  <view class="m-top10 oh">
+    <image src="{{theme.goods_list[1].cover_image}}" mode="widthFix" class="fl two-img-11"></image>
+    <view class="center-white-11"></view>
+    <image src="{{theme.goods_list[2].cover_image}}" mode="widthFix" class="fr two-img-11"></image>
+  </view>
+  <image wx:for="{{theme.goods_list}}" wx:key="index" wx:if="{{index > 2}}" src="{{item.cover_image}}" mode="widthFix" class="m-top10"></image>
+</view>
+
+<!-- 模板2 -->
+<view wx:if="{{theme.brand_theme_template === '1-2'}}"  class="main p-15 b-f">
+  <view class="m-top20 oh">
+    <image src="{{theme.goods_list[0].cover_image}}" mode="widthFix" class="fl two-img-12"></image>
+    <view class="center-white-11"></view>
+    <image src="{{theme.goods_list[1].cover_image}}" mode="widthFix" class="fr two-img-12"></image>
+  </view>
+  <view class="m-top20 oh">
+    <image src="{{theme.goods_list[2].cover_image}}" mode="widthFix" class="fl two-img-12"></image>
+    <view class="center-white-11"></view>
+    <image src="{{theme.goods_list[3].cover_image}}" mode="widthFix" class="fr two-img-12"></image>
+  </view>
+  <image src="{{theme.goods_list[4].cover_image}}" mode="widthFix" class="m-top20"></image>
+  
   
 </view>

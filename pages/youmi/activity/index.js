@@ -80,6 +80,21 @@ Page({
     wx.navigateTo({
       url: '/pages/youmi/release/index?activity_id=' + this.data.detail.category_id + '&name=' + this.data.detail.name
     })
-  }
+  },
+  // 去文章首页
+  goShareDetail(e) {
+    let id= e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '/pages/youmi/detail/index?article_id=' + id
+    })
+  },
+  
+  // 去作者主页
+  goUserDetail(e) {
+    let id= e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '/pages/youmi/user/index?id=' + id
+    })
+  },
 
 });

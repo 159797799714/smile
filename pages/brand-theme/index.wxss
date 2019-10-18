@@ -1,3 +1,32 @@
 .main{
-  padding: 0 30rpx;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+image{
+  position: relative;
+  width: 100%;
+}
+
+.p-10{
+  padding: 0 10rpx;
+}
+.center-white-11{
+  height: 100%;
+  width: 20rpx;
+}
+.two-img-11{
+  width: calc(50% - 7rpx);
+}
+
+.p-15{
+  padding: 0 15rpx;
+}
+.center-white-12{
+  height: 100%;
+  width: 40rpx;
+}
+.two-img-12{
+  width: calc(50% - 20rpx);
 }
