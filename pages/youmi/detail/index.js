@@ -326,8 +326,7 @@ Page({
       })
     }
     _this.setData({
-      isClose: !_this.data.isClose,
-      isSendComment: !_this.data.isSendComment
+      isClose: !_this.data.isClose
     });
 
   },

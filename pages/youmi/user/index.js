@@ -5,10 +5,11 @@ Page({
   data: {
     tabList: ['分享', '点赞'],         // 分类
     tabIndex: 0,                      // 选中分享
+    user_id: '',                      // 当前用户id
     fans_user_id: '',                 // 粉丝id
     mycircle: {},                    // 数量
     userInfo: {},                    // 用户信息
-    articleList: [],
+    articleList: [],                 // 分享
     likeList: [],                    // 点赞文章
     msglist: [{
       name: '关注',
@@ -27,6 +28,15 @@ Page({
    */
   onLoad: function(options) {
     console.log(options.id)
+    wx.getStorage({
+      key: 'user_id',
+      success (res) {
+        _this.setData({
+          user_id: res.data
+        })
+      }
+    })
+    
     this.setData({
       fans_user_id: options.id
     })
@@ -84,26 +94,51 @@ Page({
       id= e.currentTarget.dataset.id,
       url= 'umi.article/like',
       articleList= _this.data.articleList,
-      islike_count= 'articleList[' + index + '].islike_count',
-      articlelike_count= 'articleList[' + index + '].articlelike_count',
-      count= articleList[index].articlelike_count;
-    if(articleList[index].islike_count === 1) {
-      url= 'umi.article/unLike',
-      count--
-    } else {
-      count++
+      likeList= _this.data.likeList;
+    // 分享
+    if(_this.data.tabIndex === 0) {
+      let islike_count= 'articleList[' + index + '].islike_count',
+        articlelike_count= 'articleList[' + index + '].articlelike_count',
+        count= articleList[index].articlelike_count;
+      if(articleList[index].islike_count === 1) {
+        url= 'umi.article/unLike',
+        count--
+      } else {
+        count++
+      }
+      App._post_form(url, {
+        article_id: id
+      }, function(res) {
+        _this.setData({
+          [islike_count]: articleList[index].islike_count === 1 ? 0: 1,
+          [articlelike_count]: count
+        })
+      });
     }
-    App._post_form(url, {
-      article_id: id
-    }, function(res) {
-      _this.setData({
-        [islike_count]: articleList[index].islike_count === 1 ? 0: 1,
-        [articlelike_count]: count
-      })
-    });
+    // 点赞
+    else {
+      let islike_count= 'likeList[' + index + '].islike_count',
+        articlelike_count= 'likeList[' + index + '].articlelike_count',
+        count= likeList[index].articlelike_count;
+      if(likeList[index].islike_count === 1) {
+        url= 'umi.article/unLike',
+        count--
+      } else {
+        count++
+      }
+      App._post_form(url, {
+        article_id: id
+      }, function(res) {
+        _this.setData({
+          [islike_count]: likeList[index].islike_count === 1 ? 0: 1,
+          [articlelike_count]: count
+        })
+      });
+    }
+    
   },
   
-  // 分享商城tab点击
+  // 分享点赞tab点击
   selectTab(e) {
     let _this = this
     let index = e.currentTarget.dataset.index

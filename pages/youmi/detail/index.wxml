@@ -85,7 +85,7 @@
           </view>
         </view>
         <!-- 有评论的情况 -->
-        <text bindtap="closeAllcomment" wx:if="{{haveComment && detail.comments.num > 10}}" class="see-all-comment f-30 col-9 dis-block">查看全部{{ detail.comments.num }}条评论</text>
+        <text catchtap="closeAllcomment" wx:if="{{haveComment && detail.comments.num > 10}}" class="see-all-comment f-30 col-9 dis-block">查看全部{{ detail.comments.num }}条评论</text>
   
         <view wx:if="{{!isSendComment && !isReplyComment}}" class="article-status dis-flex flex-x-between b-13">
           <input  placeholder="留下你精彩的评论吧" placeholder-style="color: #ccc" bindfocus="toComment" />
@@ -109,7 +109,7 @@
     <view class="{{isClose ? 'all-comment b-13 close-style' : 'all-comment b-13'}}">
       <view class="all-comment-text dis-flex flex-x-between flex-y-center">
         <text class="f-30 col-9 f-w">全部评论（{{ detail.comments.num }}）</text>
-        <image mode="widthFix" src="../../../images/close.png" bindtap="closeAllcomment" />
+        <image mode="widthFix" src="../../../images/close.png" catchtap="closeAllcomment" />
       </view>
       
       <scroll-view scroll-y style="height: 100%">

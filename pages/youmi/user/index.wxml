@@ -18,7 +18,7 @@
       <view>{{ mycircle[item.type]}}</view>
       <view class="m-top10">{{ item.name }}</view>
     </view>
-    <view class="m-top10">
+    <view wx:if="{{fans_user_id != user_id}}" class="m-top10">
       <view class="focus-btn f-26 col-f {{mycircle.is_focus === 'yes'? 'b-66': 'b-93f'}}" catchtap="focusAction" data-status="{{mycircle.is_focus === 'yes'}}">{{mycircle.is_focus === 'yes'? '已关注': '关注'}}</view>
     </view>
   </view>

@@ -1,31 +1,88 @@
 <import src="../../wxParse/wxParse.wxml"></import>
 
-<template is="wxParse" data="{{wxParseData:content.nodes}}"></template>
-
 <!-- 模板1 -->
-<view wx:if="{{theme.brand_theme_template === '1-1'}}"  class="main p-10">
-  <image src="{{theme.goods_list[0].cover_image}}" mode="widthFix" class="m-top10"></image>
-  <view class="m-top10 oh">
-    <image src="{{theme.goods_list[1].cover_image}}" mode="widthFix" class="fl two-img-11"></image>
-    <view class="center-white-11"></view>
-    <image src="{{theme.goods_list[2].cover_image}}" mode="widthFix" class="fr two-img-11"></image>
+<view wx:if="{{theme.brand_theme_template === '1-1'}}"  class="main">
+  <!-- 富文本 -->
+  <template is="wxParse" data="{{wxParseData:content.nodes}}"></template>
+  <view class="p-10">
+    
+    <!-- 第一个 -->
+    <view class="p-r m-top10" catchtap="gotoDetail" data-id="{{theme.goods_list[0].goods_id}}" data-type="{{theme.goods_list[0].goods_type}}">
+      <image src="{{theme.goods_list[0].cover_image}}" mode="widthFix"></image>
+      <view wx:if="{{ theme.goods_list[0].sku[0].line_price - theme.goods_list[0].sku[0].goods_price > 0}}" class="discount">立省{{ theme.goods_list[0].sku[0].line_price - theme.goods_list[0].sku[0].goods_price}}元</view>
+    </view>
+    
+    <view class="p-r m-top10 dis-flex flex-x-between">
+      <!-- 第二、三个 -->
+      <view wx:for="{{theme.goods_list}}" wx:key="index" wx:if="{{index > 0 && index < 3}}" class="p-r two-img-11" catchtap="gotoDetail" data-id="{{item.goods_id}}" data-type="{{item.goods_type}}">
+        <view class="img">
+          <image src="{{item.cover_image}}" mode="widthFix"></image>
+        </view>
+        <view class="price">
+          <view class="dis-flex">
+            <text class="good-price f-22 f-w col-purple">粉丝价{{item.sku[0].goods_price}}RMB</text>
+            <text class="m-l-10 line-price f-16 col-9">{{item.sku[0].line_price}}RMB</text>
+          </view>
+          <view class="dis-flex m-top10">
+            <text class="buy-btn b-purple f-18 col-f">即刻购买</text>
+          </view>
+        </view>
+        <view wx:if="{{ item.sku[0].line_price - item.sku[0].goods_price > 0}}" class="discount">立省{{ item.sku[0].line_price - item.sku[0].goods_price}}元</view>
+      </view>
+    </view>
+    
+    <!-- 第四个商品开始 -->
+    <view wx:for="{{theme.goods_list}}" wx:key="index" wx:if="{{index > 2}}" class="p-r m-top10" catchtap="gotoDetail"  data-id="{{item.goods_id}}" data-type="{{item.goods_type}}">
+      <image src="{{item.cover_image}}" mode="widthFix"></image>
+      <view wx:if="{{ item.sku[0].line_price - item.sku[0].goods_price > 0}}" class="discount">立省{{ item.sku[0].line_price - item.sku[0].goods_price}}元</view>
+    </view>  
+    
   </view>
-  <image wx:for="{{theme.goods_list}}" wx:key="index" wx:if="{{index > 2}}" src="{{item.cover_image}}" mode="widthFix" class="m-top10"></image>
 </view>
 
+
+
 <!-- 模板2 -->
-<view wx:if="{{theme.brand_theme_template === '1-2'}}"  class="main p-15 b-f">
-  <view class="m-top20 oh">
-    <image src="{{theme.goods_list[0].cover_image}}" mode="widthFix" class="fl two-img-12"></image>
-    <view class="center-white-11"></view>
-    <image src="{{theme.goods_list[1].cover_image}}" mode="widthFix" class="fr two-img-12"></image>
-  </view>
-  <view class="m-top20 oh">
-    <image src="{{theme.goods_list[2].cover_image}}" mode="widthFix" class="fl two-img-12"></image>
-    <view class="center-white-11"></view>
-    <image src="{{theme.goods_list[3].cover_image}}" mode="widthFix" class="fr two-img-12"></image>
-  </view>
-  <image src="{{theme.goods_list[4].cover_image}}" mode="widthFix" class="m-top20"></image>
+<view wx:if="{{theme.brand_theme_template === '1-2'}}"  class="main b-f">
   
-  
+  <!-- 富文本 -->
+  <template is="wxParse" data="{{wxParseData:content.nodes}}"></template>
+  <view class="p-30">
+    <!-- 前四个 -->
+    <view class="m-top30 dis-flex flex-x-between flex-wrap">
+      <view wx:for="{{theme.goods_list}}" wx:key="index" wx:if="{{index < 4}}" class="two-img-12" catchtap="gotoDetail"  data-id="{{item.goods_id}}" data-type="{{item.goods_type}}">
+        <view class="img">
+          <image src="{{item.cover_image}}" mode="widthFix"></image>
+        </view>
+        <view class="p-15 f-20 f-w col-13">原价{{item.sku[0].line_price}}元</view>
+        <view class="p-15 f-24 f-w col-f3f">粉丝价{{item.sku[0].good_price}}元
+          <text class="f-12">限时购买</text>
+        </view>
+        
+        <view class="good-title b-13 f-16 col-f t-c onelist-hidden">{{item.goods_name}}</view>
+      </view>
+    </view>
+    <!-- 第五个 -->
+    <view wx:if="{{theme.goods_list > 3}}" class="one-allline" catchtap="gotoDetail"  data-id="{{theme.goods_list[4].goods_id}}" data-type="{{theme.goods_list[4].goods_type}}">
+      <image src="{{theme.goods_list[4].cover_image}}" mode="widthFix"></image>
+    </view>
+    <!-- 第六个到16个 -->
+    <view class="m-top30 dis-flex flex-x-between flex-wrap">
+      <view wx:for="{{theme.goods_list}}" wx:key="index" wx:if="{{index > 4 && index < 16}}" class="two-img-12" catchtap="gotoDetail"  data-id="{{item.goods_id}}" data-type="{{item.goods_type}}">
+        <view class="img">
+          <image src="{{item.cover_image}}" mode="widthFix"></image>
+        </view>
+        <view class="p-15 f-24 col-13 onelist-hidden">{{item.goods_name}}</view>
+        <view class="p-15 f-20 col-13">原价{{item.sku[0].line_price}}元</view>
+        <view class="p-15 f-24 f-w col-purple">粉丝价{{item.sku[0].good_price}}元
+          <text class="f-12">限时购买</text>
+        </view>
+      </view>
+    </view>
+    <!-- 大于16个 -->
+    <view wx:for="{{theme.goods_list}}" wx:key="index" wx:if="{{index > 15}}" class="one-allline" catchtap="gotoDetail"  data-id="{{item.goods_id}}" data-type="{{item.goods_type}}">
+      <image src="{{item.cover_image}}" mode="widthFix"></image>
+    </view>
+    
+  </view>
 </view>

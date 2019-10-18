@@ -38,7 +38,7 @@
               <text class="m-l-10">积分：{{ detail.get_integral }}</text>
             </view>
             <view>
-              <text class="sell-point m-top10 b-33 f-20 col-purple">{{ detail.selling_point }}</text>
+              <text wx:if="{{detail.selling_point}}" class="sell-point m-top10 b-33 f-20 col-purple">{{ detail.selling_point }}</text>
             </view>
           </view>
           <view class="right goods__share dis-flex m-top20">

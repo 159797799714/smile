@@ -34,10 +34,10 @@ Page({
     //   icon: '../../images/user/menu1-3.png',
     //   name: '我的消息'
     // },  
-    {
-      icon: '../../images/user/menu1-2.png',
-      name: '我的分享'
-    }
+    // {
+    //   icon: '../../images/user/menu1-2.png',
+    //   name: '我的分享'
+    // }
     // , {
     //   icon: '../../images/user/menu1-4.png',
     //   name: '客服小蜜'

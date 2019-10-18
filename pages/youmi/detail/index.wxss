@@ -111,8 +111,9 @@ page {
 }
 
 .see-all-comment {
-  padding-left: 150rpx;
-  padding-bottom: 60rpx;
+  width: 100%;
+  padding: 20rpx 0;
+  text-align: center;
 }
 
 /* 没有评论 */

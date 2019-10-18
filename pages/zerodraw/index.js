@@ -108,8 +108,7 @@ Page({
       return
     }
     let param = {
-      goods_id: e.currentTarget.dataset.good_id,
-      activity_category_id: e.currentTarget.dataset.activity_category_id
+      goods_id: e.currentTarget.dataset.good_id
     }
     wx.navigateTo({
       url: 'detail/index?form=' + JSON.stringify(param)

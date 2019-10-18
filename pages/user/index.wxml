@@ -28,12 +28,12 @@
     
     <!-- 菜单栏1 -->
     <view class="menu">
-      <view wx:for="{{ munulist1 }}" wx:key="index" wx:if="{{ index < 3 }}" class="menu-item t-c">
+      <navigator url='/pages/youmi/user/index?id={{userInfo.user_id}}' class="menu-item t-c" >
         <view class="item-icon">
-          <image src="{{ item.icon }}"></image>
+          <image src="../../images/user/menu1-2.png"></image>
         </view>
-        <view class="item-name m-top10">{{ item.name }}</view>
-      </view>
+        <view class="item-name m-top10">我的分享</view>
+      </navigator>
       <view class="menu-item">
         <button open-type="contact" sessionFrom="weapp" class="t-c">
           <view class="item-icon">

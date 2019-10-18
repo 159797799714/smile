@@ -15,7 +15,7 @@
         <view class="info border-box">
           <view class="user">
             <view class="userImg">
-              <image src="{{ item.headimg.file_path }}" mode=""></image>
+              <image src="{{ item.headimg.file_path || item.headimg }}" mode=""></image>
             </view>
             <view class="userName onelist-hidden col-f">{{ item.author }}</view>
           </view>
