@@ -48,11 +48,14 @@
                     </view>
                     <text class="goods-number">￥{{li.total_pay_price * 100 / 100}}元</text>  
                   </view>
-                  <view wx:if="{{num === item.goods.length - 1 }}" class="t-r">
-                    <text class="f-24 col-9">共计:{{ item.goods.length }}件</text>
-                    <text class="m-l-10 f-24 col-9">合计:￥{{ item.pay_price * 100 /100 }}元</text>
-                  </view>
+                  <navigator url="/pages/order/express/express?order_id={{item.order_id}}&type=user&order_goods_id={{li.order_goods_id}}" wx:if="{{item.delivery_status.value==20 && item.receipt_status.value == 10}}">
+                    <view class="btn-default">查看物流</view>
+                  </navigator>
                 </view>
+              </view>
+              <view wx:if="{{num === item.goods.length - 1 }}" class="t-r">
+                <text class="f-24 col-9">共计:{{ item.goods.length }}件</text>
+                <text class="m-l-10 f-24 col-9">合计:￥{{ item.pay_price * 100 /100 }}元</text>
               </view>
             </view>
           </view>
@@ -83,14 +86,14 @@
                 <view wx:if="{{item.pay_status.value==10}}" catchtap="payOrder" class="btn-main" data-id="{{item.order_id}}">立即付款</view>
                 
                 <!-- 查看物流  -->
-                <navigator url="/pages/order/express/express?order_id={{item.order_id}}&type=user" wx:if="{{item.delivery_status.value==20 && item.receipt_status.value == 10}}">
+                <!-- <navigator url="/pages/order/express/express?order_id={{item.order_id}}&type=user" wx:if="{{item.delivery_status.value==20 && item.receipt_status.value == 10}}">
                   <view class="btn-default">查看物流</view>
-                </navigator>
+                </navigator> -->
                 
                 <!-- 确认收货 -->
                 <view wx:if="{{item.delivery_status.value==20 && item.receipt_status.value == 10}}" catchtap="receipt" class="btn-main" data-id="{{item.order_id}}">确认收货</view>
                 
-                <!-- 确认收货 -->
+                <!-- 删除订单 -->
                 <view wx:if="{{item.order_status.value === 30}}" catchtap="delOrder" class="btn-main" data-id="{{item.order_id}}">删除订单</view>
                 
                 <!-- 订单评价 -->

@@ -10,7 +10,7 @@
       <view class="wrapper" wx:if="{{list.data.length > 0}}">
         <view wx:for="{{list.data}}" wx:key="this" class="p-r order-item m-b-20 b-13">
           <form bindsubmit="navigateToDetail" report-submit="true">
-            <button class="btn-normal" formType="submit" data-id="{{ item.order_id }}">
+            <view class="btn-normal" formType="submit" data-id="{{ item.order_id }}">
               <!-- 订单状态  -->
               <view class="order-header dis-flex">
                 <view class="flex-box t-l">
@@ -37,15 +37,19 @@
                         </view>
                         <text class="goods-number">￥{{li.total_pay_price * 100 / 100}}元</text>
                       </view>
-                      <view wx:if="{{num === item.goods.length - 1 }}" class="t-r">
-                        <text class="f-24 col-9">共计:{{ item.goods.length }}件</text>
-                        <text class="m-l-10 f-24 col-9">合计:￥{{ item.pay_price * 100 /100 }}元</text>
-                      </view>
+                      <!-- 查看物流 -->
+                      <navigator url="/pages/order/express/express?order_id={{item.order_id}}&type=sharing&order_goods_id={{li.order_goods_id}}" wx:if="{{item.delivery_status.value==20 && item.receipt_status.value == 10}}">
+                        <view class="btn-default">查看物流</view>
+                      </navigator>
                     </view>
+                  </view>
+                  <view wx:if="{{num === item.goods.length - 1 }}" class="t-r">
+                    <text class="f-24 col-9">共计:{{ item.goods.length }}件</text>
+                    <text class="m-l-10 f-24 col-9">合计:￥{{ item.pay_price * 100 /100 }}元</text>
                   </view>
                 </view>
               </view>
-            </button>
+            </view>
 
             <!-- 底部区  -->
             <view class="order-box b-13">
@@ -85,12 +89,6 @@
                     <view wx:if="{{item.delivery_status.value==20 && item.receipt_status.value == 10}}" class="btn-group-item">
                       <view catchtap="receipt" class="btn-main" data-id="{{item.order_id}}">确认收货</view>
                     </view>
-                    
-                    <!-- 查看物流  -->
-                    <navigator url="/pages/order/express/express?order_id={{item.order_id}}&type=sharing" wx:if="{{item.delivery_status.value==20 && item.receipt_status.value == 10}}">
-                      <view class="btn-default">查看物流</view>
-                    </navigator>
-                    
                     <!-- 订单评价  -->
                     <view wx:if="{{item.order_status.value==30 && item.is_comment==0}}" class="btn-group-item">
                       <view catchtap="comment" class="btn-default" data-id="{{item.order_id}}">评价</view>

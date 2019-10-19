@@ -17,17 +17,18 @@ Page({
   onLoad: function(options) {
     console.log(options)
     // 获取物流动态
-    this.getExpressDynamic(options.order_id, options.type);
+    this.getExpressDynamic(options.order_id, options.type, options.order_goods_id);
   },
 
   /**
    * 获取物流动态
    */
-  getExpressDynamic: function(order_id, type) {
+  getExpressDynamic: function(order_id, type, goods_id) {
     let _this = this,
-      url= type === 'sharing'? 'sharing.order/express': 'user.order/express';
+      url= type === 'sharing'? 'sharing.order/goodsExpress': 'user.order/goodsExpress';
     App._get(url, {
-        order_id
+        order_id: order_id,
+        order_goods_id: goods_id
       }, function(result) {
         _this.setData(result.data);
       },
