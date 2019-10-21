@@ -113,12 +113,12 @@
     </view>
     
     <view class="menu">
-      <navigator wx:for="{{ munulist3 }}" wx:key="index" url="{{ item.url }}" class="menu-item t-c">
+      <view wx:for="{{ munulist3 }}" wx:key="index" class="menu-item t-c" catchtap="goDealer" data-url="{{item.url}}" data-status="{{is_dealer}}">
         <view class="item-icon">
           <image src="{{ item.icon }}"></image>
         </view>
         <view class="item-name m-top10">{{ item.name }}</view>
-      </navigator>
+      </view>
     </view>
   </view>
   

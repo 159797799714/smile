@@ -1,25 +1,52 @@
-<view class="container b-15 p-r">
-  <image src="{{ new_user_share.background }}" class="bg" mode="scaleToFill"></image>
-  <view class="main p-a dis-flex flex-x-center flex-dir-column border-box" style="padding: {{ height / 812 * 120 + 'rpx' }} 0rpx;">
-    <view class="title dis-flex flex-x-center">
-      <image src="{{ new_user_share.title }}" mode="widthFix" style="width: {{ height / 812 * 70 + '%' }}"></image>
-    </view>
-    <view class="sub-title dis-flex flex-x-center">
-      <image src="{{ new_user_share.subtitle }}" mode="widthFix" style="width: {{ height / 812 * 70 + '%' }}"></image>
-    </view>
-    <view class="info border-box">
-      <view class="word col-f f-26 f-w" wx:for="{{ info }}" wx:for-item="item" wx:key="index">
-        <view class="info-title"> {{ index + 1 + '.' }}{{ item.title }}</view>
-        <view class="info-content">{{ item.content }}</view>
+<swiper indicator-dots="true" indicator-color="#999" indicator-active-color="#fff">
+  <!-- 新人红包说明、 -->
+  <swiper-item>
+    <view class="big-box dis-flex flex-dir-column">
+      <view class="redBoxBg">
+        <image src="{{banner}}" mode="widthFix"></image>
       </view>
+      <view class="content flex-box">
+        <view wx:for="{{redBoxList}}" wx:key="index" class="red-item">
+          <view class="dis-flex flex-x-between">
+            <view class="word p-r f-18 col-f">{{item.coupon_type.text}}</view>
+            <text class="f-90 col-f">{{item.reduce_price * 100 /100}}</text>
+            <view class="fr pull-btn {{item.is_receive?'b-cc': 'b-13'}} f-20 col-93f" catchtap="getRedBox" data-id="{{item.coupon_id}}" data-index="{{index}}">{{item.is_receive?'已经领取': '等待领取'}}</view>
+          </view>
+          <view class="m-top10 onelist-hidden f-20 col-13">{{item.name}}</view>
+        </view>
+      </view>  
     </view>
-    <view class="bottom">
-      <view class="btn dis-flex flex-x-center">
-        <image src="{{ new_user_share.experience }}" mode="aspectFit" style="width: {{ height / 812 * 200 + 'rpx' }}" catchtap="godealer"></image>
+    
+  </swiper-item>
+  
+  <!-- 分销说明 -->
+  <swiper-item>
+    <view class="container b-15 p-r">
+      <image src="{{ new_user_share.background }}" class="bg" mode="scaleToFill"></image>
+      <view class="main p-a dis-flex flex-x-center flex-dir-column border-box" style="padding: {{ height / 812 * 120 + 'rpx' }} 0rpx;">
+        <view class="title dis-flex flex-x-center">
+          <image src="{{ new_user_share.title }}" mode="widthFix" style="width: {{ height / 812 * 70 + '%' }}"></image>
+        </view>
+        <view class="sub-title dis-flex flex-x-center">
+          <image src="{{ new_user_share.subtitle }}" mode="widthFix" style="width: {{ height / 812 * 70 + '%' }}"></image>
+        </view>
+        <view class="info border-box">
+          <view class="word col-f f-26 f-w" wx:for="{{ info }}" wx:for-item="item" wx:key="index">
+            <view class="info-title"> {{ index + 1 + '.' }}{{ item.title }}</view>
+            <view class="info-content">{{ item.content }}</view>
+          </view>
+        </view>
+        <view class="bottom">
+          <view class="btn dis-flex flex-x-center">
+            <image src="{{ new_user_share.experience }}" mode="aspectFit" style="width: {{ height / 812 * 200 + 'rpx' }}" catchtap="godealer"></image>
+          </view>
+          <view class="small-btn dis-flex flex-x-center">
+            <image src="{{ new_user_share.noexperience }}" mode="aspectFit" style="width: {{ height / 812 * 100 + 'rpx' }}" catchtap="goBack"></image>
+          </view>
+        </view>
       </view>
-      <view class="small-btn dis-flex flex-x-center">
-        <image src="{{ new_user_share.noexperience }}" mode="aspectFit" style="width: {{ height / 812 * 100 + 'rpx' }}" catchtap="goBack"></image>
-      </view>
-    </view>
-  </view>
-</view>
+    </view>  
+  </swiper-item>
+  
+</swiper>
+  

@@ -1,0 +1,21 @@
+<view class="container b-15 f-24 col-9">
+  <view class="head">
+    <view class="head-img"></view>
+    <view class="head-title dis-flex flex-dir-column flex-x-center flex-y-center">
+      <view class="f-38 col-13 f-w t-c">抽奖规则</view>
+      <view class="m-top20 f-26 col-13 f-w t-c">惊喜不断 诸多好礼等你拿！</view>
+    </view>
+    <view class="content f-24 col-13">
+      <view>活动规则</view>
+      <view wx:for="{{roles}}" wx:key="index" class="section">
+        <text class="circle"></text>
+        <view class="words">{{index + '. ' + item.word}}</view>
+      </view>
+      <view class="m-top20">注意</view>
+      <view wx:for="{{matters}}" class="section">
+        <text class="circle"></text>
+        <view class="words">{{index + '. ' + item.word}}</view>
+      </view>
+    </view>
+  </view>
+</view>

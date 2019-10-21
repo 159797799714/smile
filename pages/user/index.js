@@ -195,7 +195,22 @@ Page({
       url: '/pages/setting/index/index'
     })
   },
-
+  
+  // 分销
+  goDealer(e) {
+    console.log(e)
+    let url= e.currentTarget.dataset.url,
+      is_dealer= e.currentTarget.dataset.status;
+    if(is_dealer) {
+      wx.navigateTo({
+        url: url
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/dealer/index/index'
+      })
+    }
+  },
   /**
    *我的订单导航跳转
    */

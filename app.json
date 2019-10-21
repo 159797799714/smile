@@ -62,6 +62,7 @@
     "pages/zerodraw/index",
     "pages/zerodraw/pastlook/index",
     "pages/zerodraw/detail/index",
+    "pages/zerodraw/remark/index",
     "pages/loading/index",
     "pages/member/index",
     "pages/setting/index/index",

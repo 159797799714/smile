@@ -55,7 +55,7 @@
           <image src="{{item.cover_image}}" mode="widthFix"></image>
         </view>
         <view class="p-15 f-20 f-w col-13">原价{{item.sku[0].line_price}}元</view>
-        <view class="p-15 f-24 f-w col-f3f">粉丝价{{item.sku[0].good_price}}元
+        <view class="p-15 f-24 f-w col-f3f">粉丝价{{item.sku[0].goods_price * 100 / 100}}元
           <text class="f-12">限时购买</text>
         </view>
         

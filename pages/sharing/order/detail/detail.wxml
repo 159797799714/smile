@@ -12,7 +12,7 @@
 
 
     <!-- 物流信息 -->
-    <view class="flow-all-money b-13 padding-box m-top20 b-b" wx:if="{{ order.delivery_type.value == deliverys.EXPRESS.value && order.delivery_status.value == 20 }}">
+    <!-- <view class="flow-all-money b-13 padding-box m-top20 b-b" wx:if="{{ order.delivery_type.value == deliverys.EXPRESS.value && order.delivery_status.value == 20 }}">
       <navigator class="dis-flex" hover-class="none" url="/pages/order/express/express?order_id={{order.order_id}}&type=sharing">
         <view class="flex-box">
           <view class="dis-flex flow-all-list-cont">
@@ -26,17 +26,15 @@
           <text class="iconfont icon-xiangyoujiantou user-orderJtou"></text>
         </view>
       </navigator>
-    </view>
+    </view> -->
 
     <!-- 商品列表 -->
     <view class="flow-all-money b-13 padding-box m-top20">
-      <!-- <view class="padding-box b-13"> -->
       <view class="order-cont dis-flex">
         <view class="order-time">
           <text>订单时间: {{order.create_time}}</text>
         </view>
       </view>
-      <!-- </view> -->
     </view>
     <!-- 商品详情 -->
     <view class="padding-box b-13">

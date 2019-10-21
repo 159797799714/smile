@@ -74,7 +74,7 @@ image{
 .two-img-12{
   position: relative;
   margin-bottom: 30rpx;
-  width: calc(50% - 30rpx);
+  width: calc(50% - 10rpx);
   background: rgb(223, 204, 38);
   font-family: FZLanTingHeiS-H-GB;
   letter-spacing: 2rpx;

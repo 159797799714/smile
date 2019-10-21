@@ -50,10 +50,10 @@
       <!-- 还未开奖未参与抽奖 -->
       <view wx:if="{{ leave_time !== '00:00:00' && detail.isremind === 'no' }}" class="dis-flex flex-x-between flex-y-end col-9">
         <text class="f-jlinxin f-36">抽奖倒计时</text>
-        <view class="f-24">
-          <text>抽奖详情</text>
+        <navigator url="/pages/zerodraw/remark/index" class="f-24">
+          <text>抽奖说明</text>
           <text class="iconfont icon-xiangyoujiantou"></text>
-        </view>
+        </navigator>
       </view>
       <!-- 未开奖已抽奖 -->
       <view wx:if="{{ leave_time !== '00:00:00' }}" class="info t-c">

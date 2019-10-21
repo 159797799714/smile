@@ -1,4 +1,4 @@
-<view class="topStatus">
+<view wx:if="{{detail}}" class="topStatus">
   <view class="back-jiantou" catchtap="goBack">
     <text class="iconfont icon-xiangyoujiantou"></text>
   </view>

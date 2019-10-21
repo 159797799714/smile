@@ -10,7 +10,7 @@
       <view class="wrapper" wx:if="{{list.data.length > 0}}">
         <view wx:for="{{list.data}}" wx:key="this" class="p-r order-item m-b-20 b-13">
           <form bindsubmit="navigateToDetail" report-submit="true">
-            <view class="btn-normal" formType="submit" data-id="{{ item.order_id }}">
+            <view class="btn-normal">
               <!-- 订单状态  -->
               <view class="order-header dis-flex">
                 <view class="flex-box t-l">
@@ -24,11 +24,11 @@
               <view wx:for="{{item.goods}}" wx:key="goods" wx:for-item="li" wx:for-index="num" class="order-box order-img_list b-13">
                 <view class="order-shop">
                   <view class="order-list-box dis-flex">
-                    <view class="order-shop-left">
+                    <view class="order-shop-left" catchtap='navigateToDetail' data-id="{{ item.order_id }}">
                       <image src="{{li.image.file_path}}"></image>
                     </view>
                     <view class="right dis-flex flex-dir-column flex-x-between">
-                      <view class="dis-flex flex-x-between">
+                      <view class="dis-flex flex-x-between" catchtap='navigateToDetail' data-id="{{ item.order_id }}">
                         <view class="order-shop-right">
                           <view class="goods_name twolist-hidden f-24 col-9">{{ li.goods_name }}</view>
                           <view class="goods-attr">

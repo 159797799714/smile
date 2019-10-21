@@ -225,9 +225,7 @@ Page({
    * 跳转订单详情页
    */
   navigateToDetail: function(e) {
-    // 记录formId
-    App.saveFormId(e.detail.formId);
-    let order_id = e.detail.target.dataset.id;
+    let order_id = e.currentTarget.dataset.id;
     wx.navigateTo({
       url: './detail/detail?order_id=' + order_id
     });
