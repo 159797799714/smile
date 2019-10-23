@@ -2,12 +2,13 @@ const App = getApp();
 
 Page({
   data: {
-    scrollHeight: null,
-
     inputClearValue: '',
 
     flag: false,
     name: '',
+    
+    scrollTop: 0,
+    isTop: false,
 
     brandId: '',
     categoryId: '',
@@ -110,10 +111,6 @@ Page({
    */
   onLoad: function(option) {
     let _this = this;
-
-    // 设置商品列表高度
-    _this.setListHeight();
-     
      console.log('option', option)
     // 记录option
     _this.setData({
@@ -128,10 +125,7 @@ Page({
       if(_this.data.tabIndex === 0) {
         _this.getArticleList()
         _this.getArticleLabelList()
-      }else {
-        _this.setData({
-          scrollHeight: _this.data.scrollHeight - 50,
-        })
+      } else {
         _this.searchGoods()
         // 获取外层品牌列表
         let arr = []
@@ -145,9 +139,7 @@ Page({
             console.log(_this.data.filterList)
           })  
         })
-        
       }
-      
       // _this.getBrandsList()
     });
 
@@ -242,7 +234,8 @@ Page({
       // 0元抽奖3
       case 3:
         let form = {
-          goods_id: goods_id
+          goods_id: goods_id,
+          activity_category_id: e.currentTarget.dataset.activity_category_id
         }
         wx.navigateTo({
           url: '../zerodraw/detail/index?form=' + JSON.stringify(form)
@@ -467,69 +460,6 @@ Page({
     // console.log(_this.data.brandId, _this.data.categoryId, _this.data.promotionsType)
     _this.searchGoods()
 
-// 之前的点击筛选
-//     if(charIndex === -1) {
-//       switch (index) {
-//         case 0:
-//           _this.data.brandId = id
-//           break;
-//         case 1:
-//           _this.data.categoryId = id
-//           break;
-//         case 2:
-//           _this.data.promotionsType = id
-//         default:
-//           break;
-//       }
-//       this.data.captionList[index].selectIndexArr = ['默认']
-//       let arr = [];
-//       let obj = this.data.captionList[index].arr
-//       for (let i in obj) {
-//           arr.push(obj[i])
-//       }
-//       arr.map((item,index1)=>{
-//         if(index == 0) {
-//           index1 += 1
-//         }
-//         if(index1 == num) {
-//           item.select = true
-//         }else {
-//           item.select = false
-//         }
-//       })
-//       this.data.captionList[index].arr = arr
-//       this.data.captionList[index].selectIndexArr.push(name)
-//       _this.setData({
-//         captionList : _this.data.captionList
-//       })
-// 
-//       _this.searchGoods()
-// 
-//       return
-//     }
-//     if (charIndex !== -1) {
-//       switch (index) {
-//         case 0:
-//           _this.data.brandId = ""
-//           break;
-//         case 1:
-//           _this.data.categoryId = ""
-//           break;
-//         case 2:
-//           _this.data.promotionsType = ""
-//         default:
-//           break;
-//       }
-//       this.data.captionList[index].selectIndexArr.splice(charIndex, 1)
-//       this.data.captionList[index].arr[num].select = false
-//       _this.setData({
-//         captionList : _this.data.captionList
-//       })
-//       
-//       _this.searchGoods()
-// 
-//       return
-//     }
   },
 
   // 外层重置
@@ -608,9 +538,6 @@ Page({
     if(index === 0) {
       _this.getArticleList()
       _this.getArticleLabelList()
-      _this.setData({
-        scrollHeight: _this.data.scrollHeight + 50,
-      })
       wx.setNavigationBarTitle({
         title: "文章列表"
       })
@@ -618,8 +545,7 @@ Page({
     }
     if(index === 1) {
       this.setData({
-        shareTag: ['综合', '销量', '上架', '价格', '筛选'],
-        scrollHeight: this.data.scrollHeight - 50,
+        shareTag: ['综合', '销量', '上架', '价格', '筛选']
       })
       wx.setNavigationBarTitle({
         title: "商品列表"
@@ -675,22 +601,12 @@ Page({
         // 促销
         App._post_form('goods/promotions',{},function(result) {
           console.log("获取促销列表",result)
-          // result.data.promotions.forEach((item,index) => {
-          //   item.select = false
-          // });
           
           _this.setData({
             'captionList[0].arr': _this.data.filterList[0],
             'captionList[1].arr': _this.data.filterList[1],
             'captionList[2].arr': result.data.promotions
           })
-          // let list = _this.data.captionList
-          // list.forEach((item, index) => {
-          //   item.open = false
-          // })
-          // _this.setData({
-          //   captionList: list
-          // })
         })
       }
     } else {
@@ -746,20 +662,6 @@ Page({
         _this.setData({
           list: resList,
           isLoading: false,
-        });
-      }
-    });
-  },
-
-  /**
-   * 设置商品列表高度
-   */
-  setListHeight: function() {
-    let _this = this;
-    wx.getSystemInfo({
-      success: function(res) {
-        _this.setData({
-          scrollHeight: res.windowHeight - 170,
         });
       }
     });
@@ -834,7 +736,7 @@ Page({
       path: "/pages/category/index?" + App.getShareUrlParams()
     };
   },
-
+  
   //点赞
   clickZan(e) {
     let index = e.currentTarget.dataset.index
@@ -874,5 +776,17 @@ Page({
       url: '../search/index',
     })
   },
+  // 商品滚动
+  scrollingView(e) {
+    this.setData({
+      isTop: e.detail.scrollTop > 200
+    })
+  },
+  
+  goTop() {
+    this.setData({
+      scrollTop: 0
+    })
+  }
 
 });

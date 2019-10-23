@@ -16,11 +16,6 @@
   </view>
   
 
-  <!-- 阴影 -->
- <!-- <view class="shadow">
-    <image src="../../images/shadow.png" mode="widthFix" />
-  </view>
- -->
   <!-- 分类 -->
   <view class="shop-classify oh">
     <view class="fl shop-classify-item dis-flex flex-dir-column flex-y-center flex-x-center" wx:for="{{ shopClassify }}" wx:key="this">

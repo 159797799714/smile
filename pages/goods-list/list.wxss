@@ -29,6 +29,8 @@ page {
 
 .container {
   position: relative;
+  height: 100%;
+  width: 100%;
 }
 
 .index-cont-search {
@@ -143,7 +145,7 @@ page {
 }
 .filter-tags{
   height: 50rpx;
-  padding: 0 30rpx 30rpx;
+  padding: 0 30rpx 10rpx;
   display: flex;
 }
 .filter-tags .filter-tag{
@@ -225,9 +227,7 @@ page {
 
 /* 分享或商品列表 */
 .culture{
-  /* flex: 1;
-  display: flex;
-  flex-direction: column; */
+ overflow: hidden;
 }
 /* 商品样式1 */
 .main{
@@ -497,10 +497,7 @@ page {
 
 
 .list-header {
-  position: fixed;
-  top: -1rpx;
-  left: 0;
-  right: 0;
+  
 }
 
 .no-more {
@@ -572,4 +569,15 @@ page {
 
 .reset {
   background: rgba(255, 255, 255, 0.3);
+}
+
+.back-icon{
+  position: fixed;
+  right: 40rpx;
+  bottom: 100rpx;
+  height: 40rpx;
+  width: 40rpx;
+  padding: 10rpx;
+  border-radius: 100%;
+  background: rgba(0, 0, 0, 0.5);
 }

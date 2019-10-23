@@ -9,18 +9,10 @@
     </view>
   </view>
   <scroll-view scroll-y="true" class="main">
-    <!-- <swiper wx:if="{{ banners.length > 0 }}" class="swiper" style="margin-bottom: {{ !openingTime ? '30rpx' : '' }}" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color="{{indicatorActiveColor}}">
-        <swiper-item wx:for="{{ banners }}" wx:key="this">
-          <view class="swiper-item bg_primary">
-              <image src="{{ item.file_path }}" mode="widthFix" />
-          </view>
-        </swiper-item>
-      </swiper> -->
-
     <!-- DIY组件 轮播图 -->
     <diy-component wx:if="{{ swiperList[0].data.length > 0 }}" diyItems="{{ swiperList }}"></diy-component>
 
-    <view class="leave-time" wx:if="{{ openingTime }}">{{ title === '秒杀'?'秒杀': '抢购' }}，距离下场开始时间 <text>{{ openingTime }}</text></view>
+    <view class="leave-time" wx:if="{{ openingTime }}">{{ title === '秒杀'?'秒杀': '抢购' }}，距离下场开始时间 <text class="col-9">{{ openingTime }}</text></view>
     <!--  catchtap="toGoodDetail" -->
     <view catchtap="toGoodDetail" data-url="{{ item.surplus_inventory < 1 || item.isbuy === 'no_allow' ? '' : item.url }}" wx:for="{{ goodList }}"
       wx:key="index" class="item b-15">
@@ -44,9 +36,6 @@
               stroke-width="15" backgroundColor="#666666" class="progress" />
           </view>
         </view>
-        <!-- <view class="discount">
-            <text class="col-f3c">{{ item.discount }}折</text>
-          </view> -->
         <view class="price" hover-stop-propagation="true">
           <text wx:if="{{ nowState !== '已结束' && item.isbuy === 'allow'}}" class="buy my-button col-f">{{ item.surplus_inventory < 1 ? '已售完':'立即秒杀' }}</text>
           <text wx:if="{{ nowState === '已结束' || item.isbuy === 'no_allow' && nowState !== '即将开始' }}" class="buy my-button col-f">秒杀结束</text>
@@ -54,7 +43,7 @@
             data-goodid="{{ item.goods_id }}" data-activityCategoryId="{{ item.activity_category_id }}" data-isremind="{{ item.isremind }}"
             report-submit="true">
             <!-- <text>{{ item.isremind == 'no' ? '提醒我' : '取消提醒'}} ></text> -->
-            <button class="buy my-button col-f" form-type="submit">
+            <button class="buy my-button col-f b-13" form-type="submit">
               {{ item.isremind == 'no' ? '提醒我' : '取消提醒'}} >
             </button>
           </form>

@@ -47,9 +47,9 @@
   
   <!-- 富文本 -->
   <template is="wxParse" data="{{wxParseData:content.nodes}}"></template>
-  <view class="p-30">
+  <view class="m-top10 p-20">
     <!-- 前四个 -->
-    <view class="m-top30 dis-flex flex-x-between flex-wrap">
+    <view class="dis-flex flex-x-between flex-wrap">
       <view wx:for="{{theme.goods_list}}" wx:key="index" wx:if="{{index < 4}}" class="two-img-12" catchtap="gotoDetail"  data-id="{{item.goods_id}}" data-type="{{item.goods_type}}">
         <view class="img">
           <image src="{{item.cover_image}}" mode="widthFix"></image>

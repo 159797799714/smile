@@ -1,15 +1,13 @@
 page {
-  background: #fff;
   font-size: 32rpx;
 }
 
 .container {
-  padding: 0 60rpx;
+  padding: 88rpx 60rpx 0;
 }
 
 .wechatapp {
   padding: 80rpx 0 48rpx;
-  border-bottom: 1rpx solid #e3e3e3;
   margin-bottom: 72rpx;
   text-align: center;
 }
@@ -17,32 +15,31 @@ page {
 .wechatapp .header {
   width: 190rpx;
   height: 190rpx;
-  border: 2px solid #fff;
-  margin: 0rpx auto 0;
+  margin: 0 auto;
   border-radius: 50%;
+  border: 2rpx solid #ccc;
   overflow: hidden;
   box-shadow: 1px 0px 5px rgba(50, 50, 50, 0.3);
 }
 
 .auth-title {
-  color: #585858;
-  font-size: 40rpx;
-  margin-bottom: 40rpx;
+  margin-bottom: 50rpx;
 }
 
 .auth-subtitle {
-  color: #888;
-  margin-bottom: 88rpx;
+  margin-bottom: 15rpx;
 }
-
+.treaty{
+  margin-bottom: 70rpx;
+}
 .login-btn {
   border: none;
   height: 88rpx;
   line-height: 88rpx;
-  background: #04be01;
-  color: #fff;
-  font-size: 11pt;
   border-radius: 999rpx;
+}
+.b-cc{
+  background: #ccc;
 }
 
 .login-btn::after {
@@ -52,3 +49,32 @@ page {
 .login-btn.button-hover {
   box-shadow: inset 0 5rpx 30rpx rgba(0, 0, 0, 0.15);
 }
+
+/*  重写 checkbox 样式  */
+/* 未选中的 背景样式 */
+checkbox .wx-checkbox-input{
+  position: relative;
+  top: -8rpx;
+   width: 24rpx; /* 背景的宽 */
+   height: 24rpx; /* 背景的高 */
+   background: #131313;
+   border: 1px solid #666;
+}
+/* 选中后的 背景样式 （红色背景 无边框 可根据UI需求自己修改） */
+checkbox .wx-checkbox-input.wx-checkbox-input-checked{
+   border: 1px solid #666;
+   background: #131313;
+}
+/* 选中后的 对勾样式 （白色对勾 可根据UI需求自己修改） */
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
+   border-radius: 50%;/* 圆角 */
+   width: 24rpx;/* 选中后对勾大小，不要超过背景的尺寸 */
+   height: 24rpx;/* 选中后对勾大小，不要超过背景的尺寸 */
+   line-height: 24rpx;
+   text-align: center;
+   font-size: 16rpx; /* 对勾大小 30rpx */
+   color: #ff00ff; /* 对勾颜色 白色 */
+   background: transparent;
+   transform:translate(-50%, -50%) scale(1);
+   -webkit-transform:translate(-50%, -50%) scale(1);
+   }

@@ -1,14 +1,19 @@
-<!-- <view> -->
+
 <view class="container">
+  <view class="f-34 col-f f-w t-c">授权登录</view>
   <view class="wechatapp">
-    <!-- <image class="header" src="/images/wechatapp.png"></image> -->
     <view class="header">
       <open-data class="" type="userAvatarUrl"></open-data>
     </view>
   </view>
-  <view class="auth-title">申请获取以下权限</view>
-  <view class="auth-subtitle">获得你的公开信息（昵称、头像等）</view>
-  <button class="login-btn" openType="getUserInfo" lang="zh_CN" bindgetuserinfo="authorLogin">允许</button>
-  <button class="m-top20 login-btn" catchtap="reject">拒绝</button>
+  <view class="auth-title f-w f-40 col-9">申请获取以下权限</view>
+  <view class="auth-subtitle f-30 col-6">获得你的公开信息（昵称、头像等）</view>
+  <view class="dis-flex treaty">
+    <checkbox-group bindchange="checkboxChange">
+      <checkbox value="{{checked}}" checked="{{checked}}" color="#ff00ff"/>
+    </checkbox-group>
+    <view class="f-26 col-6">已经阅读并同意<text class="col-9" catchtap="goRegisterWord">《相关用户服务协议》</text></view>
+  </view>
+  <button class="m-top30 login-btn b-purple col-f" openType="getUserInfo" lang="zh_CN" bindgetuserinfo="authorLogin">允许</button>
+  <button class="m-top20 login-btn col-13 b-cc" catchtap="reject">拒绝</button>
 </view>
-<!-- </view> -->

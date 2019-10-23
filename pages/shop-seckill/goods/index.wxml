@@ -289,12 +289,13 @@
       </view>
       <!-- <view class="order-number b-63f" catchtap="onToggleTrade">加入购物车</view> -->
       <view wx:if="{{ activityStart && countDownTime !== '00:00:00' }}" class="buy-btn b-purple" catchtap="onToggleTrade">立即购买</view>
-      <view wx:else class="buy-btn b-66">活动结束</view>
-      <form class="order-bt" name="pushMsgFm" bindsubmit="remindMe" wx:if="{{ !activityStart }}" report-submit="true" >
+      
+      <form class="order-bt" name="pushMsgFm" bindsubmit="remindMe" wx:elif="{{ !activityStart }}" report-submit="true" >
         <button form-type="submit" class="f-30 col-f">
           {{ isremind == "no" ? '立即提醒' : '取消提醒'}}
         </button>
       </form>
+      <view wx:else class="buy-btn b-66">活动结束</view>
       <!-- <view wx:if="{{ !activityStart }}" catchtap="remindMe">{{ isremind == "no" ? '立即提醒' : '取消提醒'}}</view> -->
     </view>
   </view>

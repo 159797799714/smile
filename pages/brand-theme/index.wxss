@@ -64,8 +64,8 @@ image{
 .p-15{
   padding: 0 15rpx;
 }
-.p-30{
-  padding: 0 30rpx;
+.p-20{
+  padding: 0 20rpx;
 }
 .center-white-12{
   height: 100%;
@@ -73,7 +73,7 @@ image{
 }
 .two-img-12{
   position: relative;
-  margin-bottom: 30rpx;
+  margin-bottom: 20rpx;
   width: calc(50% - 10rpx);
   background: rgb(223, 204, 38);
   font-family: FZLanTingHeiS-H-GB;

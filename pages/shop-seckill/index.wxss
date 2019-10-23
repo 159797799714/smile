@@ -66,7 +66,6 @@ page{
   color: #666666;
 }
 .main .leave-time>text{
-  color: #131313;
   margin-left: 10rpx;
 }
 .item{

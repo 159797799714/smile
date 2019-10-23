@@ -22,6 +22,9 @@ Page({
       search: _this.data.searchName
     }, function(res) {
       console.log('搜索结果', res.data)
+      if(res.data.list.data.length === 0) {
+        App.showError('抱歉，没有搜到相关内容！')
+      }
       _this.setData({
         articleList: res.data.list.data
       })

@@ -261,7 +261,7 @@ App({
       console.log('post的else')
       isShowNavBarLoading || true;
       data.wxapp_id = App.siteInfo.uniacid;
-      data.token = wx.getStorageSync('token');
+      data.token = token? token: '6d96b9408fe75c9da42fd4d1b9582993'
       
       // 在当前页面显示导航条加载动画
       if (isShowNavBarLoading == true) {

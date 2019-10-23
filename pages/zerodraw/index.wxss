@@ -30,6 +30,7 @@ page{
 }
 .activity-list .activity-menu{
   flex: 1;
+  padding-left: 120rpx;
   height: 100%;
   display: flex;
   flex-wrap: nowrap;

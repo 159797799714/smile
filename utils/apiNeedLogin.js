@@ -30,13 +30,23 @@ module.exports = [
   
   // 购物车
   'cart/listsnew',
+  'cart/add',
   
   // 商城
   'cart/listsnew',
   'order/buyNowinventory',
   'order/buyNow',
   'goods/goodscollection',
-  'sharing.order/lists'
+  'sharing.order/lists',
+  
+  // 限时购
+  'flashsale/remind',
+  'flashsale/cancelremind',
+  
+  // 拼团
+  'sharing.order/buyNowinventory',
+  'luckydraw/remind'
+  
   
   
 ]
