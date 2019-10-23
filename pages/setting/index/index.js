@@ -8,7 +8,7 @@ Page({
       url: '/pages/address/index'
     }, {
       name: '关于我们',
-      url: '/pages/setting/about/about'
+      url: '/pages/setting/about/index'
     }]
   },
 

@@ -65,6 +65,13 @@ Page({
     });
   },
 
+  reject() {
+    // 跳转回原页面
+    wx.switchTab({
+      url: '/pages/index/index'
+    })
+  },
+  
   /**
    * 授权成功 跳转回原页面
    */

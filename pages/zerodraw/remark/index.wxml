@@ -9,12 +9,12 @@
       <view>活动规则</view>
       <view wx:for="{{roles}}" wx:key="index" class="section">
         <text class="circle"></text>
-        <view class="words">{{index + '. ' + item.word}}</view>
+        <view class="words">{{index + 1 + '. ' + item.word}}</view>
       </view>
       <view class="m-top20">注意</view>
       <view wx:for="{{matters}}" class="section">
-        <text class="circle"></text>
-        <view class="words">{{index + '. ' + item.word}}</view>
+        <text class="circle b-f0c"></text>
+        <view class="words">{{index + 1 + '. ' + item.word}}</view>
       </view>
     </view>
   </view>

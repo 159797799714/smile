@@ -24,9 +24,6 @@ Page({
     if(this.data.tabIndex === 0) {
       // 加载草场文章数据
       this.getArticleList()
-    } else if(this.data.tabIndex === 1){
-      // 关注文章数据
-      this.getFocusList()
     }
   },
   

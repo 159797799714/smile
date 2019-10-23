@@ -1,0 +1,5 @@
+
+<view class="container b-15 f-24 col-9">
+  
+  <rich-text nodes="{{content.content}}" bindtap="tap"></rich-text>
+</view>

@@ -1,8 +1,8 @@
 <view class="container b-15">
-  <navigator url="/pages/zerodraw/remark/index" class="header-bar">
+  <view url="/pages/zerodraw/remark/index" class="header-bar">
     <view class="name">优逸</view>
     <view class="logo"></view>
-  </navigator>
+  </view>
   <!-- 搜索框 -->
   <view class="index-search-box-bg">
     <view class="index-search-box">

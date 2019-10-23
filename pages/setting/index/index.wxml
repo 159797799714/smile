@@ -1,5 +1,5 @@
 <view class="container b-15">
-  <navigator url="../personal/index" class="header dis-flex flex-x-between flex-y-center b-b b-t" catchtap="goPersonal">
+  <navigator url="../personal/index" class="header dis-flex flex-x-between flex-y-center b-b b-t">
     <view class="user dis-flex flex-y-center">
       <view class="img">
         <open-data class="" lang="zh_CN" type="userAvatarUrl"></open-data>

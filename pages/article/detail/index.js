@@ -40,11 +40,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    // 获取文章详情
-    this.getArticleDetail(options.article_id);
     this.setData({
       article_id: options.article_id
     })
+  },
+  onShow() {
+    // 获取文章详情
+    this.getArticleDetail(this.data.article_id);
   },
 
   /**

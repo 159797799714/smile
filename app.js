@@ -11,6 +11,8 @@ const tabBarLinks = [
 
 // 工具类
 const util = require('./utils/util.js');
+// 需要登录的url列表
+const apiNeedLogin= require('./utils/apiNeedLogin.js');
 
 App({
 
@@ -23,7 +25,7 @@ App({
 
   // api地址
   api_root: '',
-  siteInfo: require('siteinfo.js'),
+  siteInfo: require('./utils/api.js'),
   
   // 调用登录的次数
   count: 0,
@@ -79,7 +81,7 @@ App({
    * 设置api地址
    */
   setApiRoot: function() {
-    this.api_root = this.siteInfo.siteroot + 'index.php?s=/api/';
+    this.api_root = this.siteInfo.siteroot;
   },
 
   /**
@@ -108,16 +110,16 @@ App({
     //   "pages/login/login" != currentPage.route &&
     //     wx.setStorageSync("currentPage", currentPage);
     // }
-    if(this.count < 2) {
+    // if(this.count < 2) {
       console.log('进来了', this.count)
       // 跳转授权页面
       wx.navigateTo({
         url: "/pages/login/login"
       });  
-    }
-    setTimeout(function() {
-      this.count = 0
-    }, 1000)
+    // }
+    // setTimeout(function() {
+    //   this.count = 0
+    // }, 500)
   },
 
   /**
@@ -170,34 +172,110 @@ App({
       }
    })
   },
+  
+  detectUrl(url) {
+    return apiNeedLogin.indexOf(url)
+  },
+  
   /**
    * get请求
    */
   _get: function(url, data, success, fail, complete, check_login) {
-    wx.showNavigationBarLoading();
-    // wx.showLoading({
-    //   title: '加载中',
-    // })
-    let App = this;
+    
+    let App = this,
+      isLogin= this.detectUrl(url) === -1,  // 等于-1时不需要登录
+      token= wx.getStorageSync('token'),
+      isDefault= token ? token === '6d96b9408fe75c9da42fd4d1b9582993': true;  // 是否是默认账号
     // 构造请求参数
     data = data || {};
-    data.wxapp_id = App.siteInfo.uniacid;
+    if(!isLogin && isDefault) {
+      console.log('get进来了else, ')
+      App.doLogin();
+    } else {
+      console.log('get 进来了else')
+      
+      wx.showNavigationBarLoading();
+      data.wxapp_id = App.siteInfo.uniacid;
+      data.token = token? token: '6d96b9408fe75c9da42fd4d1b9582993'
+      // 构造get请求
+      let request = function() {
+        wx.request({
+          url: App.api_root + url,
+          header: {
+            'content-type': 'application/json'
+          },
+          data: data,
+          success: function(res) {
+            if (res.statusCode !== 200 || typeof res.data !== 'object') {
+              console.log(res);
+              App.showError('网络请求出错');
+              return false;
+            }
+            if (res.data.code === -1) {
+              // 登录态失效, 重新登录
+              wx.hideNavigationBarLoading();
+              App.doLogin();
+            } else if (res.data.code === 0) {
+              App.showError(res.data.msg, function() {
+                fail && fail(res);
+              });
+              return false;
+            } else {
+              success && success(res.data);
+            }
+          },
+          fail: function(res) {
+            App.showError(res.errMsg, function() {
+              fail && fail(res);
+            });
+          },
+          complete: function(res) {
+            wx.hideNavigationBarLoading();
+            // setTimeout(function () {
+            //   wx.hideLoading()
+            // }, 500)
+            complete && complete(res);
+          },
+        });
+      };
+      // 判断是否需要验证登录
+      check_login ? App.doLogin(request) : request();
+    }
+    
+  },
 
-    // if (typeof check_login === 'undefined')
-    //   check_login = true;
-
-    // 构造get请求
-    let request = function() {
+  /**
+   * post提交
+   */
+  _post_form: function(url, data, success, fail, complete, isShowNavBarLoading) {
+    let App = this,
+      isLogin= this.detectUrl(url) === -1,  // 等于-1时不需要登录
+      token= wx.getStorageSync('token'),
+      isDefault= token ? token === '6d96b9408fe75c9da42fd4d1b9582993': true;  // 是否是默认账号
+    // 构造请求参数
+    data = data || {};
+    if(!isLogin && isDefault) {
+      console.log('post的if')
+      App.doLogin();
+    } else {
+      console.log('post的else')
+      isShowNavBarLoading || true;
+      data.wxapp_id = App.siteInfo.uniacid;
       data.token = wx.getStorageSync('token');
+      
+      // 在当前页面显示导航条加载动画
+      if (isShowNavBarLoading == true) {
+        wx.showNavigationBarLoading();
+      }
       wx.request({
         url: App.api_root + url,
         header: {
-          'content-type': 'application/json'
+          'content-type': 'application/x-www-form-urlencoded',
         },
+        method: 'POST',
         data: data,
         success: function(res) {
           if (res.statusCode !== 200 || typeof res.data !== 'object') {
-            console.log(res);
             App.showError('网络请求出错');
             return false;
           }
@@ -205,16 +283,17 @@ App({
             // 登录态失效, 重新登录
             wx.hideNavigationBarLoading();
             App.doLogin();
+            return false;
           } else if (res.data.code === 0) {
             App.showError(res.data.msg, function() {
               fail && fail(res);
             });
             return false;
-          } else {
-            success && success(res.data);
           }
+          success && success(res.data);
         },
         fail: function(res) {
+          // console.log(res);
           App.showError(res.errMsg, function() {
             fail && fail(res);
           });
@@ -225,68 +304,11 @@ App({
           //   wx.hideLoading()
           // }, 500)
           complete && complete(res);
-        },
+        }
       });
-    };
-    // 判断是否需要验证登录
-    check_login ? App.doLogin(request) : request();
-  },
-
-  /**
-   * post提交
-   */
-  _post_form: function(url, data, success, fail, complete, isShowNavBarLoading) {
-    let App = this;
-    // wx.showLoading({
-    //   title: '加载中',
-    // })
-    isShowNavBarLoading || true;
-    data.wxapp_id = App.siteInfo.uniacid;
-    data.token = wx.getStorageSync('token');
-
-    // 在当前页面显示导航条加载动画
-    if (isShowNavBarLoading == true) {
-      wx.showNavigationBarLoading();
     }
-    wx.request({
-      url: App.api_root + url,
-      header: {
-        'content-type': 'application/x-www-form-urlencoded',
-      },
-      method: 'POST',
-      data: data,
-      success: function(res) {
-        if (res.statusCode !== 200 || typeof res.data !== 'object') {
-          App.showError('网络请求出错');
-          return false;
-        }
-        if (res.data.code === -1) {
-          // 登录态失效, 重新登录
-          wx.hideNavigationBarLoading();
-          App.doLogin();
-          return false;
-        } else if (res.data.code === 0) {
-          App.showError(res.data.msg, function() {
-            fail && fail(res);
-          });
-          return false;
-        }
-        success && success(res.data);
-      },
-      fail: function(res) {
-        // console.log(res);
-        App.showError(res.errMsg, function() {
-          fail && fail(res);
-        });
-      },
-      complete: function(res) {
-        wx.hideNavigationBarLoading();
-        // setTimeout(function () {
-        //   wx.hideLoading()
-        // }, 500)
-        complete && complete(res);
-      }
-    });
+    
+    
   },
 
   /**

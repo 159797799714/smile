@@ -1,5 +1,5 @@
 .container{
-  padding: 50rpx 60rpx;
+  padding: 0 60rpx;
   line-height: 40rpx;
   letter-spacing: 2rpx;
 }
@@ -47,4 +47,7 @@
   margin-left: 30rpx;
   width: 500rpx;
   line-height: 36rpx;
+}
+.b-f0c{
+  background-color: #ff00cc;
 }

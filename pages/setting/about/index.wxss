@@ -1,0 +1,24 @@
+.header{
+  padding: 40rpx 80rpx 30rpx;
+  overflow: hidden;
+  
+}
+.user .img{
+  height: 97rpx;
+  width: 97rpx;
+  border-radius: 100%;
+  border: 1px solid #999;
+  overflow: hidden;
+}
+.user .name{
+  margin: auto 0;
+  padding-left: 28rpx;
+  line-height: 97rx;
+}
+.row{
+  padding: 28rpx 80rpx;
+  line-height: 24rpx;
+  font-size: 24rpx;
+  color: #999;
+  overflow: hidden;
+}

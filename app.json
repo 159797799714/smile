@@ -66,7 +66,8 @@
     "pages/loading/index",
     "pages/member/index",
     "pages/setting/index/index",
-    "pages/setting/about/about"
+    "pages/setting/about/index",
+    "pages/setting/about/detail/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#131313",
