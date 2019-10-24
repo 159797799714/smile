@@ -1,6 +1,6 @@
 <view class="container f-24">
   <view class="article-title b-b">
-    <input type="text" placeholder="标题是吸引别人看关注" placeholder-style="color: #666" value="{{ formData.article_title }}" bindinput="bindTitleInput"></input>
+    <input type="text" placeholder="标题是吸引别人看关注" placeholder-style="color: #666" value="{{ formData.article_title }}" bindinput="bindTitleInput" maxlength="50"></input>
   </view>
   <view class="article-content b-b">
     <textarea  placeholder="这一刻的分享" placeholder-style="color:#666" maxlength="2000" value="{{formData.article_content}}" bindinput="bindContentInput"></textarea>

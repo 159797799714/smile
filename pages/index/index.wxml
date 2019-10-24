@@ -17,7 +17,12 @@
   
   
   <view class="banner">
-    <diy-component scrollTopDist="{{ scrollTopDist }}" diyItems="{{ items }}"></diy-component>  
+     <!-- 轮播图 -->
+    <diy-banner  params="{{ params }}" dataList="{{ bannerList }}"></diy-banner> 
+    
+    <!-- 文章 -->
+    <diy-article scrollTopDist="{{ scrollTopDist }}" tabList="{{ tabList }}" dataList="{{ articleList }}" bind:parentEvent='onParentEvent'></diy-article>
+    
   </view>
   <!-- DIY组件 -->
   

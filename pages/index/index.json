@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "diy-component": "/components/diy/index"
+    "diy-banner": "../../components/diy/banner/banner",
+    "diy-article": "../../components/diy/article/article"
   },
   "backgroundTextStyle": "light",
   "backgroundColor": "#131313",

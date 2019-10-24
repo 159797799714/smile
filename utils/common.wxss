@@ -685,3 +685,14 @@ image{
    margin-left: 70rpx;
    line-height: 48rpx;
  }
+ /* // 返回顶部 */
+ .back-icon{
+   position: fixed;
+   right: 40rpx;
+   bottom: 100rpx;
+   height: 40rpx;
+   width: 40rpx;
+   padding: 10rpx;
+   border-radius: 100%;
+   background: rgba(104, 104, 104, 0.5);
+ }

@@ -1,4 +1,4 @@
-<view>
+<scroll-view scroll-y="true" style="height: 100%;" bindscrolltolower="loadMore" lower-threshold="100" bindscroll="pageOnScroll" scroll-top="{{scrollTop}}">
   <!-- <view class="header-bar">
     <view class="name">优逸</view>
     <view class="logo"></view>
@@ -96,4 +96,8 @@
     
   </view>
   
-</view>
+  <view wx:if="{{isTop}}" class="back-icon" catchtap="goTop">
+    <text class="iconfont icon-fanhuidingbu f-40 col-f"></text>
+  </view>
+  
+</scroll-view>

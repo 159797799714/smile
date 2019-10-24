@@ -10,6 +10,10 @@ Page({
     tabIndex: 0,                    // 默认选中草场
     articleList: [],                // 草场文章列表
     activityList: [],               // 活动列表数据
+    current_page: 1,                // 当前页码
+    last_page: '',                  // 总共页码
+    scrollTop: '',                  // 滚动距离顶部
+    isTop: false,                   // 返回顶部按钮显隐
   },
 
   /**
@@ -39,10 +43,14 @@ Page({
   // 加载草场文章数据
   getArticleList() {
     let _this = this;
-    App._get('umi.article/list', {}, function(res) {
+    App._get('umi.article/list', {
+      page: _this.data.current_page
+    }, function(res) {
       console.log('种草文章', res.data)
       _this.setData({
-        articleList: res.data.list.data
+        articleList: _this.data.articleList.concat(res.data.list.data),
+        current_page: res.data.list.current_page,
+        last_page: res.data.list.last_page
       })
     });
   },
@@ -50,10 +58,14 @@ Page({
   // 关注文章数据
   getFocusList() {
     let _this = this;
-    App._get('umi.article/focusList', {}, function(res) {
+    App._get('umi.article/focusList', {
+      page: _this.data.current_page
+    }, function(res) {
       console.log('关注文章', res.data)
       _this.setData({
-        articleList: res.data.list.data
+        articleList: _this.data.articleList.concat(res.data.list.data),
+        current_page: res.data.list.current_page,
+        last_page: res.data.list.last_page
       })
     });
   },
@@ -61,10 +73,14 @@ Page({
   // 加载活动列表数据
   getActivityList() {
     let _this = this;
-    App._get('umi.category/list', {}, function(res) {
+    App._get('umi.category/list', {
+      page: _this.data.current_page
+    }, function(res) {
       console.log('活动列表', res.data)
       _this.setData({
-        activityList: res.data.list.data
+        activityList: _this.data.activityList.concat(res.data.list.data),
+        current_page: res.data.list.current_page,
+        last_page: res.data.list.last_page
       })
     });
   },
@@ -76,6 +92,43 @@ Page({
     })
   },
   
+  loadMore() {
+    this.data.current_page++
+    let _this= this,
+      page= _this.data.current_page,
+      last_page= _this.data.last_page,
+      tabIndex= _this.data.tabIndex;
+    console.log(page, last_page)
+    if(page > last_page) {
+      wx.showToast({
+        title: '亲！没有更多了哦',
+        icon: 'none'
+      })
+    } else {
+      switch(tabIndex) {
+        case 0:
+          _this.getArticleList()
+          break
+        case 1:
+          _this.getFocusList()
+          break
+        case 2:
+          _this.getActivityList()
+          break
+      }
+      
+    }
+  },
+  pageOnScroll(e) {
+    this.setData({
+      isTop: e.detail.scrollTop > 600
+    })
+  },
+  goTop() {
+    this.setData({
+      scrollTop: 0
+    })
+  },
   // 去作者主页
   goUserDetail(e) {
     let id= e.currentTarget.dataset.id
@@ -114,7 +167,11 @@ Page({
   swichNav(e) {
     let index = e.currentTarget.dataset.index;
     this.setData({
-      tabIndex: index
+      tabIndex: index,
+      current_page: 1,
+      last_page: 1,
+      activityList: [],
+      articleList: []
     })
     if(index === 0) {
       // 草场

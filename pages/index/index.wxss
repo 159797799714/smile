@@ -4,6 +4,7 @@
 page {
   background: #131313 !important;
   padding-top: 50px;
+  box-sizing: border-box;
 }
 
 .header-bar {

@@ -8,22 +8,7 @@
   </view>
 
   <view wx:if="{{ dataList.length > 0 }}" class="article-item  show-type__20" wx:for="{{ dataList }}" wx:key="this" catchtap="onTargetDetail" data-id="{{ item.article_id }}">
-    <!-- 小图模式 -->
-    <!-- <block wx:if="{{ item.show_type == 10 }}">
-      <view class="article-item__left flex-box">
-        <view class="article-item__title twolist-hidden">
-          <text class="f-30 col-3">{{ item.article_title }}</text>
-        </view>
-        <view class="article-item__footer m-top10">
-          <text class="article-views f-24 col-8">{{ item.show_views }}次浏览</text>
-          <text class="article-views f-24 col-8">{{ item.like_count }}次点赞</text>
-        </view>
-      </view>
-      <view class="article-item__image">
-        <image mode="widthFix" src="{{ item.image.file_path }}"></image>
-      </view>
-    </block> -->
-    <!-- 大图模式 -->
+    
     <block>
       <view style="width: 100%;" class="article-item__image">
         <image style="width: 100%;" mode="widthFix" src="{{ item.image.file_path }}"></image>

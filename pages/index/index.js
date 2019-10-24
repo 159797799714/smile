@@ -5,27 +5,16 @@ Page({
   data: {
     // 搜索框样式
     searchName: "大家都在搜“森海塞尔”",
-    // 页面参数
-    options: {},
-    // 页面元素
-    items: [{
-        data: [],
-        name: "图片轮播",
-        params: {
-          interval: "2800"
-        },
-        type: 'banner'
-      },
-      {
-        data: [],
-        name: "文章组",
-        type: 'article',
-        dataType: '',
-        tabList: []
-      }
-    ],
+    options: {},            // 页面参数
+    bannerList: [],
     scrollTop: 0,
-    scrollTopDist: ''
+    scrollTopDist: '',
+    params: {
+      interval: 2000
+    },
+    dataType: '',
+    tabList: [],         // tab列表
+    articleList: []
   },
 
   /**
@@ -41,23 +30,21 @@ Page({
     }
     // 加载录播图数据
     this.getBannerList()
+    
     // 加载页面数据
     this.getcategoryList()
   },
   onShow() {
-    if(this.data.items[0].data.length < 1 ) {
+    if(this.data.bannerList.length < 1 ) {
       // 加载录播图数据
       this.getBannerList()
-    }
-    if(this.data.items[1].tabList.length < 1 ) {
-      // 加载页面数据
-      this.getcategoryList()
     }
   },
   onPageScroll: function(options) {
     // Do something when page scroll
     // this.data.items[1].scrollTopDist = options.scrollTop
     // let data = this.data
+    console.log(options)
     this.setData({
       scrollTopDist: options.scrollTop
     })
@@ -89,23 +76,22 @@ Page({
     App._get('article/categorylist', {
       page_id: _this.data.options.page_id
     }, function(result) {
-      let dataType = _this.data.items[1].dataType
+      let dataType = _this.data.dataType
       
       console.log('dataType', dataType)
       if(!dataType) {
         _this.setData({
-          'items[1].tabList': result.data.categoryList,
-          'items[1].dataType': result.data.categoryList[0].category_id
+          tabList: result.data.categoryList,
+          dataType: result.data.categoryList[0].category_id
         })  
       }
       console.log('dataType后', dataType)
-      // let data = _this.data
       App._get('article/articlesbycategoryid', {
         category_id: dataType
       }, function(resultItem) {
-        _this.data.items[1].data = resultItem.data.list
-        let data = _this.data
-        _this.setData(data)
+        _this.setData({
+          articleList: resultItem.data.list
+        })
       });
     });
   },
@@ -116,7 +102,6 @@ Page({
     App._get('article/gethomebanners', {}, function(res) {
       let arr = []
       res.data.list.map((item, index) => {
-        let banner = 'items[0].data'
         let obj = {}
         let goods = item.activity_link.indexOf('goods_id=')
         let article = item.activity_link.indexOf('article_id=')
@@ -127,7 +112,7 @@ Page({
             obj.goods_id = item.activity_link.slice(9)
             arr.push(obj)
             that.setData({
-              'items[0].data': arr
+              bannerList: arr
             })
             return
           }
@@ -135,7 +120,7 @@ Page({
             obj.article_id = item.activity_link.slice(11)
             arr.push(obj)
             that.setData({
-              'items[0].data': arr
+              bannerList: arr
             })
             return
           }
@@ -143,13 +128,13 @@ Page({
             obj.luckydraw_id = item.activity_link.slice(13)
             arr.push(obj)
             that.setData({
-              'items[0].data': arr
+              bannerList: arr
             })
             return
           } else {
             arr.push(obj)
             that.setData({
-              'items[0].data': arr
+              bannerList: arr
             })
           }
         }
