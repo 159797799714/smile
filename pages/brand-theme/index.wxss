@@ -10,6 +10,7 @@ text{
 }
 image{
   width: 100%;
+  display: flex;
 }
 
 
@@ -99,4 +100,9 @@ image{
   left: -30rpx;
   width: calc(100% + 60rpx);
 }
-  
+
+/* 模板3 */
+
+.third-oneLine{
+  width: 100%;
+}

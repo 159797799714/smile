@@ -50,7 +50,7 @@ page {
   padding: 30rpx;
 }
 .article-title{
-  line-height: 1rem;
+  line-height: 1.4rem;
 }
 .time{
   line-height: 54rpx;
@@ -298,15 +298,5 @@ page {
   transition: 500ms;
 }
 .rotate-180{
-  -ms-transform: rotate(180deg); 		/* IE 9 */
-  -ms-transform-origin:50% 50%; 		/* IE 9 */
-  
-  -webkit-transform: rotate(180deg);	/* Safari 和 Chrome */
-  -webkit-transform-origin:50% 50%;	/* Safari 和 Chrome */
-  
-  -moz-transform: rotate(180deg);		/* Firefox */
-  -moz-transform-origin:50% 50%;		/* Firefox */
-  
-  -o-transform: rotate(180deg);		/* Opera */
-  -o-transform-origin:50% 50%;		/* Opera */
+  transform: rotate(180deg);
 }

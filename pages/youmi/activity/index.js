@@ -42,6 +42,7 @@ Page({
       category_id: _this.data.category_id
     }, function(res) {
       console.log('详情', res.data)
+      res.data.activity_datail.describe= res.data.activity_datail.describe.replace(/\<img/gi, '<img style="max-width:100%;height:auto"')
       _this.setData({
         detail: res.data.activity_datail,
         articleList: res.data.article_list.data

@@ -114,14 +114,14 @@ Page({
       // 秒杀
       case 'seckill':
         wx.navigateTo({
-          url: '/pages/shop-seckill/goods/index?type=2&goods_id=' + goods_id
+          url: '/pages/shop-seckill/goods/index?type=1&goods_id=' + goods_id
         })
         break
         
       // 限时购
       case 'flashsale':
         wx.navigateTo({
-          url: '/pages/shop-seckill/goods/index?type=1&goods_id=' + goods_id
+          url: '/pages/shop-seckill/goods/index?type=2&goods_id=' + goods_id
         })
         break
         

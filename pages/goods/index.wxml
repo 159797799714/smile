@@ -35,7 +35,7 @@
             </view>
             <view class="f-24 col-6">
               <text class="t-dec-line">￥{{detail.sku[0].line_price}}</text>
-              <text class="m-l-10">积分：{{ detail.get_integral }}</text>
+              <!-- <text class="m-l-10">积分：{{ detail.get_integral }}</text> -->
             </view>
             <view>
               <text wx:if="{{detail.selling_point}}" class="sell-point m-top10 b-33 f-20 col-purple">{{ detail.selling_point }}</text>

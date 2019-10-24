@@ -1,6 +1,8 @@
 /* iconfont */
 @import "/utils/iconfont.wxss";
-
+image{
+  display: flex;
+}
 .container, input {
   font-family: PingFang-Medium,
                  PingFangSC-Regular,
@@ -124,7 +126,9 @@
 .flex-x-around {
   justify-content: space-around;
 }
-
+.flex-x-start{
+  justify-content: flex-start;
+}
 .flex-x-end {
   justify-content: flex-end;
 }

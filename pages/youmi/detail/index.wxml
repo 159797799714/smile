@@ -43,8 +43,8 @@
                 <text class="f-26 col-9 m-top10">{{ item.content }}</text>
                 <view class="dis-flex">
                   <text class="f-24 col-6 m-top4">{{ item.input_time }}</text>
-                  <view wx:if="{{item.replys.length > 0}}" class="reply-num b-33 f-24 col-9" catchtap="openReply" data-index="{{index}}" data-type="ten">{{item.replys.length}}回复
-                    <text class="open-icon iconfont icon-xiajiantous f-22 col-f {{item.isopen? 'rotate-180': ''}}"></text>
+                  <view wx:if="{{item.replys.length > 0}}" class="reply-num dis-flex flex-y-center p-r b-33 f-24 col-9" catchtap="openReply" data-index="{{index}}" data-type="ten">{{item.replys.length}}回复
+                    <text class="m-l-10 open-icon iconfont icon-xiajiantous f-18 col-f {{item.isopen? 'rotate-180': ''}}"></text>
                   </view>
                 </view>
               </view>
@@ -124,8 +124,8 @@
                 <text class="f-26 col-9 m-top10">{{ item.content }}</text>
                 <view class="dis-flex">
                   <text class="f-24 col-6 m-top4">{{ item.input_time }}</text>
-                  <view wx:if="{{item.replys.length > 0}}" class="reply-num b-33 f-24 col-9" catchtap="openReply" data-index="{{index}}" data-type="all">{{item.replys.length}}回复
-                    <text class="open-icon iconfont icon-xiajiantous f-24 col-f {{item.isopen? 'rotate-180': ''}}"></text>
+                  <view wx:if="{{item.replys.length > 0}}" class="reply-num dis-flex flex-y-center b-33 f-24 col-9" catchtap="openReply" data-index="{{index}}" data-type="all">{{item.replys.length}}回复
+                    <text class="open-icon m-l-10 iconfont icon-xiajiantous f-24 col-f {{item.isopen? 'rotate-180': ''}}"></text>
                   </view>  
                 </view>
               </view>

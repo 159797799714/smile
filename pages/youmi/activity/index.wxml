@@ -6,7 +6,7 @@
   
   <view class="activity-info">
     <view class="summary t-c f-32 col-f">活动介绍</view>
-    <view class="detail f-24 col-9">{{detail.subtitle}}</view>
+    <rich-text nodes="{{detail.describe}}" class="detail f-24 col-9"></rich-text>
     <view class="oh m-top10">
       <view class="fr activity-btn f-24 col-f" catchtap="goJoin">立即参加</view>
     </view>

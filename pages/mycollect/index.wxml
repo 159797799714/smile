@@ -44,7 +44,7 @@
               <text class="bigText">{{ item.sku[0].goods_price * 100 % 100 === 0 ? item.sku[0].goods_price * 100 / 100 : item.sku[0].goods_price }}</text>
             </view>
           </view>
-          <view class="max-price f-18 col-6">
+          <view class="max-price f-26 col-6">
             <text>￥</text>
             <text class="t-dec-line">{{ (item.sku[0].line_price * 100 / 100) === 0 ? item.sku[0].goods_price * 100 / 100: item.sku[0].line_price * 100 / 100  }}</text>
             <!-- <text class="f-16 m-l-10">获得积分：100</text> -->

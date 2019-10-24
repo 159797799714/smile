@@ -579,5 +579,5 @@ page {
   width: 40rpx;
   padding: 10rpx;
   border-radius: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(104, 104, 104, 0.5);
 }
