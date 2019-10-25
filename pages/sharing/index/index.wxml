@@ -19,7 +19,7 @@
   <view>
     <!-- 轮播图 -->
     <view class="banner b-13">
-      <diy-component wx:if="{{ swiperList[0].data.length > 0 }}" diyItems="{{ swiperList }}"></diy-component>
+      <diy-banner wx:if="{{ swiperList.length > 0 }}" params="{{ params }}" dataList="{{ bannerList }}"></diy-banner>
     </view>
     <!-- 商品 -->
     <view class="main">

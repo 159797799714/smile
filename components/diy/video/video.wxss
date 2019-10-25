@@ -1,6 +1,0 @@
-/* 视频组 */
-
-.diy-video video {
-  width: 100%;
-  display: block;
-}

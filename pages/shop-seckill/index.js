@@ -12,21 +12,11 @@ Page({
     indicatorActiveColor: '#ffffff',   // 以上轮播图信息
     // banners: [],
     // 轮播图
-    swiperList: [{
-      type: "banner",
-      data: [],
-      params: {
-        interval: 2800
-      }
-    }],
-    timeList: [
-      { 
-        category_id: 1,
-        activity_date: '05-01',
-        activity_time: '20:00',
-        status: '已开抢',
-      },
-    ],                              // 时间
+    swiperList: [],
+    params: {
+      interval: 2800
+    },
+    timeList: [],                      // 时间
     selectIndex: 0,                 // 选中的时间
     nowState: '',                   //当前状态
     goodList: [],
@@ -142,7 +132,6 @@ Page({
         console.log(goodsResult.data.list.banners)
         let arr = []
         goodsResult.data.list.banners.map((item, index) => {
-          let banner = 'swiperList[0].data'
           let obj = {}
           let goods = item.activity_link.indexOf('goods_id=')
           let article = item.activity_link.indexOf('article_id=')
@@ -154,7 +143,7 @@ Page({
               obj.goods_id = item.activity_link.slice(9)
               arr.push(obj)
               _this.setData({
-                'swiperList[0].data': arr
+                swiperList: arr
               })
               return
             }
@@ -162,20 +151,20 @@ Page({
               obj.article_id = item.activity_link.slice(11)
               arr.push(obj)
               _this.setData({
-                'swiperList[0].data': arr
+                swiperList: arr
               })
               return
             } if(luckdraw !== -1) {
               obj.luckydraw_id = item.activity_link.slice(13)
               arr.push(obj)
               _this.setData({
-                'swiperList[0].data': arr
+                swiperList: arr
               }) 
               return
             } else {
               arr.push(obj)
               _this.setData({
-                'swiperList[0].data': arr
+                swiperList: arr
               })
             }
           }

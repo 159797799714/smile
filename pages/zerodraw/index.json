@@ -6,6 +6,6 @@
   "navigationBarTextStyle": "white",
   "backgroundTextStyle": "light",
   "usingComponents": {
-    "diy-component": "/components/diy/index"
+    "diy-banner": "/components/diy/banner/banner"
   }
 }

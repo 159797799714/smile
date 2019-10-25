@@ -3,7 +3,6 @@
   "navigationBarBackgroundColor": "#131313",
   "navigationBarTextStyle": "white",
   "usingComponents": {
-    "shortcut": "/components/shortcut/shortcut",
-    "diy-component": "/components/diy/index"
+    "shortcut": "/components/shortcut/shortcut"
   }
 }

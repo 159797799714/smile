@@ -1,8 +1,6 @@
 /* iconfont */
 @import "/utils/iconfont.wxss";
-image{
-  display: flex;
-}
+
 .container, input {
   font-family: PingFang-Medium,
                  PingFangSC-Regular,

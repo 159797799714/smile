@@ -1,5 +1,3 @@
-/* diy组件 */
-@import "../../components/diy/index.wxss";
 
 page {
   background: #131313 !important;

@@ -1,3 +1,0 @@
-<!-- 辅助空白 -->
-<view class="diy-blank" style="height: {{ itemStyle.height }}px; background: {{ itemStyle.background }};">
-</view>

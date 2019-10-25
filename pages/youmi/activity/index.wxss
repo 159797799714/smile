@@ -1,6 +1,3 @@
-/* diy组件 */
-@import "../../../components/diy/index.wxss";
-
 
 /* 种草 */
 .culture{

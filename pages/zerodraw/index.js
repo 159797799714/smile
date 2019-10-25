@@ -12,13 +12,10 @@ Page({
     },                                // 商品列表
     status: '',                       // 抢购活动状态
     leave_time: '',                   // 剩余时间抢购
-    swiperList: [{
-      type: "banner",
-      data: [],
-      params: {
-        interval: 2800
-      }
-    }],                               // 轮播图
+    swiperList: [],
+    params: {
+      interval: 2800
+    }                               // 轮播图
     
   },
 
@@ -73,7 +70,7 @@ Page({
     }, function(res) {
       console.log('商品列表', res.data.list, res.data.list.banners)
       that.setData({
-        'swiperList[0].data': res.data.list.banners,
+        swiperList: res.data.list.banners,
         goodsList: res.data.list
       })
     })

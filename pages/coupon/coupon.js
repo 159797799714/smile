@@ -10,14 +10,10 @@ Page({
     tabData: '',      // 选中的tab值
     banner: [],       // 轮播图
     list: [],         // 优惠券列表
-    items: [{
-      data: [],
-      name: "图片轮播",
-      params: {
-        interval: "2800"
-      },
-      type: 'banner'
-    }],               // 轮播图
+    bannerList: [],   // 轮播图
+    params: {
+      interval: "2800"
+    },
     notcont: false    // show
   },
 
@@ -45,9 +41,8 @@ Page({
       items= that.data.items;
     App._get('coupon/gethomebanners', {}, function(res) {
       console.log(res.data.list)
-      items[0].data= res.data.list
       that.setData({
-        items: items
+        bannerList: res.data.list
       });
     });
   },

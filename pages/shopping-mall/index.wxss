@@ -1,5 +1,3 @@
-/* diy组件 */
-@import "../../components/diy/index.wxss";
 
 /* 搜索框 */
 .index-search-box-bg {

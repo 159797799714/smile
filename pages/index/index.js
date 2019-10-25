@@ -142,6 +142,12 @@ Page({
       })
     })
   },
+  // 去文章首页
+  onTargetDetail(e) {
+    wx.navigateTo({
+      url: '/pages/article/detail/index?article_id=' + e.currentTarget.dataset.id
+    });
+  },
 
   /**
    * 设置顶部导航栏

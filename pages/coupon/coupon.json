@@ -3,6 +3,6 @@
   "navigationBarBackgroundColor": "#131313",
   "navigationBarTextStyle": "white",
   "usingComponents": {
-    "diy-component": "/components/diy/index"
+    "diy-banner": "/components/diy/banner/banner"
   }
 }

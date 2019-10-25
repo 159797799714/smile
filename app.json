@@ -1,7 +1,6 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/custom/index",
     "pages/category/index",
     "pages/goods/index",
     "pages/goods/comment/comment",

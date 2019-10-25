@@ -1,7 +1,5 @@
 /* wxParse.wxss */
 @import "/wxParse/wxParse.wxss";
-/* diy组件 */
-@import "../../../components/diy/index.wxss";
 
 page {
   background: #000;
@@ -247,9 +245,6 @@ page {
   opacity: 0;
   z-index: 5;
 }
-/* .diy-component-my .diy-banner {
-    margin: 0 !important;
-} */
 .my-class111 .diy-banner {
     margin: 0;
 }

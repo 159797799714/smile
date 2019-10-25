@@ -3,7 +3,7 @@
     <text wx:for="{{ tabList }}" wx:key="index" class="tabbar {{ tabData === item.category_id ? 'selected': '' }}" catchtap="selectab" data-id="{{item.category_id}}" data-type="{{item.type}}">{{ item.name }}</text>
   </view>
   <view class="banner">
-    <diy-component scrollTopDist="{{ scrollTopDist }}" diyItems="{{ items }}"></diy-component>
+    <diy-banner  params="{{ params }}" dataList="{{ bannerList }}"></diy-banner>
   </view>
   <view class="coupon-list" wx:if="{{ list.length }}">
     <view wx:for="{{ list }}" wx:key="index" class="coupon-item dis-flex flex-x-between flex-y-center {{ item.is_receive ? 'b-cc': 'b-linear' }}">

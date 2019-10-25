@@ -12,7 +12,7 @@
   </view>
   
   <!-- DIY组件 轮播图 -->
-  <diy-component wx:if="{{ swiperList[0].data.length > 0 }}" diyItems="{{ swiperList }}"></diy-component>
+  <diy-banner wx:if="{{ swiperList.length > 0 }}" dataList="{{ swiperList }}" param="{{param}}"></diy-banner>
   
   
   <view class="content">

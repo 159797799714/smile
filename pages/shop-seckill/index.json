@@ -3,6 +3,6 @@
   "navigationBarTextStyle": "white",
   "navigationBarTitleText": "秒杀",
   "usingComponents": {
-    "diy-component": "/components/diy/index"
+    "diy-banner": "/components/diy/banner/banner"
   }
 }

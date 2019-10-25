@@ -8,13 +8,10 @@ Page({
     searchName: "大家都在搜“森海塞尔”",
     statusHeight: 20,
     // 轮播图
-    swiperList: [{
-      type: "banner",
-      data: [],
-      params: {
-        interval: 2800
-      }
-    }],
+    swiperList: [],
+    params: {
+      interval: 2000
+    },
     // 商品全部分类
     shopClassify: [],
     // 为你推荐
@@ -79,7 +76,7 @@ Page({
     });
   },
   onShow() {
-    if (this.data.swiperList[0].data.length < 1) {
+    if (this.data.swiperList.length < 1) {
       // 商城首页轮播图
       this.getSwiperList()
     }
@@ -120,7 +117,6 @@ Page({
         console.log(res.data.list)
         let arr = []
         res.data.list.map((item, index) => {
-          let banner = 'swiperList[0].data'
           let obj = {}
           let goods = item.activity_link.indexOf('goods_id=')
           let article = item.activity_link.indexOf('article_id=')
@@ -131,7 +127,7 @@ Page({
               obj.goods_id = item.activity_link.slice(9)
               arr.push(obj)
               that.setData({
-                'swiperList[0].data': arr
+                swiperList: arr
               })
               return
             }
@@ -139,20 +135,20 @@ Page({
               obj.article_id = item.activity_link.slice(11)
               arr.push(obj)
               that.setData({
-                'swiperList[0].data': arr
+                swiperList: arr
               })
               return
             } if(luckdraw !== -1) {
               obj.luckydraw_id = item.activity_link.slice(13)
               arr.push(obj)
               that.setData({
-                'swiperList[0].data': arr
+                swiperList: arr
               }) 
               return
             } else {
               arr.push(obj)
               that.setData({
-                'swiperList[0].data': arr
+                swiperList: arr
               })
             }
           }
@@ -181,12 +177,12 @@ Page({
     switch (name) {
       case '限时购':
         wx.navigateTo({
-          url: `../shop-seckill/index?origin=限时购`
+          url: '../shop-seckill/index?origin=限时购'
         })
         break
       case '秒杀购':
         wx.navigateTo({
-          url: `../shop-seckill/index?origin=秒杀购`
+          url: '../shop-seckill/index?origin=秒杀购'
         })
         break
       case '拼团购':
@@ -233,7 +229,7 @@ Page({
         _this.setData({
           'discount[1].min_price': result.data.goods.sku ? result.data.goods.sku[0].goods_price: '',
           'discount[1].max_price': result.data.goods.sku ? result.data.goods.sku[0].line_price: '',
-          'discount[1].img': result.data.goods.headimg ? result.data.goods.headimg.file_path: '',
+          'discount[1].img': result.data.goods.image ? result.data.goods.image[0].file_path: '',
           'discount[1].info': result.data.goods.homepage_activity_subtitle ? result.data.goods.homepage_activity_subtitle : '',
           'discount[2].img': result.data.sharing_goods.image_url,
           'discount[2].info': result.data.sharing_goods.sharing_home_subtitle,

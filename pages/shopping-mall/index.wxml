@@ -12,7 +12,7 @@
 
    <!-- DIY组件 轮播图 -->
   <view class="banner">
-    <diy-component diyItems="{{ swiperList }}"></diy-component>
+    <diy-banner params="{{ params }}" dataList="{{ swiperList }}"></diy-banner>
   </view>
   
 

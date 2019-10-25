@@ -6,7 +6,6 @@
   "navigationBarTextStyle": "white",
   "backgroundTextStyle": "light",
   "usingComponents": {
-    "diy-component": "/components/diy/index",
     "zan-popup": "/components/popup/index"
   }
 }

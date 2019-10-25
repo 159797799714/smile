@@ -15,13 +15,55 @@
     </view>
   </view>
   
-  
-  <view class="banner">
-     <!-- 轮播图 -->
-    <diy-banner  params="{{ params }}" dataList="{{ bannerList }}"></diy-banner> 
+   <!-- 轮播图 -->
+   <diy-banner params="{{ params }}" dataList="{{ bannerList }}"></diy-banner> 
+   
+  <view class="article-content">
     
     <!-- 文章 -->
-    <diy-article scrollTopDist="{{ scrollTopDist }}" tabList="{{ tabList }}" dataList="{{ articleList }}" bind:parentEvent='onParentEvent'></diy-article>
+    <!-- <diy-article scrollTopDist="{{ scrollTopDist }}" tabList="{{ tabList }}" dataList="{{ articleList }}" bind:parentEvent='onParentEvent'></diy-article> -->
+    
+    <!-- 选项卡 -->
+   <view id="tab-switch" class="{{tabFixed ? 'swiper-tab-fixed' : ''}} swiper-tab b-15 f-32 col-cc f-w dis-flex box-align-center flex-y-center flex-x-between">
+      <view wx:for="{{ tabList }}"  wx:key="this" class="swiper-tab-item {{ (!dataType && index == 0) || dataType == item.category_id ? 'checked' : ''}}" data-current="{{item.category_id}}" bindtap="swichNav">
+        <text>{{item.name}}</text>
+      </view>
+    </view>
+    
+    <view wx:if="{{ articleList.length > 0 }}" class="article-item  show-type__20" wx:for="{{ articleList }}" wx:key="this" catchtap="onTargetDetail" data-id="{{ item.article_id }}">
+      
+      <block>
+        <view style="width: 100%;" class="article-item__image">
+          <image style="width: 100%;" mode="widthFix" src="{{ item.image.file_path }}"></image>
+        </view>
+        <view class="article-item__title twolist-hidden">
+          <text class="f-30 col-f">{{ item.article_title }}</text>
+        </view>
+        <view class="article-item__content">
+          <text class="col-A3">{{ item.subtitle || '' }}</text>
+        </view>
+        <view class="article-item__footer m-top20">
+          <view class="flex-1"></view>
+          <view class="view-like-wrap">
+            <view class="flex-1"></view>
+            <view class="article-views">
+              <view class="icon-article-views"></view>
+              <view>{{ item.show_views }}</view>
+            </view>
+            <view class="article-likes">
+              <view data-index="{{ index }}" class="{{ item.islike === 'yes' ? 'icon-article-like' : 'icon-article-like'}}"></view>
+              <view>{{ item.like_count }}</view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+    <view wx:if="{{ articleList.length < 1 }}">
+      <view class="yoshop-notcont col-f dis-flex flex-dir-column flex-y-center">
+        <text class="iconfont icon-wushuju f-100"></text>
+        <text class="cont f-30">亲，暂无相关文章哦</text>
+      </view>
+    </view>
     
   </view>
   <!-- DIY组件 -->

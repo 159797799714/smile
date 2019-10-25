@@ -18,15 +18,11 @@ Page({
     no_more: false,            // 没有更多数据
     isLoading: true,           // 是否正在加载中
     page: 1,                   // 当前页码
+    params: {
+      interval: 2000
+    },
     swiperList: [{
-      type: "banner",
-      data: [{
-        file_path: 'https://market.pd-unixe.com/uploads/20190611174558d5c576479.png'
-      }
-      ],
-      params: {
-        interval: 2800
-      }
+      file_path: 'https://market.pd-unixe.com/uploads/20190611174558d5c576479.png'
     }],                        // 轮播图数据
   },
 
