@@ -55,7 +55,7 @@ page {
 }
 
 .yoshop-notcont {
-  padding: 130rpx 100rpx;
+  padding: 150rpx 100rpx;
   box-sizing: border-box;
 }
 

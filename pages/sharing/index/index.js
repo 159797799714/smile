@@ -54,7 +54,7 @@ Page({
   getIndexData() {
     let _this = this;
     // 获取拼团首页
-    App._get('sharing.index/index', {}, function(result) {
+    App._get(App.url.sharingCategoryList, {}, function(result) {
       _this.setData({
         categoryList: result.data.categoryList
       });
@@ -91,7 +91,7 @@ Page({
    */
   getGoodsList(isPage, page) {
     let _this = this;
-    App._get('sharing.goods/lists', {
+    App._get(App.url.sharingGoodslists, {
       page: page || 1,
       category_id: _this.data.category_id
     }, function(result) {

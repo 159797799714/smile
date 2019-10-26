@@ -74,7 +74,18 @@ Page({
     // 获取商品信息
     _this.getGoodsDetail();
   },
-
+  onReady() {
+    this.videoCtx = wx.createVideoContext('myVideo')  //根据id绑定
+  },
+  // 点击cover播放
+  videoPlay: function (e) {
+    console.log('点击播放', e);
+    //隐藏封面图和播放图标
+    this.setData({
+      play_icon: "none"    //tab_image 来控制封面图 
+    }),
+    this.videoCtx.play();
+  },
   /**
    * 提醒我
    */
@@ -85,15 +96,15 @@ Page({
     let isremind = _this.data.isremind
     if(_this.data.goodsType == 1) {
       if(isremind == "no") {
-        url = "seckill/remind"
+        url = App.url.seckillRemind
       }else {
-        url = "seckill/cancelremind"
+        url = App.url.seckillCancelremind
       }
     }else{
       if(isremind == "no") {
-        url = "flashsale/remind"
+        url = App.url.flashsaleRemind
       }else {
-        url = "flashsale/cancelremind"
+        url = App.url.flashsaleCancelremind
       }
     }
     let param = {
@@ -134,9 +145,9 @@ Page({
     // goods/detail
     let url = ""
     if(this.data.goodsType == 1) {
-      url = 'seckill/detail'
+      url = App.url.seckillDetail
     } else{
-      url = 'flashsale/detail'
+      url = App.url.flashsaleDetail
     }
     App._get(url, {
       goods_id: _this.data.goods_id
@@ -337,7 +348,7 @@ Page({
         goods_num: _this.data.goods_num,
         goods_sku_id: _this.data.goods_sku_id,
       }
-      App._get('order/buyNowinventory', param, function(res) {
+      App._get(App.url.orderBuyNowinventory, param, function(res) {
         wx.navigateTo({
           url: '../../flow/checkout?' + util.urlEncode({
             order_type: 'buyNow',

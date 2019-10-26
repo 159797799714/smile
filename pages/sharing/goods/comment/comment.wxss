@@ -4,7 +4,6 @@
   width: 100%;
   text-align: center;
   height: 80rpx;
-  background-color: #fff;
   border-bottom: 1px solid #eee;
 }
 
@@ -21,8 +20,8 @@
 }
 
 .swiper-tab .on {
-  color: #f74c45;
-  border-bottom: 2px solid #f74c45;
+  color: #ff00ff;
+  border-bottom: 2px solid #ff00ff;
 }
 
 /* 设置scroll-view容器高度 */

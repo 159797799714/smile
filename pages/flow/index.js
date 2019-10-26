@@ -43,7 +43,7 @@ Page({
    */
   getCartList: function() {
     let _this = this;
-    App._get('cart/listsnew', {}, function(result) {
+    App._get(App.url.cartListnew, {}, function(result) {
       console.log(result)
       _this.setData({
         cart_goods_list: result.data.cart_goods_list,
@@ -81,7 +81,7 @@ Page({
   // 通过ID查询优惠券
   searchCoupon: function (id, cb) {
     let that = this;
-    App._get('coupon/getCouponsByThemeId', {
+    App._get(App.url.couponGetCouponsByThemeId, {
       theme_id: id
     }, function(res) {
       if(res.data.list.length < 1) {
@@ -283,7 +283,7 @@ Page({
         title: '加载中',
         mask: true
       });
-      App._post_form('cart/add', {
+      App._post_form(App.url.cartAdd, {
         goods_id: goods.goods_id,
         goods_num: 1,
         goods_sku_id: goodsSkuId
@@ -340,7 +340,7 @@ Page({
         title: '加载中',
         mask: true
       })
-      App._post_form('cart/sub', {
+      App._post_form(App.url.cartSub, {
         goods_id: goods.goods_id,
         goods_sku_id: goodsSkuId
       }, function(res) {

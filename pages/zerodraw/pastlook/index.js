@@ -35,7 +35,7 @@ Page({
   // 获取往期抽奖记录
   getList() {
     let that = this
-    let url = 'luckydraw/luckydrawwinsing'
+    let url = App.url.luckydrawLuckydrawwinsing
     App._get(url,{},function(result) {
       console.log('列表', result.data.list)
       let data = result.data.list
@@ -62,7 +62,7 @@ Page({
   // 获取我参与列表
   getMylist() {
     let that = this
-    let url = 'luckydraw/myLuckdraw'
+    let url = App.url.luckydrawMyLuckdraw
     App._get(url,{},function(result) {
       console.log('我的列表', result.data.list)
       that.setData({

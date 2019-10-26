@@ -1,26 +1,26 @@
 <import src="../../wxParse/wxParse.wxml"></import>
-<!--  <view class="topBar dis-flex flex-y-center" style="padding-top: {{ statusBarHeight + 'px' }}">
-    <text class="iconfont icon-xiangyoujiantou f-32 col-9 r-180 f-w" catchtap="goBack"></text>
-    <view class="topNav p-r flex-box dis-flex flex-x-around">
-     <view wx:for="{{ topList }}" wx:key="index" class="navLi f-24 {{ navData === index ? 'selected': '' }}" catchtap="selectNav" data-index="{{ index }}">
-        {{ item }}
-      </view>
-    </view>
-  </view>
- -->
  <scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height: 100%;">
   <view class="container" wx:if="{{detail.goods_id}}">
     <!-- 商品 -->
     <view class="goods">
       <view class="swiper">
-        <swiper autoplay="{{autoplay}}" bindchange="setCurrent" class="banner-box  swiper-box" duration="{{duration}}" indicator-dots="{{indicatorDots}}" interval="{{interval}}" circular="{{true}}">
+        <swiper bindchange="setCurrent" class="banner-box  swiper-box" duration="{{duration}}" indicator-dots="{{indicatorDots}}" interval="{{interval}}" circular="{{true}}">
+          
+          <swiper-item wx:if="{{detail.goods_video_url}}">
+            <!-- <good-banner videoUrl="{{detail.goods_video_url}}" bgUrl="{{detail.image[0].file_path}}" play_icon="{{play_icon}}" bind:videoPlay="startPlay"></good-banner> -->
+            <view class="video-bg" style="background: url({{detail.image[0].file_path}}); background-repeat: no-repeat;background-size: cover; display: {{play_icon}};">
+              <view class="play-icon" bindtap="videoPlay"></view>
+            </view>
+            <video id="myVideo" class="good-video" src="{{detail.goods_video_url}}" controls object-fit="cover" show-mute-btn="true" muted="true"></video>
+          </swiper-item>
+          
           <swiper-item wx:for="{{detail.image}}" wx:key="this" bindtap="previewImages" data-index="{{ index }}">
             <image class="slide-image" mode="aspectFill" src="{{item.file_path}}"></image>
           </swiper-item>
         </swiper>
         <view class="banner-num">
           <text>{{currentIndex}}</text>
-          <text>/{{detail.image.length}}</text>
+          <text>/{{detail.goods_video_url?detail.image.length + 1: detail.image.length}}</text>
         </view>
       </view>
       <view class="cont-box b-13">

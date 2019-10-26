@@ -60,9 +60,6 @@ page {
     margin-left: 22rpx;
 }
 
-.article-content{
-  padding: 0 30rpx;
-}
 /* 选项卡 */
 .swiper-tab {
     padding: 15rpx 60rpx;
@@ -155,7 +152,9 @@ page {
   /* font-weight: 700; */
   font-size: 36rpx;
 }
-
+.article-item{
+  padding: 0 30rpx;
+}
 .article-item__content {
   padding: 0 20rpx;
   color: #666;

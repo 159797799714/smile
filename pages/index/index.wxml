@@ -21,10 +21,10 @@
   <view class="article-content">
     
     <!-- 文章 -->
-    <!-- <diy-article scrollTopDist="{{ scrollTopDist }}" tabList="{{ tabList }}" dataList="{{ articleList }}" bind:parentEvent='onParentEvent'></diy-article> -->
+    <diy-article scrollTopDist="{{ scrollTopDist }}" tabList="{{ tabList }}" dataList="{{ articleList }}" bind:parentEvent='onParentEvent'></diy-article>
     
     <!-- 选项卡 -->
-   <view id="tab-switch" class="{{tabFixed ? 'swiper-tab-fixed' : ''}} swiper-tab b-15 f-32 col-cc f-w dis-flex box-align-center flex-y-center flex-x-between">
+    <!-- <view id="tab-switch" class="{{tabFixed ? 'swiper-tab-fixed' : ''}} swiper-tab b-15 f-32 col-cc f-w dis-flex box-align-center flex-y-center flex-x-between">
       <view wx:for="{{ tabList }}"  wx:key="this" class="swiper-tab-item {{ (!dataType && index == 0) || dataType == item.category_id ? 'checked' : ''}}" data-current="{{item.category_id}}" bindtap="swichNav">
         <text>{{item.name}}</text>
       </view>
@@ -57,7 +57,8 @@
           </view>
         </view>
       </block>
-    </view>
+    </view> -->
+    
     <view wx:if="{{ articleList.length < 1 }}">
       <view class="yoshop-notcont col-f dis-flex flex-dir-column flex-y-center">
         <text class="iconfont icon-wushuju f-100"></text>

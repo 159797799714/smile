@@ -34,7 +34,7 @@ Page({
    */
   getRefundDetail: function() {
     let _this = this;
-    App._get('user.refund/detail', {
+    App._get(App.url.userRefundDetail, {
       order_refund_id: this.data.order_refund_id
     }, function(result) {
       _this.setData(result.data);
@@ -100,7 +100,7 @@ Page({
 
     // 提交到后端
     values['order_refund_id'] = _this.data.order_refund_id;
-    App._post_form('user.refund/delivery', values, function(result) {
+    App._post_form(App.url.userRefundDelivery, values, function(result) {
       App.showSuccess(result.msg, function() {
         // 获取售后单详情
         _this.getRefundDetail();

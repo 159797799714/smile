@@ -65,7 +65,7 @@ Page({
    */
   getOrderList: function(isPage, page) {
     let _this = this;
-    App._get('user.order/lists', {
+    App._get(App.url.userOrderLists, {
       page: page || 1,
       dataType: _this.data.dataType
     }, function(result) {
@@ -110,7 +110,7 @@ Page({
       content: "确认要取消该订单吗？",
       success: function(o) {
         if (o.confirm) {
-          App._post_form('user.order/cancel', {
+          App._post_form(App.url.userOrderCancel, {
             order_id
           }, function(result) {
             _this.getOrderList(_this.data.dataType);
@@ -131,7 +131,7 @@ Page({
       content: "确认收到商品？",
       success: function(o) {
         if (o.confirm) {
-          App._post_form('user.order/receipt', {
+          App._post_form(App.url.userOrderReceipt, {
             order_id
           }, function(result) {
             _this.getOrderList(_this.data.dataType);
@@ -149,7 +149,7 @@ Page({
       content: "确认删除此订单？",
       success: function(o) {
         if (o.confirm) {
-          App._post_form('user.order/delete', {
+          App._post_form(App.url.userOrderDelete, {
             order_id
           }, function(result) {
             _this.getOrderList(_this.data.dataType);
@@ -170,7 +170,7 @@ Page({
     wx.showLoading({
       title: '正在处理...',
     });
-    App._post_form('user.order/pay', {
+    App._post_form(App.url.userOrderPay, {
       order_id
     }, function(result) {
       if (result.code === -10) {
@@ -263,7 +263,7 @@ Page({
     wx.showLoading({
       title: '加载中',
     });
-    App._get('user.order/extractQrcode', {
+    App._get(App.url.userOrderRxtractQrcode, {
       order_id
     }, (result) => {
       // 设置二维码图片路径

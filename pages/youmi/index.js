@@ -34,7 +34,7 @@ Page({
   // 获取轮播图数据
   getBannerList() {
     let _this = this;
-    App._get('umi.homebanner/gethomebanners', {}, function(res) {
+    App._get(App.url.umiHomebanner, {}, function(res) {
       _this.setData({
         bannerList: res.data.list
       })
@@ -43,7 +43,7 @@ Page({
   // 加载草场文章数据
   getArticleList() {
     let _this = this;
-    App._get('umi.article/list', {
+    App._get(App.url.umiArticleList, {
       page: _this.data.current_page
     }, function(res) {
       console.log('种草文章', res.data)
@@ -58,7 +58,7 @@ Page({
   // 关注文章数据
   getFocusList() {
     let _this = this;
-    App._get('umi.article/focusList', {
+    App._get(App.url.umiArticleFocusList, {
       page: _this.data.current_page
     }, function(res) {
       console.log('关注文章', res.data)
@@ -73,7 +73,7 @@ Page({
   // 加载活动列表数据
   getActivityList() {
     let _this = this;
-    App._get('umi.category/list', {
+    App._get(App.url.umiCategoryList, {
       page: _this.data.current_page
     }, function(res) {
       console.log('活动列表', res.data)
@@ -142,13 +142,13 @@ Page({
     let _this= this,
       index= e.currentTarget.dataset.index,
       id= e.currentTarget.dataset.id,
-      url= 'umi.article/like',
+      url= App.url.umiArticleLike,
       articleList= _this.data.articleList,
       islike_count= 'articleList[' + index + '].islike_count',
       articlelike_count= 'articleList[' + index + '].articlelike_count',
       count= articleList[index].articlelike_count;
     if(articleList[index].islike_count === 1) {
-      url= 'umi.article/unLike',
+      url= App.url.umiArticleUnlike,
       count--
     } else {
       count++

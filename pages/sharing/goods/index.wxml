@@ -157,7 +157,7 @@
         <text class="col-9 f-30">评价 ({{ detail.comment_data_count }}条)</text>
         <form bindsubmit="navigateToComment" report-submit="true" class="comment-num">
           <button formType="submit" class="btn-normal">
-            <text class="f-28">查看更多</text>
+            <text class="f-28 col-9">查看更多</text>
           </button>
         </form>
         <view class="goods-property-jianTou">

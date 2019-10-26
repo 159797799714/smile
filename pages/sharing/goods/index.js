@@ -90,7 +90,7 @@ Page({
    */
   getGoodsDetail: function() {
     let _this = this;
-    App._get('sharing.goods/detail', {
+    App._get(App.url.sharingGoodsdetail, {
       goods_id: _this.data.goods_id
     }, function(result) {
       // 初始化商品详情数据
@@ -267,7 +267,7 @@ Page({
       goods_num: _this.data.goods_num,
       goods_sku_id: _this.data.goods_sku_id
     }
-    App._post_form('sharing.order/buyNowinventory',  obj,
+    App._post_form(App.url.sharingOrderBuyNowinventory,  obj,
       function (res) {
       // 立即购买
         wx.navigateTo({
@@ -284,9 +284,6 @@ Page({
         });    
       }
     )
-    
-    
-
   },
 
   /**
@@ -387,7 +384,7 @@ Page({
     wx.showLoading({
       title: '加载中',
     });
-    App._get('sharing.goods/poster', {
+    App._get(App.url.sharingGoodsPoster, {
       goods_id: _this.data.goods_id
     }, function(result) {
       _this.setData(result.data, function() {

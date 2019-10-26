@@ -34,7 +34,7 @@ Page({
    */
   getRefundList: function(isNextPage, page) {
     let _this = this;
-    App._get('user.refund/lists', {
+    App._get(App.url.userRefundLists, {
       state: _this.data.dataType,
       page: page || 1,
     }, function(result) {

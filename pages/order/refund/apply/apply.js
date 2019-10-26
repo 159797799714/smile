@@ -33,7 +33,7 @@ Page({
     
     let type= options.type
     this.setData({
-      url: type === 'user'? 'user.refund/apply': 'sharing.refund/apply'
+      url: type === 'user'? App.url.userRefundApply: App.url.sharingRefundApply
     })
     // 获取订单商品详情
     this.getGoodsDetail();
@@ -175,7 +175,7 @@ Page({
     let i = 0;
     this.data.imageList.forEach(function(filePath, fileKey) {
       wx.uploadFile({
-        url: App.api_root + 'upload/image',
+        url: App.api_root + App.url.uploadImage,
         filePath: filePath,
         name: 'iFile',
         formData: {

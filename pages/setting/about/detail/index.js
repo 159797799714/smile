@@ -30,7 +30,7 @@ Page({
   getContentById(id) {
     let _this= this,
       category_id = id;
-    App._get('agreement_category/getContentById', {
+    App._get(App.url.agreementCategoryGetContentById, {
       category_id: category_id
     }, function(res) {
       _this.setData({
@@ -41,7 +41,7 @@ Page({
   // 登录时注册协议
   getRegister(search) {
     let _this= this;
-    App._get('agreement_category/getContentByName', {
+    App._get(App.url.agreementCategoryGetContentByName, {
       search: search
     }, function(res) {
       _this.setData({

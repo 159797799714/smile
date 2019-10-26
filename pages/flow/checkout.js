@@ -69,7 +69,6 @@ Page({
    * 获取当前订单信息
    */
   getOrderData: function() {
-    console.log(this.data.coupon)
     let _this = this,
       options = _this.data.options;
     // 获取订单信息回调方法
@@ -103,7 +102,7 @@ Page({
     };
     // 立即购买
     if (options.order_type === 'buyNow') {
-      App._get('order/buyNow', {
+      App._get(App.url.orderBuynow, {
         goods_id: options.goods_id,
         goods_num: options.goods_num,
         goods_sku_id: options.goods_sku_id,
@@ -119,7 +118,7 @@ Page({
     }
     // 购物车结算
     else if (options.order_type === 'cart') {
-      App._get('order/cart', {
+      App._get(App.url.orderCart, {
         cart_ids: options.cart_ids,
         delivery: _this.data.currentDelivery,
         shop_id: _this.data.selectedShopId,
@@ -129,7 +128,7 @@ Page({
         callback(result);
       });
     } else {
-      App._get('sharing.order/checkout', {
+      App._get(App.url.sharingOrderCheckout, {
         order_type: options.order_type,
         goods_id: options.goods_id,
         goods_num: options.goods_num,
@@ -277,7 +276,7 @@ Page({
 
     // 创建订单-立即购买
     if (options.order_type === 'buyNow') {
-      App._post_form('order/buyNow', {
+      App._post_form(App.url.orderBuynow, {
         goods_id: options.goods_id,
         goods_num: options.goods_num,
         goods_sku_id: options.goods_sku_id,
@@ -302,7 +301,7 @@ Page({
 
     // 创建订单-购物车结算
     else if (options.order_type === 'cart') {
-      App._post_form('order/cart', {
+      App._post_form(App.url.orderCart, {
         cart_ids: options.cart_ids,
         delivery: _this.data.currentDelivery,
         shop_id: _this.data.selectedShopId,
@@ -324,7 +323,7 @@ Page({
       // 拼团订单
       else {
       // 创建订单-立即购买
-        App._post_form('sharing.order/checkout', {
+        App._post_form(App.url.sharingOrderCheckout, {
           order_type: options.order_type || 10,
           goods_id: options.goods_id,
           goods_num: options.goods_num,
@@ -352,7 +351,6 @@ Page({
   },
   // 优惠券等选择器事件
   radioChange: function (e) {
-    console.log('radio发生change事件，携带value值为：', e.currentTarget.dataset.id)
     let type= this.data.popupType,
       dataset= e.currentTarget.dataset,
       coupon= this.data.coupon;

@@ -60,15 +60,15 @@ Page({
     let url = ''
     if (_this.title == "限时购") {
       if(isremind == "no") {
-        url = "flashsale/remind"
+        url = App.url.flashsaleRemind
       }else {
-        url = "flashsale/cancelremind"
+        url = App.url.flashsaleCancelremind
       }
     } else {
       if(isremind == "no") {
-        url = "seckill/remind"
+        url = App.url.seckillRemind
       }else {
-        url = "seckill/cancelremind"
+        url = App.url.seckillCancelremind
       }
     }
     let param = {
@@ -105,11 +105,11 @@ Page({
     let idUrl = ""
     console.log("标题",_this.title)
     if(_this.title == "限时购") {
-      url = "flashsale/categorys"
-      idUrl = "flashsale/goodsbycategoryid"
+      url = App.url.flashsaleCategorys
+      idUrl = App.url.flashsaleGoodsbycategoryid
     } else{
-      url = "seckill/categorys"
-      idUrl = "seckill/goodsbycategoryid"
+      url = App.url.seckillCategorys
+      idUrl = App.url.seckillGoodsbycategoryid
     }
     App._get(url,{},function(result) {
       console.log("获取秒杀活动分类",result)

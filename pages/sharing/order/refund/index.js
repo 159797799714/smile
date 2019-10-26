@@ -34,7 +34,7 @@ Page({
    */
   getRefundList: function(isNextPage, page) {
     let _this = this;
-    App._get('sharing.refund/lists', {
+    App._get(App.url.sharingRefundLists, {
       state: _this.data.dataType,
       page: page || 1,
     }, function(result) {

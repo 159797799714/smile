@@ -11,7 +11,7 @@
   <scroll-view scroll-y="{{ true }}" bindscrolltolower="bindDownLoad" style="height: {{swiperHeight}}px;">
     <view class="comment-list" wx:if="{{ list.data.length }}">
       <view class="comment-item" wx:for="{{ list.data }}" wx:key="this">
-        <view class="goods-comment-box dis-flex flex-dir-column b-f b-b">
+        <view class="goods-comment-box dis-flex flex-dir-column b-13 b-b">
           <view class="row dis-flex flex-y-center">
             <!-- 用户信息 -->
             <view class="user dis-flex flex-y-center">

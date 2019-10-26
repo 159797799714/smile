@@ -16,7 +16,7 @@ Page({
   },
   getInfo() {
     let _this = this;
-    App._get('app.center/getuserinfo', {}, function(result) {
+    App._get(App.url.appCenterGetuserinfo, {}, function(result) {
       _this.setData({
         info: result.data.info
       })
@@ -40,7 +40,7 @@ Page({
     let _this= this,
       value= _this.data.sign;
     if(_this.data.info.sign !== value) {
-      App._post_form('app.center/modifyWxUserInfo', {
+      App._post_form(App.url.appCenterModifyWxUserInfo, {
         sign: value? value: '',
       }, function(result) {
         _this.setData({

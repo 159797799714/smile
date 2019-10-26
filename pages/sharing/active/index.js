@@ -45,7 +45,7 @@ Page({
    */
   getActiveDetail(active_id) {
     let _this = this;
-    App._get('sharing.active/detail', {
+    App._get(App.url.sharingActiveDetail, {
       active_id
     }, function(result) {
       // 创建当前页面数据

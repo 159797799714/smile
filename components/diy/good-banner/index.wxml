@@ -1,0 +1,4 @@
+<view class="video-bg" style="background: url({{bgUrl}}); background-repeat: no-repeat;background-size: cover; display: {{play_icon}};">
+  <view class="play-icon" bindtap="videoPlay"></view>
+</view>
+<video id="myVideo" class="good-video" src="{{videoUrl}}" controls object-fit="cover" show-mute-btn="true" muted="true"></video>

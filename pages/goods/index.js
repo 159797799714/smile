@@ -52,6 +52,8 @@ Page({
     ishave: '',              // buyNow点击购买，addCart点击加入购物车，点击选择规格则为空字符串
     heightArr: [],           // 依次为商品，评价， 详情， 为你推荐的高度
     onSelectTab: false,      // 是否正在点击顶部tab
+    
+    play_icon: 'block',      // 播放按钮显示隐藏
   },
 
   // 记录规格的数组
@@ -60,7 +62,6 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  
   onLoad: function(e) {
     let _this = this,
     scene = App.getSceneData(e);
@@ -82,7 +83,18 @@ Page({
   onReady() {
     // 获取元素高度
     this.getHeight()
+    this.videoCtx = wx.createVideoContext('myVideo')  //根据id绑定
   },
+  // 点击cover播放
+  videoPlay: function (e) {
+    console.log('点击播放', e);
+    //隐藏封面图和播放图标
+    this.setData({
+      play_icon: "none"    //tab_image 来控制封面图 
+    }),
+    this.videoCtx.play();
+  },
+  
   observers: {
     'navData': function(top) {
       // 每次 setData 都触发

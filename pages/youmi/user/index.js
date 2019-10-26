@@ -50,7 +50,7 @@ Page({
   // 加载文章详情
   getDetail() {
     let _this = this;
-    App._get('user.index/fansHomePage', {
+    App._get(App.url.umiUserFansHomePage, {
       fans_user_id: _this.data.fans_user_id
     }, function(res) {
       console.log('详情', res.data)
@@ -67,9 +67,9 @@ Page({
   focusAction(e) {
     let _this= this,
       status= e.currentTarget.dataset.status,
-      url= 'user.index/focusOn';           // status为true代表已关注
+      url= App.url.umiUserFocuson;           // status为true代表已关注
     if(status) {
-      url= 'user.index/unFocus'
+      url= App.url.umiUserUnfocus
     }
     App._post_form(url, {
       focus_user_id: _this.data.userInfo.user_id
@@ -92,7 +92,7 @@ Page({
     let _this= this,
       index= e.currentTarget.dataset.index,
       id= e.currentTarget.dataset.id,
-      url= 'umi.article/like',
+      url= App.url.umiArticleLike,
       articleList= _this.data.articleList,
       likeList= _this.data.likeList;
     // 分享
@@ -101,7 +101,7 @@ Page({
         articlelike_count= 'articleList[' + index + '].articlelike_count',
         count= articleList[index].articlelike_count;
       if(articleList[index].islike_count === 1) {
-        url= 'umi.article/unLike',
+        url= App.url.umiArticleUnlike,
         count--
       } else {
         count++
@@ -121,7 +121,7 @@ Page({
         articlelike_count= 'likeList[' + index + '].articlelike_count',
         count= likeList[index].articlelike_count;
       if(likeList[index].islike_count === 1) {
-        url= 'umi.article/unLike',
+        url= App.url.umiArticleUnlike,
         count--
       } else {
         count++

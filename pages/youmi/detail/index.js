@@ -55,7 +55,7 @@ Page({
    */
   getArticleDetail(article_id) {
     let _this = this;
-    App._get('umi.article/detail', {
+    App._get(App.url.umiArticleDetail, {
       article_id
     }, function(res) {
       console.log('文章详情', res.data.detail)
@@ -86,7 +86,7 @@ Page({
       content: '确定删除此篇文章？',
       success (res) {
         if (res.confirm) {
-          App._post_form('umi.article/delete', {
+          App._post_form(App.url.umiArticleDelete, {
             article_id: _this.data.article_id
           }, function(res) {
             App.showSuccess('删除成功');
@@ -104,10 +104,10 @@ Page({
   focusAction(e) {
     let _this = this,
       status = e.currentTarget.dataset.status,
-      url = 'user.index/focusOn'; // status为true代表已关注
+      url = App.url.umiUserFocuson; // status为true代表已关注
     console.log(status)
     if (status) {
-      url = 'user.index/unFocus'
+      url = App.url.umiUserUnfocus
     }
     App._post_form(url, {
       focus_user_id: _this.data.detail.user.user_id
@@ -144,7 +144,7 @@ Page({
    */
   sendComment() {
     let _this = this;
-    App._get('umi.article/addcomments', {
+    App._get(App.url.umiArticleAddcomments, {
       'article_id': _this.data.detail.article_id,
       'comment': _this.data.commentValue
     }, function(result) {
@@ -175,35 +175,35 @@ Page({
     
     switch (e.currentTarget.dataset.state) {
       case "articlelike":
-        url = 'umi.article/like';
+        url = App.url.umiArticleLike;
         params = {
           article_id: _this.data.article_id,
         }
         if (this.data.detail.isLike) {
-          url = 'umi.article/unLike';
+          url = App.url.umiArticleUnlike;
         }
         break;
       case "commentlike":
-        url = 'umi.article/commentlike';
+        url = App.url.umiArticleCommentLike;
         params = {
           comment_id: commentsListContent.id
         }
         let tenstatus= commentsListContent.islike === "yes" && type === 'ten',
           allstatus= commentListAll.islike === "yes" && type === 'all';
         if (tenstatus || allstatus) {
-          url = 'umi.article/commentunlike';
+          url = App.url.umiArticleCommentunlike;
         }
         break;
       case "commentreplylike":
         console.log(type,type === 'all'?commentListAll.replys[num]: commentsListContent.replys[num].isreplylike )
-        url = 'umi.article/commentreplylike'
+        url = App.url.umiArticleReplyLike
         params = {
           reply_id: type === 'all'? commentListAll.replys[num].id: commentsListContent.replys[num].id
         }
         let tenReplystatus= commentsListContent.replys[num].isreplylike === "yes" && type === 'ten',
           allReplystatus= commentListAll.replys[num].isreplylike === "yes" && type === 'all';
         if (tenReplystatus || allReplystatus) {
-          url = 'umi.article/commentreplyunlike';
+          url = App.url.umiArticleReplyUnlike;
         } 
         break;
       default:
@@ -288,7 +288,7 @@ Page({
       comment= _this.data.replyCommentValue,
       commentsListContent = _this.data.detail.comments_show[_this.data.comment_index],
       commentListAll = _this.data.detail.comments.list[_this.data.comment_index];;
-    App._post_form('umi.article/commentreply', {
+    App._post_form(App.url.umiArticleCommentreply, {
       comment_id: id,
       comment: comment
     }, function(res) {
@@ -302,9 +302,9 @@ Page({
   // 收藏文章
   collect() {
     let _this = this,
-      url = 'umi.article/collection';
+      url = App.url.umiArticleCollection;
     if (_this.data.detail.isCollection === 'yes') {
-      url = 'umi.article/unCollection'
+      url = App.url.umiArticleUncollection
     }
     App._post_form(url, {
       article_id: _this.data.detail.article_id

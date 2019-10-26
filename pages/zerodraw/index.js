@@ -40,7 +40,7 @@ Page({
   // 0元抽奖活动分类
   getActivityList() {
     let that = this
-    let url = 'luckydraw/categorys'
+    let url = App.url.luckydrawCategorys
     App._get(url,{},function(res) {
       // let time = res.data.list[0].activity_endtime
       // utils.countDown(time,function(nowTime) {
@@ -64,11 +64,10 @@ Page({
   // 通过活动分类ID获取商品列表
   getGoodsById(id) {
     let that = this
-    let url = 'luckydraw/goodsbycategoryid'
+    let url = App.url.luckydrawGoodsbycategoryid
     App._post_form(url, {
       category_id: id
     }, function(res) {
-      console.log('商品列表', res.data.list, res.data.list.banners)
       that.setData({
         swiperList: res.data.list.banners,
         goodsList: res.data.list
@@ -79,7 +78,6 @@ Page({
   // 点击活动分类
   selectBar(e) {
     let that = this
-    console.log(e.currentTarget.dataset)
     let time = e.currentTarget.dataset.endtime
     this.setData({
       selectBarIndex: e.currentTarget.dataset.id,

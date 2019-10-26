@@ -2,14 +2,21 @@
 <scroll-view bindscroll="scroll" scroll-top="{{scrollTop}}" scroll-y="true" style="position:absolute; top:0; left:0; right:0; bottom:0;">
   <view class="container" wx:if="{{detail.goods_id}}">
     <view class="swiper">
-      <swiper autoplay="{{autoplay}}" bindchange="setCurrent" class="banner-box  swiper-box" duration="{{duration}}" indicator-dots="{{indicatorDots}}" interval="{{interval}}" circular="{{true}}">
+      <swiper bindchange="setCurrent" class="banner-box  swiper-box" duration="{{duration}}" indicator-dots="{{indicatorDots}}" interval="{{interval}}" circular="{{true}}">
+        <swiper-item wx:if="{{detail.goods_video_url}}">
+          <!-- <good-banner videoUrl="{{detail.goods_video_url}}"></good-banner> -->
+          <view class="video-bg" style="background: url({{detail.image[0].file_path}}); background-repeat: no-repeat;background-size: cover; display: {{play_icon}};">
+            <view class="play-icon" bindtap="videoPlay"></view>
+          </view>
+          <video id="myVideo" class="good-video" src="{{detail.goods_video_url}}" controls object-fit="cover" show-mute-btn="true" muted="true"></video>
+        </swiper-item>
         <swiper-item wx:for="{{detail.image}}" wx:key="this" bindtap="previewImages" data-index="{{ index }}">
           <image class="slide-image" mode="aspectFill" src="{{item.file_path}}"></image>
         </swiper-item>
       </swiper>
       <view class="banner-num">
         <text>{{currentIndex}}</text>
-        <text>/{{detail.image.length}}</text>
+        <text>/{{detail.goods_video_url? detail.image.length + 1: detail.image.length}}</text>
       </view>
     </view>
     <!-- 秒杀状态 -->

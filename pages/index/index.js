@@ -21,6 +21,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    console.log(App.url)
     let _this = this;
     if (options) {
       // 当前页面参数
@@ -41,9 +42,6 @@ Page({
     }
   },
   onPageScroll: function(options) {
-    // Do something when page scroll
-    // this.data.items[1].scrollTopDist = options.scrollTop
-    // let data = this.data
     console.log(options)
     this.setData({
       scrollTopDist: options.scrollTop
@@ -56,16 +54,6 @@ Page({
   getPageData: function(callback) {
     let _this = this;
     typeof callback === 'function' && callback();
-
-    // App._get('page/index', {
-    //   page_id: _this.data.options.page_id
-    // }, function(result) {
-    //   // 设置顶部导航栏栏
-    //   _this.setPageBar(result.data.page);
-    //   _this.setData(result.data);
-    //   // 回调函数
-    //   typeof callback === 'function' && callback();
-    // });
   },
 
   /**
@@ -73,7 +61,7 @@ Page({
    */
   getcategoryList: function() {
     let _this = this;
-    App._get('article/categorylist', {
+    App._get(App.url.articleCategory, {
       page_id: _this.data.options.page_id
     }, function(result) {
       let dataType = _this.data.dataType
@@ -86,7 +74,7 @@ Page({
         })  
       }
       console.log('dataType后', dataType)
-      App._get('article/articlesbycategoryid', {
+      App._get(App.url.articlesbycategoryid, {
         category_id: dataType
       }, function(resultItem) {
         _this.setData({
@@ -99,7 +87,7 @@ Page({
   // 获取首页轮播图
   getBannerList() {
     let that = this
-    App._get('article/gethomebanners', {}, function(res) {
+    App._get(App.url.articleHomeBanner, {}, function(res) {
       let arr = []
       res.data.list.map((item, index) => {
         let obj = {}

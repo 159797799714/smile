@@ -112,7 +112,7 @@ Page({
 
   getSwiperList() {
     let that = this
-    App._get('goods/gethomebanners', {}, function(res) {
+    App._get(App.url.shopBanners, {}, function(res) {
       if (res.data.list) {
         console.log(res.data.list)
         let arr = []
@@ -202,7 +202,7 @@ Page({
   // 获取限时购
   getGoodsbyone() {
     let _this = this
-    App._get('flashsale/getflashsalegoodsbyone', {}, function(result) {
+    App._get(App.url.flashOne, {}, function(result) {
       if (result.data.goods) {
         _this.setData({
           'discount[0].info': result.data.goods.homepage_activity_subtitle ? result.data.goods.homepage_activity_subtitle : '',
@@ -223,7 +223,7 @@ Page({
   // 秒杀购
   getGoodsbyone2() {
     let _this = this
-    App._get('seckill/getseckillgoodsbyone', {}, function(result) {
+    App._get(App.url.seckillOne, {}, function(result) {
       if (result.data) {
         console.log(result.data.sharing_goods.image_url)
         _this.setData({
@@ -261,7 +261,7 @@ Page({
   // 零元购
   getZero() {
     let _this = this
-    App._get('luckydraw/getluckydrawgoodsbyone', {}, function(result) {
+    App._get(App.url.luckdrawOne, {}, function(result) {
       if (result.data.goods) {
         _this.setData({
           'discount[3].min_price': result.data.goods.sku ? result.data.goods.sku[0].goods_price: '',
@@ -284,7 +284,7 @@ Page({
    */
   getAllgoodsCategory() {
     let _this = this;
-    App._get('category/goodscategorynew', {}, function(result) {
+    App._get(App.url.categoryList, {}, function(result) {
       _this.setData({
         shopClassify: result.data.list
         // shopClassify: this.data.shopClassify
@@ -297,7 +297,7 @@ Page({
    */
   getRecommendgoods() {
     let _this = this;
-    App._get('goods/recommendgoods', {}, function(result) {
+    App._get(App.url.indexRecommendgoods, {}, function(result) {
       _this.setData({
         recommendList: result.data.list
       })

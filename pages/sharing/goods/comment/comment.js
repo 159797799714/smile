@@ -68,7 +68,7 @@ Page({
     let _this = this;
     let params = _this.data.options;
     params.page = page || 1;
-    App._get('sharing.comment/lists', params, function(result) {
+    App._get(App.url.sharingCommentListsnew, params, function(result) {
       let resultList = result.data.list,
         dataList = _this.data.list;
       if (isNextPage !== true || typeof dataList.data === 'undefined') {

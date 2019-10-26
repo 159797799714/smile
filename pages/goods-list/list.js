@@ -160,7 +160,7 @@ Page({
       min_price: _this.data.minPrice,
       max_price: _this.data.maxPrice,
     }
-    App._post_form('goods/goodlists',params,function(result) {
+    App._post_form(App.url.goodLists,params,function(result) {
       console.log("获取商品列表",result)
       let resList = result.data.list,
         dataList = _this.data.list;
@@ -189,11 +189,11 @@ Page({
     })
     
     // 删除搜索框重新请求数据
-    // if(_this.data.tabIndex === 0) {
-    //   _this.getArticleList()
-    // }else {
-    //   _this.searchGoods()
-    // }
+    if(_this.data.tabIndex === 0) {
+      _this.getArticleList()
+    }else {
+      _this.searchGoods()
+    }
   },
 
   // 搜索最低价和最高价
@@ -272,7 +272,7 @@ Page({
       search: _this.data.inputClearValue,
       tags_id: 0 || id
     }
-    App._get('article/articlesbysearch',params,function(result) {
+    App._get(App.url.articleBysearch,params,function(result) {
       console.log("获取分享文章",result)
       _this.setData({
         shareList: result.data.list
@@ -291,13 +291,13 @@ Page({
         category_id: _this.data.categoryId
       }
       if(type === '品牌') {
-        url = 'brands/getbrandsbycategoryid'
+        url = App.url.brandsGetbrandsbycategoryid
       } else {
-        url = 'category/goodscategorybysecond'
+        url = App.url.categoryGoodscategorybysecond
       }
       // 从搜索进来
     } else {
-      url = type === '品牌'? 'brands/getbrands': 'category/goodscategory'
+      url = type === '品牌'? App.url.getBrands: App.url.goodscategory
     }
     App._get(url, param, function(result) {
       console.log("获取品牌分类",result.data.list)
@@ -517,7 +517,7 @@ Page({
   // 获取所有标签分类
   getArticleLabelList() {
     let _this = this
-    App._post_form('article/activitytags',{},function(result) {
+    App._post_form(App.url.articleActivitytags,{},function(result) {
       console.log("获取所有标签分类",result)
       _this.setData({
         shareTag: result.data.tags,
@@ -599,7 +599,7 @@ Page({
       }else {
         // 获取所有分类列表
         // 促销
-        App._post_form('goods/promotions',{},function(result) {
+        App._post_form(App.url.goodsPromotions,{},function(result) {
           console.log("获取促销列表",result)
           
           _this.setData({
@@ -636,36 +636,7 @@ Page({
     });
   },
 
-  /**
-   * 获取商品列表
-   * @param {bool} isPage 是否分页
-   * @param {number} page 指定的页码
-   */
-  getGoodsList: function(isPage, page) {
-    let _this = this;
-
-    App._get('goods/lists', {
-      page: page || 1,
-      sortType: this.data.sortType,
-      sortPrice: this.data.sortPrice ? 1 : 0,
-      category_id: this.data.option.category_id || 0,
-      search: this.data.option.search || '',
-    }, function(result) {
-      let resList = result.data.list,
-        dataList = _this.data.list;
-      if (isPage == true) {
-        _this.setData({
-          'list.data': dataList.data.concat(resList.data),
-          isLoading: false,
-        });
-      } else {
-        _this.setData({
-          list: resList,
-          isLoading: false,
-        });
-      }
-    });
-  },
+  
 
   /**
    * 切换排序方式

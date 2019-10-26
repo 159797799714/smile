@@ -13,12 +13,14 @@ module.exports = {
   articlesbycategoryid: 'article/articlesbycategoryid',// 首页通过文章列表
   articleDetailing: 'article/detailing',               // 首页文章详情
   articleCommentunlike: 'article/commentunlike',       // 首页文章详情评论取消点赞
-  articleCommentunlike: 'article/commentunlike',       // 首页文章详情评论点赞
+  articleCommentlike: 'article/commentlike',           // 首页文章详情评论点赞
   articleLike: 'article/like',                         // 首页文章详情点赞
   articleunLike: 'article/unLike',                     // 首页文章详情取消点赞
   articleUncollection: 'article/unCollection',         // 首页文章详情取消收藏
-  articleUncollection: 'article/collection',           // 首页文章详情收藏
+  articleCollection: 'article/collection',             // 首页文章详情收藏
   articleAddcomments: 'article/addcomments',           // 首页文章评论
+  articleCommentreplylike: 'article/commentreplylike', // 文章评论回复点赞
+  articleCommentreplyunlike: 'article/commentreplyunlike',// 文章评论回复取消点赞
   
   // 优迷
   umiHomebanner: 'umi.homebanner/gethomebanners',      // 优迷首页轮播图
@@ -30,12 +32,13 @@ module.exports = {
   umiArticleLike: 'umi.article/like',                  // 优迷文章点赞
   umiArticleUnlike: 'umi.article/unLike',              // 优迷文章取消点赞
   umiArticleDetail: 'umi.article/detail',              // 优迷文章详情
+  umiCategoryDetail: 'umi.category/detail',            // 优迷活动详情
   umiArticleDelete: 'umi.article/delete',              // 优迷文章删除
   umiArticleCollection: 'umi.article/collection',      // 优迷文章收藏
   umiArticleUncollection: 'umi.article/unCollection',  // 优迷文章取消收藏
   umiArticleAddcomments: 'umi.article/addcomments',    // 优迷文章评论
   umiArticleCommentLike: 'umi.article/commentlike',    // 优迷文章评论点赞
-  umiArticleUnlike: 'umi.article/commentunlike',       // 优迷文章评论取消点赞
+  umiArticleCommentunlike: 'umi.article/commentunlike',// 优迷文章评论取消点赞
   umiArticleCommentreply: 'umi.article/commentreply',  // 优迷文章评论回复评论
   umiArticleReplyLike: 'umi.article/commentreplylike', // 优迷文章评论回复点赞
   umiArticleReplyUnlike: 'umi.article/commentreplyunlike', // 优迷文章评论回复取消点赞
@@ -55,8 +58,11 @@ module.exports = {
   
   // 商品列表页
   goodLists: 'goods/goodlists',                        // 商品列表页搜索商品列表
-  getBrands: 'brands/getbrands',                       // 品牌列表
-  goodscategory: 'category/goodscategory',             // 商品分类列表
+  getBrands: 'brands/getbrands',                       // 搜索页进来品牌列表
+  goodscategory: 'category/goodscategory',             // 搜索页进来商品分类列表
+  brandsGetbrandsbycategoryid: 'brands/getbrandsbycategoryid',// 商城首页点击一级分类进来品牌列表
+  categoryGoodscategorybysecond: 'category/goodscategorybysecond',// 从商城首页点击一级分类进来分类列表
+  goodsPromotions: 'goods/promotions',                 // 筛选促销分类列表
   
   articleBysearch: 'article/articlesbysearch',         // 搜索文章列表
   articleActivitytags: 'article/activitytags',         // 商品列表文章活动列表
@@ -80,6 +86,7 @@ module.exports = {
   seckillDetail: 'seckill/detail',                     // 秒杀商品详情
   seckillRemind: 'seckill/remind',                     // 秒杀提醒
   seckillCancelremind: 'seckill/cancelremind',         // 秒杀取消提醒
+  seckillCommentLists: 'comment/lists',                // 评论列表
   
   // 拼团
   sharingCategoryList: 'sharing.index/index',          // 拼团首页分类列表
@@ -97,9 +104,46 @@ module.exports = {
   sharingCommentReplyToReplyLike: 'sharing.comment/replyToReplyLike',   // 拼团商品评论回复—-对回复内容再回复---点赞
   sharingCommentReplyToReplyunLike: 'sharing.comment/replyToReplyunLike', // 拼团商品评论回复—-对回复内容再回复---取消点赞
   sharingCommentReplyToReply: 'sharing.comment/replyToReply',             // 拼团商品评论回复---对回复内容再回复
+  sharingGoodsPoster: 'sharing.goods/poster',          // 商品海报
+  sharingActiveDetail: 'sharing.active/detail',        // 参加拼团详情页
   
   // 拼团订单
-  userOrderGoodsExpress: 'user.order/goodsExpress',          // 查看物流   
+  sharingOrderLists: 'sharing.order/lists',                  // 拼团订单列表
+  sharingOrderDetail: 'sharing.order/detail',                //  拼团订单详情
+  sharingOrderCancel: 'sharing.order/cancel',                // 取消订单
+  sharingOrderDelete: 'sharing.order/delete',                // 删除订单
+  sharingOrderReceipt: 'sharing.order/receipt',              // 确认收货
+  userOrderGoodsExpress: 'user.order/goodsExpress',          // 查看物流  
+  sharingOrderPay: 'sharing.order/pay',                      // 订单发起付款
+  sharingOrderExtractQrcode: 'sharing.order/extractQrcode',  // 拼团付款核销二维码 
+  
+  // 普通订单
+  userOrderLists: 'user.order/lists',                        // 普通订单列表
+  userOrderCancel: 'user.order/cancel',                      // 取消订单
+  userOrderReceipt: 'user.order/receipt',                    // 确认收货
+  userOrderDelete: 'user.order/delete',                      // 删除订单
+  userOrderPay: 'user.order/pay',                            // 订单支付
+  userOrderRxtractQrcode: 'user.order/extractQrcode',        // 支付核销码
+  userOrderDetail: 'user.order/detail',                      // 订单详情
+  userCommentOrder: 'user.comment/order',                    // 普通商品订单评论
+  sharingCommentOrder: 'sharing.comment/order',              //拼团商品订单评论
+  sharingOrderGoodsExpress: 'sharing.order/goodsExpress',    // 拼团订单查看物流
+  
+  // 普通订单售后
+  userRefundLists: 'user.refund/lists',                      // 普通订单售后列表
+  userRefundApply: 'user.refund/apply',                      // 售后申请
+  userRefundDetail: 'user.refund/detail',                    // 售后详情
+  userRefundDelivery: 'user.refund/delivery',                // 退货信息
+  
+  
+  
+  // 拼团售后
+  sharingRefundLists: 'sharing.refund/lists',                // 拼团售后列表
+  sharingRefundApply: 'sharing.refund/apply',                // 售后申请
+  // 详情
+  sharingRefundDetail: 'sharing.refund/detail',              // 售后详情
+  sharingRefundDelivery: 'sharing.refund/delivery',          // 退货信息
+  
   
   // 零元抽奖
   luckydrawCategorys: 'luckydraw/categorys',                 // 零元抽奖分类列表
@@ -114,6 +158,8 @@ module.exports = {
   // 购物车
   cartListsnew: 'cart/listsnew',                             // 购物车列表
   orderCart: 'order/cart',                                   // 购物车结算购买---使用优惠券--红包--订单总价动态变化
+  cartAdd: 'cart/add',                                       // 商品数量增加
+  cartSub: 'cart/sub',                                       // 商品数量减少
   
   // 普通订单
   userOrderDelete: 'user.order/delete',                      // 删除订单
@@ -131,8 +177,12 @@ module.exports = {
   appCenterMycollection: 'app.center/mycollection',     // 我的收藏
   appCenterMylikearticles: 'app.center/mylikearticles', // 个人中心我点赞的文章列表
   appCenterModifyWxUserInfo: 'app.center/modifyWxUserInfo', // 修改个性签名
+  // 收货地址
+  addressLists: 'address/lists',                        // 收货地址列表
+  
   
   // 领券中心
+  couponGetCouponsByThemeId: 'coupon/getCouponsByThemeId', // 通过商品id搜索优惠券
   couponCouponCenter: 'coupon/couponCenter',            // 领券中心
   couponGethomebanners: 'coupon/gethomebanners',        // 领券中心轮播图
   
@@ -160,7 +210,10 @@ module.exports = {
   userRedenvelopeReceive: 'user.redenvelope/receive',   // 领取红包
   userRedenvelopeLists: 'user.redenvelope/lists',       // 我的红包（未使用--已使用--已过期）
   
-  appCenterIntegralLogs: 'app.center/integralLogs',   // 积分明细
+  appCenterIntegralLogs: 'app.center/integralLogs',     // 积分明细
+  
+  
+  
   
   
   

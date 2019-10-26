@@ -28,7 +28,7 @@ Page({
   // 获取轮播图数据
   getBannerList() {
     let _this = this;
-    App._get('umi.homebanner/gethomebanners', {}, function(res) {
+    App._get(App.url.umiHomebanner, {}, function(res) {
       _this.setData({
         bannerList: res.data.list
       })
@@ -38,7 +38,7 @@ Page({
   // 加载文章详情
   getDetail() {
     let _this = this;
-    App._get('umi.category/detail', {
+    App._get(App.url.umiCategoryDetail, {
       category_id: _this.data.category_id
     }, function(res) {
       console.log('详情', res.data)
@@ -55,13 +55,13 @@ Page({
     let _this= this,
       index= e.currentTarget.dataset.index,
       id= e.currentTarget.dataset.id,
-      url= 'umi.article/like',
+      url= App.url.umiArticleLike,
       articleList= _this.data.articleList,
       islike_count= 'articleList[' + index + '].islike_count',
       articlelike_count= 'articleList[' + index + '].articlelike_count',
       count= articleList[index].articlelike_count;
     if(articleList[index].islike_count === 1) {
-      url= 'umi.article/unLike',
+      url= App.url.umiArticleUnlike,
       count--
     } else {
       count++

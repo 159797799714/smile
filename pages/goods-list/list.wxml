@@ -7,7 +7,7 @@
         <view class="index-cont-search flex-y-center dis-flex">
           <image class="img-align-text" mode="widthFix" src="../../images/seach.png" />
           <input class="ipt" placeholder="搜索" confirm-type="search" value="{{ inputClearValue }}" bindblur="seachInput" />
-          <image catchtap="deleteSearch" class="img-align-text" mode="widthFix" src="../../images/cancel.png" />
+          <image class="img-align-text" mode="widthFix" src="../../images/cancel.png"  catchtap="deleteSearch"/>
         </view>
       </view>
       <view catchtap="onChangeShowState" class="list-right f-28">
@@ -61,7 +61,7 @@
     </view>
   </view>
   
-  <scroll-view bindscrolltolower="bindDownLoad" scroll-y class="culture flex-box" bindscroll="scrollingView" scroll-top="{{scrollTop}}">
+  <scroll-view wx:if="{{ shareList.length > 0 || list.data.length > 0}}"  bindscrolltolower="bindDownLoad" scroll-y class="culture flex-box" bindscroll="scrollingView" scroll-top="{{scrollTop}}">
     <!-- 分享 -->
     <view wx:if="{{ tabIndex === 0 }}" class="main b-15 border-box">
       <view wx:for="{{ shareList }}" wx:key="this" class="item" catchtap="goShareDetail" data-id="{{ item.article_id }}">
@@ -150,7 +150,7 @@
     </view>
   </view>
   <!-- 无数据 -->
-  <view wx:if="{{ !isLoading && !list.data.length }}" class="yoshop-notcont" style="margin-top:130px;">
+  <view wx:if="{{ !isLoading && !list.data.length }}" class="yoshop-notcont">
     <view class="img">
       <image mode="aspectFit" src="../../images/no_content.png"></image>
     </view>

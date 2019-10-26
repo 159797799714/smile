@@ -18,7 +18,7 @@ Page({
   // 加载草场文章数据
   getArticleList() {
     let _this = this;
-    App._post_form('umi.article/articlesbysearch', {
+    App._post_form(App.url.umiArticleArticlesbysearch, {
       search: _this.data.searchName
     }, function(res) {
       console.log('搜索结果', res.data)
@@ -59,13 +59,13 @@ Page({
     let _this= this,
       index= e.currentTarget.dataset.index,
       id= e.currentTarget.dataset.id,
-      url= 'umi.article/like',
+      url= App.url.umiArticleLike,
       articleList= _this.data.articleList,
       islike_count= 'articleList[' + index + '].islike_count',
       articlelike_count= 'articleList[' + index + '].articlelike_count',
       count= articleList[index].articlelike_count;
     if(articleList[index].islike_count === 1) {
-      url= 'umi.article/unLike',
+      url= App.url.umiArticleUnlike,
       count--
     } else {
       count++

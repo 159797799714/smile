@@ -57,7 +57,7 @@ Page({
     wx.showLoading({
       title: '加载中'
     })
-    App._get('article/detailing', {
+    App._get(App.url.articleDetailing, {
       article_id
     }, function(result) {
       let detail = result.data.detail;
@@ -94,7 +94,6 @@ Page({
   },
   // 富文本a标签
   wxParseTagATap: function(e){
-    console.log('22222')
     var href = e.currentTarget.dataset.src
     //我们可以在这里进行一些路由处理
     // if(href.indexOf(index) > 0){
@@ -121,7 +120,7 @@ Page({
    */
   sendComment() {
     let _this = this;
-    App._get('article/addcomments', {
+    App._get(App.url.articleAddcomments, {
       'article_id': _this.data.detail.article_id,
       'comment': _this.data.commentValue
     }, function(result) {
@@ -144,30 +143,30 @@ Page({
     let params = {}
     switch (e.currentTarget.dataset.state) {
       case "articlelike":
-      url = 'article/like';
+      url = App.url.articleLike;
       params = {
         article_id: _this.data.article_id,
       }
       if(this.data.isLike) {
-        url = 'article/unLike';
+        url = App.url.articleunLike;
       }
       break;
       case "commentlike":
-      url = 'article/commentlike';
+      url = App.url.articleCommentlike;
       params = {
         comment_id: commentsListContent.id
       }
       if(commentsListContent.islike == "yes") {
-        url = 'article/commentunlike';
+        url = App.url.articleCommentunlike;
       }
       break;
       case "commentreplylike":
-      url = 'article/commentreplylike'
+      url = App.url.articleCommentreplylike
       params = {
         reply_id: commentsListContent.replys[0].id
       }
       if(commentsListContent.replys[0].isreplylike == "yes") {
-        url = 'article/commentreplyunlike';
+        url = App.url.articleCommentreplyunlike;
       }
       break;
       default:
@@ -205,9 +204,9 @@ Page({
   // 收藏文章
   collect() {
     let _this= this,
-      url= 'article/collection';
+      url= App.url.articleCollection;
     if(_this.data.detail.isCollection) {
-      url= 'article/unCollection'
+      url= App.url.articleUncollection
     }
     App._post_form(url, {
       article_id: _this.data.detail.article_id

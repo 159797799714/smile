@@ -19,7 +19,7 @@ Page({
     imgList: [],    // 已经选中上传成功的图片
     topicList: [],  // 活动分类
     index: 0,       // 选择器,
-    url: 'umi.article/release', // 发表文章接口地址地址
+    url: App.url.umiArticleRelease, // 发表文章接口地址地址
   },
   
   submitDisable: false,
@@ -37,7 +37,7 @@ Page({
   // 获取活动分类列表
   getTopicList() {
     let _this= this;
-    App._get('umi.category/allList', {}, function(res) {
+    App._get(App.url.umiCategoryAllList, {}, function(res) {
       console.log(res.data.list)
       _this.setData({
         topicList: res.data.list
@@ -100,7 +100,7 @@ Page({
           const tempFilePaths = res.tempFilePaths
           tempFilePaths.map(function(filePath, fileIndex) {
             wx.uploadFile({
-              url: App.api_root + 'upload/image',
+              url: App.api_root + App.url.uploadImage,
               filePath: filePath,
               name: 'iFile',
               formData: params,

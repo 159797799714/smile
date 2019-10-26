@@ -39,7 +39,7 @@
       <view class="info border-box">
         <view class="user">
           <view class="userImg">
-            <image src="{{ item.user.avatarUrl }}" mode="widthFix"></image>
+            <image src="https://market.pd-unixe.com/uploads/20190806174046576d31256.jpg" mode="aspectFill"></image>
           </view>
           <view class="userName onelist-hidden col-9">unixe官方</view>
         </view>

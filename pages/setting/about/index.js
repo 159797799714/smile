@@ -16,7 +16,7 @@ Page({
   
   getAgreementList() {
     let _this= this
-    App._get('agreement_category/list', {}, function(res) {
+    App._get(App.url.agreementCategoryList, {}, function(res) {
       _this.setData({
         menulist: res.data.list
       })

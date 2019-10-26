@@ -13,6 +13,7 @@ const tabBarLinks = [
 const util = require('./utils/util.js');
 // 需要登录的url列表
 const apiNeedLogin= require('./utils/apiNeedLogin.js');
+const url= require('./utils/api.js');
 
 App({
 
@@ -22,6 +23,8 @@ App({
   globalData: {
     user_id: null,
   },
+  
+  url: url,
 
   // api地址
   api_root: '',
@@ -101,25 +104,11 @@ App({
    */
   doLogin: function() {
     // 保存当前页面
-    this.count = this.count + 1
-    console.log(this.count)
     let pages = getCurrentPages();
-    console.log('dologin函数', pages.length)
-    // if (pages.length) {
-    //   let currentPage = pages[pages.length - 1];
-    //   "pages/login/login" != currentPage.route &&
-    //     wx.setStorageSync("currentPage", currentPage);
-    // }
-    // if(this.count < 2) {
-      console.log('进来了', this.count)
       // 跳转授权页面
       wx.navigateTo({
         url: "/pages/login/login"
-      });  
-    // }
-    // setTimeout(function() {
-    //   this.count = 0
-    // }, 500)
+      }); 
   },
 
   /**
@@ -189,11 +178,8 @@ App({
     // 构造请求参数
     data = data || {};
     if(!isLogin && isDefault) {
-      console.log('get进来了else, ')
       App.doLogin();
     } else {
-      console.log('get 进来了else')
-      
       wx.showNavigationBarLoading();
       data.wxapp_id = App.siteInfo.uniacid;
       data.token = token? token: '6d96b9408fe75c9da42fd4d1b9582993'
@@ -255,10 +241,8 @@ App({
     // 构造请求参数
     data = data || {};
     if(!isLogin && isDefault) {
-      console.log('post的if')
       App.doLogin();
     } else {
-      console.log('post的else')
       isShowNavBarLoading || true;
       data.wxapp_id = App.siteInfo.uniacid;
       data.token = token? token: '6d96b9408fe75c9da42fd4d1b9582993'

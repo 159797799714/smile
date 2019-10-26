@@ -31,7 +31,7 @@ Page({
     
     let type= options.type
     this.setData({
-      url: type === 'user'? 'user.comment/order': 'sharing.comment/order'
+      url: type === 'user'? App.url.userCommentOrder: App.url.sharingCommentOrder
     })
     // 获取待评价商品列表
     this.getGoodsList();
@@ -144,9 +144,6 @@ Page({
 
     // form提交执行函数
     let fromPostCall = function(formData) {
-      console.log('fromPostCall');
-      console.log(formData);
-
       App._post_form(_this.data.url, {
           order_id: _this.data.options.order_id,
           formData: JSON.stringify(formData)
@@ -191,7 +188,7 @@ Page({
       if (item.content !== '') {
         item.image_list.forEach(function(filePath, fileKey) {
           wx.uploadFile({
-            url: App.api_root + 'upload/image',
+            url: App.api_root + App.url.uploadImage,
             filePath: filePath,
             name: 'iFile',
             formData: params,

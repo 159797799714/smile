@@ -25,7 +25,7 @@ Page({
    */
   getExpressDynamic: function(order_id, type, goods_id) {
     let _this = this,
-      url= type === 'sharing'? 'sharing.order/goodsExpress': 'user.order/goodsExpress';
+      url= type === 'sharing'? App.url.sharingOrderGoodsExpress: App.url.userOrderGoodsExpress;
     App._get(url, {
         order_id: order_id,
         order_goods_id: goods_id

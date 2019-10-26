@@ -48,7 +48,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log('11111', options)
     let that = this
     
     if(options.form) {
@@ -151,7 +150,7 @@ Page({
     wx.showLoading({
       title: '加载中'
     })
-    let url = 'luckydraw/detail'
+    let url = App.url.luckydrawDetail
     App._post_form(url, {
       goods_id: id
     }, function(res) {
@@ -293,7 +292,7 @@ Page({
       formId: e.detail.formId
     })
     let that = this
-    let url = 'luckydraw/remind'
+    let url = App.url.luckydrawRemind
     let param = this.data.param
     param.good_id = param.goods_id
     param.formId = e.detail.formId
@@ -315,7 +314,7 @@ Page({
   
   sureAction() {
     let that= this
-    let url= 'luckydraw/winConfirm'
+    let url= App.url.luckydrawWinConfirm
     let param = {
       win_code: that.data.detail.win_code,
       goods_sku_id: that.data.goods_sku_id
@@ -360,7 +359,7 @@ Page({
   
   // 抽奖分享回调
   shareRes(goods_id, reuser_id) {
-    let url = 'luckydraw/luckydrawshare'
+    let url = App.url.luckydrawLuckydrawshare
     let param = {
       goods_id: goods_id,
       reuser_id: reuser_id
@@ -383,7 +382,7 @@ Page({
   // 获取收货地址
   getAddress() {
     let that = this
-    let url = 'address/lists'
+    let url = App.url.addressLists
     App._get(url, {}, function(res) {
       console.log('获取收货地址', res.data.default_id)
       if(res.code === 1) {
